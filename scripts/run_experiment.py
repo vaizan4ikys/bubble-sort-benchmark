@@ -32,7 +32,8 @@ HEADER = "seq,algorithm,order,size,fork,iter,batch,ns_per_sort,gc_during,warmup_
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True, help="output directory")
-    ap.add_argument("--forks", type=int, default=10)
+    ap.add_argument("--forks", type=int, default=10, help="number of forks (JVMs) per cell")
+    ap.add_argument("--fork-start", type=int, default=0, help="id of the first fork (used for additional forks)")
     ap.add_argument("--iters", type=int, default=30, help="measured iterations per fork")
     ap.add_argument("--seed", type=int, default=20261104, help="base seed for data AND job order")
     ap.add_argument("--sizes", type=int, nargs="*", default=SIZES)
@@ -55,7 +56,7 @@ def main() -> int:
     header = HEADER.replace("seq,", "seq,type,", 1) if typed else HEADER
     jvm_flags = JVM_FLAGS + args.jvm_extra.split()
     types = args.types if typed else [None]
-    jobs = list(itertools.product(types, args.algorithms, args.orders, args.sizes, range(args.forks)))
+    jobs = list(itertools.product(types, args.algorithms, args.orders, args.sizes, range(args.fork_start, args.fork_start + args.forks)))
     random.Random(args.seed).shuffle(jobs)
     (out / "config.json").write_text(json.dumps({**vars(args), "jvm_flags": jvm_flags, "n_jobs": len(jobs)}, indent=2))
 
