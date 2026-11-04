@@ -3,6 +3,7 @@ package exp01;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * One benchmark "fork": measures ONE (algorithm, input order, size) cell inside a
@@ -171,7 +172,7 @@ public final class Worker {
 
 			out.append(algorithm).append(',').append(order).append(',').append(n).append(',').append(fork).append(',')
 					.append(it).append(',').append(batch).append(',')
-					.append(String.format("%.3f", (t1 - t0) / (double) batch)).append(',')
+					.append(String.format(Locale.ROOT, "%.3f", (t1 - t0) / (double) batch)).append(',')
 					.append(gcAfter != gcBefore ? 1 : 0).append(',').append(warmCount).append(',')
 					.append(warmupTimedOut ? 1 : 0).append('\n');
 		}

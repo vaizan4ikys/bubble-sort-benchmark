@@ -36,6 +36,7 @@ src/exp01/                the three sorters + Sorter (given), and our code:
 scripts/
   run_experiment.py         orchestrator (shuffled, resumable, one JVM per job)
   run_followups.sh          queue of all follow-up experiments
+  run_portable.py           second-machine check, any OS (run_windows.bat in the root starts it on Windows)
   capture_environment.sh    records hardware / software / power state
 analysis/
   analyze_main.py           tables, hypothesis checks, figures for the main data
@@ -90,12 +91,16 @@ Follow-ups that use `ExtendedWorker` have an additional `type` column.
 The main data come from one Apple M3 Pro laptop (ARM). To show that the conclusions are not specific
 to it, the same experiment is repeated in a reduced form (6 input orders × sizes 1 000 / 5 000 / 10 000
 × 3 algorithms × 5 forks = 270 JVM runs, about 35 minutes) on **another computer, ideally x86**.
+`results/portable_vlad-laptop/` is a trial of this procedure on the same M3 Pro, so it is **not** that check.
 
-1. Install a JDK (any version ≥ 8) and Python 3 (the script only needs the standard library).
-2. Plug the computer in, close other programs, and do not use it while the script runs.
-3. `git clone https://github.com/vaizan4ikys/bubble-sort-benchmark && cd bubble-sort-benchmark`
-4. `scripts/run_portable.sh <name-of-the-machine>`   (e.g. `vlad-laptop`; on Windows use WSL or Git Bash)
-5. Send back (or push) the folder `results/portable_<name-of-the-machine>/`. It contains the raw
+1. Install a JDK (any version ≥ 8), Python 3.7+ and Git. On Windows, tick "Add to PATH" in the installers.
+2. `git clone https://github.com/vaizan4ikys/bubble-sort-benchmark` and enter the folder.
+3. Check that the computer is ready (about 10 seconds, nothing is saved):
+   - Windows, native and not WSL (WSL adds a virtualisation layer): `run_windows.bat windows-x86 --check`
+   - macOS / Linux: `scripts/run_portable.sh linux-x86 --check`
+4. Plug the computer in, close other programs, and start the same command without `--check`.
+   Do not use the computer or close the lid until it finishes. If it is interrupted, the same command resumes it.
+5. Commit and push (or send) the folder `results/portable_<name-of-the-machine>/`. It contains the raw
    measurements and an `environment.txt` with the hardware and Java version.
 
 The results are then compared with the main data (ratios between the algorithms) and added to the report.

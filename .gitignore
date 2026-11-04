@@ -11,3 +11,5 @@ jmh/src/main/java/exp01/Sorter.java
 jmh/src/main/java/exp01/BubbleSort*.java
 jmh/src/main/java/exp01/InputGenerator.java
 jmh/src/main/java/exp01/Worker.java
+.DS_Store
+bin_portable/
