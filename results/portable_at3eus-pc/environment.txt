@@ -1,0 +1,14 @@
+date: Wed Nov  4 17:15:49     2026
+--- hardware
+CPU: AMD Ryzen 5 5600 6-Core Processor (x86_64)
+cores (physical/logical): 6/12
+memory bytes: 17054310400
+OS: Windows 11 Pro (10.0.26200.0)
+--- java
+openjdk version "17.0.21" 2026-10-20
+OpenJDK Runtime Environment Temurin-17.0.21+9 (build 17.0.21+9)
+OpenJDK 64-Bit Server VM Temurin-17.0.21+9 (build 17.0.21+9, mixed mode, sharing)
+--- power
+scripts/capture_environment.sh: line 16: pmset: command not found
+--- load before start
+MINGW64_NT-10.0-26200 At3eus 3.4.10-87d57229.x86_64 2024-02-14 20:17 UTC x86_64 Msys
