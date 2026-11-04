@@ -1,0 +1,163 @@
+setting,order,size,numerator,denominator,ratio,ci_lo,ci_hi
+C2 (default JIT),few_unique,100,UntilNoChange,PassPerItem,1.1000,1.0055,1.2035
+C2 (default JIT),few_unique,100,WhileNeeded,PassPerItem,0.6524,0.6318,0.6737
+C2 (default JIT),few_unique,100,WhileNeeded,UntilNoChange,0.5931,0.5533,0.6357
+C2 (default JIT),few_unique,1000,UntilNoChange,PassPerItem,1.1047,1.0847,1.1250
+C2 (default JIT),few_unique,1000,WhileNeeded,PassPerItem,0.6612,0.6520,0.6705
+C2 (default JIT),few_unique,1000,WhileNeeded,UntilNoChange,0.5986,0.5950,0.6022
+C2 (default JIT),few_unique,2000,UntilNoChange,PassPerItem,1.0678,1.0590,1.0766
+C2 (default JIT),few_unique,2000,WhileNeeded,PassPerItem,0.6779,0.6733,0.6826
+C2 (default JIT),few_unique,2000,WhileNeeded,UntilNoChange,0.6349,0.6302,0.6396
+C2 (default JIT),nearly_local,100,UntilNoChange,PassPerItem,0.1459,0.1004,0.2120
+C2 (default JIT),nearly_local,100,WhileNeeded,PassPerItem,0.0964,0.0629,0.1477
+C2 (default JIT),nearly_local,100,WhileNeeded,UntilNoChange,0.6610,0.5189,0.8420
+C2 (default JIT),nearly_local,1000,UntilNoChange,PassPerItem,0.0188,0.0151,0.0234
+C2 (default JIT),nearly_local,1000,WhileNeeded,PassPerItem,0.0169,0.0149,0.0192
+C2 (default JIT),nearly_local,1000,WhileNeeded,UntilNoChange,0.8978,0.8106,0.9945
+C2 (default JIT),nearly_local,2000,UntilNoChange,PassPerItem,0.0109,0.0084,0.0141
+C2 (default JIT),nearly_local,2000,WhileNeeded,PassPerItem,0.0097,0.0079,0.0118
+C2 (default JIT),nearly_local,2000,WhileNeeded,UntilNoChange,0.8856,0.7876,0.9957
+C2 (default JIT),nearly_random,100,UntilNoChange,PassPerItem,0.8256,0.5875,1.1602
+C2 (default JIT),nearly_random,100,WhileNeeded,PassPerItem,0.4670,0.3509,0.6217
+C2 (default JIT),nearly_random,100,WhileNeeded,UntilNoChange,0.5657,0.4771,0.6708
+C2 (default JIT),nearly_random,1000,UntilNoChange,PassPerItem,1.2876,1.2094,1.3709
+C2 (default JIT),nearly_random,1000,WhileNeeded,PassPerItem,0.7001,0.6868,0.7136
+C2 (default JIT),nearly_random,1000,WhileNeeded,UntilNoChange,0.5437,0.5117,0.5777
+C2 (default JIT),nearly_random,2000,UntilNoChange,PassPerItem,1.2211,1.1246,1.3259
+C2 (default JIT),nearly_random,2000,WhileNeeded,PassPerItem,0.7005,0.6758,0.7262
+C2 (default JIT),nearly_random,2000,WhileNeeded,UntilNoChange,0.5737,0.5309,0.6199
+C2 (default JIT),random,100,UntilNoChange,PassPerItem,1.1736,1.1249,1.2243
+C2 (default JIT),random,100,WhileNeeded,PassPerItem,0.7249,0.6986,0.7522
+C2 (default JIT),random,100,WhileNeeded,UntilNoChange,0.6177,0.5833,0.6541
+C2 (default JIT),random,1000,UntilNoChange,PassPerItem,1.2468,1.2186,1.2757
+C2 (default JIT),random,1000,WhileNeeded,PassPerItem,0.7544,0.7489,0.7600
+C2 (default JIT),random,1000,WhileNeeded,UntilNoChange,0.6051,0.5886,0.6220
+C2 (default JIT),random,2000,UntilNoChange,PassPerItem,1.2247,1.1720,1.2797
+C2 (default JIT),random,2000,WhileNeeded,PassPerItem,0.7410,0.6985,0.7862
+C2 (default JIT),random,2000,WhileNeeded,UntilNoChange,0.6051,0.5936,0.6168
+C2 (default JIT),reversed,100,UntilNoChange,PassPerItem,1.5398,1.5261,1.5537
+C2 (default JIT),reversed,100,WhileNeeded,PassPerItem,0.9606,0.9353,0.9866
+C2 (default JIT),reversed,100,WhileNeeded,UntilNoChange,0.6238,0.6110,0.6370
+C2 (default JIT),reversed,1000,UntilNoChange,PassPerItem,1.5248,1.5086,1.5412
+C2 (default JIT),reversed,1000,WhileNeeded,PassPerItem,1.0825,1.0804,1.0846
+C2 (default JIT),reversed,1000,WhileNeeded,UntilNoChange,0.7099,0.7015,0.7184
+C2 (default JIT),reversed,2000,UntilNoChange,PassPerItem,1.5201,1.5171,1.5230
+C2 (default JIT),reversed,2000,WhileNeeded,PassPerItem,1.0895,1.0881,1.0910
+C2 (default JIT),reversed,2000,WhileNeeded,UntilNoChange,0.7168,0.7155,0.7180
+C2 (default JIT),sorted,100,UntilNoChange,PassPerItem,0.0048,0.0048,0.0048
+C2 (default JIT),sorted,100,WhileNeeded,PassPerItem,0.0047,0.0046,0.0047
+C2 (default JIT),sorted,100,WhileNeeded,UntilNoChange,0.9705,0.9681,0.9730
+C2 (default JIT),sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0010
+C2 (default JIT),sorted,1000,WhileNeeded,PassPerItem,0.0009,0.0009,0.0009
+C2 (default JIT),sorted,1000,WhileNeeded,UntilNoChange,0.8629,0.8618,0.8640
+C2 (default JIT),sorted,2000,UntilNoChange,PassPerItem,0.0005,0.0005,0.0005
+C2 (default JIT),sorted,2000,WhileNeeded,PassPerItem,0.0004,0.0004,0.0004
+C2 (default JIT),sorted,2000,WhileNeeded,UntilNoChange,0.8598,0.8562,0.8634
+C1 only,few_unique,100,UntilNoChange,PassPerItem,0.9532,0.8768,1.0363
+C1 only,few_unique,100,WhileNeeded,PassPerItem,0.5660,0.5489,0.5836
+C1 only,few_unique,100,WhileNeeded,UntilNoChange,0.5937,0.5628,0.6264
+C1 only,few_unique,1000,UntilNoChange,PassPerItem,0.9791,0.9331,1.0274
+C1 only,few_unique,1000,WhileNeeded,PassPerItem,0.6317,0.6178,0.6460
+C1 only,few_unique,1000,WhileNeeded,UntilNoChange,0.6452,0.6179,0.6737
+C1 only,few_unique,2000,UntilNoChange,PassPerItem,0.9640,0.9542,0.9738
+C1 only,few_unique,2000,WhileNeeded,PassPerItem,0.6327,0.6281,0.6373
+C1 only,few_unique,2000,WhileNeeded,UntilNoChange,0.6563,0.6478,0.6650
+C1 only,nearly_local,100,UntilNoChange,PassPerItem,0.1416,0.1104,0.1817
+C1 only,nearly_local,100,WhileNeeded,PassPerItem,0.0885,0.0613,0.1276
+C1 only,nearly_local,100,WhileNeeded,UntilNoChange,0.6246,0.4277,0.9122
+C1 only,nearly_local,1000,UntilNoChange,PassPerItem,0.0133,0.0105,0.0167
+C1 only,nearly_local,1000,WhileNeeded,PassPerItem,0.0126,0.0113,0.0141
+C1 only,nearly_local,1000,WhileNeeded,UntilNoChange,0.9526,0.8391,1.0815
+C1 only,nearly_local,2000,UntilNoChange,PassPerItem,0.0085,0.0066,0.0109
+C1 only,nearly_local,2000,WhileNeeded,PassPerItem,0.0079,0.0065,0.0095
+C1 only,nearly_local,2000,WhileNeeded,UntilNoChange,0.9314,0.8307,1.0444
+C1 only,nearly_random,100,UntilNoChange,PassPerItem,0.6753,0.4934,0.9242
+C1 only,nearly_random,100,WhileNeeded,PassPerItem,0.4279,0.3277,0.5587
+C1 only,nearly_random,100,WhileNeeded,UntilNoChange,0.6336,0.5487,0.7316
+C1 only,nearly_random,1000,UntilNoChange,PassPerItem,0.8904,0.8381,0.9460
+C1 only,nearly_random,1000,WhileNeeded,PassPerItem,0.5351,0.5262,0.5441
+C1 only,nearly_random,1000,WhileNeeded,UntilNoChange,0.6009,0.5626,0.6419
+C1 only,nearly_random,2000,UntilNoChange,PassPerItem,0.9534,0.8780,1.0353
+C1 only,nearly_random,2000,WhileNeeded,PassPerItem,0.5765,0.5620,0.5913
+C1 only,nearly_random,2000,WhileNeeded,UntilNoChange,0.6046,0.5673,0.6443
+C1 only,random,100,UntilNoChange,PassPerItem,0.9746,0.9225,1.0297
+C1 only,random,100,WhileNeeded,PassPerItem,0.6286,0.5975,0.6612
+C1 only,random,100,WhileNeeded,UntilNoChange,0.6449,0.6229,0.6677
+C1 only,random,1000,UntilNoChange,PassPerItem,0.9989,0.9501,1.0501
+C1 only,random,1000,WhileNeeded,PassPerItem,0.6425,0.6057,0.6815
+C1 only,random,1000,WhileNeeded,UntilNoChange,0.6432,0.6315,0.6551
+C1 only,random,2000,UntilNoChange,PassPerItem,1.0499,0.9778,1.1273
+C1 only,random,2000,WhileNeeded,PassPerItem,0.6633,0.6336,0.6943
+C1 only,random,2000,WhileNeeded,UntilNoChange,0.6318,0.5953,0.6705
+C1 only,reversed,100,UntilNoChange,PassPerItem,1.0832,1.0803,1.0861
+C1 only,reversed,100,WhileNeeded,PassPerItem,0.6358,0.6135,0.6589
+C1 only,reversed,100,WhileNeeded,UntilNoChange,0.5869,0.5658,0.6088
+C1 only,reversed,1000,UntilNoChange,PassPerItem,1.0576,1.0212,1.0953
+C1 only,reversed,1000,WhileNeeded,PassPerItem,0.6511,0.6289,0.6742
+C1 only,reversed,1000,WhileNeeded,UntilNoChange,0.6157,0.6150,0.6164
+C1 only,reversed,2000,UntilNoChange,PassPerItem,1.0541,1.0185,1.0910
+C1 only,reversed,2000,WhileNeeded,PassPerItem,0.6423,0.6073,0.6792
+C1 only,reversed,2000,WhileNeeded,UntilNoChange,0.6093,0.5902,0.6290
+C1 only,sorted,100,UntilNoChange,PassPerItem,0.0108,0.0107,0.0108
+C1 only,sorted,100,WhileNeeded,PassPerItem,0.0111,0.0110,0.0112
+C1 only,sorted,100,WhileNeeded,UntilNoChange,1.0257,1.0167,1.0347
+C1 only,sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0011
+C1 only,sorted,1000,WhileNeeded,PassPerItem,0.0011,0.0010,0.0012
+C1 only,sorted,1000,WhileNeeded,UntilNoChange,1.0360,1.0298,1.0423
+C1 only,sorted,2000,UntilNoChange,PassPerItem,0.0005,0.0005,0.0006
+C1 only,sorted,2000,WhileNeeded,PassPerItem,0.0005,0.0005,0.0006
+C1 only,sorted,2000,WhileNeeded,UntilNoChange,1.0089,1.0001,1.0179
+interpreter only,few_unique,100,UntilNoChange,PassPerItem,0.8859,0.8290,0.9468
+interpreter only,few_unique,100,WhileNeeded,PassPerItem,0.5089,0.4957,0.5224
+interpreter only,few_unique,100,WhileNeeded,UntilNoChange,0.5744,0.5464,0.6039
+interpreter only,few_unique,1000,UntilNoChange,PassPerItem,0.9023,0.8907,0.9140
+interpreter only,few_unique,1000,WhileNeeded,PassPerItem,0.5162,0.5060,0.5265
+interpreter only,few_unique,1000,WhileNeeded,UntilNoChange,0.5721,0.5674,0.5768
+interpreter only,few_unique,2000,UntilNoChange,PassPerItem,0.9148,0.8806,0.9502
+interpreter only,few_unique,2000,WhileNeeded,PassPerItem,0.5177,0.5093,0.5263
+interpreter only,few_unique,2000,WhileNeeded,UntilNoChange,0.5660,0.5466,0.5860
+interpreter only,nearly_local,100,UntilNoChange,PassPerItem,0.1157,0.0882,0.1518
+interpreter only,nearly_local,100,WhileNeeded,PassPerItem,0.0673,0.0463,0.0978
+interpreter only,nearly_local,100,WhileNeeded,UntilNoChange,0.5814,0.4257,0.7942
+interpreter only,nearly_local,1000,UntilNoChange,PassPerItem,0.0132,0.0102,0.0171
+interpreter only,nearly_local,1000,WhileNeeded,PassPerItem,0.0111,0.0098,0.0126
+interpreter only,nearly_local,1000,WhileNeeded,UntilNoChange,0.8412,0.7283,0.9718
+interpreter only,nearly_local,2000,UntilNoChange,PassPerItem,0.0076,0.0057,0.0103
+interpreter only,nearly_local,2000,WhileNeeded,PassPerItem,0.0064,0.0052,0.0078
+interpreter only,nearly_local,2000,WhileNeeded,UntilNoChange,0.8335,0.7400,0.9389
+interpreter only,nearly_random,100,UntilNoChange,PassPerItem,0.6084,0.4209,0.8795
+interpreter only,nearly_random,100,WhileNeeded,PassPerItem,0.3350,0.2465,0.4552
+interpreter only,nearly_random,100,WhileNeeded,UntilNoChange,0.5505,0.4608,0.6577
+interpreter only,nearly_random,1000,UntilNoChange,PassPerItem,0.9341,0.8756,0.9965
+interpreter only,nearly_random,1000,WhileNeeded,PassPerItem,0.4744,0.4638,0.4852
+interpreter only,nearly_random,1000,WhileNeeded,UntilNoChange,0.5078,0.4715,0.5470
+interpreter only,nearly_random,2000,UntilNoChange,PassPerItem,0.8866,0.8079,0.9729
+interpreter only,nearly_random,2000,WhileNeeded,PassPerItem,0.4691,0.4575,0.4811
+interpreter only,nearly_random,2000,WhileNeeded,UntilNoChange,0.5292,0.4914,0.5699
+interpreter only,random,100,UntilNoChange,PassPerItem,0.9302,0.8816,0.9814
+interpreter only,random,100,WhileNeeded,PassPerItem,0.5256,0.5151,0.5363
+interpreter only,random,100,WhileNeeded,UntilNoChange,0.5650,0.5382,0.5932
+interpreter only,random,1000,UntilNoChange,PassPerItem,0.9851,0.9529,1.0184
+interpreter only,random,1000,WhileNeeded,PassPerItem,0.5340,0.5314,0.5367
+interpreter only,random,1000,WhileNeeded,UntilNoChange,0.5421,0.5240,0.5608
+interpreter only,random,2000,UntilNoChange,PassPerItem,0.9841,0.9639,1.0046
+interpreter only,random,2000,WhileNeeded,PassPerItem,0.5267,0.5224,0.5310
+interpreter only,random,2000,WhileNeeded,UntilNoChange,0.5352,0.5257,0.5449
+interpreter only,reversed,100,UntilNoChange,PassPerItem,1.0335,0.9879,1.0812
+interpreter only,reversed,100,WhileNeeded,PassPerItem,0.5660,0.5506,0.5820
+interpreter only,reversed,100,WhileNeeded,UntilNoChange,0.5477,0.5157,0.5817
+interpreter only,reversed,1000,UntilNoChange,PassPerItem,1.0237,1.0089,1.0388
+interpreter only,reversed,1000,WhileNeeded,PassPerItem,0.5631,0.5527,0.5737
+interpreter only,reversed,1000,WhileNeeded,UntilNoChange,0.5501,0.5428,0.5575
+interpreter only,reversed,2000,UntilNoChange,PassPerItem,1.0124,0.9964,1.0287
+interpreter only,reversed,2000,WhileNeeded,PassPerItem,0.5643,0.5562,0.5725
+interpreter only,reversed,2000,WhileNeeded,UntilNoChange,0.5574,0.5524,0.5623
+interpreter only,sorted,100,UntilNoChange,PassPerItem,0.0102,0.0100,0.0103
+interpreter only,sorted,100,WhileNeeded,PassPerItem,0.0099,0.0097,0.0101
+interpreter only,sorted,100,WhileNeeded,UntilNoChange,0.9729,0.9502,0.9960
+interpreter only,sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0010
+interpreter only,sorted,1000,WhileNeeded,PassPerItem,0.0010,0.0010,0.0010
+interpreter only,sorted,1000,WhileNeeded,UntilNoChange,0.9540,0.9396,0.9686
+interpreter only,sorted,2000,UntilNoChange,PassPerItem,0.0005,0.0005,0.0005
+interpreter only,sorted,2000,WhileNeeded,PassPerItem,0.0005,0.0005,0.0005
+interpreter only,sorted,2000,WhileNeeded,UntilNoChange,0.9744,0.9581,0.9910

@@ -1,0 +1,38 @@
+{
+  "out": "results/ext_interp",
+  "forks": 5,
+  "fork_start": 0,
+  "iters": 10,
+  "seed": 20261104,
+  "sizes": [
+    100,
+    1000,
+    2000
+  ],
+  "orders": [
+    "random",
+    "sorted",
+    "reversed",
+    "nearly_local",
+    "nearly_random",
+    "few_unique"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "bin_ext",
+  "types": [
+    "Integer"
+  ],
+  "jvm_extra": "-Xint",
+  "jvm_flags": [
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:+UseSerialGC",
+    "-Xint"
+  ],
+  "java": "java",
+  "n_jobs": 270
+}

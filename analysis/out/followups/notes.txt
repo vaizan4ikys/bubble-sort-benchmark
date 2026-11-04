@@ -1,5 +1,7 @@
 string_vs_integer: n=5000, forks=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]
 
+jit modes: ['C2 (default JIT)', 'C1 only', 'interpreter only'] at common sizes [np.int64(100), np.int64(1000), np.int64(2000)]
+
 scaling exponents:
  order     algorithm  exponent  ci_lo  ci_hi    r2  n_points
 random   PassPerItem     2.124  2.105  2.143 0.999        50

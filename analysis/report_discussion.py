@@ -5,12 +5,16 @@ def H(h, **kw):
         d = d[d[k] == v]
     return d
 
+def th(x, d=0):
+    return f"{x:,.{d}f}".replace(",", " ")
+
+
 h1 = H("H1")
 doc.add_heading("4.1 Compare Hypothesis to Results", level=2)
 p("**H1 – sorted input: supported.** PassPerItem is between "
-  f"{h1.estimate.min():,.0f}× and {h1.estimate.max():,.0f}× slower than the early-stopping algorithms (lowest CI bound "
-  f"{h1.ci_lo.min():,.0f}×), far beyond the predicted 100×. The reason is mechanical: PassPerItem makes n(n−1) comparisons "
-  "whatever the input, while the others make a single pass of n−1 comparisons.".replace(",", " "))
+  f"{th(h1.estimate.min())}× and {th(h1.estimate.max())}× slower than the early-stopping algorithms (lowest CI bound "
+  f"{th(h1.ci_lo.min())}×), far beyond the predicted 100×. The reason is mechanical: PassPerItem makes n(n−1) comparisons "
+  "whatever the input, while the others make a single pass of n−1 comparisons.")
 r5 = ratio("random", 5000, "UntilNoChange", "PassPerItem"); r10 = ratio("random", 10000, "UntilNoChange", "PassPerItem")
 r20 = ratio("random", 20000, "UntilNoChange", "PassPerItem")
 p("**H2 – random input: partly falsified.** The first part holds: WhileNeeded is the fastest algorithm in every random cell "
@@ -20,8 +24,8 @@ p("**H2 – random input: partly falsified.** The first part holds: WhileNeeded 
   f"CI {fmt_ratio(r5.ci_lo)}–{fmt_ratio(r5.ci_hi)}), inconclusive at 10 000 ({fmt_ratio(r10.ratio_geomean)}×) and supported at 20 000 "
   f"({fmt_ratio(r20.ratio_geomean)}×). We expected identical work for the two algorithms (about n² comparisons on random data), so the "
   "gap must come from the cost per comparison: UntilNoChange additionally updates a flag inside the swap branch, and the JIT-compiled "
-  "inner loop and the branch predictor evidently handle that code less well. We did not verify this explanation (e.g. by inspecting the "
-  "generated machine code); it is a hypothesis.")
+  "inner loop and the branch predictor evidently handle that code less well. The JIT-level follow-up (Section 3.7.8) supports this: with only the C1 compiler or the interpreter the gap "
+  "disappears (UntilNoChange ≈ PassPerItem), so it is created by the optimising C2 compiler. We did not inspect the generated machine code, so the exact mechanism remains a hypothesis.")
 a = ratio("reversed", 5000, "WhileNeeded", "UntilNoChange"); b = ratio("reversed", 5000, "WhileNeeded", "PassPerItem")
 a2 = ratio("reversed", 20000, "WhileNeeded", "UntilNoChange")
 p("**H3 – reversed input: falsified.** WhileNeeded is clearly faster than UntilNoChange at n = 5 000 "
@@ -32,7 +36,7 @@ p("**H3 – reversed input: falsified.** WhileNeeded is clearly faster than Unti
   "n times, WhileNeeded about half as often. With cheap Integer comparisons the run time is dominated by the memory stores and the branch behaviour of the swaps, and the simple loop of PassPerItem "
   "is apparently compiled into slightly faster code than WhileNeeded's loop, which also tracks the last swap position. The follow-up experiments support this reading: the 7–12 % disadvantage occurs only on JDK 25/26 with the Serial or Parallel collector. "
   "With the G1 collector, on JDK 8, 17 and 21, with String elements (expensive comparisons) and with a polluted JIT profile, WhileNeeded is as fast as or up to "
-  "40 % faster than PassPerItem on reversed input (Section 3.7). We did not inspect the generated machine code, so the exact mechanism remains a hypothesis.")
+  "40 % faster than PassPerItem on reversed input (Section 3.7). The JIT-level follow-up (Section 3.7.8) points the same way: with only C1 or in the interpreter, WhileNeeded is about 35–45 % faster than PassPerItem on reversed input, in line with its halved number of comparisons. We did not inspect the generated machine code, so the exact mechanism remains a hypothesis.")
 p("**H4 – locally disturbed input: supported.** Both early-stopping algorithms are between "
   f"{H('H4').estimate.min():.0f}× and {H('H4').estimate.max():.0f}× faster than PassPerItem (lowest CI bound {H('H4').ci_lo.min():.0f}×).")
 g = H("H5", claim="PassPerItem: t(20000)/t(10000) within 3.3-4.7", order="random").iloc[0]
@@ -96,7 +100,7 @@ rg = regret.set_index("algorithm")
 p(f"**Recommendation: ship BubbleSortWhileNeeded.** In the 30 conditions with n ≥ 1 000 of the main experiment it is the fastest algorithm in {int(rg.loc['WhileNeeded'].cells_fastest)}, "
   f"within 5 % of the fastest in {int(rg.loc['WhileNeeded'].cells_within_5pct_of_best)}, and its geometric-mean slowdown against the best algorithm is only {rg.loc['WhileNeeded'].geomean_regret:.2f}. "
   f"For comparison, UntilNoChange is never within 5 % of the best except once and is up to {rg.loc['UntilNoChange'].max_regret:.1f}× slower than the best, and PassPerItem is up to "
-  f"{rg.loc['PassPerItem'].max_regret:,.0f}× slower on sorted data (at least 50 times slower on sorted or locally disturbed input with n ≥ 1 000).".replace(",", " "))
+  f"{th(rg.loc['PassPerItem'].max_regret)}× slower on sorted data (at least 50 times slower on sorted or locally disturbed input with n ≥ 1 000).")
 p("**Where WhileNeeded is not the best.** (1) On reversed input and cheap Integer comparisons, PassPerItem is 7–12 % faster on JDK 25/26 with the Serial or Parallel collector; this disappears "
   "with G1, with older JDKs, with String elements and with a polluted JIT profile. (2) On sorted input with 20 000 elements the order of WhileNeeded and UntilNoChange depends on the JIT's luck "
   "in a given JVM (UntilNoChange is either 1.7× faster or about 1.2× slower than WhileNeeded); for n ≤ 10 000 WhileNeeded is about 15 % faster. (3) For arrays of 50 elements or fewer no algorithm is reliably best, and "
@@ -104,5 +108,5 @@ p("**Where WhileNeeded is not the best.** (1) On reversed input and cheap Intege
 p("**What we learned beyond the decision.** Predicting running time from comparison counts alone is not enough: four of our six hypotheses were at least partly falsified because "
   "their thresholds were derived from counting comparisons. And a single JVM run can give a wrong ordering for algorithms that are close, so repeated fresh-JVM runs "
   "are the minimum for credible Java benchmarks.")
-p("**Open items.** The conclusion has been checked on one machine; a second, ideally x86, machine would be the next step. The C1-only and interpreter-only runs "
-  "(Section 3.7) show how the result depends on the JIT compiler level.")
+p("**Open items.** The conclusion has been checked on one machine; a second, ideally x86, machine would be the next step. The mechanism behind the C2 effects (Section 3.7.8) "
+  "was not examined at machine-code level.")

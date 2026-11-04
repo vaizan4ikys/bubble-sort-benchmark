@@ -17,6 +17,7 @@ table(["Experiment", "Question", "Design"], [
     ["Polluted JIT profile", "Real programs sort many element types; does the ranking survive megamorphic compareTo calls?", "900 ms of sorting Strings, Longs and custom objects before measuring Integers; 5 orders × 3 sizes × 5 forks"],
     ["Tiny arrays", "What is best for n = 2 … 50?", "8 input orders × 6 sizes × 5 forks"],
     ["Other input shapes", "Classic bubble-sort cases", "turtle, rabbit, sorted + random tail, organ pipe, sawtooth; 3 sizes × 5 forks"],
+    ["JIT compiler level", "Are the anomalies caused by the optimising compiler (C2)?", "only C1 (-XX:TieredStopAtLevel=1) and interpreter only (-Xint); 6 orders × 100–2 000 (interpreter) / 10 000 (C1) × 5 forks"],
     ["Cold start", "What if the program sorts only a few times (no JIT warm-up)?", "first 50 calls of a fresh JVM, 30 JVMs per cell"],
     ["JMH", "Is our own harness biased?", "JMH 3 forks × 10 iterations, 3 orders × 2 sizes"],
     ["Scaling", "Exact growth exponent?", "random, sorted; 12 sizes from 200 to 40 000"],
@@ -134,8 +135,21 @@ p("**Load.** " + (F1 / "load_summary.txt").read_text().strip() + ". Six busy bac
   "single batches far more variable, which confirms that benchmarks must be run on an otherwise idle machine – as ours were.")
 p("**Correctness.** The three sorters passed all 20 139 checks: every permutation of up to 7 elements, 600 random arrays against Arrays.sort, all 11 input shapes, stability, and in-place behaviour (results/correctness/correctness.txt). "
   "All timed results in every experiment were also verified to be sorted. The timing comparison therefore compares correct, equivalent sorters.")
-if (F1 / "fig_jit_modes.png").exists():
-    figure(F1 / "fig_jit_modes.png", "Effect of the JIT compiler level: time per comparison and time ratios with only the C1 compiler or the bytecode interpreter.", width=6.2)
+# ---- JIT level
+doc.add_heading("3.7.8 JIT compiler level", level=3)
+jm = pd.read_csv(F1 / "jit_mode_ratios.csv")
+def jr(mode, o, a, b, n=2000):
+    return jm[(jm.setting == mode) & (jm.order == o) & (jm["size"] == n) & (jm.numerator == a) & (jm.denominator == b)].iloc[0].ratio
+p("HotSpot first interprets the bytecode, then compiles hot loops with the fast C1 compiler and finally with the optimising C2 compiler. We repeated the experiment "
+  "with C2 switched off (C1 only) and with the compiler switched off entirely (interpreter only), at n = 2 000 (the interpreter is too slow for larger sizes). "
+  f"With the default JIT, UntilNoChange needs {jr('C2 (default JIT)', 'random', 'UntilNoChange', 'PassPerItem'):.2f}× the time of PassPerItem on random input and WhileNeeded "
+  f"{jr('C2 (default JIT)', 'reversed', 'WhileNeeded', 'PassPerItem'):.2f}× on reversed input. With only C1 these ratios are {jr('C1 only', 'random', 'UntilNoChange', 'PassPerItem'):.2f} and "
+  f"{jr('C1 only', 'reversed', 'WhileNeeded', 'PassPerItem'):.2f}, and in the interpreter {jr('interpreter only', 'random', 'UntilNoChange', 'PassPerItem'):.2f} and "
+  f"{jr('interpreter only', 'reversed', 'WhileNeeded', 'PassPerItem'):.2f}. Without C2 the running time simply follows the number of comparisons: WhileNeeded needs "
+  f"{min(jr('C1 only', 'random', 'WhileNeeded', 'PassPerItem'), jr('interpreter only', 'random', 'WhileNeeded', 'PassPerItem')):.2f}–{max(jr('C1 only', 'random', 'WhileNeeded', 'PassPerItem'), jr('interpreter only', 'random', 'WhileNeeded', 'PassPerItem')):.2f}× the time of PassPerItem on random and reversed input, UntilNoChange equals PassPerItem. "
+  "The two main surprises of the main experiment (UntilNoChange slower than PassPerItem on random input; WhileNeeded slower than PassPerItem on reversed input) are therefore properties of "
+  "the code that the C2 compiler generates, not of the algorithms.")
+figure(F1 / "fig_jit_modes.png", "Effect of the JIT compiler level at n = 2 000: time per comparison on random input (left) and time ratios to PassPerItem (right) with the default JIT, with C1 only and in the interpreter.", width=6.2)
 
 # ---- re-measurement
 doc.add_heading("3.8 Re-measurement of uncertain conditions", level=2)
