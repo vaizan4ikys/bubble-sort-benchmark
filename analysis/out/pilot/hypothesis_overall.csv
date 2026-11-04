@@ -1,0 +1,6 @@
+hypothesis,verdict,supported,falsified,inconclusive,cells
+H1,SUPPORTED,4,0,0,4
+H2,INCONCLUSIVE,2,0,1,3
+H3,PARTLY FALSIFIED,1,1,0,2
+H4,INCONCLUSIVE,0,0,2,2
+H6,PARTLY FALSIFIED,20,2,2,24

@@ -1,0 +1,4 @@
+2026-11-04 01:29:56 smoke test of ExtendedWorker (12 short jobs, nice 19) ran concurrently with the main run
+2026-11-04 01:32:56 pilot analysis test (python, nice 19, ~20 s) ran concurrently with the main run
+2026-11-04 01:42:36 smoke tests of new workers (polluted, cold, jdk8; 3 short JVMs, nice 19)
+Wed Nov  4 02:43:25 CET 2026 analyze_main on results/full (nice 19)
