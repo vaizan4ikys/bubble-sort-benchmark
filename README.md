@@ -84,3 +84,18 @@ Follow-ups that use `ExtendedWorker` have an additional `type` column.
 4. Two untimed batches, then 30 timed batches. Per batch: copy B arrays (untimed), time `sort` on all of them,
    verify they are sorted (untimed). Recorded value: batch time / B.
 5. JVM flags: `-Xms2g -Xmx2g -XX:+UseSerialGC` (no concurrent GC threads, fixed heap).
+
+## Task: check on a second machine
+
+The main data come from one Apple M3 Pro laptop (ARM). To show that the conclusions are not specific
+to it, the same experiment is repeated in a reduced form (6 input orders × sizes 1 000 / 5 000 / 10 000
+× 3 algorithms × 5 forks = 270 JVM runs, about 35 minutes) on **another computer, ideally x86**.
+
+1. Install a JDK (any version ≥ 8) and Python 3 (the script only needs the standard library).
+2. Plug the computer in, close other programs, and do not use it while the script runs.
+3. `git clone https://github.com/vaizan4ikys/bubble-sort-benchmark && cd bubble-sort-benchmark`
+4. `scripts/run_portable.sh <name-of-the-machine>`   (e.g. `vlad-laptop`; on Windows use WSL or Git Bash)
+5. Send back (or push) the folder `results/portable_<name-of-the-machine>/`. It contains the raw
+   measurements and an `environment.txt` with the hardware and Java version.
+
+The results are then compared with the main data (ratios between the algorithms) and added to the report.
