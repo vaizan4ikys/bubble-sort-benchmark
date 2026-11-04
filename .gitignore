@@ -1,0 +1,4 @@
+.venv/
+*.class
+bin/
+__pycache__/
