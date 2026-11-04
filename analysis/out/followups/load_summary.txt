@@ -1,0 +1,1 @@
+median slowdown under load: 1.057 (range 1.048-1.364); median CV between forks idle 1.3 % vs load 1.7 %; median relative IQR of batches idle 1.6 % vs load 25.7 %

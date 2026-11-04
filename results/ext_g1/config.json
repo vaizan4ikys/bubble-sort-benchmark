@@ -1,0 +1,33 @@
+{
+  "out": "results/ext_g1",
+  "forks": 5,
+  "fork_start": 0,
+  "iters": 20,
+  "seed": 20261104,
+  "sizes": [
+    1000,
+    5000,
+    10000
+  ],
+  "orders": [
+    "random",
+    "sorted",
+    "reversed",
+    "nearly_local",
+    "nearly_random",
+    "few_unique"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "bin_ext2",
+  "types": [
+    "Integer"
+  ],
+  "jvm_extra": "",
+  "jvm_flags": [],
+  "java": "java",
+  "n_jobs": 270
+}

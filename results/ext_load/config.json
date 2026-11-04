@@ -1,0 +1,31 @@
+{
+  "out": "results/ext_load",
+  "forks": 10,
+  "fork_start": 0,
+  "iters": 20,
+  "seed": 20261104,
+  "sizes": [
+    2000,
+    5000
+  ],
+  "orders": [
+    "random",
+    "reversed",
+    "nearly_local"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "bin",
+  "types": null,
+  "jvm_extra": "",
+  "jvm_flags": [
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:+UseSerialGC"
+  ],
+  "java": "java",
+  "n_jobs": 180
+}

@@ -1,0 +1,1 @@
+cells compared: 108; |difference| < 5 %: 94 %, < 10 %: 98 %; for n >= 1000: median |diff| 0.1 %, max |diff| 18.9 %; Spearman rho of the cell medians 0.9999

@@ -1,0 +1,27 @@
+[2026-11-04 01:30:26] waiting for the main experiment to finish
+[2026-11-04 02:43:00] main experiment process ended; resuming it once to make sure it is complete
+[2026-11-04 02:43:00] main experiment: 1080 / 1080 jobs done
+[2026-11-04 02:43:00] START ext_string
+[2026-11-04 03:07:25] END   ext_string (450 jobs done)
+[2026-11-04 03:07:25] START ext_c1
+[2026-11-04 03:07:26] WARNING: ext_c1 ended with an error (see results/ext_c1/stdout.log)
+[2026-11-04 03:07:26] END   ext_c1 ( jobs done)
+[2026-11-04 03:07:26] START ext_interp
+[2026-11-04 03:07:26] WARNING: ext_interp ended with an error (see results/ext_interp/stdout.log)
+[2026-11-04 03:07:26] END   ext_interp ( jobs done)
+[2026-11-04 03:07:26] START ext_scaling
+[2026-11-04 03:56:25] END   ext_scaling (360 jobs done)
+[2026-11-04 03:56:25] START replication
+[2026-11-04 05:13:52] END   replication (1080 jobs done)
+[2026-11-04 05:13:52] START ext_noload
+[2026-11-04 05:19:16] END   ext_noload (180 jobs done)
+[2026-11-04 05:19:16] starting 6 busy background processes
+[2026-11-04 05:19:16] START ext_load
+[2026-11-04 05:24:58] END   ext_load (180 jobs done)
+[2026-11-04 05:24:58] ALL FOLLOW-UP EXPERIMENTS FINISHED
+scripts/run_followups.sh: line 19: 79688 Terminated: 15          yes > /dev/null
+scripts/run_followups.sh: line 19: 79689 Terminated: 15          yes > /dev/null
+scripts/run_followups.sh: line 19: 79690 Terminated: 15          yes > /dev/null
+scripts/run_followups.sh: line 19: 79691 Terminated: 15          yes > /dev/null
+scripts/run_followups.sh: line 19: 79692 Terminated: 15          yes > /dev/null
+scripts/run_followups.sh: line 19: 79693 Terminated: 15          yes > /dev/null

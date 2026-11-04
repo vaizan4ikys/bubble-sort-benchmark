@@ -1,0 +1,14 @@
+string_vs_integer: n=5000, forks=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]
+
+scaling exponents:
+ order     algorithm  exponent  ci_lo  ci_hi    r2  n_points
+random   PassPerItem     2.124  2.105  2.143 0.999        50
+random UntilNoChange     2.078  2.065  2.091 1.000        50
+random   WhileNeeded     2.020  2.011  2.029 1.000        50
+sorted   PassPerItem     2.011  1.981  2.041 0.997        50
+sorted UntilNoChange     1.008  1.005  1.012 1.000        50
+sorted   WhileNeeded     1.007  1.003  1.010 1.000        50
+
+replication: cells compared: 108; |difference| < 5 %: 94 %, < 10 %: 98 %; for n >= 1000: median |diff| 0.1 %, max |diff| 18.9 %; Spearman rho of the cell medians 0.9999
+
+load: median slowdown under load: 1.057 (range 1.048-1.364); median CV between forks idle 1.3 % vs load 1.7 %; median relative IQR of batches idle 1.6 % vs load 25.7 %
