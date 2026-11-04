@@ -1,0 +1,22 @@
+setting,algorithm,geomean_time_vs_main,min,max
+"JDK 26, G1 GC",PassPerItem,1.0679,0.9557,1.2100
+"JDK 26, G1 GC",UntilNoChange,1.0824,0.9595,1.3219
+"JDK 26, G1 GC",WhileNeeded,1.0954,0.9813,1.2837
+"JDK 26, ParallelGC",PassPerItem,0.9829,0.8706,1.0092
+"JDK 26, ParallelGC",UntilNoChange,1.0199,0.9337,1.4718
+"JDK 26, ParallelGC",WhileNeeded,1.0159,0.9767,1.3614
+JDK 25,PassPerItem,0.9983,0.9773,1.0076
+JDK 25,UntilNoChange,0.9998,0.9914,1.0076
+JDK 25,WhileNeeded,0.9996,0.9941,1.0044
+JDK 21,PassPerItem,0.9522,0.7437,1.0198
+JDK 21,UntilNoChange,0.9521,0.7304,1.0272
+JDK 21,WhileNeeded,0.9210,0.6390,1.0466
+JDK 17,PassPerItem,1.0345,0.7995,1.1456
+JDK 17,UntilNoChange,0.9514,0.7312,1.0613
+JDK 17,WhileNeeded,0.9990,0.9306,1.0727
+JDK 8,PassPerItem,1.0996,0.8950,1.2166
+JDK 8,UntilNoChange,0.9618,0.8033,1.0645
+JDK 8,WhileNeeded,0.9260,0.7403,1.0285
+"JDK 26, polluted JIT profile",PassPerItem,3.6601,2.6904,4.3306
+"JDK 26, polluted JIT profile",UntilNoChange,2.8314,1.8868,4.2393
+"JDK 26, polluted JIT profile",WhileNeeded,2.8715,1.4958,5.1833

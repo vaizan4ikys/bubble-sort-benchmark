@@ -1,0 +1,25 @@
+setting,algorithm,cells,fastest,within5,geomean_regret,max_regret,max_where
+"main: JDK 26, SerialGC",PassPerItem,18,3,3,11.5979,13123.5938,sorted n=10000
+"main: JDK 26, SerialGC",UntilNoChange,18,0,1,1.4449,1.9578,nearly_random n=10000
+"main: JDK 26, SerialGC",WhileNeeded,18,15,15,1.0135,1.0998,reversed n=5000
+"JDK 26, G1 GC",PassPerItem,18,0,0,11.1565,10649.8521,sorted n=10000
+"JDK 26, G1 GC",UntilNoChange,18,0,1,1.4087,1.9144,nearly_random n=10000
+"JDK 26, G1 GC",WhileNeeded,18,18,18,1.0000,1.0000,few_unique n=1000
+"JDK 26, ParallelGC",PassPerItem,18,3,3,11.2241,8392.0780,sorted n=10000
+"JDK 26, ParallelGC",UntilNoChange,18,0,1,1.4510,1.8495,nearly_random n=10000
+"JDK 26, ParallelGC",WhileNeeded,18,15,15,1.0138,1.0972,reversed n=5000
+JDK 25,PassPerItem,18,3,3,11.5754,12984.6018,sorted n=10000
+JDK 25,UntilNoChange,18,0,1,1.4443,1.9375,nearly_random n=10000
+JDK 25,WhileNeeded,18,15,15,1.0129,1.0974,reversed n=5000
+JDK 21,PassPerItem,18,0,0,11.8317,9915.2807,sorted n=10000
+JDK 21,UntilNoChange,18,0,1,1.4738,1.8437,nearly_random n=10000
+JDK 21,WhileNeeded,18,18,18,1.0000,1.0000,few_unique n=1000
+JDK 17,PassPerItem,18,0,2,11.8502,9937.7213,sorted n=10000
+JDK 17,UntilNoChange,18,0,5,1.3578,1.9021,nearly_random n=10000
+JDK 17,WhileNeeded,18,18,18,1.0000,1.0000,few_unique n=1000
+JDK 8,PassPerItem,18,0,0,13.5899,12995.6353,sorted n=10000
+JDK 8,UntilNoChange,18,0,1,1.4808,1.9070,nearly_random n=5000
+JDK 8,WhileNeeded,18,18,18,1.0000,1.0000,few_unique n=1000
+"JDK 26, polluted JIT profile",PassPerItem,10,0,0,17.7824,5176.0151,sorted n=5000
+"JDK 26, polluted JIT profile",UntilNoChange,10,2,3,1.3947,1.8166,nearly_random n=5000
+"JDK 26, polluted JIT profile",WhileNeeded,10,8,9,1.0131,1.0967,sorted n=5000

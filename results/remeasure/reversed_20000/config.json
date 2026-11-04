@@ -1,0 +1,28 @@
+{
+  "out": "/Users/pavloharabadzhiiev/Downloads/Experimentation & Evaluation/bubble-sort-experiment/results/remeasure/reversed_20000",
+  "forks": 20,
+  "fork_start": 10,
+  "iters": 30,
+  "seed": 20261104,
+  "sizes": [
+    20000
+  ],
+  "orders": [
+    "reversed"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "/Users/pavloharabadzhiiev/Downloads/Experimentation & Evaluation/bubble-sort-experiment/bin",
+  "types": null,
+  "jvm_extra": "",
+  "jvm_flags": [
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:+UseSerialGC"
+  ],
+  "java": "java",
+  "n_jobs": 60
+}

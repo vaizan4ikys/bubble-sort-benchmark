@@ -184,6 +184,9 @@ if have("ext_small"):
             ax.fill_between(x["size"], x.ci_lo, x.ci_hi, color=COLOR[a], alpha=0.15, lw=0)
         ax.axhline(1, color=INK2, lw=0.6)
         ax.set_xscale("log")
+        ax.set_xticks([2, 5, 10, 20, 50])
+        ax.set_xticklabels(["2", "5", "10", "20", "50"])
+        ax.minorticks_off()
         ax.set_title(SHORT[o], fontsize=8)
     for ax in axes[-1]:
         ax.set_xlabel("input size n")
@@ -214,7 +217,9 @@ if have("ext_shapes"):
         heat(ax, mat, sorted(mat.index, key=lambda s: int(s[4:].replace(",", ""))), cols, f"{a}\n÷ {b}")
     fig.tight_layout()
     save(fig, "fig_shapes")
-    note("shapes: " + regret_stats(fm, "shapes").round(3).to_string(index=False))
+    rg = regret_stats(fm, "shapes")
+    rg.to_csv(OUT / "shapes_regret.csv", index=False, float_format="%.4f")
+    note("shapes: " + rg.round(3).to_string(index=False))
 
 # ================================================================== 4. cold start
 if have("ext_cold"):

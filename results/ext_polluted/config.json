@@ -1,0 +1,36 @@
+{
+  "out": "results/ext_polluted",
+  "forks": 5,
+  "fork_start": 0,
+  "iters": 20,
+  "seed": 20261104,
+  "sizes": [
+    1000,
+    5000,
+    20000
+  ],
+  "orders": [
+    "random",
+    "sorted",
+    "reversed",
+    "nearly_local",
+    "nearly_random"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "bin_ext2",
+  "types": [
+    "PollutedInteger"
+  ],
+  "jvm_extra": "",
+  "jvm_flags": [
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:+UseSerialGC"
+  ],
+  "java": "java",
+  "n_jobs": 225
+}

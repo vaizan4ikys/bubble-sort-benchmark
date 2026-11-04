@@ -1,0 +1,63 @@
+variant regret summary:
+                     setting     algorithm  cells  fastest  within5  geomean_regret  max_regret             max_where
+      main: JDK 26, SerialGC   PassPerItem     18        3        3          11.598   13123.594        sorted n=10000
+      main: JDK 26, SerialGC UntilNoChange     18        0        1           1.445       1.958 nearly_random n=10000
+      main: JDK 26, SerialGC   WhileNeeded     18       15       15           1.013       1.100       reversed n=5000
+               JDK 26, G1 GC   PassPerItem     18        0        0          11.157   10649.852        sorted n=10000
+               JDK 26, G1 GC UntilNoChange     18        0        1           1.409       1.914 nearly_random n=10000
+               JDK 26, G1 GC   WhileNeeded     18       18       18           1.000       1.000     few_unique n=1000
+          JDK 26, ParallelGC   PassPerItem     18        3        3          11.224    8392.078        sorted n=10000
+          JDK 26, ParallelGC UntilNoChange     18        0        1           1.451       1.849 nearly_random n=10000
+          JDK 26, ParallelGC   WhileNeeded     18       15       15           1.014       1.097       reversed n=5000
+                      JDK 25   PassPerItem     18        3        3          11.575   12984.602        sorted n=10000
+                      JDK 25 UntilNoChange     18        0        1           1.444       1.938 nearly_random n=10000
+                      JDK 25   WhileNeeded     18       15       15           1.013       1.097       reversed n=5000
+                      JDK 21   PassPerItem     18        0        0          11.832    9915.281        sorted n=10000
+                      JDK 21 UntilNoChange     18        0        1           1.474       1.844 nearly_random n=10000
+                      JDK 21   WhileNeeded     18       18       18           1.000       1.000     few_unique n=1000
+                      JDK 17   PassPerItem     18        0        2          11.850    9937.721        sorted n=10000
+                      JDK 17 UntilNoChange     18        0        5           1.358       1.902 nearly_random n=10000
+                      JDK 17   WhileNeeded     18       18       18           1.000       1.000     few_unique n=1000
+                       JDK 8   PassPerItem     18        0        0          13.590   12995.635        sorted n=10000
+                       JDK 8 UntilNoChange     18        0        1           1.481       1.907  nearly_random n=5000
+                       JDK 8   WhileNeeded     18       18       18           1.000       1.000     few_unique n=1000
+JDK 26, polluted JIT profile   PassPerItem     10        0        0          17.782    5176.015         sorted n=5000
+JDK 26, polluted JIT profile UntilNoChange     10        2        3           1.395       1.817  nearly_random n=5000
+JDK 26, polluted JIT profile   WhileNeeded     10        8        9           1.013       1.097         sorted n=5000
+
+absolute speed vs main setting:
+                     setting     algorithm  geomean_time_vs_main   min   max
+               JDK 26, G1 GC   PassPerItem                 1.068 0.956 1.210
+               JDK 26, G1 GC UntilNoChange                 1.082 0.960 1.322
+               JDK 26, G1 GC   WhileNeeded                 1.095 0.981 1.284
+          JDK 26, ParallelGC   PassPerItem                 0.983 0.871 1.009
+          JDK 26, ParallelGC UntilNoChange                 1.020 0.934 1.472
+          JDK 26, ParallelGC   WhileNeeded                 1.016 0.977 1.361
+                      JDK 25   PassPerItem                 0.998 0.977 1.008
+                      JDK 25 UntilNoChange                 1.000 0.991 1.008
+                      JDK 25   WhileNeeded                 1.000 0.994 1.004
+                      JDK 21   PassPerItem                 0.952 0.744 1.020
+                      JDK 21 UntilNoChange                 0.952 0.730 1.027
+                      JDK 21   WhileNeeded                 0.921 0.639 1.047
+                      JDK 17   PassPerItem                 1.034 0.799 1.146
+                      JDK 17 UntilNoChange                 0.951 0.731 1.061
+                      JDK 17   WhileNeeded                 0.999 0.931 1.073
+                       JDK 8   PassPerItem                 1.100 0.895 1.217
+                       JDK 8 UntilNoChange                 0.962 0.803 1.065
+                       JDK 8   WhileNeeded                 0.926 0.740 1.028
+JDK 26, polluted JIT profile   PassPerItem                 3.660 2.690 4.331
+JDK 26, polluted JIT profile UntilNoChange                 2.831 1.887 4.239
+JDK 26, polluted JIT profile   WhileNeeded                 2.872 1.496 5.183
+
+small arrays: wrote small_ratios.csv, small_winners.csv, fig_small
+
+shapes: setting     algorithm  cells  fastest  within5  geomean_regret  max_regret           max_where
+ shapes   PassPerItem     15        0        0           5.958    1984.618      rabbit n=10000
+ shapes UntilNoChange     15        2        3           1.672       2.387 sorted_tail n=10000
+ shapes   WhileNeeded     15       13       15           1.001       1.008       rabbit n=1000
+
+cold start: wrote cold_cumulative.csv, cold_ratios.csv, fig_cold
+
+JMH: ratio of ratios (JMH/ours) median 0.996, range 0.557-1.011
+
+correctness: 20139 checks, 0 failures

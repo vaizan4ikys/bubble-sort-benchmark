@@ -1,0 +1,19 @@
+order,size,pair,jmh_ratio,our_ratio,agreement
+nearly_local,5000,UntilNoChange / PassPerItem,0.0030,0.0051,0.5753
+nearly_local,5000,WhileNeeded / PassPerItem,0.0025,0.0045,0.5572
+nearly_local,5000,WhileNeeded / UntilNoChange,0.8502,0.8779,0.9685
+nearly_local,20000,UntilNoChange / PassPerItem,0.0012,0.0014,0.8816
+nearly_local,20000,WhileNeeded / PassPerItem,0.0010,0.0013,0.8268
+nearly_local,20000,WhileNeeded / UntilNoChange,0.8578,0.9146,0.9378
+random,5000,UntilNoChange / PassPerItem,1.2446,1.2571,0.9901
+random,5000,WhileNeeded / PassPerItem,0.7625,0.7614,1.0014
+random,5000,WhileNeeded / UntilNoChange,0.6126,0.6057,1.0115
+random,20000,UntilNoChange / PassPerItem,1.0954,1.0928,1.0024
+random,20000,WhileNeeded / PassPerItem,0.5731,0.5733,0.9997
+random,20000,WhileNeeded / UntilNoChange,0.5232,0.5246,0.9974
+reversed,5000,UntilNoChange / PassPerItem,1.5246,1.5239,1.0005
+reversed,5000,WhileNeeded / PassPerItem,1.0984,1.0985,0.9999
+reversed,5000,WhileNeeded / UntilNoChange,0.7205,0.7208,0.9995
+reversed,20000,UntilNoChange / PassPerItem,1.1518,1.1580,0.9947
+reversed,20000,WhileNeeded / PassPerItem,1.1610,1.1674,0.9945
+reversed,20000,WhileNeeded / UntilNoChange,1.0080,1.0081,0.9999

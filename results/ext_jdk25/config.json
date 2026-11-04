@@ -1,0 +1,37 @@
+{
+  "out": "results/ext_jdk25",
+  "forks": 5,
+  "fork_start": 0,
+  "iters": 20,
+  "seed": 20261104,
+  "sizes": [
+    1000,
+    5000,
+    10000
+  ],
+  "orders": [
+    "random",
+    "sorted",
+    "reversed",
+    "nearly_local",
+    "nearly_random",
+    "few_unique"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "bin_ext2",
+  "types": [
+    "Integer"
+  ],
+  "jvm_extra": "",
+  "jvm_flags": [
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:+UseSerialGC"
+  ],
+  "java": "/opt/homebrew/opt/openjdk@25/bin/java",
+  "n_jobs": 270
+}

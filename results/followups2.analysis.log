@@ -1,0 +1,22 @@
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.prefix, expected /Users/pavloharabadzhiiev/Downloads/Experimentation & Evaluation/bubble-sort-experiment/.venv, got /Users/pavloharabadzhiiev/Downloads/Experimentation & Evaluation/bubble-sort-experiment/analysis/../.venv
+<frozen site>:101: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /Users/pavloharabadzhiiev/Downloads/Experimentation & Evaluation/bubble-sort-experiment/.venv, got /Users/pavloharabadzhiiev/Downloads/Experimentation & Evaluation/bubble-sort-experiment/analysis/../.venv
+rows (batch measurements): 32400
+cells (algorithm x order x size): 108
+forks per cell: [np.int64(10)]
+measured batches per fork: [np.int64(30)]
+batches with a GC during the timed region: 0 (0.00 %)
+forks whose warm-up hit the time limit: 0
+smallest batch size: 1, largest: 20000
+shortest measured time per sort: 24.9 ns; longest: 523 ms
+hypothesis          verdict  supported  falsified  inconclusive  cells
+        H1        SUPPORTED         10          0             0     10
+        H2 PARTLY FALSIFIED          7          1             1      9
+        H3 PARTLY FALSIFIED          1          5             0      6
+        H4        SUPPORTED          6          0             0      6
+        H5 PARTLY FALSIFIED          5          1             0      6
+        H6 PARTLY FALSIFIED         54          5             1     60
+    algorithm  ns_per_comparison  ns_per_swap  weighted_r2  cells
+  PassPerItem           0.618618     0.910183     0.977460     30
+UntilNoChange           0.576314     1.773956     0.906742     30
+  WhileNeeded           0.610029     1.479602     0.957646     30
+analysis finished -> /Users/pavloharabadzhiiev/Downloads/Experimentation & Evaluation/bubble-sort-experiment/analysis/out/main

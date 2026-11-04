@@ -1,0 +1,1583 @@
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = PassPerItem, order = random, size = 5000)
+
+# Run progress: 0.00% complete, ETA 00:13:30
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 20548.434 us/op
+# Warmup Iteration   2: 20082.623 us/op
+# Warmup Iteration   3: 20095.271 us/op
+# Warmup Iteration   4: 20143.993 us/op
+# Warmup Iteration   5: 20101.116 us/op
+Iteration   1: 20068.607 us/op
+Iteration   2: 20061.043 us/op
+Iteration   3: 20053.293 us/op
+Iteration   4: 20147.493 us/op
+Iteration   5: 20085.600 us/op
+Iteration   6: 20083.527 us/op
+Iteration   7: 20068.202 us/op
+Iteration   8: 20140.162 us/op
+Iteration   9: 20064.242 us/op
+Iteration  10: 20073.081 us/op
+
+# Run progress: 1.85% complete, ETA 00:13:40
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 20536.877 us/op
+# Warmup Iteration   2: 20044.970 us/op
+# Warmup Iteration   3: 20057.305 us/op
+# Warmup Iteration   4: 20143.552 us/op
+# Warmup Iteration   5: 20074.225 us/op
+Iteration   1: 20062.292 us/op
+Iteration   2: 20065.489 us/op
+Iteration   3: 20058.141 us/op
+Iteration   4: 20136.384 us/op
+Iteration   5: 20217.200 us/op
+Iteration   6: 20059.851 us/op
+Iteration   7: 20049.492 us/op
+Iteration   8: 20136.572 us/op
+Iteration   9: 20073.195 us/op
+Iteration  10: 20067.171 us/op
+
+# Run progress: 3.70% complete, ETA 00:13:23
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 20490.798 us/op
+# Warmup Iteration   2: 20117.806 us/op
+# Warmup Iteration   3: 20065.556 us/op
+# Warmup Iteration   4: 20087.164 us/op
+# Warmup Iteration   5: 20122.864 us/op
+Iteration   1: 20061.676 us/op
+Iteration   2: 20120.240 us/op
+Iteration   3: 20060.945 us/op
+Iteration   4: 20134.803 us/op
+Iteration   5: 20066.886 us/op
+Iteration   6: 20052.372 us/op
+Iteration   7: 20063.172 us/op
+Iteration   8: 20131.689 us/op
+Iteration   9: 20072.276 us/op
+Iteration  10: 20070.605 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  20086.857 ±(99.9%) 26.481 us/op [Average]
+  (min, avg, max) = (20049.492, 20086.857, 20217.200), stdev = 39.636
+  CI (99.9%): [20060.376, 20113.338] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = PassPerItem, order = random, size = 20000)
+
+# Run progress: 5.56% complete, ETA 00:13:08
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 478082.417 us/op
+# Warmup Iteration   2: 447538.292 us/op
+# Warmup Iteration   3: 448340.806 us/op
+# Warmup Iteration   4: 447963.014 us/op
+# Warmup Iteration   5: 448710.375 us/op
+Iteration   1: 449023.778 us/op
+Iteration   2: 448072.264 us/op
+Iteration   3: 449054.806 us/op
+Iteration   4: 449018.264 us/op
+Iteration   5: 448851.334 us/op
+Iteration   6: 447653.236 us/op
+Iteration   7: 448448.931 us/op
+Iteration   8: 447705.319 us/op
+Iteration   9: 448867.264 us/op
+Iteration  10: 448791.347 us/op
+
+# Run progress: 7.41% complete, ETA 00:13:55
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 479577.292 us/op
+# Warmup Iteration   2: 450609.139 us/op
+# Warmup Iteration   3: 449984.431 us/op
+# Warmup Iteration   4: 448488.639 us/op
+# Warmup Iteration   5: 449262.152 us/op
+Iteration   1: 449838.028 us/op
+Iteration   2: 450484.097 us/op
+Iteration   3: 450668.097 us/op
+Iteration   4: 450961.361 us/op
+Iteration   5: 449610.722 us/op
+Iteration   6: 447895.778 us/op
+Iteration   7: 449433.764 us/op
+Iteration   8: 449629.778 us/op
+Iteration   9: 452130.389 us/op
+Iteration  10: 450805.292 us/op
+
+# Run progress: 9.26% complete, ETA 00:14:15
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 480472.431 us/op
+# Warmup Iteration   2: 450709.500 us/op
+# Warmup Iteration   3: 448980.653 us/op
+# Warmup Iteration   4: 449501.236 us/op
+# Warmup Iteration   5: 449988.195 us/op
+Iteration   1: 450049.639 us/op
+Iteration   2: 449791.403 us/op
+Iteration   3: 450151.084 us/op
+Iteration   4: 450290.167 us/op
+Iteration   5: 451609.195 us/op
+Iteration   6: 450660.389 us/op
+Iteration   7: 448171.708 us/op
+Iteration   8: 447504.583 us/op
+Iteration   9: 451117.361 us/op
+Iteration  10: 449895.069 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  449539.481 ±(99.9%) 816.094 us/op [Average]
+  (min, avg, max) = (447504.583, 449539.481, 452130.389), stdev = 1221.491
+  CI (99.9%): [448723.388, 450355.575] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = PassPerItem, order = reversed, size = 5000)
+
+# Run progress: 11.11% complete, ETA 00:14:21
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 25426.502 us/op
+# Warmup Iteration   2: 24563.904 us/op
+# Warmup Iteration   3: 24541.686 us/op
+# Warmup Iteration   4: 24548.391 us/op
+# Warmup Iteration   5: 24677.437 us/op
+Iteration   1: 24536.463 us/op
+Iteration   2: 24529.678 us/op
+Iteration   3: 24541.654 us/op
+Iteration   4: 24559.076 us/op
+Iteration   5: 24636.068 us/op
+Iteration   6: 24575.285 us/op
+Iteration   7: 24572.578 us/op
+Iteration   8: 24565.148 us/op
+Iteration   9: 24541.776 us/op
+Iteration  10: 24682.465 us/op
+
+# Run progress: 12.96% complete, ETA 00:13:47
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 25520.192 us/op
+# Warmup Iteration   2: 24660.710 us/op
+# Warmup Iteration   3: 24612.760 us/op
+# Warmup Iteration   4: 24734.428 us/op
+# Warmup Iteration   5: 24737.358 us/op
+Iteration   1: 24608.170 us/op
+Iteration   2: 24601.557 us/op
+Iteration   3: 24620.756 us/op
+Iteration   4: 24622.309 us/op
+Iteration   5: 24706.747 us/op
+Iteration   6: 24606.586 us/op
+Iteration   7: 24630.644 us/op
+Iteration   8: 24625.065 us/op
+Iteration   9: 24607.576 us/op
+Iteration  10: 24721.062 us/op
+
+# Run progress: 14.81% complete, ETA 00:13:17
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 25524.724 us/op
+# Warmup Iteration   2: 24609.197 us/op
+# Warmup Iteration   3: 24555.197 us/op
+# Warmup Iteration   4: 24541.590 us/op
+# Warmup Iteration   5: 24658.192 us/op
+Iteration   1: 24587.745 us/op
+Iteration   2: 24566.399 us/op
+Iteration   3: 24604.882 us/op
+Iteration   4: 24568.910 us/op
+Iteration   5: 24663.659 us/op
+Iteration   6: 24553.268 us/op
+Iteration   7: 24627.590 us/op
+Iteration   8: 24548.365 us/op
+Iteration   9: 24558.090 us/op
+Iteration  10: 24658.359 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  24600.931 ±(99.9%) 33.730 us/op [Average]
+  (min, avg, max) = (24529.678, 24600.931, 24721.062), stdev = 50.486
+  CI (99.9%): [24567.201, 24634.661] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = PassPerItem, order = reversed, size = 20000)
+
+# Run progress: 16.67% complete, ETA 00:12:51
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 409988.125 us/op
+# Warmup Iteration   2: 372511.319 us/op
+# Warmup Iteration   3: 374930.278 us/op
+# Warmup Iteration   4: 376000.125 us/op
+# Warmup Iteration   5: 374076.306 us/op
+Iteration   1: 372556.556 us/op
+Iteration   2: 374283.805 us/op
+Iteration   3: 374016.347 us/op
+Iteration   4: 376093.930 us/op
+Iteration   5: 377536.625 us/op
+Iteration   6: 376074.819 us/op
+Iteration   7: 375935.945 us/op
+Iteration   8: 375841.111 us/op
+Iteration   9: 375869.806 us/op
+Iteration  10: 375751.472 us/op
+
+# Run progress: 18.52% complete, ETA 00:12:33
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 432250.320 us/op
+# Warmup Iteration   2: 372030.611 us/op
+# Warmup Iteration   3: 378551.486 us/op
+# Warmup Iteration   4: 376207.111 us/op
+# Warmup Iteration   5: 376125.653 us/op
+Iteration   1: 376201.361 us/op
+Iteration   2: 376242.819 us/op
+Iteration   3: 376093.305 us/op
+Iteration   4: 376239.264 us/op
+Iteration   5: 376121.000 us/op
+Iteration   6: 376131.430 us/op
+Iteration   7: 377127.500 us/op
+Iteration   8: 376340.375 us/op
+Iteration   9: 376152.167 us/op
+Iteration  10: 377782.736 us/op
+
+# Run progress: 20.37% complete, ETA 00:12:17
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 410359.681 us/op
+# Warmup Iteration   2: 372058.389 us/op
+# Warmup Iteration   3: 372140.556 us/op
+# Warmup Iteration   4: 372061.903 us/op
+# Warmup Iteration   5: 372015.819 us/op
+Iteration   1: 372139.347 us/op
+Iteration   2: 372038.430 us/op
+Iteration   3: 372194.750 us/op
+Iteration   4: 372189.250 us/op
+Iteration   5: 372038.222 us/op
+Iteration   6: 372463.514 us/op
+Iteration   7: 373865.389 us/op
+Iteration   8: 372099.500 us/op
+Iteration   9: 372124.653 us/op
+Iteration  10: 372139.014 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  374722.815 ±(99.9%) 1327.963 us/op [Average]
+  (min, avg, max) = (372038.222, 374722.815, 377782.736), stdev = 1987.632
+  CI (99.9%): [373394.852, 376050.777] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = PassPerItem, order = nearly_local, size = 5000)
+
+# Run progress: 22.22% complete, ETA 00:11:59
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 15790.842 us/op
+# Warmup Iteration   2: 14546.032 us/op
+# Warmup Iteration   3: 14653.155 us/op
+# Warmup Iteration   4: 14539.771 us/op
+# Warmup Iteration   5: 14553.879 us/op
+Iteration   1: 14637.270 us/op
+Iteration   2: 14534.257 us/op
+Iteration   3: 14528.642 us/op
+Iteration   4: 14643.929 us/op
+Iteration   5: 14531.050 us/op
+Iteration   6: 14543.467 us/op
+Iteration   7: 14637.563 us/op
+Iteration   8: 14557.979 us/op
+Iteration   9: 14534.125 us/op
+Iteration  10: 14636.740 us/op
+
+# Run progress: 24.07% complete, ETA 00:11:36
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 15704.147 us/op
+# Warmup Iteration   2: 14531.100 us/op
+# Warmup Iteration   3: 14660.447 us/op
+# Warmup Iteration   4: 14537.031 us/op
+# Warmup Iteration   5: 14539.009 us/op
+Iteration   1: 14644.589 us/op
+Iteration   2: 14516.344 us/op
+Iteration   3: 14542.602 us/op
+Iteration   4: 14645.408 us/op
+Iteration   5: 14530.595 us/op
+Iteration   6: 14530.692 us/op
+Iteration   7: 14635.955 us/op
+Iteration   8: 14523.662 us/op
+Iteration   9: 14544.958 us/op
+Iteration  10: 14657.122 us/op
+
+# Run progress: 25.93% complete, ETA 00:11:14
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 15678.458 us/op
+# Warmup Iteration   2: 14533.588 us/op
+# Warmup Iteration   3: 14645.220 us/op
+# Warmup Iteration   4: 14528.607 us/op
+# Warmup Iteration   5: 14539.211 us/op
+Iteration   1: 14646.955 us/op
+Iteration   2: 14518.899 us/op
+Iteration   3: 14574.879 us/op
+Iteration   4: 14637.182 us/op
+Iteration   5: 14516.808 us/op
+Iteration   6: 14532.956 us/op
+Iteration   7: 14631.246 us/op
+Iteration   8: 14511.310 us/op
+Iteration   9: 14524.801 us/op
+Iteration  10: 14649.678 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  14576.722 ±(99.9%) 37.188 us/op [Average]
+  (min, avg, max) = (14511.310, 14576.722, 14657.122), stdev = 55.661
+  CI (99.9%): [14539.534, 14613.910] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = PassPerItem, order = nearly_local, size = 20000)
+
+# Run progress: 27.78% complete, ETA 00:10:54
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 339905.736 us/op
+# Warmup Iteration   2: 259869.094 us/op
+# Warmup Iteration   3: 237984.925 us/op
+# Warmup Iteration   4: 237366.325 us/op
+# Warmup Iteration   5: 237217.534 us/op
+Iteration   1: 237339.675 us/op
+Iteration   2: 237325.875 us/op
+Iteration   3: 237316.733 us/op
+Iteration   4: 237501.008 us/op
+Iteration   5: 237848.300 us/op
+Iteration   6: 237445.492 us/op
+Iteration   7: 237706.425 us/op
+Iteration   8: 238091.883 us/op
+Iteration   9: 237499.533 us/op
+Iteration  10: 237653.492 us/op
+
+# Run progress: 29.63% complete, ETA 00:10:39
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 339154.319 us/op
+# Warmup Iteration   2: 261870.104 us/op
+# Warmup Iteration   3: 237743.458 us/op
+# Warmup Iteration   4: 237481.867 us/op
+# Warmup Iteration   5: 237516.458 us/op
+Iteration   1: 237602.525 us/op
+Iteration   2: 237397.867 us/op
+Iteration   3: 237585.567 us/op
+Iteration   4: 237412.958 us/op
+Iteration   5: 237631.183 us/op
+Iteration   6: 237691.825 us/op
+Iteration   7: 237444.400 us/op
+Iteration   8: 237440.017 us/op
+Iteration   9: 237536.575 us/op
+Iteration  10: 237640.567 us/op
+
+# Run progress: 31.48% complete, ETA 00:10:24
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 340380.611 us/op
+# Warmup Iteration   2: 264325.969 us/op
+# Warmup Iteration   3: 238528.892 us/op
+# Warmup Iteration   4: 237455.017 us/op
+# Warmup Iteration   5: 237670.059 us/op
+Iteration   1: 237492.533 us/op
+Iteration   2: 237528.567 us/op
+Iteration   3: 237615.433 us/op
+Iteration   4: 237542.033 us/op
+Iteration   5: 237604.050 us/op
+Iteration   6: 237793.292 us/op
+Iteration   7: 237694.117 us/op
+Iteration   8: 237682.500 us/op
+Iteration   9: 237460.175 us/op
+Iteration  10: 238385.350 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  237596.998 ±(99.9%) 148.619 us/op [Average]
+  (min, avg, max) = (237316.733, 237596.998, 238385.350), stdev = 222.447
+  CI (99.9%): [237448.379, 237745.618] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = UntilNoChange, order = random, size = 5000)
+
+# Run progress: 33.33% complete, ETA 00:10:09
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 25217.148 us/op
+# Warmup Iteration   2: 24991.487 us/op
+# Warmup Iteration   3: 24994.991 us/op
+# Warmup Iteration   4: 24992.476 us/op
+# Warmup Iteration   5: 25010.234 us/op
+Iteration   1: 24996.831 us/op
+Iteration   2: 24989.056 us/op
+Iteration   3: 24992.367 us/op
+Iteration   4: 25016.954 us/op
+Iteration   5: 24998.122 us/op
+Iteration   6: 25025.426 us/op
+Iteration   7: 24996.234 us/op
+Iteration   8: 24997.220 us/op
+Iteration   9: 24992.256 us/op
+Iteration  10: 24990.955 us/op
+
+# Run progress: 35.19% complete, ETA 00:09:49
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 25250.726 us/op
+# Warmup Iteration   2: 24993.395 us/op
+# Warmup Iteration   3: 24999.189 us/op
+# Warmup Iteration   4: 24987.954 us/op
+# Warmup Iteration   5: 25025.378 us/op
+Iteration   1: 24989.181 us/op
+Iteration   2: 25001.074 us/op
+Iteration   3: 24990.172 us/op
+Iteration   4: 24993.034 us/op
+Iteration   5: 25030.291 us/op
+Iteration   6: 25006.835 us/op
+Iteration   7: 24995.351 us/op
+Iteration   8: 25001.225 us/op
+Iteration   9: 24993.275 us/op
+Iteration  10: 24984.112 us/op
+
+# Run progress: 37.04% complete, ETA 00:09:30
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 25132.278 us/op
+# Warmup Iteration   2: 25005.051 us/op
+# Warmup Iteration   3: 25000.117 us/op
+# Warmup Iteration   4: 24997.954 us/op
+# Warmup Iteration   5: 25035.337 us/op
+Iteration   1: 25000.206 us/op
+Iteration   2: 24993.391 us/op
+Iteration   3: 24987.598 us/op
+Iteration   4: 24987.746 us/op
+Iteration   5: 25027.432 us/op
+Iteration   6: 25003.893 us/op
+Iteration   7: 24991.768 us/op
+Iteration   8: 25046.362 us/op
+Iteration   9: 25005.240 us/op
+Iteration  10: 25002.415 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  25000.867 ±(99.9%) 9.754 us/op [Average]
+  (min, avg, max) = (24984.112, 25000.867, 25046.362), stdev = 14.599
+  CI (99.9%): [24991.114, 25010.621] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = UntilNoChange, order = random, size = 20000)
+
+# Run progress: 38.89% complete, ETA 00:09:11
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 495418.542 us/op
+# Warmup Iteration   2: 493131.334 us/op
+# Warmup Iteration   3: 492616.459 us/op
+# Warmup Iteration   4: 491321.944 us/op
+# Warmup Iteration   5: 491621.500 us/op
+Iteration   1: 491544.542 us/op
+Iteration   2: 491124.736 us/op
+Iteration   3: 493402.944 us/op
+Iteration   4: 493014.139 us/op
+Iteration   5: 491563.625 us/op
+Iteration   6: 491541.125 us/op
+Iteration   7: 492909.042 us/op
+Iteration   8: 492505.541 us/op
+Iteration   9: 492541.986 us/op
+Iteration  10: 492922.194 us/op
+
+# Run progress: 40.74% complete, ETA 00:09:02
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 493873.833 us/op
+# Warmup Iteration   2: 492689.861 us/op
+# Warmup Iteration   3: 491432.389 us/op
+# Warmup Iteration   4: 491334.486 us/op
+# Warmup Iteration   5: 491789.431 us/op
+Iteration   1: 491729.292 us/op
+Iteration   2: 491431.861 us/op
+Iteration   3: 491329.417 us/op
+Iteration   4: 491934.194 us/op
+Iteration   5: 491549.736 us/op
+Iteration   6: 492628.417 us/op
+Iteration   7: 492954.333 us/op
+Iteration   8: 492723.931 us/op
+Iteration   9: 492905.514 us/op
+Iteration  10: 492958.139 us/op
+
+# Run progress: 42.59% complete, ETA 00:08:53
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 494114.959 us/op
+# Warmup Iteration   2: 492445.236 us/op
+# Warmup Iteration   3: 491218.166 us/op
+# Warmup Iteration   4: 492618.083 us/op
+# Warmup Iteration   5: 492898.597 us/op
+Iteration   1: 491922.681 us/op
+Iteration   2: 492833.528 us/op
+Iteration   3: 492903.917 us/op
+Iteration   4: 492905.473 us/op
+Iteration   5: 492444.458 us/op
+Iteration   6: 492861.000 us/op
+Iteration   7: 492719.903 us/op
+Iteration   8: 492649.569 us/op
+Iteration   9: 492987.305 us/op
+Iteration  10: 493156.708 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  492419.975 ±(99.9%) 437.866 us/op [Average]
+  (min, avg, max) = (491124.736, 492419.975, 493402.944), stdev = 655.377
+  CI (99.9%): [491982.109, 492857.841] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = UntilNoChange, order = reversed, size = 5000)
+
+# Run progress: 44.44% complete, ETA 00:08:42
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 37949.701 us/op
+# Warmup Iteration   2: 37481.026 us/op
+# Warmup Iteration   3: 37494.693 us/op
+# Warmup Iteration   4: 37476.163 us/op
+# Warmup Iteration   5: 37480.302 us/op
+Iteration   1: 37476.708 us/op
+Iteration   2: 37568.563 us/op
+Iteration   3: 37545.344 us/op
+Iteration   4: 37483.594 us/op
+Iteration   5: 37500.093 us/op
+Iteration   6: 37474.312 us/op
+Iteration   7: 37473.713 us/op
+Iteration   8: 37488.914 us/op
+Iteration   9: 37598.256 us/op
+Iteration  10: 37477.059 us/op
+
+# Run progress: 46.30% complete, ETA 00:08:22
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 37847.974 us/op
+# Warmup Iteration   2: 37513.222 us/op
+# Warmup Iteration   3: 37513.009 us/op
+# Warmup Iteration   4: 37514.117 us/op
+# Warmup Iteration   5: 37521.514 us/op
+Iteration   1: 37527.298 us/op
+Iteration   2: 37518.488 us/op
+Iteration   3: 37584.022 us/op
+Iteration   4: 37513.486 us/op
+Iteration   5: 37521.148 us/op
+Iteration   6: 37504.770 us/op
+Iteration   7: 37511.372 us/op
+Iteration   8: 37576.855 us/op
+Iteration   9: 37502.921 us/op
+Iteration  10: 37504.907 us/op
+
+# Run progress: 48.15% complete, ETA 00:08:02
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 37991.410 us/op
+# Warmup Iteration   2: 37503.610 us/op
+# Warmup Iteration   3: 37492.764 us/op
+# Warmup Iteration   4: 37486.594 us/op
+# Warmup Iteration   5: 37577.134 us/op
+Iteration   1: 37477.435 us/op
+Iteration   2: 37470.753 us/op
+Iteration   3: 37538.935 us/op
+Iteration   4: 37482.421 us/op
+Iteration   5: 37493.643 us/op
+Iteration   6: 37489.324 us/op
+Iteration   7: 37476.855 us/op
+Iteration   8: 37483.528 us/op
+Iteration   9: 37486.329 us/op
+Iteration  10: 37458.076 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  37506.971 ±(99.9%) 24.415 us/op [Average]
+  (min, avg, max) = (37458.076, 37506.971, 37598.256), stdev = 36.544
+  CI (99.9%): [37482.555, 37531.386] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = UntilNoChange, order = reversed, size = 20000)
+
+# Run progress: 50.00% complete, ETA 00:07:43
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 439527.611 us/op
+# Warmup Iteration   2: 430398.070 us/op
+# Warmup Iteration   3: 430846.542 us/op
+# Warmup Iteration   4: 430396.806 us/op
+# Warmup Iteration   5: 430313.819 us/op
+Iteration   1: 430495.764 us/op
+Iteration   2: 430365.236 us/op
+Iteration   3: 430295.611 us/op
+Iteration   4: 430469.403 us/op
+Iteration   5: 452947.111 us/op
+Iteration   6: 430524.042 us/op
+Iteration   7: 431953.014 us/op
+Iteration   8: 430433.569 us/op
+Iteration   9: 431761.333 us/op
+Iteration  10: 430323.514 us/op
+
+# Run progress: 51.85% complete, ETA 00:07:28
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 450111.097 us/op
+# Warmup Iteration   2: 430497.264 us/op
+# Warmup Iteration   3: 430469.514 us/op
+# Warmup Iteration   4: 445194.222 us/op
+# Warmup Iteration   5: 430532.319 us/op
+Iteration   1: 430433.097 us/op
+Iteration   2: 430369.527 us/op
+Iteration   3: 430166.097 us/op
+Iteration   4: 430384.806 us/op
+Iteration   5: 430367.236 us/op
+Iteration   6: 430495.875 us/op
+Iteration   7: 430268.028 us/op
+Iteration   8: 438661.611 us/op
+Iteration   9: 431142.375 us/op
+Iteration  10: 432405.500 us/op
+
+# Run progress: 53.70% complete, ETA 00:07:13
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 449146.416 us/op
+# Warmup Iteration   2: 430447.139 us/op
+# Warmup Iteration   3: 438359.708 us/op
+# Warmup Iteration   4: 430439.153 us/op
+# Warmup Iteration   5: 430529.153 us/op
+Iteration   1: 430509.611 us/op
+Iteration   2: 430269.430 us/op
+Iteration   3: 430319.708 us/op
+Iteration   4: 430382.542 us/op
+Iteration   5: 430380.417 us/op
+Iteration   6: 430469.861 us/op
+Iteration   7: 430355.472 us/op
+Iteration   8: 430259.695 us/op
+Iteration   9: 430552.292 us/op
+Iteration  10: 430375.555 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  431604.578 ±(99.9%) 2888.765 us/op [Average]
+  (min, avg, max) = (430166.097, 431604.578, 452947.111), stdev = 4323.768
+  CI (99.9%): [428715.813, 434493.343] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = UntilNoChange, order = nearly_local, size = 5000)
+
+# Run progress: 55.56% complete, ETA 00:06:58
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 46.088 us/op
+# Warmup Iteration   2: 42.925 us/op
+# Warmup Iteration   3: 44.449 us/op
+# Warmup Iteration   4: 50.730 us/op
+# Warmup Iteration   5: 50.672 us/op
+Iteration   1: 44.163 us/op
+Iteration   2: 43.215 us/op
+Iteration   3: 43.054 us/op
+Iteration   4: 43.042 us/op
+Iteration   5: 43.046 us/op
+Iteration   6: 43.046 us/op
+Iteration   7: 43.032 us/op
+Iteration   8: 42.977 us/op
+Iteration   9: 42.943 us/op
+Iteration  10: 43.020 us/op
+
+# Run progress: 57.41% complete, ETA 00:06:39
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 46.077 us/op
+# Warmup Iteration   2: 42.859 us/op
+# Warmup Iteration   3: 44.546 us/op
+# Warmup Iteration   4: 50.841 us/op
+# Warmup Iteration   5: 50.552 us/op
+Iteration   1: 44.141 us/op
+Iteration   2: 43.316 us/op
+Iteration   3: 42.970 us/op
+Iteration   4: 42.930 us/op
+Iteration   5: 42.957 us/op
+Iteration   6: 42.936 us/op
+Iteration   7: 43.188 us/op
+Iteration   8: 43.000 us/op
+Iteration   9: 42.946 us/op
+Iteration  10: 42.882 us/op
+
+# Run progress: 59.26% complete, ETA 00:06:20
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 46.056 us/op
+# Warmup Iteration   2: 43.108 us/op
+# Warmup Iteration   3: 44.580 us/op
+# Warmup Iteration   4: 51.001 us/op
+# Warmup Iteration   5: 50.955 us/op
+Iteration   1: 44.303 us/op
+Iteration   2: 43.063 us/op
+Iteration   3: 42.884 us/op
+Iteration   4: 42.845 us/op
+Iteration   5: 42.849 us/op
+Iteration   6: 42.827 us/op
+Iteration   7: 42.848 us/op
+Iteration   8: 43.127 us/op
+Iteration   9: 42.950 us/op
+Iteration  10: 42.854 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  43.112 ±(99.9%) 0.259 us/op [Average]
+  (min, avg, max) = (42.827, 43.112, 44.303), stdev = 0.388
+  CI (99.9%): [42.853, 43.371] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = UntilNoChange, order = nearly_local, size = 20000)
+
+# Run progress: 61.11% complete, ETA 00:06:01
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 346.938 us/op
+# Warmup Iteration   2: 335.645 us/op
+# Warmup Iteration   3: 286.750 us/op
+# Warmup Iteration   4: 286.436 us/op
+# Warmup Iteration   5: 286.527 us/op
+Iteration   1: 287.046 us/op
+Iteration   2: 286.367 us/op
+Iteration   3: 286.367 us/op
+Iteration   4: 286.491 us/op
+Iteration   5: 286.170 us/op
+Iteration   6: 286.410 us/op
+Iteration   7: 286.805 us/op
+Iteration   8: 286.887 us/op
+Iteration   9: 286.761 us/op
+Iteration  10: 286.473 us/op
+
+# Run progress: 62.96% complete, ETA 00:05:43
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 347.519 us/op
+# Warmup Iteration   2: 336.516 us/op
+# Warmup Iteration   3: 287.162 us/op
+# Warmup Iteration   4: 286.703 us/op
+# Warmup Iteration   5: 286.666 us/op
+Iteration   1: 286.309 us/op
+Iteration   2: 286.904 us/op
+Iteration   3: 286.481 us/op
+Iteration   4: 286.703 us/op
+Iteration   5: 286.360 us/op
+Iteration   6: 286.591 us/op
+Iteration   7: 286.203 us/op
+Iteration   8: 286.399 us/op
+Iteration   9: 286.609 us/op
+Iteration  10: 286.147 us/op
+
+# Run progress: 64.81% complete, ETA 00:05:25
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 346.725 us/op
+# Warmup Iteration   2: 335.877 us/op
+# Warmup Iteration   3: 287.375 us/op
+# Warmup Iteration   4: 286.634 us/op
+# Warmup Iteration   5: 286.928 us/op
+Iteration   1: 286.977 us/op
+Iteration   2: 286.811 us/op
+Iteration   3: 286.322 us/op
+Iteration   4: 286.526 us/op
+Iteration   5: 286.831 us/op
+Iteration   6: 286.632 us/op
+Iteration   7: 286.232 us/op
+Iteration   8: 286.461 us/op
+Iteration   9: 286.969 us/op
+Iteration  10: 286.676 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  286.564 ±(99.9%) 0.173 us/op [Average]
+  (min, avg, max) = (286.147, 286.564, 287.046), stdev = 0.259
+  CI (99.9%): [286.391, 286.737] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = WhileNeeded, order = random, size = 5000)
+
+# Run progress: 66.67% complete, ETA 00:05:07
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 15456.441 us/op
+# Warmup Iteration   2: 15313.952 us/op
+# Warmup Iteration   3: 15311.263 us/op
+# Warmup Iteration   4: 15316.501 us/op
+# Warmup Iteration   5: 15313.510 us/op
+Iteration   1: 15310.047 us/op
+Iteration   2: 15316.569 us/op
+Iteration   3: 15311.639 us/op
+Iteration   4: 15306.177 us/op
+Iteration   5: 15323.562 us/op
+Iteration   6: 15310.241 us/op
+Iteration   7: 15423.202 us/op
+Iteration   8: 15313.417 us/op
+Iteration   9: 15310.184 us/op
+Iteration  10: 15311.514 us/op
+
+# Run progress: 68.52% complete, ETA 00:04:49
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 15471.241 us/op
+# Warmup Iteration   2: 15308.965 us/op
+# Warmup Iteration   3: 15304.646 us/op
+# Warmup Iteration   4: 15357.804 us/op
+# Warmup Iteration   5: 15311.600 us/op
+Iteration   1: 15304.287 us/op
+Iteration   2: 15315.457 us/op
+Iteration   3: 15305.244 us/op
+Iteration   4: 15308.167 us/op
+Iteration   5: 15311.369 us/op
+Iteration   6: 15308.574 us/op
+Iteration   7: 15309.141 us/op
+Iteration   8: 15318.338 us/op
+Iteration   9: 15311.057 us/op
+Iteration  10: 15328.017 us/op
+
+# Run progress: 70.37% complete, ETA 00:04:31
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 15454.110 us/op
+# Warmup Iteration   2: 15305.257 us/op
+# Warmup Iteration   3: 15306.290 us/op
+# Warmup Iteration   4: 15310.963 us/op
+# Warmup Iteration   5: 15303.900 us/op
+Iteration   1: 15314.179 us/op
+Iteration   2: 15313.768 us/op
+Iteration   3: 15309.045 us/op
+Iteration   4: 15308.428 us/op
+Iteration   5: 15320.167 us/op
+Iteration   6: 15310.573 us/op
+Iteration   7: 15310.437 us/op
+Iteration   8: 15316.085 us/op
+Iteration   9: 15308.543 us/op
+Iteration  10: 15305.799 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  15315.774 ±(99.9%) 14.013 us/op [Average]
+  (min, avg, max) = (15304.287, 15315.774, 15423.202), stdev = 20.974
+  CI (99.9%): [15301.761, 15329.787] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = WhileNeeded, order = random, size = 20000)
+
+# Run progress: 72.22% complete, ETA 00:04:13
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 272646.229 us/op
+# Warmup Iteration   2: 257437.063 us/op
+# Warmup Iteration   3: 257529.021 us/op
+# Warmup Iteration   4: 257719.230 us/op
+# Warmup Iteration   5: 258048.094 us/op
+Iteration   1: 258640.948 us/op
+Iteration   2: 257723.979 us/op
+Iteration   3: 258814.844 us/op
+Iteration   4: 257513.541 us/op
+Iteration   5: 258295.782 us/op
+Iteration   6: 258367.531 us/op
+Iteration   7: 257926.261 us/op
+Iteration   8: 260718.573 us/op
+Iteration   9: 256979.406 us/op
+Iteration  10: 259465.969 us/op
+
+# Run progress: 74.07% complete, ETA 00:03:56
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 273937.093 us/op
+# Warmup Iteration   2: 258938.479 us/op
+# Warmup Iteration   3: 259245.177 us/op
+# Warmup Iteration   4: 259144.386 us/op
+# Warmup Iteration   5: 259339.282 us/op
+Iteration   1: 258719.573 us/op
+Iteration   2: 259326.552 us/op
+Iteration   3: 258723.229 us/op
+Iteration   4: 257354.156 us/op
+Iteration   5: 258312.063 us/op
+Iteration   6: 257835.688 us/op
+Iteration   7: 257634.906 us/op
+Iteration   8: 259498.594 us/op
+Iteration   9: 257392.344 us/op
+Iteration  10: 258750.500 us/op
+
+# Run progress: 75.93% complete, ETA 00:03:39
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 275171.053 us/op
+# Warmup Iteration   2: 255732.844 us/op
+# Warmup Iteration   3: 255860.042 us/op
+# Warmup Iteration   4: 255939.469 us/op
+# Warmup Iteration   5: 255526.135 us/op
+Iteration   1: 256191.407 us/op
+Iteration   2: 255395.875 us/op
+Iteration   3: 256274.792 us/op
+Iteration   4: 255457.938 us/op
+Iteration   5: 256159.750 us/op
+Iteration   6: 256349.250 us/op
+Iteration   7: 255519.042 us/op
+Iteration   8: 257975.250 us/op
+Iteration   9: 255213.198 us/op
+Iteration  10: 256757.188 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  257642.938 ±(99.9%) 929.206 us/op [Average]
+  (min, avg, max) = (255213.198, 257642.938, 260718.573), stdev = 1390.792
+  CI (99.9%): [256713.731, 258572.144] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = WhileNeeded, order = reversed, size = 5000)
+
+# Run progress: 77.78% complete, ETA 00:03:21
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 27354.398 us/op
+# Warmup Iteration   2: 27021.434 us/op
+# Warmup Iteration   3: 27021.132 us/op
+# Warmup Iteration   4: 27022.287 us/op
+# Warmup Iteration   5: 27026.555 us/op
+Iteration   1: 27028.314 us/op
+Iteration   2: 27032.327 us/op
+Iteration   3: 27019.272 us/op
+Iteration   4: 27026.387 us/op
+Iteration   5: 27031.939 us/op
+Iteration   6: 27021.373 us/op
+Iteration   7: 27023.741 us/op
+Iteration   8: 27020.769 us/op
+Iteration   9: 27024.903 us/op
+Iteration  10: 27028.840 us/op
+
+# Run progress: 79.63% complete, ETA 00:03:04
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 27348.002 us/op
+# Warmup Iteration   2: 27045.674 us/op
+# Warmup Iteration   3: 27002.588 us/op
+# Warmup Iteration   4: 27060.087 us/op
+# Warmup Iteration   5: 27010.162 us/op
+Iteration   1: 27014.487 us/op
+Iteration   2: 26996.984 us/op
+Iteration   3: 27011.469 us/op
+Iteration   4: 27012.568 us/op
+Iteration   5: 27009.999 us/op
+Iteration   6: 27009.965 us/op
+Iteration   7: 27005.475 us/op
+Iteration   8: 27016.501 us/op
+Iteration   9: 27005.213 us/op
+Iteration  10: 27020.473 us/op
+
+# Run progress: 81.48% complete, ETA 00:02:47
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 27364.596 us/op
+# Warmup Iteration   2: 27033.039 us/op
+# Warmup Iteration   3: 27038.820 us/op
+# Warmup Iteration   4: 27032.498 us/op
+# Warmup Iteration   5: 27036.605 us/op
+Iteration   1: 27032.193 us/op
+Iteration   2: 27032.443 us/op
+Iteration   3: 27031.612 us/op
+Iteration   4: 27024.496 us/op
+Iteration   5: 27025.074 us/op
+Iteration   6: 27037.841 us/op
+Iteration   7: 27028.207 us/op
+Iteration   8: 27022.451 us/op
+Iteration   9: 27029.918 us/op
+Iteration  10: 27035.843 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  27022.036 ±(99.9%) 6.745 us/op [Average]
+  (min, avg, max) = (26996.984, 27022.036, 27037.841), stdev = 10.095
+  CI (99.9%): [27015.291, 27028.781] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = WhileNeeded, order = reversed, size = 20000)
+
+# Run progress: 83.33% complete, ETA 00:02:30
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 439635.111 us/op
+# Warmup Iteration   2: 435360.653 us/op
+# Warmup Iteration   3: 435155.514 us/op
+# Warmup Iteration   4: 435082.403 us/op
+# Warmup Iteration   5: 435233.305 us/op
+Iteration   1: 435242.445 us/op
+Iteration   2: 435172.430 us/op
+Iteration   3: 435082.750 us/op
+Iteration   4: 435296.486 us/op
+Iteration   5: 435257.917 us/op
+Iteration   6: 435028.875 us/op
+Iteration   7: 435589.292 us/op
+Iteration   8: 435305.903 us/op
+Iteration   9: 435272.152 us/op
+Iteration  10: 431051.819 us/op
+
+# Run progress: 85.19% complete, ETA 00:02:14
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 439258.736 us/op
+# Warmup Iteration   2: 435038.861 us/op
+# Warmup Iteration   3: 435081.250 us/op
+# Warmup Iteration   4: 434976.944 us/op
+# Warmup Iteration   5: 435194.056 us/op
+Iteration   1: 435184.750 us/op
+Iteration   2: 435081.153 us/op
+Iteration   3: 434969.944 us/op
+Iteration   4: 435929.694 us/op
+Iteration   5: 435161.722 us/op
+Iteration   6: 435080.139 us/op
+Iteration   7: 435008.444 us/op
+Iteration   8: 435076.181 us/op
+Iteration   9: 435238.125 us/op
+Iteration  10: 435105.083 us/op
+
+# Run progress: 87.04% complete, ETA 00:01:58
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 439597.347 us/op
+# Warmup Iteration   2: 435826.430 us/op
+# Warmup Iteration   3: 435841.347 us/op
+# Warmup Iteration   4: 435599.986 us/op
+# Warmup Iteration   5: 435118.459 us/op
+Iteration   1: 435166.570 us/op
+Iteration   2: 435338.125 us/op
+Iteration   3: 434995.639 us/op
+Iteration   4: 435271.833 us/op
+Iteration   5: 435148.611 us/op
+Iteration   6: 435054.708 us/op
+Iteration   7: 435204.639 us/op
+Iteration   8: 435025.278 us/op
+Iteration   9: 435311.167 us/op
+Iteration  10: 435204.097 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  435061.866 ±(99.9%) 521.563 us/op [Average]
+  (min, avg, max) = (431051.819, 435061.866, 435929.694), stdev = 780.651
+  CI (99.9%): [434540.303, 435583.429] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = WhileNeeded, order = nearly_local, size = 5000)
+
+# Run progress: 88.89% complete, ETA 00:01:41
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 41.717 us/op
+# Warmup Iteration   2: 38.015 us/op
+# Warmup Iteration   3: 43.075 us/op
+# Warmup Iteration   4: 49.189 us/op
+# Warmup Iteration   5: 47.623 us/op
+Iteration   1: 36.858 us/op
+Iteration   2: 36.877 us/op
+Iteration   3: 36.857 us/op
+Iteration   4: 36.824 us/op
+Iteration   5: 36.821 us/op
+Iteration   6: 36.743 us/op
+Iteration   7: 36.899 us/op
+Iteration   8: 36.879 us/op
+Iteration   9: 36.833 us/op
+Iteration  10: 36.778 us/op
+
+# Run progress: 90.74% complete, ETA 00:01:24
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 41.826 us/op
+# Warmup Iteration   2: 38.146 us/op
+# Warmup Iteration   3: 42.984 us/op
+# Warmup Iteration   4: 49.114 us/op
+# Warmup Iteration   5: 47.879 us/op
+Iteration   1: 36.371 us/op
+Iteration   2: 36.306 us/op
+Iteration   3: 36.296 us/op
+Iteration   4: 36.297 us/op
+Iteration   5: 36.307 us/op
+Iteration   6: 36.243 us/op
+Iteration   7: 36.231 us/op
+Iteration   8: 36.211 us/op
+Iteration   9: 36.378 us/op
+Iteration  10: 36.302 us/op
+
+# Run progress: 92.59% complete, ETA 00:01:07
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 41.807 us/op
+# Warmup Iteration   2: 38.111 us/op
+# Warmup Iteration   3: 42.968 us/op
+# Warmup Iteration   4: 49.104 us/op
+# Warmup Iteration   5: 47.517 us/op
+Iteration   1: 37.009 us/op
+Iteration   2: 36.871 us/op
+Iteration   3: 36.817 us/op
+Iteration   4: 36.870 us/op
+Iteration   5: 36.864 us/op
+Iteration   6: 36.815 us/op
+Iteration   7: 36.738 us/op
+Iteration   8: 36.785 us/op
+Iteration   9: 36.788 us/op
+Iteration  10: 36.788 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  36.655 ±(99.9%) 0.178 us/op [Average]
+  (min, avg, max) = (36.211, 36.655, 37.009), stdev = 0.266
+  CI (99.9%): [36.477, 36.833] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 26.0.1, OpenJDK 64-Bit Server VM, 26.0.1
+# VM invoker: /opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: -Xms2g -Xmx2g -XX:+UseSerialGC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: exp01.SortBenchmark.sort
+# Parameters: (algorithm = WhileNeeded, order = nearly_local, size = 20000)
+
+# Run progress: 94.44% complete, ETA 00:00:50
+# Fork: 1 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 324.343 us/op
+# Warmup Iteration   2: 300.183 us/op
+# Warmup Iteration   3: 245.944 us/op
+# Warmup Iteration   4: 246.128 us/op
+# Warmup Iteration   5: 246.157 us/op
+Iteration   1: 246.100 us/op
+Iteration   2: 245.799 us/op
+Iteration   3: 246.105 us/op
+Iteration   4: 246.325 us/op
+Iteration   5: 245.653 us/op
+Iteration   6: 245.614 us/op
+Iteration   7: 245.616 us/op
+Iteration   8: 245.573 us/op
+Iteration   9: 245.627 us/op
+Iteration  10: 246.108 us/op
+
+# Run progress: 96.30% complete, ETA 00:00:33
+# Fork: 2 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 324.906 us/op
+# Warmup Iteration   2: 300.099 us/op
+# Warmup Iteration   3: 246.412 us/op
+# Warmup Iteration   4: 245.517 us/op
+# Warmup Iteration   5: 245.703 us/op
+Iteration   1: 245.849 us/op
+Iteration   2: 246.272 us/op
+Iteration   3: 245.428 us/op
+Iteration   4: 246.071 us/op
+Iteration   5: 245.449 us/op
+Iteration   6: 246.359 us/op
+Iteration   7: 246.546 us/op
+Iteration   8: 245.340 us/op
+Iteration   9: 246.078 us/op
+Iteration  10: 245.799 us/op
+
+# Run progress: 98.15% complete, ETA 00:00:16
+# Fork: 3 of 3
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/pavloharabadzhiiev/Downloads/Experimentation%20&%20Evaluation/bubble-sort-experiment/jmh/target/benchmarks.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: 324.454 us/op
+# Warmup Iteration   2: 299.590 us/op
+# Warmup Iteration   3: 245.603 us/op
+# Warmup Iteration   4: 245.685 us/op
+# Warmup Iteration   5: 245.451 us/op
+Iteration   1: 245.672 us/op
+Iteration   2: 245.453 us/op
+Iteration   3: 245.712 us/op
+Iteration   4: 245.167 us/op
+Iteration   5: 245.591 us/op
+Iteration   6: 246.116 us/op
+Iteration   7: 245.659 us/op
+Iteration   8: 245.251 us/op
+Iteration   9: 246.446 us/op
+Iteration  10: 245.400 us/op
+
+
+Result "exp01.SortBenchmark.sort":
+  245.806 ±(99.9%) 0.249 us/op [Average]
+  (min, avg, max) = (245.167, 245.806, 246.546), stdev = 0.373
+  CI (99.9%): [245.557, 246.055] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:15:04
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark             (algorithm)       (order)  (size)  Mode  Cnt       Score      Error  Units
+SortBenchmark.sort    PassPerItem        random    5000  avgt   30   20086.857 ±   26.481  us/op
+SortBenchmark.sort    PassPerItem        random   20000  avgt   30  449539.481 ±  816.094  us/op
+SortBenchmark.sort    PassPerItem      reversed    5000  avgt   30   24600.931 ±   33.730  us/op
+SortBenchmark.sort    PassPerItem      reversed   20000  avgt   30  374722.815 ± 1327.963  us/op
+SortBenchmark.sort    PassPerItem  nearly_local    5000  avgt   30   14576.722 ±   37.188  us/op
+SortBenchmark.sort    PassPerItem  nearly_local   20000  avgt   30  237596.998 ±  148.619  us/op
+SortBenchmark.sort  UntilNoChange        random    5000  avgt   30   25000.867 ±    9.754  us/op
+SortBenchmark.sort  UntilNoChange        random   20000  avgt   30  492419.975 ±  437.866  us/op
+SortBenchmark.sort  UntilNoChange      reversed    5000  avgt   30   37506.971 ±   24.415  us/op
+SortBenchmark.sort  UntilNoChange      reversed   20000  avgt   30  431604.578 ± 2888.765  us/op
+SortBenchmark.sort  UntilNoChange  nearly_local    5000  avgt   30      43.112 ±    0.259  us/op
+SortBenchmark.sort  UntilNoChange  nearly_local   20000  avgt   30     286.564 ±    0.173  us/op
+SortBenchmark.sort    WhileNeeded        random    5000  avgt   30   15315.774 ±   14.013  us/op
+SortBenchmark.sort    WhileNeeded        random   20000  avgt   30  257642.938 ±  929.206  us/op
+SortBenchmark.sort    WhileNeeded      reversed    5000  avgt   30   27022.036 ±    6.745  us/op
+SortBenchmark.sort    WhileNeeded      reversed   20000  avgt   30  435061.866 ±  521.563  us/op
+SortBenchmark.sort    WhileNeeded  nearly_local    5000  avgt   30      36.655 ±    0.178  us/op
+SortBenchmark.sort    WhileNeeded  nearly_local   20000  avgt   30     245.806 ±    0.249  us/op
+
+Benchmark result is saved to results/ext_jmh/jmh.json

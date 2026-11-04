@@ -91,6 +91,7 @@ for name, size in (("Heading 1", 15), ("Heading 2", 12.5), ("Heading 3", 11)):
     h.paragraph_format.space_after = Pt(4)
 
 FIG_NO = [0]
+FIGREF = {}
 TAB_NO = [0]
 
 
@@ -182,6 +183,7 @@ def figure(path, caption, width=6.4):
         p(f"[missing figure: {path.name}]", italic=True)
         return
     FIG_NO[0] += 1
+    FIGREF[path.name] = FIG_NO[0]
     doc.add_picture(str(path), width=Inches(width))
     doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.paragraphs[-1].paragraph_format.keep_with_next = True

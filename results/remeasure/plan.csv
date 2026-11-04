@@ -1,0 +1,31 @@
+order,size,uncertain,reasons
+few_unique,1000,False,
+few_unique,2000,False,
+few_unique,5000,False,
+few_unique,10000,False,
+few_unique,20000,False,
+nearly_local,1000,True,UntilNoChange: CV 20.1 % > 5 %; UntilNoChange: CI half-width 14.3 % > 3 %; WhileNeeded: CV 13.5 % > 5 %; WhileNeeded: CI half-width 9.6 % > 3 %
+nearly_local,2000,True,UntilNoChange: CV 19.7 % > 5 %; UntilNoChange: CI half-width 14.1 % > 3 %; WhileNeeded: CV 12.9 % > 5 %; WhileNeeded: CI half-width 9.2 % > 3 %
+nearly_local,5000,True,UntilNoChange: CV 16.6 % > 5 %; UntilNoChange: CI half-width 11.9 % > 3 %; WhileNeeded: CV 16.2 % > 5 %; WhileNeeded: CI half-width 11.6 % > 3 %
+nearly_local,10000,True,UntilNoChange: CV 22.6 % > 5 %; UntilNoChange: CI half-width 16.2 % > 3 %; WhileNeeded: CV 13.2 % > 5 %; WhileNeeded: CI half-width 9.4 % > 3 %
+nearly_local,20000,True,UntilNoChange: CV 9.4 % > 5 %; UntilNoChange: CI half-width 6.7 % > 3 %; WhileNeeded: CV 9.7 % > 5 %; WhileNeeded: CI half-width 6.9 % > 3 %
+nearly_random,1000,True,UntilNoChange: CV 8.1 % > 5 %; UntilNoChange: CI half-width 5.8 % > 3 %
+nearly_random,2000,True,UntilNoChange: CI half-width 3.3 % > 3 %
+nearly_random,5000,False,
+nearly_random,10000,False,
+nearly_random,20000,False,
+random,1000,False,
+random,2000,False,
+random,5000,False,
+random,10000,True,H2 inconclusive (UntilNoChange / PassPerItem within 0.85-1.15)
+random,20000,False,
+reversed,1000,False,
+reversed,2000,False,
+reversed,5000,False,
+reversed,10000,False,
+reversed,20000,True,PassPerItem: CV 7.9 % > 5 %; PassPerItem: CI half-width 5.7 % > 3 %
+sorted,1000,False,
+sorted,2000,False,
+sorted,5000,False,
+sorted,10000,False,
+sorted,20000,True,UntilNoChange: CV 36.9 % > 5 %; UntilNoChange: CI half-width 26.4 % > 3 %; H6 inconclusive (WhileNeeded / UntilNoChange <= 1.05)

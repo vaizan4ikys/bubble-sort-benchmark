@@ -4,3 +4,27 @@
 [2026-11-04 05:25:05] END   correctness: 20139 checks, 0 failures
 [2026-11-04 05:25:51] operation counts (extended) written
 [2026-11-04 05:25:51] START ext_g1
+[2026-11-04 05:36:37] END   ext_g1 (270 jobs done)
+[2026-11-04 05:36:37] START ext_parallel
+[2026-11-04 05:46:49] END   ext_parallel (270 jobs done)
+[2026-11-04 05:46:49] START ext_jdk17
+[2026-11-04 05:57:06] END   ext_jdk17 (270 jobs done)
+[2026-11-04 05:57:06] START ext_jdk21
+[2026-11-04 06:07:08] END   ext_jdk21 (270 jobs done)
+[2026-11-04 06:07:08] START ext_jdk25
+[2026-11-04 06:17:23] END   ext_jdk25 (270 jobs done)
+[2026-11-04 06:17:23] START ext_jdk8
+[2026-11-04 06:27:37] END   ext_jdk8 (270 jobs done)
+[2026-11-04 06:27:37] START ext_small
+[2026-11-04 06:49:21] END   ext_small (720 jobs done)
+[2026-11-04 06:49:21] START ext_shapes
+[2026-11-04 06:58:11] END   ext_shapes (225 jobs done)
+[2026-11-04 06:58:11] START ext_polluted
+[2026-11-04 07:44:21] END   ext_polluted (225 jobs done)
+[2026-11-04 07:44:21] START ext_cold
+[2026-11-04 07:55:31] END   ext_cold
+[2026-11-04 07:55:31] START ext_jmh
+[2026-11-04 08:10:43] END   ext_jmh
+[2026-11-04 08:10:43] START remeasure (analysis of the main data first)
+[2026-11-04 08:58:39] END   remeasure
+[2026-11-04 08:58:39] ALL SECOND-QUEUE EXPERIMENTS FINISHED
