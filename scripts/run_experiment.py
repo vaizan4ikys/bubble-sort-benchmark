@@ -43,7 +43,10 @@ def main() -> int:
     ap.add_argument("--types", nargs="*", default=None,
                     help="element types (Integer/String). If given, exp01.ExtendedWorker is used "
                          "instead of exp01.Worker and a 'type' column is written")
-    ap.add_argument("--jvm-extra", default="", help='extra JVM flags, e.g. "-Xint"')
+    ap.add_argument("--jvm-extra", default="", help='extra JVM flags appended to the defaults, e.g. "-Xint"')
+    ap.add_argument("--jvm-flags", default=None,
+                    help="REPLACES the default flags (-Xms2g -Xmx2g -XX:+UseSerialGC), e.g. '' for JVM defaults (G1)")
+    ap.add_argument("--java", default="java", help="java executable (to compare JDK versions)")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -54,7 +57,7 @@ def main() -> int:
 
     typed = args.types is not None
     header = HEADER.replace("seq,", "seq,type,", 1) if typed else HEADER
-    jvm_flags = JVM_FLAGS + args.jvm_extra.split()
+    jvm_flags = (JVM_FLAGS if args.jvm_flags is None else args.jvm_flags.split()) + args.jvm_extra.split()
     types = args.types if typed else [None]
     jobs = list(itertools.product(types, args.algorithms, args.orders, args.sizes, range(args.fork_start, args.fork_start + args.forks)))
     random.Random(args.seed).shuffle(jobs)
@@ -71,7 +74,7 @@ def main() -> int:
             if key in done:
                 continue
             worker = ["exp01.ExtendedWorker", typ] if typed else ["exp01.Worker"]
-            cmd = ["java", *jvm_flags, "-cp", args.classes, *worker,
+            cmd = [args.java, *jvm_flags, "-cp", args.classes, *worker,
                    alg, order, str(size), str(fork), str(args.seed), str(args.iters)]
             t0 = time.time()
             res = subprocess.run(cmd, capture_output=True, text=True)

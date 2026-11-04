@@ -5,3 +5,9 @@ __pycache__/
 results/pilot/
 bin_ext/
 results/pilot_ext/
+bin_ext2/
+jmh/target/
+jmh/src/main/java/exp01/Sorter.java
+jmh/src/main/java/exp01/BubbleSort*.java
+jmh/src/main/java/exp01/InputGenerator.java
+jmh/src/main/java/exp01/Worker.java

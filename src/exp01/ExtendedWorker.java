@@ -15,7 +15,7 @@ import java.util.Arrays;
  * java exp01.ExtendedWorker TYPE ALGORITHM ORDER SIZE FORK BASE_SEED MEASURE_ITERS
  * </pre>
  *
- * TYPE is {@code Integer} or {@code String}. {@code String} elements are the zero-padded
+ * TYPE is {@code Integer}, {@code String} or {@code PollutedInteger}. {@code String} elements are the zero-padded
  * decimal representation of exactly the same integers that {@code Integer} uses, so the
  * very same permutations are sorted; only the cost of {@code compareTo} differs.
  */
@@ -91,13 +91,60 @@ public final class ExtendedWorker {
 			}
 			measure(type, algorithm, order, n, fork, measureIters, strings);
 			break;
+		case "PollutedInteger":
+			pollute(algorithm, Math.min(n, 1000));
+			measure(type, algorithm, order, n, fork, measureIters, ints);
+			break;
 		default:
 			throw new IllegalArgumentException("Unknown element type: " + type);
 		}
 	}
 
+	/** A small user-defined element type, to make {@code compareTo} call sites megamorphic. */
+	private static final class Box implements Comparable<Box> {
+		final double key;
+
+		Box(final double key) {
+			this.key = key;
+		}
+
+		@Override
+		public int compareTo(final Box o) {
+			return Double.compare(key, o.key);
+		}
+	}
+
+	/**
+	 * Simulates a "polluted" JVM, as in a real application that sorts many different element
+	 * types with the same library: before the measured {@code Integer} sorts, the same algorithm
+	 * sorts Strings, Longs and user-defined objects for about 300 ms each. Afterwards the type
+	 * profile of {@code compareTo} (and of the generic sort code) is megamorphic, so the JIT
+	 * compiler can no longer inline {@code Integer.compareTo} as in the clean-JVM experiments.
+	 */
+	private static void pollute(final String algorithm, final int n) {
+		final java.util.Random rng = new java.util.Random(7);
+		final String[] strings = new String[n];
+		final Long[] longs = new Long[n];
+		final Box[] boxes = new Box[n];
+		for (int i = 0; i < n; i++) {
+			strings[i] = Integer.toString(rng.nextInt(1_000_000));
+			longs[i] = rng.nextLong();
+			boxes[i] = new Box(rng.nextDouble());
+		}
+		final Sorter<String> ss = createSorter(algorithm);
+		final Sorter<Long> sl = createSorter(algorithm);
+		final Sorter<Box> sb = createSorter(algorithm);
+		final long deadline = System.nanoTime() + 900_000_000L;
+		// interleave the types so every type is seen throughout the compilation of the sort code
+		while (System.nanoTime() < deadline) {
+			ss.sort(strings.clone());
+			sl.sort(longs.clone());
+			sb.sort(boxes.clone());
+		}
+	}
+
 	@SuppressWarnings("unchecked")
-	private static <T extends Comparable<T>> void measure(final String type, final String algorithm,
+	static <T extends Comparable<T>> void measure(final String type, final String algorithm,
 			final String order, final int n, final int fork, final int measureIters, final T[] master) {
 		final Sorter<T> sorter = createSorter(algorithm);
 

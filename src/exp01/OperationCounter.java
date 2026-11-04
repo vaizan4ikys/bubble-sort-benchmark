@@ -7,8 +7,11 @@ package exp01;
  * measured timings mechanically.
  *
  * <pre>
- * java exp01.OperationCounter OUTPUT.csv
+ * java exp01.OperationCounter OUTPUT.csv [extended]
  * </pre>
+ *
+ * With the argument {@code extended}, the additional orders and the small sizes of the
+ * follow-up experiments are counted as well.
  */
 public final class OperationCounter {
 
@@ -57,9 +60,21 @@ public final class OperationCounter {
 	}
 
 	public static void main(final String[] args) throws Exception {
+		final boolean extended = args.length > 1 && args[1].equals("extended");
+		final java.util.List<String> orders = new java.util.ArrayList<>(java.util.Arrays.asList(InputGenerator.ORDERS));
+		final java.util.List<Integer> sizes = new java.util.ArrayList<>();
+		if (extended) {
+			orders.addAll(java.util.Arrays.asList(InputGenerator.EXTRA_ORDERS));
+			for (final int n : new int[] { 2, 3, 5, 10, 20, 50 }) {
+				sizes.add(n);
+			}
+		}
+		for (final int n : SIZES) {
+			sizes.add(n);
+		}
 		final StringBuilder sb = new StringBuilder("algorithm,order,size,fork,comparisons,inversions\n");
-		for (final String order : InputGenerator.ORDERS) {
-			for (final int n : SIZES) {
+		for (final String order : orders) {
+			for (final int n : sizes) {
 				for (int fork = 0; fork < 3; fork++) {
 					final Integer[] input = InputGenerator.generate(order, n,
 							InputGenerator.seedFor(20261104L, order, n, fork));
@@ -77,6 +92,6 @@ public final class OperationCounter {
 				}
 			}
 		}
-		java.nio.file.Files.writeString(java.nio.file.Path.of(args[0]), sb.toString());
+		java.nio.file.Files.write(java.nio.file.Paths.get(args[0]), sb.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
 	}
 }
