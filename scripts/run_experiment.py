@@ -14,6 +14,7 @@ Usage:  python3 scripts/run_experiment.py --out results/full --forks 10
 """
 import argparse
 import itertools
+import json
 import random
 import subprocess
 import sys
@@ -38,6 +39,10 @@ def main() -> int:
     ap.add_argument("--orders", nargs="*", default=ORDERS)
     ap.add_argument("--algorithms", nargs="*", default=ALGORITHMS)
     ap.add_argument("--classes", default="bin", help="directory with the compiled classes")
+    ap.add_argument("--types", nargs="*", default=None,
+                    help="element types (Integer/String). If given, exp01.ExtendedWorker is used "
+                         "instead of exp01.Worker and a 'type' column is written")
+    ap.add_argument("--jvm-extra", default="", help='extra JVM flags, e.g. "-Xint"')
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -46,20 +51,26 @@ def main() -> int:
     done_file = out / "completed_jobs.txt"
     log = out / "run.log"
 
-    jobs = list(itertools.product(args.algorithms, args.orders, args.sizes, range(args.forks)))
+    typed = args.types is not None
+    header = HEADER.replace("seq,", "seq,type,", 1) if typed else HEADER
+    jvm_flags = JVM_FLAGS + args.jvm_extra.split()
+    types = args.types if typed else [None]
+    jobs = list(itertools.product(types, args.algorithms, args.orders, args.sizes, range(args.forks)))
     random.Random(args.seed).shuffle(jobs)
+    (out / "config.json").write_text(json.dumps({**vars(args), "jvm_flags": jvm_flags, "n_jobs": len(jobs)}, indent=2))
 
     done = set(done_file.read_text().split("\n")) if done_file.exists() else set()
     if not raw.exists():
-        raw.write_text(HEADER)
+        raw.write_text(header)
 
     t_start = time.time()
     with raw.open("a") as raw_f, done_file.open("a") as done_f, log.open("a") as log_f:
-        for seq, (alg, order, size, fork) in enumerate(jobs):
-            key = f"{alg}|{order}|{size}|{fork}"
+        for seq, (typ, alg, order, size, fork) in enumerate(jobs):
+            key = f"{typ + '|' if typed else ''}{alg}|{order}|{size}|{fork}"
             if key in done:
                 continue
-            cmd = ["java", *JVM_FLAGS, "-cp", args.classes, "exp01.Worker",
+            worker = ["exp01.ExtendedWorker", typ] if typed else ["exp01.Worker"]
+            cmd = ["java", *jvm_flags, "-cp", args.classes, *worker,
                    alg, order, str(size), str(fork), str(args.seed), str(args.iters)]
             t0 = time.time()
             res = subprocess.run(cmd, capture_output=True, text=True)

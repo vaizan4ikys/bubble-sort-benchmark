@@ -2,3 +2,6 @@
 *.class
 bin/
 __pycache__/
+results/pilot/
+bin_ext/
+results/pilot_ext/
