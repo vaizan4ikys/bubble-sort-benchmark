@@ -1,0 +1,35 @@
+{
+  "out": "results/portable_vlad-laptop",
+  "forks": 5,
+  "fork_start": 0,
+  "iters": 20,
+  "seed": 20261104,
+  "sizes": [
+    1000,
+    5000,
+    10000
+  ],
+  "orders": [
+    "random",
+    "sorted",
+    "reversed",
+    "nearly_local",
+    "nearly_random",
+    "few_unique"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "bin_portable",
+  "types": null,
+  "jvm_extra": "",
+  "jvm_flags": [
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:+UseSerialGC"
+  ],
+  "java": "java",
+  "n_jobs": 270
+}

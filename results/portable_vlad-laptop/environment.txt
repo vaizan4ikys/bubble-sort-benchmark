@@ -1,0 +1,21 @@
+date: Wed  4 Nov 2026 11:13:00 CET
+--- hardware
+Apple M3 Pro
+cores (physical/logical): 11/11
+memory bytes: 19327352832
+ProductName:		macOS
+ProductVersion:		27.0
+BuildVersion:		26A5425a
+--- java
+openjdk version "25.0.1" 2025-10-21
+OpenJDK Runtime Environment (build 25.0.1+8-27)
+OpenJDK 64-Bit Server VM (build 25.0.1+8-27, mixed mode, sharing)
+--- power
+Now drawing from 'AC Power'
+ -InternalBattery-0 (id=23658595)	26%; charging; 2:11 remaining present: true
+Note: No thermal warning level has been recorded
+Note: No performance warning level has been recorded
+Note: No CPU power status has been recorded
+--- load before start
+11:13  up 7 days, 14 mins, 2 users, load averages: 5.28 24.90 23.33
+Darwin Mac.usi.ch 27.0.0 Darwin Kernel Version 27.0.0: Tue Aug 11 22:03:57 PDT 2026; root:xnu-13432.1.9~3/RELEASE_ARM64_T6030 arm64
