@@ -1,0 +1,6 @@
+dataset,label,machine,java,harness,forks,batches_per_fork,rows,rows_repaired,gc_batches,warmup_timeouts,spread_within_fork,spread_between_forks
+full,"M3 Pro laptop 1, JDK 26 (main)","Apple M3 Pro, laptop 1, macOS 26.7",26.0.1,Worker,10,30,16200,0,0,0,0.0486,0.0203
+ext_jdk17,"M3 Pro laptop 1, JDK 17","Apple M3 Pro, laptop 1, macOS 26.7",17.0.19,ExtendedWorker,5,20,5400,0,0,0,0.0270,0.0212
+portable_vlad-laptop,"M3 Pro laptop 2, JDK 25","Apple M3 Pro, laptop 2, macOS 27",25.0.1,Worker,5,20,5400,0,0,0,0.0624,0.0440
+portable_at3eus-pc-jdk26-2,"Ryzen 5 5600, JDK 26","AMD Ryzen 5 5600, Windows 11",26.0.2.1,Worker,5,20,5400,0,0,0,0.1020,0.0518
+portable_at3eus-pc,"Ryzen 5 5600, JDK 17","AMD Ryzen 5 5600, Windows 11",17.0.21,Worker,5,20,5400,5400,0,0,0.2819,0.1940

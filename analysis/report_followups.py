@@ -8,7 +8,7 @@ doc.add_heading("3.7 Robustness experiments", level=2)
 p("The main experiment answers the question for one machine, one JDK, one garbage collector, one element type and a clean JVM. "
   "To find out whether the recommendation depends on these choices, we ran the follow-up experiments of Table 7. They were planned and "
   "scripted together with the main experiment (scripts/run_followups*.sh), they use the same measuring procedure and the same "
-  "fork-and-batch structure but fewer forks (5 per cell, unless stated), and they were run after the main experiment on the same machine. "
+  "fork-and-batch structure but fewer forks (5 per cell, unless stated), and they were run after the main experiment on the same machine (except Section 3.7.9). "
   "They are descriptive checks of the *consistency* of the ranking; we did not pre-register thresholds for them.")
 table(["Experiment", "Question", "Design"], [
     ["String elements", "Does the ranking change if comparisons are expensive?", "String instead of Integer, 6 orders × 5 sizes × 3 algorithms × 5 forks"],
@@ -21,6 +21,7 @@ table(["Experiment", "Question", "Design"], [
     ["Cold start", "What if the program sorts only a few times (no JIT warm-up)?", "first 50 calls of a fresh JVM, 30 JVMs per cell"],
     ["JMH", "Is our own harness biased?", "JMH 3 forks × 10 iterations, 3 orders × 2 sizes"],
     ["Scaling", "Exact growth exponent?", "random, sorted; 12 sizes from 200 to 40 000"],
+    ["Other computers", "Does the result depend on this laptop or on ARM?", "x86 desktop and a second M3 Pro laptop; 6 orders × 3 sizes × 5 forks"],
     ["Replication, load, correctness", "Reproducible with other data? Sensitive to busy machine? Are the sorters correct?",
      "full design with a new seed; 6 busy processes; 20 139 functional checks"],
 ], widths=[1.3, 2.6, 2.6], size=8, caption="Follow-up experiments.")
@@ -151,13 +152,60 @@ p("HotSpot first interprets the bytecode, then compiles hot loops with the fast 
   "the code that the C2 compiler generates, not of the algorithms.")
 figure(F1 / "fig_jit_modes.png", "Effect of the JIT compiler level at n = 2 000: time per comparison on random input (left) and time ratios to PassPerItem (right) with the default JIT, with C1 only and in the interpreter.", width=6.2)
 
+# ---- other computers
+doc.add_heading("3.7.9 Other computers", level=3)
+M = ROOT / "analysis/out/machines"
+md = pd.read_csv(M / "datasets.csv")
+mr = pd.read_csv(M / "ratios.csv")
+ms = pd.read_csv(M / "slowdown.csv")
+mf = pd.read_csv(M / "reversed_fork_ratios.csv")
+RYZEN26, RYZEN17, MAIN26 = "Ryzen 5 5600, JDK 26", "Ryzen 5 5600, JDK 17", "M3 Pro laptop 1, JDK 26 (main)"
+def mrev(label, n=5000):
+    return mr[(mr.label == label) & (mr.order == "reversed") & (mr.numerator == "PassPerItem") & (mr["size"] == n)].iloc[0]
+def mworst(label, alg):
+    return ms[(ms.label == label) & (ms.algorithm == alg)].slowdown.max()
+def mwins(label):
+    d = ms[(ms.label == label) & (ms.algorithm == "WhileNeeded")]
+    return f"{(d.slowdown == 1).sum()}/{len(d)}"
+def mspread(label):
+    return md[md.label == label].spread_within_fork.iloc[0] * 100
+r26, m26 = mrev(RYZEN26), mrev(MAIN26)
+f26 = mf[mf.label == RYZEN26]
+p("All measurements so far come from one laptop. To test whether the conclusions depend on it, we repeated the reduced design "
+  "(6 input orders × n = 1 000, 5 000, 10 000 × 3 algorithms × 5 forks × 20 batches; same code, seed and JVM flags) on an x86 desktop "
+  "(AMD Ryzen 5 5600, 6 cores, 16 GB RAM, Windows 11) and on a second Apple M3 Pro laptop (macOS 27). Table "
+  f"{TAB_NO[0] + 1} lists the runs next to the matching data from the main laptop. The JDK of each run is taken from its environment record. "
+  "The main-laptop JDK 17 row comes from the JDK follow-up, which uses ExtendedWorker with the same procedure. "
+  "Machine and JDK are not fully crossed, and the JDK builds differ slightly, so this is a descriptive check.")
+table(["Run", "JDK", "Forks", "WhileNeeded fastest", "Worst slowdown: WhileNeeded", "Worst slowdown: UntilNoChange", "Worst slowdown: PassPerItem",
+       "PassPerItem ÷ WhileNeeded, reversed, n = 5 000", "Spread within a fork"],
+      [[r.label, r.java, r.forks, mwins(r.label), f"{mworst(r.label, 'WhileNeeded'):.2f}", f"{mworst(r.label, 'UntilNoChange'):.2f}",
+        f"{mworst(r.label, 'PassPerItem'):,.0f}".replace(",", " "),
+        f"{mrev(r.label).ratio_geomean:.2f} [{mrev(r.label).ci_lo:.2f}, {mrev(r.label).ci_hi:.2f}]", f"{r.spread_within_fork * 100:.1f} %"]
+       for r in md.itertuples()],
+      widths=[1.3, 0.6, 0.4, 0.6, 0.7, 0.7, 0.6, 0.9, 0.6], size=8,
+      caption="The same design on different computers and JDKs (n ∈ {1 000, 5 000, 10 000}, 18 cells). Slowdown is relative to the fastest algorithm per cell. Spread: median of (max − min) / median of the batches of one fork.")
+p(f"**The recommendation holds.** On the x86 desktop with JDK 26, WhileNeeded is the fastest algorithm in {mwins(RYZEN26)} cells, while UntilNoChange is up to "
+  f"{mworst(RYZEN26, 'UntilNoChange'):.2f}× and PassPerItem up to " + f"{mworst(RYZEN26, 'PassPerItem'):,.0f}".replace(",", " ") + "× slower than the best. Absolute times differ, but the "
+  "largest effect (early stopping on sorted input) has the same order of magnitude in every run.")
+p(f"**The reversed-input anomaly does not transfer.** With the same major JDK version, PassPerItem needs {r26.ratio_geomean:.2f}× the time of WhileNeeded on the desktop "
+  f"(n = 5 000, CI {r26.ci_lo:.2f}–{r26.ci_hi:.2f}), against {m26.ratio_geomean:.2f}× (CI {m26.ci_lo:.2f}–{m26.ci_hi:.2f}) on the main laptop: the direction is reversed. "
+  "So the anomaly does not follow from JDK 26 alone. With one computer per architecture and no inspection of the machine code, we cannot attribute it to the CPU architecture itself (Figure "
+  f"{FIG_NO[0] + 1}).")
+p(f"**Data quality.** The desktop is noisier than the main laptop: the spread within a fork is {mspread(RYZEN26):.1f} % against {mspread(MAIN26):.1f} %. "
+  f"Reversed input has two outlier JVMs: at n = 1 000 one fork has a ratio of "
+  f"{f26[f26['size'] == 1000].ratio.min():.2f}, and at n = 10 000 one has {f26[f26['size'] == 10000].ratio.max():.2f}, so the geometric means at these sizes have wide intervals "
+  f"while the median fork ratios stay near {mrev(RYZEN26, 1000).ratio_median:.2f}–{mrev(RYZEN26, 10000).ratio_median:.2f}. "
+  f"The JDK 17 desktop run is weaker still ({mspread(RYZEN17):.1f} % spread, power state not recorded); its decimal commas (old code on a non-English locale) were repaired during analysis, leaving the raw file as measured.")
+figure(M / "fig_machines.png", "PassPerItem ÷ WhileNeeded on reversed input per computer and JDK: geometric mean of the paired forks with 95 % CI, and the median of the per-fork ratios.", width=6.2)
+
 # ---- re-measurement
 doc.add_heading("3.8 Re-measurement of uncertain conditions", level=2)
 plan = pd.read_csv(ROOT / "results/remeasure/plan.csv")
 unc = plan[plan.uncertain]
 p("The pre-registered rule (Section 2.4) flagged "
   f"{len(unc)} of the 30 (order, size ≥ 1 000) groups as uncertain. These were measured again with 20 additional forks per algorithm (fork ids 10–29), so that they now "
-  "have 30 forks (900 batches per cell), and we report the pooled data next to the main data. Table 9 lists the groups and why they were flagged.")
+  f"have 30 forks (900 batches per cell), and we report the pooled data next to the main data. Table {TAB_NO[0] + 1} lists the groups and why they were flagged.")
 rows = []
 for r in unc.itertuples():
     rows.append([ORDER_LABEL[r.order], f"{r.size:,}".replace(",", " "), r.reasons.replace(" > 5 %", "").replace(" > 3 %", "")])

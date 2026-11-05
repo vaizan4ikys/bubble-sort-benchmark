@@ -1,0 +1,181 @@
+label,order,size,numerator,denominator,ratio_geomean,ci_lo,ci_hi,ratio_median
+"M3 Pro laptop 1, JDK 26 (main)",random,1000,PassPerItem,WhileNeeded,1.3313,1.3193,1.3434,1.3269
+"M3 Pro laptop 1, JDK 26 (main)",random,1000,UntilNoChange,WhileNeeded,1.6560,1.6352,1.6770,1.6626
+"M3 Pro laptop 1, JDK 26 (main)",random,5000,PassPerItem,WhileNeeded,1.3149,1.3122,1.3177,1.3147
+"M3 Pro laptop 1, JDK 26 (main)",random,5000,UntilNoChange,WhileNeeded,1.6533,1.6308,1.6761,1.6531
+"M3 Pro laptop 1, JDK 26 (main)",random,10000,PassPerItem,WhileNeeded,1.5453,1.5164,1.5748,1.5286
+"M3 Pro laptop 1, JDK 26 (main)",random,10000,UntilNoChange,WhileNeeded,1.7820,1.7709,1.7932,1.7841
+"M3 Pro laptop 1, JDK 26 (main)",sorted,1000,PassPerItem,WhileNeeded,1123.4331,1121.5794,1125.2899,1123.6176
+"M3 Pro laptop 1, JDK 26 (main)",sorted,1000,UntilNoChange,WhileNeeded,1.1583,1.1526,1.1640,1.1594
+"M3 Pro laptop 1, JDK 26 (main)",sorted,5000,PassPerItem,WhileNeeded,5649.1526,5624.9264,5673.4831,5634.8807
+"M3 Pro laptop 1, JDK 26 (main)",sorted,5000,UntilNoChange,WhileNeeded,1.1711,1.1638,1.1784,1.1668
+"M3 Pro laptop 1, JDK 26 (main)",sorted,10000,PassPerItem,WhileNeeded,13125.4250,13059.1628,13192.0234,13114.2110
+"M3 Pro laptop 1, JDK 26 (main)",sorted,10000,UntilNoChange,WhileNeeded,1.1621,1.1603,1.1639,1.1626
+"M3 Pro laptop 1, JDK 26 (main)",reversed,1000,PassPerItem,WhileNeeded,0.9243,0.9233,0.9254,0.9241
+"M3 Pro laptop 1, JDK 26 (main)",reversed,1000,UntilNoChange,WhileNeeded,1.4062,1.3995,1.4129,1.4038
+"M3 Pro laptop 1, JDK 26 (main)",reversed,5000,PassPerItem,WhileNeeded,0.9111,0.9091,0.9131,0.9113
+"M3 Pro laptop 1, JDK 26 (main)",reversed,5000,UntilNoChange,WhileNeeded,1.3879,1.3860,1.3898,1.3878
+"M3 Pro laptop 1, JDK 26 (main)",reversed,10000,PassPerItem,WhileNeeded,0.9382,0.9286,0.9479,0.9357
+"M3 Pro laptop 1, JDK 26 (main)",reversed,10000,UntilNoChange,WhileNeeded,1.0234,1.0045,1.0426,1.0125
+"M3 Pro laptop 1, JDK 26 (main)",nearly_local,1000,PassPerItem,WhileNeeded,58.2860,53.0948,63.9848,61.5795
+"M3 Pro laptop 1, JDK 26 (main)",nearly_local,1000,UntilNoChange,WhileNeeded,1.1409,1.0713,1.2150,1.1506
+"M3 Pro laptop 1, JDK 26 (main)",nearly_local,5000,PassPerItem,WhileNeeded,217.9852,193.3960,245.7007,221.4260
+"M3 Pro laptop 1, JDK 26 (main)",nearly_local,5000,UntilNoChange,WhileNeeded,1.1149,1.0436,1.1911,1.1052
+"M3 Pro laptop 1, JDK 26 (main)",nearly_local,10000,PassPerItem,WhileNeeded,432.5351,388.1252,482.0264,425.5798
+"M3 Pro laptop 1, JDK 26 (main)",nearly_local,10000,UntilNoChange,WhileNeeded,1.1846,1.0554,1.3297,1.1023
+"M3 Pro laptop 1, JDK 26 (main)",nearly_random,1000,PassPerItem,WhileNeeded,1.4577,1.4232,1.4930,1.4528
+"M3 Pro laptop 1, JDK 26 (main)",nearly_random,1000,UntilNoChange,WhileNeeded,1.7923,1.7222,1.8653,1.7954
+"M3 Pro laptop 1, JDK 26 (main)",nearly_random,5000,PassPerItem,WhileNeeded,1.3906,1.3846,1.3966,1.3903
+"M3 Pro laptop 1, JDK 26 (main)",nearly_random,5000,UntilNoChange,WhileNeeded,1.8455,1.8116,1.8802,1.8494
+"M3 Pro laptop 1, JDK 26 (main)",nearly_random,10000,PassPerItem,WhileNeeded,1.5682,1.5513,1.5854,1.5675
+"M3 Pro laptop 1, JDK 26 (main)",nearly_random,10000,UntilNoChange,WhileNeeded,1.9481,1.9115,1.9853,1.9535
+"M3 Pro laptop 1, JDK 26 (main)",few_unique,1000,PassPerItem,WhileNeeded,1.5020,1.4855,1.5186,1.5044
+"M3 Pro laptop 1, JDK 26 (main)",few_unique,1000,UntilNoChange,WhileNeeded,1.6680,1.6579,1.6780,1.6701
+"M3 Pro laptop 1, JDK 26 (main)",few_unique,5000,PassPerItem,WhileNeeded,1.4916,1.4864,1.4969,1.4910
+"M3 Pro laptop 1, JDK 26 (main)",few_unique,5000,UntilNoChange,WhileNeeded,1.6264,1.6209,1.6318,1.6263
+"M3 Pro laptop 1, JDK 26 (main)",few_unique,10000,PassPerItem,WhileNeeded,1.5348,1.5316,1.5381,1.5358
+"M3 Pro laptop 1, JDK 26 (main)",few_unique,10000,UntilNoChange,WhileNeeded,1.6704,1.6641,1.6767,1.6693
+"M3 Pro laptop 1, JDK 17",random,1000,PassPerItem,WhileNeeded,1.5149,1.4976,1.5324,1.5134
+"M3 Pro laptop 1, JDK 17",random,1000,UntilNoChange,WhileNeeded,1.6840,1.6491,1.7195,1.6971
+"M3 Pro laptop 1, JDK 17",random,5000,PassPerItem,WhileNeeded,1.4825,1.4711,1.4939,1.4805
+"M3 Pro laptop 1, JDK 17",random,5000,UntilNoChange,WhileNeeded,1.6898,1.6262,1.7559,1.6725
+"M3 Pro laptop 1, JDK 17",random,10000,PassPerItem,WhileNeeded,1.5596,1.5381,1.5815,1.5535
+"M3 Pro laptop 1, JDK 17",random,10000,UntilNoChange,WhileNeeded,1.7850,1.7358,1.8355,1.7646
+"M3 Pro laptop 1, JDK 17",sorted,1000,PassPerItem,WhileNeeded,952.6004,951.7430,953.4585,952.9379
+"M3 Pro laptop 1, JDK 17",sorted,1000,UntilNoChange,WhileNeeded,1.0005,0.9998,1.0012,1.0006
+"M3 Pro laptop 1, JDK 17",sorted,5000,PassPerItem,WhileNeeded,4685.4605,4678.0463,4692.8865,4685.1836
+"M3 Pro laptop 1, JDK 17",sorted,5000,UntilNoChange,WhileNeeded,0.9999,0.9985,1.0013,0.9996
+"M3 Pro laptop 1, JDK 17",sorted,10000,PassPerItem,WhileNeeded,9934.8365,9914.0856,9955.6308,9938.8351
+"M3 Pro laptop 1, JDK 17",sorted,10000,UntilNoChange,WhileNeeded,1.0003,0.9972,1.0034,1.0005
+"M3 Pro laptop 1, JDK 17",reversed,1000,PassPerItem,WhileNeeded,1.0556,1.0042,1.1095,1.0615
+"M3 Pro laptop 1, JDK 17",reversed,1000,UntilNoChange,WhileNeeded,1.0666,1.0447,1.0889,1.0700
+"M3 Pro laptop 1, JDK 17",reversed,5000,PassPerItem,WhileNeeded,1.0111,0.9801,1.0431,1.0091
+"M3 Pro laptop 1, JDK 17",reversed,5000,UntilNoChange,WhileNeeded,1.0299,0.9965,1.0643,1.0227
+"M3 Pro laptop 1, JDK 17",reversed,10000,PassPerItem,WhileNeeded,1.0182,0.9996,1.0371,1.0087
+"M3 Pro laptop 1, JDK 17",reversed,10000,UntilNoChange,WhileNeeded,1.0839,1.0330,1.1373,1.0909
+"M3 Pro laptop 1, JDK 17",nearly_local,1000,PassPerItem,WhileNeeded,66.9665,59.0150,75.9894,69.6461
+"M3 Pro laptop 1, JDK 17",nearly_local,1000,UntilNoChange,WhileNeeded,1.1448,1.0037,1.3058,1.0931
+"M3 Pro laptop 1, JDK 17",nearly_local,5000,PassPerItem,WhileNeeded,247.6867,184.8138,331.9487,247.6038
+"M3 Pro laptop 1, JDK 17",nearly_local,5000,UntilNoChange,WhileNeeded,1.0881,1.0109,1.1712,1.0885
+"M3 Pro laptop 1, JDK 17",nearly_local,10000,PassPerItem,WhileNeeded,495.6231,423.0066,580.7056,472.3060
+"M3 Pro laptop 1, JDK 17",nearly_local,10000,UntilNoChange,WhileNeeded,1.1360,0.9667,1.3349,1.0741
+"M3 Pro laptop 1, JDK 17",nearly_random,1000,PassPerItem,WhileNeeded,1.6584,1.6291,1.6882,1.6656
+"M3 Pro laptop 1, JDK 17",nearly_random,1000,UntilNoChange,WhileNeeded,1.8592,1.7468,1.9788,1.8799
+"M3 Pro laptop 1, JDK 17",nearly_random,5000,PassPerItem,WhileNeeded,1.6244,1.6106,1.6384,1.6282
+"M3 Pro laptop 1, JDK 17",nearly_random,5000,UntilNoChange,WhileNeeded,1.8791,1.8178,1.9424,1.8860
+"M3 Pro laptop 1, JDK 17",nearly_random,10000,PassPerItem,WhileNeeded,1.6891,1.6744,1.7040,1.6883
+"M3 Pro laptop 1, JDK 17",nearly_random,10000,UntilNoChange,WhileNeeded,1.8884,1.8423,1.9357,1.8875
+"M3 Pro laptop 1, JDK 17",few_unique,1000,PassPerItem,WhileNeeded,1.5141,1.4888,1.5398,1.5159
+"M3 Pro laptop 1, JDK 17",few_unique,1000,UntilNoChange,WhileNeeded,1.6241,1.5997,1.6488,1.6206
+"M3 Pro laptop 1, JDK 17",few_unique,5000,PassPerItem,WhileNeeded,1.4992,1.4713,1.5275,1.5092
+"M3 Pro laptop 1, JDK 17",few_unique,5000,UntilNoChange,WhileNeeded,1.6398,1.6128,1.6672,1.6324
+"M3 Pro laptop 1, JDK 17",few_unique,10000,PassPerItem,WhileNeeded,1.5002,1.4669,1.5343,1.5099
+"M3 Pro laptop 1, JDK 17",few_unique,10000,UntilNoChange,WhileNeeded,1.6705,1.6291,1.7129,1.6917
+"M3 Pro laptop 2, JDK 25",random,1000,PassPerItem,WhileNeeded,1.4372,1.3556,1.5237,1.4378
+"M3 Pro laptop 2, JDK 25",random,1000,UntilNoChange,WhileNeeded,1.7045,1.6027,1.8128,1.7280
+"M3 Pro laptop 2, JDK 25",random,5000,PassPerItem,WhileNeeded,1.4449,1.3970,1.4945,1.4628
+"M3 Pro laptop 2, JDK 25",random,5000,UntilNoChange,WhileNeeded,1.6847,1.6405,1.7301,1.6775
+"M3 Pro laptop 2, JDK 25",random,10000,PassPerItem,WhileNeeded,1.4323,1.2987,1.5797,1.3930
+"M3 Pro laptop 2, JDK 25",random,10000,UntilNoChange,WhileNeeded,1.7533,1.6987,1.8097,1.7268
+"M3 Pro laptop 2, JDK 25",sorted,1000,PassPerItem,WhileNeeded,968.9540,942.7393,995.8976,965.0801
+"M3 Pro laptop 2, JDK 25",sorted,1000,UntilNoChange,WhileNeeded,1.0049,0.9957,1.0142,1.0035
+"M3 Pro laptop 2, JDK 25",sorted,5000,PassPerItem,WhileNeeded,4877.3362,4823.6656,4931.6039,4889.7405
+"M3 Pro laptop 2, JDK 25",sorted,5000,UntilNoChange,WhileNeeded,1.0000,0.9943,1.0058,0.9997
+"M3 Pro laptop 2, JDK 25",sorted,10000,PassPerItem,WhileNeeded,10751.9934,10596.9741,10909.2804,10730.6144
+"M3 Pro laptop 2, JDK 25",sorted,10000,UntilNoChange,WhileNeeded,0.9885,0.9698,1.0077,0.9809
+"M3 Pro laptop 2, JDK 25",reversed,1000,PassPerItem,WhileNeeded,1.4274,1.3639,1.4940,1.4236
+"M3 Pro laptop 2, JDK 25",reversed,1000,UntilNoChange,WhileNeeded,1.5802,1.5366,1.6251,1.5986
+"M3 Pro laptop 2, JDK 25",reversed,5000,PassPerItem,WhileNeeded,1.4375,1.3933,1.4832,1.4219
+"M3 Pro laptop 2, JDK 25",reversed,5000,UntilNoChange,WhileNeeded,1.5699,1.5025,1.6403,1.5508
+"M3 Pro laptop 2, JDK 25",reversed,10000,PassPerItem,WhileNeeded,1.4788,1.4295,1.5299,1.4719
+"M3 Pro laptop 2, JDK 25",reversed,10000,UntilNoChange,WhileNeeded,2.5090,2.4736,2.5449,2.5047
+"M3 Pro laptop 2, JDK 25",nearly_local,1000,PassPerItem,WhileNeeded,61.8102,54.5877,69.9883,63.2690
+"M3 Pro laptop 2, JDK 25",nearly_local,1000,UntilNoChange,WhileNeeded,1.1624,1.0058,1.3433,1.1460
+"M3 Pro laptop 2, JDK 25",nearly_local,5000,PassPerItem,WhileNeeded,231.3263,174.3495,306.9228,230.8965
+"M3 Pro laptop 2, JDK 25",nearly_local,5000,UntilNoChange,WhileNeeded,1.1051,1.0101,1.2090,1.0995
+"M3 Pro laptop 2, JDK 25",nearly_local,10000,PassPerItem,WhileNeeded,459.8133,396.2297,533.6001,449.9238
+"M3 Pro laptop 2, JDK 25",nearly_local,10000,UntilNoChange,WhileNeeded,1.1212,0.9524,1.3200,1.1128
+"M3 Pro laptop 2, JDK 25",nearly_random,1000,PassPerItem,WhileNeeded,1.5038,1.4451,1.5649,1.4749
+"M3 Pro laptop 2, JDK 25",nearly_random,1000,UntilNoChange,WhileNeeded,1.9252,1.6840,2.2010,1.8507
+"M3 Pro laptop 2, JDK 25",nearly_random,5000,PassPerItem,WhileNeeded,1.4647,1.4209,1.5098,1.4618
+"M3 Pro laptop 2, JDK 25",nearly_random,5000,UntilNoChange,WhileNeeded,1.8443,1.8051,1.8843,1.8299
+"M3 Pro laptop 2, JDK 25",nearly_random,10000,PassPerItem,WhileNeeded,1.6410,1.6093,1.6732,1.6435
+"M3 Pro laptop 2, JDK 25",nearly_random,10000,UntilNoChange,WhileNeeded,1.9525,1.8929,2.0140,1.9604
+"M3 Pro laptop 2, JDK 25",few_unique,1000,PassPerItem,WhileNeeded,1.4090,1.3081,1.5176,1.3863
+"M3 Pro laptop 2, JDK 25",few_unique,1000,UntilNoChange,WhileNeeded,1.5924,1.5214,1.6666,1.5970
+"M3 Pro laptop 2, JDK 25",few_unique,5000,PassPerItem,WhileNeeded,1.3981,1.3244,1.4758,1.3724
+"M3 Pro laptop 2, JDK 25",few_unique,5000,UntilNoChange,WhileNeeded,1.6426,1.5639,1.7254,1.6119
+"M3 Pro laptop 2, JDK 25",few_unique,10000,PassPerItem,WhileNeeded,1.3423,1.3165,1.3686,1.3413
+"M3 Pro laptop 2, JDK 25",few_unique,10000,UntilNoChange,WhileNeeded,1.5729,1.5228,1.6246,1.5792
+"Ryzen 5 5600, JDK 26",random,1000,PassPerItem,WhileNeeded,1.3667,1.2945,1.4429,1.3900
+"Ryzen 5 5600, JDK 26",random,1000,UntilNoChange,WhileNeeded,2.0304,1.8923,2.1787,2.0217
+"Ryzen 5 5600, JDK 26",random,5000,PassPerItem,WhileNeeded,1.4663,1.4285,1.5051,1.4774
+"Ryzen 5 5600, JDK 26",random,5000,UntilNoChange,WhileNeeded,2.1440,2.0856,2.2039,2.1661
+"Ryzen 5 5600, JDK 26",random,10000,PassPerItem,WhileNeeded,1.4365,1.3812,1.4940,1.4444
+"Ryzen 5 5600, JDK 26",random,10000,UntilNoChange,WhileNeeded,2.2876,1.8890,2.7702,2.1326
+"Ryzen 5 5600, JDK 26",sorted,1000,PassPerItem,WhileNeeded,1109.7653,1060.8224,1160.9663,1109.9408
+"Ryzen 5 5600, JDK 26",sorted,1000,UntilNoChange,WhileNeeded,1.1746,1.1375,1.2129,1.1764
+"Ryzen 5 5600, JDK 26",sorted,5000,PassPerItem,WhileNeeded,5357.8297,4231.0625,6784.6646,5754.8623
+"Ryzen 5 5600, JDK 26",sorted,5000,UntilNoChange,WhileNeeded,1.0897,0.9067,1.3095,1.1349
+"Ryzen 5 5600, JDK 26",sorted,10000,PassPerItem,WhileNeeded,11559.2538,11228.6019,11899.6426,11578.3436
+"Ryzen 5 5600, JDK 26",sorted,10000,UntilNoChange,WhileNeeded,1.1902,1.1412,1.2412,1.2021
+"Ryzen 5 5600, JDK 26",reversed,1000,PassPerItem,WhileNeeded,1.2982,1.0936,1.5412,1.3807
+"Ryzen 5 5600, JDK 26",reversed,1000,UntilNoChange,WhileNeeded,1.7751,1.5086,2.0887,1.8587
+"Ryzen 5 5600, JDK 26",reversed,5000,PassPerItem,WhileNeeded,1.3804,1.3671,1.3937,1.3748
+"Ryzen 5 5600, JDK 26",reversed,5000,UntilNoChange,WhileNeeded,1.8841,1.8690,1.8992,1.8893
+"Ryzen 5 5600, JDK 26",reversed,10000,PassPerItem,WhileNeeded,1.6504,1.0027,2.7166,1.3860
+"Ryzen 5 5600, JDK 26",reversed,10000,UntilNoChange,WhileNeeded,1.7888,1.7125,1.8684,1.7729
+"Ryzen 5 5600, JDK 26",nearly_local,1000,PassPerItem,WhileNeeded,43.1695,37.2953,49.9689,43.4796
+"Ryzen 5 5600, JDK 26",nearly_local,1000,UntilNoChange,WhileNeeded,1.3597,1.2057,1.5333,1.3089
+"Ryzen 5 5600, JDK 26",nearly_local,5000,PassPerItem,WhileNeeded,267.4423,191.2221,374.0434,258.4460
+"Ryzen 5 5600, JDK 26",nearly_local,5000,UntilNoChange,WhileNeeded,1.3044,1.2033,1.4141,1.3279
+"Ryzen 5 5600, JDK 26",nearly_local,10000,PassPerItem,WhileNeeded,514.5530,435.1102,608.5007,482.9774
+"Ryzen 5 5600, JDK 26",nearly_local,10000,UntilNoChange,WhileNeeded,1.3565,1.1561,1.5916,1.2901
+"Ryzen 5 5600, JDK 26",nearly_random,1000,PassPerItem,WhileNeeded,1.6390,1.5842,1.6956,1.6384
+"Ryzen 5 5600, JDK 26",nearly_random,1000,UntilNoChange,WhileNeeded,2.1676,2.0154,2.3313,2.1550
+"Ryzen 5 5600, JDK 26",nearly_random,5000,PassPerItem,WhileNeeded,1.6100,1.5888,1.6315,1.6129
+"Ryzen 5 5600, JDK 26",nearly_random,5000,UntilNoChange,WhileNeeded,2.4399,2.3818,2.4995,2.4485
+"Ryzen 5 5600, JDK 26",nearly_random,10000,PassPerItem,WhileNeeded,1.5287,1.4648,1.5955,1.5111
+"Ryzen 5 5600, JDK 26",nearly_random,10000,UntilNoChange,WhileNeeded,2.2246,2.0257,2.4430,2.1542
+"Ryzen 5 5600, JDK 26",few_unique,1000,PassPerItem,WhileNeeded,1.5010,1.4855,1.5167,1.5029
+"Ryzen 5 5600, JDK 26",few_unique,1000,UntilNoChange,WhileNeeded,1.6964,1.6615,1.7321,1.7074
+"Ryzen 5 5600, JDK 26",few_unique,5000,PassPerItem,WhileNeeded,1.5537,1.4945,1.6153,1.5750
+"Ryzen 5 5600, JDK 26",few_unique,5000,UntilNoChange,WhileNeeded,1.6881,1.5999,1.7811,1.6984
+"Ryzen 5 5600, JDK 26",few_unique,10000,PassPerItem,WhileNeeded,1.7265,1.6951,1.7586,1.7350
+"Ryzen 5 5600, JDK 26",few_unique,10000,UntilNoChange,WhileNeeded,2.2702,2.2340,2.3070,2.2822
+"Ryzen 5 5600, JDK 17",random,1000,PassPerItem,WhileNeeded,1.4474,1.3692,1.5301,1.4685
+"Ryzen 5 5600, JDK 17",random,1000,UntilNoChange,WhileNeeded,1.8770,1.7566,2.0058,1.8602
+"Ryzen 5 5600, JDK 17",random,5000,PassPerItem,WhileNeeded,1.3829,1.3285,1.4395,1.3710
+"Ryzen 5 5600, JDK 17",random,5000,UntilNoChange,WhileNeeded,2.0003,1.8964,2.1099,2.0100
+"Ryzen 5 5600, JDK 17",random,10000,PassPerItem,WhileNeeded,1.2991,1.1487,1.4691,1.2733
+"Ryzen 5 5600, JDK 17",random,10000,UntilNoChange,WhileNeeded,1.8317,1.6068,2.0881,1.9298
+"Ryzen 5 5600, JDK 17",sorted,1000,PassPerItem,WhileNeeded,919.8535,722.7070,1170.7794,1008.0385
+"Ryzen 5 5600, JDK 17",sorted,1000,UntilNoChange,WhileNeeded,1.0508,0.8859,1.2464,1.0542
+"Ryzen 5 5600, JDK 17",sorted,5000,PassPerItem,WhileNeeded,4990.8713,4146.5499,6007.1136,5340.9416
+"Ryzen 5 5600, JDK 17",sorted,5000,UntilNoChange,WhileNeeded,1.1025,0.8741,1.3906,1.0443
+"Ryzen 5 5600, JDK 17",sorted,10000,PassPerItem,WhileNeeded,10541.8580,7945.3191,13986.9486,11468.2333
+"Ryzen 5 5600, JDK 17",sorted,10000,UntilNoChange,WhileNeeded,0.8804,0.7145,1.0849,0.9228
+"Ryzen 5 5600, JDK 17",reversed,1000,PassPerItem,WhileNeeded,1.4543,1.3342,1.5852,1.4549
+"Ryzen 5 5600, JDK 17",reversed,1000,UntilNoChange,WhileNeeded,2.1243,1.7974,2.5107,2.0699
+"Ryzen 5 5600, JDK 17",reversed,5000,PassPerItem,WhileNeeded,1.5649,1.4687,1.6674,1.5510
+"Ryzen 5 5600, JDK 17",reversed,5000,UntilNoChange,WhileNeeded,2.1877,2.0125,2.3781,2.1702
+"Ryzen 5 5600, JDK 17",reversed,10000,PassPerItem,WhileNeeded,1.6525,1.4262,1.9148,1.6196
+"Ryzen 5 5600, JDK 17",reversed,10000,UntilNoChange,WhileNeeded,2.0878,1.9824,2.1987,2.0690
+"Ryzen 5 5600, JDK 17",nearly_local,1000,PassPerItem,WhileNeeded,43.6624,35.3629,53.9097,43.4349
+"Ryzen 5 5600, JDK 17",nearly_local,1000,UntilNoChange,WhileNeeded,1.2810,1.0720,1.5307,1.2285
+"Ryzen 5 5600, JDK 17",nearly_local,5000,PassPerItem,WhileNeeded,255.0706,173.1029,375.8516,258.9127
+"Ryzen 5 5600, JDK 17",nearly_local,5000,UntilNoChange,WhileNeeded,1.2058,1.0860,1.3390,1.1951
+"Ryzen 5 5600, JDK 17",nearly_local,10000,PassPerItem,WhileNeeded,515.2769,366.6227,724.2057,471.7399
+"Ryzen 5 5600, JDK 17",nearly_local,10000,UntilNoChange,WhileNeeded,1.2619,1.0753,1.4810,1.2709
+"Ryzen 5 5600, JDK 17",nearly_random,1000,PassPerItem,WhileNeeded,1.4523,1.2455,1.6934,1.3820
+"Ryzen 5 5600, JDK 17",nearly_random,1000,UntilNoChange,WhileNeeded,2.1766,1.8935,2.5021,2.2762
+"Ryzen 5 5600, JDK 17",nearly_random,5000,PassPerItem,WhileNeeded,1.4330,1.3309,1.5430,1.4125
+"Ryzen 5 5600, JDK 17",nearly_random,5000,UntilNoChange,WhileNeeded,2.0885,1.8516,2.3557,2.1169
+"Ryzen 5 5600, JDK 17",nearly_random,10000,PassPerItem,WhileNeeded,1.3758,1.3417,1.4108,1.3779
+"Ryzen 5 5600, JDK 17",nearly_random,10000,UntilNoChange,WhileNeeded,2.1125,2.0491,2.1777,2.1109
+"Ryzen 5 5600, JDK 17",few_unique,1000,PassPerItem,WhileNeeded,1.1869,1.0092,1.3959,1.1573
+"Ryzen 5 5600, JDK 17",few_unique,1000,UntilNoChange,WhileNeeded,1.7993,1.7032,1.9007,1.8300
+"Ryzen 5 5600, JDK 17",few_unique,5000,PassPerItem,WhileNeeded,1.4753,1.1591,1.8778,1.3060
+"Ryzen 5 5600, JDK 17",few_unique,5000,UntilNoChange,WhileNeeded,2.0129,1.8406,2.2014,2.0945
+"Ryzen 5 5600, JDK 17",few_unique,10000,PassPerItem,WhileNeeded,1.3587,1.2732,1.4500,1.3637
+"Ryzen 5 5600, JDK 17",few_unique,10000,UntilNoChange,WhileNeeded,1.9606,1.6845,2.2819,1.8812
