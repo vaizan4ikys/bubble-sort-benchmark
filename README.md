@@ -17,7 +17,7 @@ The three sorters in `src/exp01/` are the files provided with the assignment, **
 
 ## To do: Pavlo (temporary, delete this section before submitting)
 
-Report deadline: **10 November 2026, 18:00**. Please do this on branch `windows-portable-check`, and tell Vlad when it is done.
+Report deadline: **10 November 2026, 18:00**. Please do this on `main`, and tell Vlad when it is done.
 
 **Why:** `results/ext_jdk25/environment.txt` shows that the "JDK 25" run actually used **JDK 26.0.1**, because
 `/opt/homebrew/opt/openjdk@25` pointed to JDK 26 on your Mac. Its reversed-input ratio (PassPerItem / WhileNeeded) is
@@ -30,7 +30,7 @@ report's claim that the anomaly is "specific to JDK 25/26" is not supported yet.
    Change the path in `J=` if your JDK is elsewhere.
 
    ```sh
-   git fetch origin && git switch windows-portable-check
+   git switch main && git pull
    J=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
    "$J" -version
    "$(dirname "$J")/javac" -d bin_jdk25 src/exp01/*.java
