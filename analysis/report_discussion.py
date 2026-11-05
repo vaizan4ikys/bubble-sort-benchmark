@@ -73,7 +73,7 @@ doc.add_heading("4.2 Limitations and Threats to Validity", level=2)
 bullets([
     "**Few machines (internal and external validity).** The complete data come from one Apple M3 Pro laptop (ARM). A reduced design was repeated on a second M3 Pro and on one x86 PC "
     "(Section 3.7.9); the ranking and the main conclusions hold there, but one anomaly of the main data (reversed input) does not appear, so JIT-related effects clearly depend on hardware and JDK build. "
-    "Server-class CPUs, other operating systems with a quieter background and other JVM vendors were not tested. The second-machine runs have a higher noise level (6–10 % within a fork) than the main run (4.2 %).",
+    "Server-class CPUs, other operating systems with a quieter background and other JVM vendors were not tested. The second-machine runs have a higher noise level (about 6–10 % within a fork) than the main run (4.9 %).",
     "**Only HotSpot-based JVMs.** We varied the JDK version (8, 17, 21, 25.0.1 on another machine, 26) and the GC (Serial, Parallel, G1), but not the JVM implementation "
     "(OpenJ9, GraalVM). The JDK 8 data come from a different vendor build (Amazon Corretto).",
     "**Synthetic inputs.** The six input orders and five extra shapes are classical but synthetic. Real data are somewhere in between; the recommendation "
