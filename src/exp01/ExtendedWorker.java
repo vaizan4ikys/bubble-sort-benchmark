@@ -4,6 +4,7 @@ import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Generic variant of {@link Worker} used for the FOLLOW-UP experiments (element type
@@ -221,7 +222,7 @@ public final class ExtendedWorker {
 
 			out.append(type).append(',').append(algorithm).append(',').append(order).append(',').append(n).append(',')
 					.append(fork).append(',').append(it).append(',').append(batch).append(',')
-					.append(String.format("%.3f", (t1 - t0) / (double) batch)).append(',')
+					.append(String.format(Locale.ROOT, "%.3f", (t1 - t0) / (double) batch)).append(',')
 					.append(gcAfter != gcBefore ? 1 : 0).append(',').append(warmCount).append(',')
 					.append(warmupTimedOut ? 1 : 0).append('\n');
 		}

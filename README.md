@@ -15,6 +15,44 @@ The work was done with the help of an AI assistant (Claude Code), which is allow
 
 The three sorters in `src/exp01/` are the files provided with the assignment, **unchanged**.
 
+## To do: Pavlo (temporary, delete this section before submitting)
+
+Report deadline: **10 November 2026, 18:00**. Please do this on branch `windows-portable-check`, and tell Vlad when it is done.
+
+**Why:** `results/ext_jdk25/environment.txt` shows that the "JDK 25" run actually used **JDK 26.0.1**, because
+`/opt/homebrew/opt/openjdk@25` pointed to JDK 26 on your Mac. Its reversed-input ratio (PassPerItem / WhileNeeded) is
+0.91-0.94, the same as the main data. A real JDK 25.0.1 on Vlad's Mac gives 1.42-1.47, with WhileNeeded fastest. So the
+report's claim that the anomaly is "specific to JDK 25/26" is not supported yet.
+
+1. **Measure a real JDK 25 on your Mac (about 10 minutes).** Your Mac matters here: only the Java version should change
+   compared with the main data. Install JDK 25 (for example the Temurin package from https://adoptium.net), plug in the
+   laptop and close other applications. Then run the commands below. The first one must print version 25; otherwise stop.
+   Change the path in `J=` if your JDK is elsewhere.
+
+   ```sh
+   git fetch origin && git switch windows-portable-check
+   J=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+   "$J" -version
+   "$(dirname "$J")/javac" -d bin_jdk25 src/exp01/*.java
+   mkdir -p results/ext_jdk25_real
+   scripts/capture_environment.sh results/ext_jdk25_real/environment.txt
+   { echo "--- java used by this experiment ($J)"; "$J" -version 2>&1; } >> results/ext_jdk25_real/environment.txt
+   caffeinate -dims python3 scripts/run_experiment.py --out results/ext_jdk25_real --classes bin_jdk25 --types Integer \
+     --java "$J" --orders random sorted reversed nearly_local nearly_random few_unique \
+     --sizes 1000 5000 10000 --forks 5 --iters 20
+   git add results/ext_jdk25_real
+   git commit -m "Follow-up: JDK 25 re-measured with a real JDK 25"
+   git pull --rebase && git push
+   ```
+
+   Do not delete or overwrite `results/ext_jdk25/`: it stays as a repeat of JDK 26 and will be relabelled.
+2. **Pilot data.** If you still have `results/pilot/`, add it to the repository: it is in `.gitignore`, and the template
+   asks to keep all raw data, including data collected before the experiment. Tell Vlad if it no longer exists.
+3. **Tell Vlad what ran during the main experiment (01:25-02:43).** The report says no other user programs were running,
+   but commits were made at 01:30-01:42. Also confirm that you started that run: section 2.4 has to say who did.
+4. **Review the planned change of conclusion.** The abstract and sections 3.7.2, 4.1 (H3), 4.2 and 4.3 will no longer say
+   "JDK 25/26". Please do not edit the report in the meantime, to avoid conflicting versions.
+
 ## Experiment in one paragraph
 
 A full-factorial, repeated-measures design: **3 algorithms x 6 input orders x 6 input sizes** (108 cells).
@@ -36,6 +74,7 @@ src/exp01/                the three sorters + Sorter (given), and our code:
 scripts/
   run_experiment.py         orchestrator (shuffled, resumable, one JVM per job)
   run_followups.sh          queue of all follow-up experiments
+  run_portable.py           second-machine check, any OS (run_windows.bat in the root starts it on Windows)
   capture_environment.sh    records hardware / software / power state
 analysis/
   analyze_main.py           tables, hypothesis checks, figures for the main data
@@ -90,12 +129,16 @@ Follow-ups that use `ExtendedWorker` have an additional `type` column.
 The main data come from one Apple M3 Pro laptop (ARM). To show that the conclusions are not specific
 to it, the same experiment is repeated in a reduced form (6 input orders × sizes 1 000 / 5 000 / 10 000
 × 3 algorithms × 5 forks = 270 JVM runs, about 35 minutes) on **another computer, ideally x86**.
+`results/portable_vlad-laptop/` is this design on a second M3 Pro (another laptop, macOS 27, JDK 25.0.1), so it is not an x86 check.
 
-1. Install a JDK (any version ≥ 8) and Python 3 (the script only needs the standard library).
-2. Plug the computer in, close other programs, and do not use it while the script runs.
-3. `git clone https://github.com/vaizan4ikys/bubble-sort-benchmark && cd bubble-sort-benchmark`
-4. `scripts/run_portable.sh <name-of-the-machine>`   (e.g. `vlad-laptop`; on Windows use WSL or Git Bash)
-5. Send back (or push) the folder `results/portable_<name-of-the-machine>/`. It contains the raw
+1. Install a JDK (any version ≥ 8), Python 3.7+ and Git. On Windows, tick "Add to PATH" in the installers.
+2. `git clone https://github.com/vaizan4ikys/bubble-sort-benchmark` and enter the folder.
+3. Check that the computer is ready (about 10 seconds, nothing is saved):
+   - Windows, native and not WSL (WSL adds a virtualisation layer): `run_windows.bat windows-x86 --check`
+   - macOS / Linux: `scripts/run_portable.sh linux-x86 --check`
+4. Plug the computer in, close other programs, and start the same command without `--check`.
+   Do not use the computer or close the lid until it finishes. If it is interrupted, the same command resumes it.
+5. Commit and push (or send) the folder `results/portable_<name-of-the-machine>/`. It contains the raw
    measurements and an `environment.txt` with the hardware and Java version.
 
 The results are then compared with the main data (ratios between the algorithms) and added to the report.

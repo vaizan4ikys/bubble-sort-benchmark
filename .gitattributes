@@ -1,0 +1,3 @@
+# Windows Git must not convert these, or the scripts stop working.
+*.sh text eol=lf
+*.bat text eol=crlf
