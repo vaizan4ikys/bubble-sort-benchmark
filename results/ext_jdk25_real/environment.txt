@@ -1,0 +1,24 @@
+date: Thu Nov  5 18:25:13 CET 2026
+--- hardware
+Apple M3 Pro
+cores (physical/logical): 11/11
+memory bytes: 19327352832
+ProductName:		macOS
+ProductVersion:		26.7.1
+BuildVersion:		25G241
+--- java
+openjdk version "26.0.1" 2026-04-21
+OpenJDK Runtime Environment Homebrew (build 26.0.1)
+OpenJDK 64-Bit Server VM Homebrew (build 26.0.1, mixed mode, sharing)
+--- power
+Now drawing from 'Battery Power'
+ -InternalBattery-0 (id=23003235)	39%; discharging; 1:58 remaining present: true
+Note: No thermal warning level has been recorded
+Note: No performance warning level has been recorded
+Note: No CPU power status has been recorded
+--- load before start
+18:25  up 4 days, 22:47, 3 users, load averages: 2.01 1.93 2.05
+--- java used by this experiment (/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java)
+openjdk version "25.0.5" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)

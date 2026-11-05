@@ -13,7 +13,7 @@ p("The main experiment answers the question for one machine, one JDK, one garbag
 table(["Experiment", "Question", "Design"], [
     ["String elements", "Does the ranking change if comparisons are expensive?", "String instead of Integer, 6 orders × 5 sizes × 3 algorithms × 5 forks"],
     ["Garbage collector", "Is the result specific to SerialGC (JVM default is G1, whose array stores carry write barriers)?", "G1 and ParallelGC, 6 orders × 3 sizes × 5 forks"],
-    ["JDK version", "Is it specific to JDK 26 (different JIT compilers)?", "JDK 8, 17, 21, and a repeat on JDK 26 (a planned JDK 25 run in fact used JDK 26, see Section 3.7.9); 6 orders × 3 sizes × 5 forks"],
+    ["JDK version", "Is it specific to JDK 26 (different JIT compilers)?", "JDK 8, 17, 21, 25.0.5, and a repeat on JDK 26.0.1 (a first JDK 25 run in fact used JDK 26, see Section 3.7.2); 6 orders × 3 sizes × 5 forks"],
     ["Polluted JIT profile", "Real programs sort many element types; does the ranking survive megamorphic compareTo calls?", "900 ms of sorting Strings, Longs and custom objects before measuring Integers; 5 orders × 3 sizes × 5 forks"],
     ["Tiny arrays", "What is best for n = 2 … 50?", "8 input orders × 6 sizes × 5 forks"],
     ["Other input shapes", "Classic bubble-sort cases", "turtle, rabbit, sorted + random tail, organ pipe, sawtooth; 3 sizes × 5 forks"],
@@ -48,8 +48,8 @@ p(f"Figure {FIG_NO[0] + 1} compares the three pairwise ratios at n = 5 000 acros
   "Two observations stand out. First, the ranking for random, sorted, nearly sorted and few-unique inputs is the same in every setting: WhileNeeded "
   "fastest, UntilNoChange slowest on random-like data, PassPerItem catastrophically slow on sorted and locally disturbed data. Second, the single "
   "anomaly of the main experiment – WhileNeeded about 10 % slower than PassPerItem on reversed input – occurs in the main setting (JDK 26.0.1 on this Mac), in its repeat run "
-  "and with the Parallel collector. With G1 (the JVM default), on JDK 8, 17 and 21, and on the two other machines of Section 3.7.9, WhileNeeded is as fast as or faster than PassPerItem on reversed input. "
-  "(The row \"JDK 26 (repeat run)\" was planned as JDK 25, but the Homebrew package openjdk@25 on this Mac turned out to contain JDK 26.0.1, as the environment file of that run shows; it is therefore a repeat of the main setting, and it reproduces the main result.)")
+  "and with the Parallel collector. With G1 (the JVM default), on JDK 8, 17, 21 and 25.0.5, and on the two other machines of Section 3.7.9, WhileNeeded is as fast as or faster than PassPerItem on reversed input. "
+  "(The row \"JDK 26 (repeat run)\" was planned as JDK 25, but the Homebrew package openjdk@25 on this Mac turned out to contain JDK 26.0.1, as the environment file of that run shows; it is therefore a repeat of the main setting, and it reproduces the main result. A real JDK 25 was measured afterwards, row \"JDK 25 (this Mac)\", see Section 3.7.9.)")
 rows = []
 for lab in vr.setting.unique():
     g = vr[vr.setting == lab].set_index("algorithm")
@@ -205,7 +205,12 @@ _j25 = vrr[(vrr.setting == "JDK 25 (this Mac)") & (vrr.order == "reversed") & (v
 if len(_j25):
     r1 = _j25.iloc[0]
     p("**JDK 25 on the main laptop.** To separate the Java version from the hardware we also measured a real JDK 25 on the main laptop with all other settings as in the main experiment: "
-      f"WhileNeeded ÷ PassPerItem on reversed input at n = 5 000 is {r1.ratio:.2f} (CI {r1.ci_lo:.2f}–{r1.ci_hi:.2f}).")
+      f"WhileNeeded ÷ PassPerItem on reversed input at n = 5 000 is {r1.ratio:.2f} (CI {r1.ci_lo:.2f}–{r1.ci_hi:.2f}) with Temurin 25.0.5, i.e. WhileNeeded is clearly faster and the anomaly is absent. "
+      "On the same laptop the anomaly therefore disappears when only the Java version changes from the Homebrew OpenJDK 26.0.1 of the main experiment to JDK 25.0.5; "
+      "together with the second M3 Pro (JDK 25.0.1) and the desktop (Temurin 26.0.2.1), it is tied to the JDK 26.0.1 build used in the main experiment rather than to the hardware. "
+      "Our data cannot tell whether it is a property of JDK 26.0.1 specifically (and fixed by 26.0.2.1) or of this particular Homebrew build. "
+      "This JDK 25 run was made with the laptop on battery power (39 % at the start, 33 % at the end), unlike the main run; its spread within a fork (5.1 %) is similar to the main run (4.9 %). "
+      "The Homebrew package openjdk@25 had also been used for the first attempt, which silently ran JDK 26.0.1 (Section 3.7.2).")
 
 
 # ---- re-measurement

@@ -12,6 +12,9 @@ variant regret summary:
          JDK 26 (repeat run)   PassPerItem     18        3        3          11.575   12984.602        sorted n=10000
          JDK 26 (repeat run) UntilNoChange     18        0        1           1.444       1.938 nearly_random n=10000
          JDK 26 (repeat run)   WhileNeeded     18       15       15           1.013       1.097       reversed n=5000
+           JDK 25 (this Mac)   PassPerItem     18        0        0          11.989   10869.418        sorted n=10000
+           JDK 25 (this Mac) UntilNoChange     18        1        4           1.472       2.209      reversed n=10000
+           JDK 25 (this Mac)   WhileNeeded     18       17       18           1.000       1.000         sorted n=1000
                       JDK 21   PassPerItem     18        0        0          11.832    9915.281        sorted n=10000
                       JDK 21 UntilNoChange     18        0        1           1.474       1.844 nearly_random n=10000
                       JDK 21   WhileNeeded     18       18       18           1.000       1.000     few_unique n=1000
@@ -42,6 +45,9 @@ absolute speed vs main setting:
          JDK 26 (repeat run)   PassPerItem                 0.998 0.977 1.008
          JDK 26 (repeat run) UntilNoChange                 1.000 0.991 1.008
          JDK 26 (repeat run)   WhileNeeded                 1.000 0.994 1.004
+           JDK 25 (this Mac)   PassPerItem                 0.997 0.848 1.042
+           JDK 25 (this Mac) UntilNoChange                 0.982 0.734 1.406
+           JDK 25 (this Mac)   WhileNeeded                 0.951 0.645 1.066
                       JDK 21   PassPerItem                 0.952 0.744 1.020
                       JDK 21 UntilNoChange                 0.952 0.730 1.027
                       JDK 21   WhileNeeded                 0.921 0.639 1.047

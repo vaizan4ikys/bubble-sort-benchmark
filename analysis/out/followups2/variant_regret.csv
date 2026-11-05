@@ -11,6 +11,9 @@ setting,algorithm,cells,fastest,within5,geomean_regret,max_regret,max_where
 JDK 26 (repeat run),PassPerItem,18,3,3,11.5754,12984.6018,sorted n=10000
 JDK 26 (repeat run),UntilNoChange,18,0,1,1.4443,1.9375,nearly_random n=10000
 JDK 26 (repeat run),WhileNeeded,18,15,15,1.0129,1.0974,reversed n=5000
+JDK 25 (this Mac),PassPerItem,18,0,0,11.9894,10869.4176,sorted n=10000
+JDK 25 (this Mac),UntilNoChange,18,1,4,1.4718,2.2089,reversed n=10000
+JDK 25 (this Mac),WhileNeeded,18,17,18,1.0000,1.0003,sorted n=1000
 JDK 21,PassPerItem,18,0,0,11.8317,9915.2807,sorted n=10000
 JDK 21,UntilNoChange,18,0,1,1.4738,1.8437,nearly_random n=10000
 JDK 21,WhileNeeded,18,18,18,1.0000,1.0000,few_unique n=1000
