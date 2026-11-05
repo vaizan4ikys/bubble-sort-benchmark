@@ -1,0 +1,38 @@
+date: Thu Nov  5 17:33:44 2026
+host: At3eus
+os: Windows-11-10.0.26200-SP0
+machine: AMD64
+processor: AMD64 Family 25 Model 33 Stepping 2, AuthenticAMD
+logical cpus: 12
+python: 3.12.10
+--- java
+openjdk version "26.0.2.1" 2026-08-18
+OpenJDK Runtime Environment Temurin-26.0.2.1+1 (build 26.0.2.1+1)
+OpenJDK 64-Bit Server VM Temurin-26.0.2.1+1 (build 26.0.2.1+1, mixed mode, sharing)
+--- system
+Name                      : AMD Ryzen 5 5600 6-Core Processor              
+NumberOfCores             : 6
+NumberOfLogicalProcessors : 12
+MaxClockSpeed             : 3501
+LoadPercentage            : 22
+
+
+
+
+
+Manufacturer        : ASUS
+Model               : System Product Name
+TotalPhysicalMemory : 17054310400
+
+
+
+
+
+Caption            : Њ ©Єа®б®дв Windows 11 Pro
+Version            : 10.0.26200
+BuildNumber        : 26200
+FreePhysicalMemory : 7529528
+
+
+
+GUID беҐ¬л ЇЁв ­Ёп: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c  (‚лб®Є п Їа®Ё§ў®¤ЁвҐ«м­®бвм)
