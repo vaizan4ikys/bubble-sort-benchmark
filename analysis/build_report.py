@@ -275,7 +275,7 @@ p("**Control variables** (kept constant):", keep=True)
 table(["Control variable", "Fixed value"], [
     ["Input data", "Identical arrays for all three algorithms (same seed for a given order, n and fork; the "
                    "algorithm is not part of the seed). Elements are boxed Integer objects, allocated in array order."],
-    ["Machine and Java", "One laptop (Apple M3 Pro), OpenJDK 26.0.1, AC power, lid open, no other user programs running; "
+    ["Machine and Java", "One laptop (Apple M3 Pro), OpenJDK 26.0.1, AC power, lid open, heavy applications closed by the user; "
                          "JVM flags -Xms2g -Xmx2g -XX:+UseSerialGC."],
     ["JIT / JVM state", "One algorithm per JVM process, so that the call to compareTo is not influenced by other "
                         "sorting code; every measurement starts in a fresh JVM, after a warm-up phase."],
@@ -337,7 +337,9 @@ bullets([
     "The worker prints one CSV line per batch. The orchestrator appends them to raw.csv, runs the 1 080 jobs in "
     "randomised order (seed 20261104) and can resume after an interruption.",
 ])
-p("The whole main experiment took 77 minutes (01:25–02:43 on 4 November 2026). Because the same ten fork numbers "
+p("The whole main experiment took 77 minutes (01:25–02:43 on 4 November 2026). The run was started and supervised by the AI assistant (Claude Code) on Pavlo's laptop, at Pavlo's request; Pavlo had closed his other heavy applications beforehand. "
+  "While it ran, the assistant made four short git commits (01:30–01:42) and a few low-priority smoke tests, all listed in results/full/interference_log.txt; their effect is checked in Section 3.1. "
+  "The re-measurement rule was committed at 01:36, during the run and before any main data had been analysed. Because the same ten fork numbers "
   "(0–9) are used for all three algorithms, each fork index defines one data set shared by the three algorithms.")
 p("**Statistics.** Per cell, we compute the five-number summary of all 300 batch measurements. For inference we "
   "use the 10 fork medians: 95 % confidence intervals from the t distribution (N = 10 is small, so t rather than z), "
@@ -468,6 +470,8 @@ bullets([
     "results/full/ – main experiment (raw.csv, run.log, environment.txt, interference_log.txt)",
     "results/remeasure/ – the additional forks of uncertain cells (if any)",
     "results/ext_*/ – follow-up experiments, each with its own raw.csv and environment.txt",
+    "results/portable_*/ – the reduced design on two other computers (run by Vladyslav Nechaiev)",
+    "results/pilot/, results/pilot_ext/ – pilot runs made before the main experiment with a not yet committed version of the harness, used only to choose the parameters",
     "analysis/out/ – all derived tables and figures of this report",
 ])
 doc.add_heading("C. Five-number summaries of all conditions", level=2)

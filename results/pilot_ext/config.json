@@ -1,0 +1,30 @@
+{
+  "out": "results/pilot_ext",
+  "forks": 1,
+  "iters": 3,
+  "seed": 20261104,
+  "sizes": [
+    100
+  ],
+  "orders": [
+    "sorted",
+    "random"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "bin_ext",
+  "types": [
+    "String",
+    "Integer"
+  ],
+  "jvm_extra": "",
+  "jvm_flags": [
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:+UseSerialGC"
+  ],
+  "n_jobs": 12
+}

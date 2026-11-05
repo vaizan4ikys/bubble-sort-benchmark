@@ -13,7 +13,7 @@ p("The main experiment answers the question for one machine, one JDK, one garbag
 table(["Experiment", "Question", "Design"], [
     ["String elements", "Does the ranking change if comparisons are expensive?", "String instead of Integer, 6 orders × 5 sizes × 3 algorithms × 5 forks"],
     ["Garbage collector", "Is the result specific to SerialGC (JVM default is G1, whose array stores carry write barriers)?", "G1 and ParallelGC, 6 orders × 3 sizes × 5 forks"],
-    ["JDK version", "Is it specific to JDK 26 (different JIT compilers)?", "JDK 8, 17, 21, 25; 6 orders × 3 sizes × 5 forks"],
+    ["JDK version", "Is it specific to JDK 26 (different JIT compilers)?", "JDK 8, 17, 21, and a repeat on JDK 26 (a planned JDK 25 run in fact used JDK 26, see Section 3.7.9); 6 orders × 3 sizes × 5 forks"],
     ["Polluted JIT profile", "Real programs sort many element types; does the ranking survive megamorphic compareTo calls?", "900 ms of sorting Strings, Longs and custom objects before measuring Integers; 5 orders × 3 sizes × 5 forks"],
     ["Tiny arrays", "What is best for n = 2 … 50?", "8 input orders × 6 sizes × 5 forks"],
     ["Other input shapes", "Classic bubble-sort cases", "turtle, rabbit, sorted + random tail, organ pipe, sawtooth; 3 sizes × 5 forks"],
@@ -47,8 +47,9 @@ vs = pd.read_csv(F2 / "variant_absolute_speed.csv")
 p(f"Figure {FIG_NO[0] + 1} compares the three pairwise ratios at n = 5 000 across all settings, and Table 8 the slowdown relative to the best algorithm in each cell. "
   "Two observations stand out. First, the ranking for random, sorted, nearly sorted and few-unique inputs is the same in every setting: WhileNeeded "
   "fastest, UntilNoChange slowest on random-like data, PassPerItem catastrophically slow on sorted and locally disturbed data. Second, the single "
-  "anomaly of the main experiment – WhileNeeded about 10 % slower than PassPerItem on reversed input – occurs only on JDK 25/26 with the "
-  "Serial and Parallel collectors. With G1 (the JVM default), and on JDK 8, 17 and 21, WhileNeeded is as fast as or faster than PassPerItem on reversed input.")
+  "anomaly of the main experiment – WhileNeeded about 10 % slower than PassPerItem on reversed input – occurs in the main setting (JDK 26.0.1 on this Mac), in its repeat run "
+  "and with the Parallel collector. With G1 (the JVM default), on JDK 8, 17 and 21, and on the two other machines of Section 3.7.9, WhileNeeded is as fast as or faster than PassPerItem on reversed input. "
+  "(The row \"JDK 26 (repeat run)\" was planned as JDK 25, but the Homebrew package openjdk@25 on this Mac turned out to contain JDK 26.0.1, as the environment file of that run shows; it is therefore a repeat of the main setting, and it reproduces the main result.)")
 rows = []
 for lab in vr.setting.unique():
     g = vr[vr.setting == lab].set_index("algorithm")
@@ -198,6 +199,14 @@ p(f"**Data quality.** The desktop is noisier than the main laptop: the spread wi
   f"while the median fork ratios stay near {mrev(RYZEN26, 1000).ratio_median:.2f}–{mrev(RYZEN26, 10000).ratio_median:.2f}. "
   f"The JDK 17 desktop run is weaker still ({mspread(RYZEN17):.1f} % spread, power state not recorded); its decimal commas (old code on a non-English locale) were repaired during analysis, leaving the raw file as measured.")
 figure(M / "fig_machines.png", "PassPerItem ÷ WhileNeeded on reversed input per computer and JDK: geometric mean of the paired forks with 95 % CI, and the median of the per-fork ratios.", width=6.2)
+# ---- real JDK 25 on the main machine (only if that run exists)
+vrr = pd.read_csv(F2 / "variant_ratios.csv")
+_j25 = vrr[(vrr.setting == "JDK 25 (this Mac)") & (vrr.order == "reversed") & (vrr["size"] == 5000) & (vrr.numerator == "WhileNeeded") & (vrr.denominator == "PassPerItem")]
+if len(_j25):
+    r1 = _j25.iloc[0]
+    p("**JDK 25 on the main laptop.** To separate the Java version from the hardware we also measured a real JDK 25 on the main laptop with all other settings as in the main experiment: "
+      f"WhileNeeded ÷ PassPerItem on reversed input at n = 5 000 is {r1.ratio:.2f} (CI {r1.ci_lo:.2f}–{r1.ci_hi:.2f}).")
+
 
 # ---- re-measurement
 doc.add_heading("3.8 Re-measurement of uncertain conditions", level=2)

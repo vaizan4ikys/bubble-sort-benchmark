@@ -2,9 +2,7 @@
 *.class
 bin/
 __pycache__/
-results/pilot/
 bin_ext/
-results/pilot_ext/
 bin_ext2/
 jmh/target/
 jmh/src/main/java/exp01/Sorter.java

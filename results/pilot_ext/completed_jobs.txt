@@ -1,0 +1,12 @@
+String|UntilNoChange|sorted|100|0
+Integer|PassPerItem|random|100|0
+Integer|PassPerItem|sorted|100|0
+String|PassPerItem|random|100|0
+String|PassPerItem|sorted|100|0
+String|WhileNeeded|sorted|100|0
+Integer|UntilNoChange|random|100|0
+Integer|UntilNoChange|sorted|100|0
+String|WhileNeeded|random|100|0
+String|UntilNoChange|random|100|0
+Integer|WhileNeeded|sorted|100|0
+Integer|WhileNeeded|random|100|0

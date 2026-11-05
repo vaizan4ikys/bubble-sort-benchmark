@@ -103,9 +103,12 @@ variants = {}
 if main is not None:
     sel = main[(main.fork < 5) & main["size"].isin([1000, 5000, 10000])]
     variants["main: JDK 26, SerialGC"] = sel
-for name, label in [("ext_g1", "JDK 26, G1 GC"), ("ext_parallel", "JDK 26, ParallelGC"), ("ext_jdk25", "JDK 25"),
+for name, label in [("ext_g1", "JDK 26, G1 GC"), ("ext_parallel", "JDK 26, ParallelGC"),
+                    ("ext_jdk25", "JDK 26 (repeat run)"), ("ext_jdk25_real", "JDK 25 (this Mac)"),
                     ("ext_jdk21", "JDK 21"), ("ext_jdk17", "JDK 17"), ("ext_jdk8", "JDK 8"),
-                    ("ext_polluted", "JDK 26, polluted JIT profile")]:
+                    ("ext_polluted", "JDK 26, polluted JIT profile"),
+                    ("portable_vlad-laptop", "2nd M3 Pro, JDK 25.0.1"),
+                    ("portable_at3eus-pc-jdk26-2", "Ryzen 5 5600 (x86), JDK 26")]:
     if have(name):
         d = load(name)
         if name == "ext_polluted":
@@ -129,8 +132,8 @@ if len(variants) > 1:
     base = fms["main: JDK 26, SerialGC"]
     rows = []
     for label, fm in fms.items():
-        if label.startswith("main"):
-            continue
+        if label.startswith("main") or "2nd M3" in label or "Ryzen" in label:
+            continue  # other machines: absolute speed is not comparable
         m1 = cell_medians(base)
         m2 = cell_medians(fm)
         idx = m1.index.intersection(m2.index)

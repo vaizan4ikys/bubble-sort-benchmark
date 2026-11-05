@@ -34,8 +34,8 @@ p("**H3 – reversed input: falsified.** WhileNeeded is clearly faster than Unti
   f"it is no faster than UntilNoChange either ({fmt_ratio(a2.ratio_geomean)}× at 20 000). On reversed input every pair of neighbours is "
   "out of order, so all three algorithms perform the same n(n−1)/2 swaps, and the number of comparisons is what differs: PassPerItem compares every pair "
   "n times, WhileNeeded about half as often. With cheap Integer comparisons the run time is dominated by the memory stores and the branch behaviour of the swaps, and the simple loop of PassPerItem "
-  "is apparently compiled into slightly faster code than WhileNeeded's loop, which also tracks the last swap position. The follow-up experiments support this reading: the 7–12 % disadvantage occurs only on JDK 25/26 with the Serial or Parallel collector. "
-  "With the G1 collector, on JDK 8, 17 and 21, with String elements (expensive comparisons) and with a polluted JIT profile, WhileNeeded is as fast as or up to "
+  "is apparently compiled into slightly faster code than WhileNeeded's loop, which also tracks the last swap position. The follow-up experiments support this reading: the 7–12 % disadvantage occurs only in the main setting (JDK 26.0.1 on the first M3 Pro, Serial or Parallel collector). "
+  "With the G1 collector, on JDK 8, 17 and 21, on a second M3 Pro with JDK 25.0.1 and on an x86 PC with JDK 26.0.2.1, with String elements (expensive comparisons) and with a polluted JIT profile, WhileNeeded is as fast as or up to "
   "40 % faster than PassPerItem on reversed input (Section 3.7). The JIT-level follow-up (Section 3.7.8) points the same way: with only C1 or in the interpreter, WhileNeeded is about 35–45 % faster than PassPerItem on reversed input, in line with its halved number of comparisons. We did not inspect the generated machine code, so the exact mechanism remains a hypothesis.")
 p("**H4 – locally disturbed input: supported.** Both early-stopping algorithms are between "
   f"{H('H4').estimate.min():.0f}× and {H('H4').estimate.max():.0f}× faster than PassPerItem (lowest CI bound {H('H4').ci_lo.min():.0f}×).")
@@ -71,10 +71,10 @@ p("**Overall.** Two of six hypotheses (H1, H4) were supported, four were partly 
 
 doc.add_heading("4.2 Limitations and Threats to Validity", level=2)
 bullets([
-    "**One machine, one CPU architecture (internal and external validity).** All timing data come from one Apple M3 Pro laptop (ARM). The JIT-related anomalies "
-    "(reversed input, the bimodal cell) could look different on x86 or on a server. We provide scripts/run_portable.sh to repeat a reduced design on another computer; "
-    "this has not been done for the report unless stated in Section 3.7. Remedy: repeat on at least one x86 machine.",
-    "**Only HotSpot-based JVMs.** We varied the JDK version (8, 17, 21, 25, 26) and the GC (Serial, Parallel, G1), but not the JVM implementation "
+    "**Few machines (internal and external validity).** The complete data come from one Apple M3 Pro laptop (ARM). A reduced design was repeated on a second M3 Pro and on one x86 PC "
+    "(Section 3.7.9); the ranking and the main conclusions hold there, but one anomaly of the main data (reversed input) does not appear, so JIT-related effects clearly depend on hardware and JDK build. "
+    "Server-class CPUs, other operating systems with a quieter background and other JVM vendors were not tested. The second-machine runs have a higher noise level (6–10 % within a fork) than the main run (4.2 %).",
+    "**Only HotSpot-based JVMs.** We varied the JDK version (8, 17, 21, 25.0.1 on another machine, 26) and the GC (Serial, Parallel, G1), but not the JVM implementation "
     "(OpenJ9, GraalVM). The JDK 8 data come from a different vendor build (Amazon Corretto).",
     "**Synthetic inputs.** The six input orders and five extra shapes are classical but synthetic. Real data are somewhere in between; the recommendation "
     "rests on the fact that WhileNeeded is never far from the best on any of them. Arrays are filled with boxed Integers allocated in array order, which gives better memory locality than "
@@ -101,12 +101,12 @@ p(f"**Recommendation: ship BubbleSortWhileNeeded.** In the 30 conditions with n 
   f"within 5 % of the fastest in {int(rg.loc['WhileNeeded'].cells_within_5pct_of_best)}, and its geometric-mean slowdown against the best algorithm is only {rg.loc['WhileNeeded'].geomean_regret:.2f}. "
   f"For comparison, UntilNoChange is never within 5 % of the best except once and is up to {rg.loc['UntilNoChange'].max_regret:.1f}× slower than the best, and PassPerItem is up to "
   f"{th(rg.loc['PassPerItem'].max_regret)}× slower on sorted data (at least 50 times slower on sorted or locally disturbed input with n ≥ 1 000).")
-p("**Where WhileNeeded is not the best.** (1) On reversed input and cheap Integer comparisons, PassPerItem is 7–12 % faster on JDK 25/26 with the Serial or Parallel collector; this disappears "
-  "with G1, with older JDKs, with String elements and with a polluted JIT profile. (2) On sorted input with 20 000 elements the order of WhileNeeded and UntilNoChange depends on the JIT's luck "
+p("**Where WhileNeeded is not the best.** (1) On reversed input and cheap Integer comparisons, PassPerItem is 7–12 % faster in the main setting (JDK 26.0.1 on the first M3 Pro, Serial or Parallel collector); this disappears "
+  "with G1, with older JDKs, on a second M3 Pro with JDK 25.0.1, on an x86 PC, with String elements and with a polluted JIT profile. (2) On sorted input with 20 000 elements the order of WhileNeeded and UntilNoChange depends on the JIT's luck "
   "in a given JVM (UntilNoChange is either 1.7× faster or about 1.2× slower than WhileNeeded); for n ≤ 10 000 WhileNeeded is about 15 % faster. (3) For arrays of 50 elements or fewer no algorithm is reliably best, and "
   "the differences are nanoseconds. In absolute terms the losses of WhileNeeded are microseconds to milliseconds, while the alternatives can lose seconds.")
 p("**What we learned beyond the decision.** Predicting running time from comparison counts alone is not enough: four of our six hypotheses were at least partly falsified because "
   "their thresholds were derived from counting comparisons. And a single JVM run can give a wrong ordering for algorithms that are close, so repeated fresh-JVM runs "
   "are the minimum for credible Java benchmarks.")
-p("**Open items.** The conclusion has been checked on one machine; a second, ideally x86, machine would be the next step. The mechanism behind the C2 effects (Section 3.7.8) "
+p("**Open items.** The mechanism behind the C2 effects (Section 3.7.8) "
   "was not examined at machine-code level.")

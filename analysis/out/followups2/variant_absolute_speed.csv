@@ -5,9 +5,9 @@ setting,algorithm,geomean_time_vs_main,min,max
 "JDK 26, ParallelGC",PassPerItem,0.9829,0.8706,1.0092
 "JDK 26, ParallelGC",UntilNoChange,1.0199,0.9337,1.4718
 "JDK 26, ParallelGC",WhileNeeded,1.0159,0.9767,1.3614
-JDK 25,PassPerItem,0.9983,0.9773,1.0076
-JDK 25,UntilNoChange,0.9998,0.9914,1.0076
-JDK 25,WhileNeeded,0.9996,0.9941,1.0044
+JDK 26 (repeat run),PassPerItem,0.9983,0.9773,1.0076
+JDK 26 (repeat run),UntilNoChange,0.9998,0.9914,1.0076
+JDK 26 (repeat run),WhileNeeded,0.9996,0.9941,1.0044
 JDK 21,PassPerItem,0.9522,0.7437,1.0198
 JDK 21,UntilNoChange,0.9521,0.7304,1.0272
 JDK 21,WhileNeeded,0.9210,0.6390,1.0466

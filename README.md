@@ -24,7 +24,7 @@ Report deadline: **10 November 2026, 18:00**. Please do this on `main`, and tell
 0.91-0.94, the same as the main data. A real JDK 25.0.1 on Vlad's Mac gives 1.42-1.47, with WhileNeeded fastest. So the
 report's claim that the anomaly is "specific to JDK 25/26" is not supported yet.
 
-1. **Measure a real JDK 25 on your Mac (about 10 minutes).** Your Mac matters here: only the Java version should change
+1. **[OPEN] Measure a real JDK 25 on your Mac (about 10 minutes).** Your Mac matters here: only the Java version should change
    compared with the main data. Install JDK 25 (for example the Temurin package from https://adoptium.net), plug in the
    laptop and close other applications. Then run the commands below. The first one must print version 25; otherwise stop.
    Change the path in `J=` if your JDK is elsewhere.
@@ -46,11 +46,11 @@ report's claim that the anomaly is "specific to JDK 25/26" is not supported yet.
    ```
 
    Do not delete or overwrite `results/ext_jdk25/`: it stays as a repeat of JDK 26 and will be relabelled.
-2. **Pilot data.** If you still have `results/pilot/`, add it to the repository: it is in `.gitignore`, and the template
+2. **[DONE 5 Nov] Pilot data.** If you still have `results/pilot/`, add it to the repository: it is in `.gitignore`, and the template
    asks to keep all raw data, including data collected before the experiment. Tell Vlad if it no longer exists.
-3. **Tell Vlad what ran during the main experiment (01:25-02:43).** The report says no other user programs were running,
+3. **[DONE 5 Nov: in report section 2.4 and results/full/interference_log.txt] Tell Vlad what ran during the main experiment (01:25-02:43).** The report says no other user programs were running,
    but commits were made at 01:30-01:42. Also confirm that you started that run: section 2.4 has to say who did.
-4. **Review the planned change of conclusion.** The abstract and sections 3.7.2, 4.1 (H3), 4.2 and 4.3 will no longer say
+4. **[DONE 5 Nov, report updated; the JDK 25 sentence is added automatically once item 1 is done] Review the planned change of conclusion.** The abstract and sections 3.7.2, 4.1 (H3), 4.2 and 4.3 will no longer say
    "JDK 25/26". Please do not edit the report in the meantime, to avoid conflicting versions.
 
 ## Guide for an AI assistant on the Windows PC (temporary, delete before submitting)

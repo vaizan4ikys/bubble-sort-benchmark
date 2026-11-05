@@ -6,3 +6,7 @@ Wed Nov  4 02:43:25 CET 2026 analyze_main on results/full (nice 19)
 2026-11-04 05:25:39 analyze_followups.py (python, nice 19, few s) during queue 2
 2026-11-04 08:58:58 pooled analysis (python nice 19) during queue 3
 2026-11-04 08:59:14 analyze_followups2.py (python nice 19, ~10 s) during queue 3
+2026-11-05 (added afterwards, from the git history) four git commits were made during the main run (01:30:26, 01:34:08, 01:36:34, 01:42:51: follow-up
+  scripts, analysis scripts, re-measurement rule), by the AI assistant; they are short, I/O-light operations. The main run itself (01:25-02:43) was started by the AI
+  assistant (Claude Code) on Pavlo's laptop at his request; the re-measurement rule (01:36) was therefore committed during the run, before any main data were analysed.
+2026-11-05 18:17:14 analyze_followups2 (python nice 19)
