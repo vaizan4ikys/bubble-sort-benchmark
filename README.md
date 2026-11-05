@@ -53,6 +53,80 @@ report's claim that the anomaly is "specific to JDK 25/26" is not supported yet.
 4. **Review the planned change of conclusion.** The abstract and sections 3.7.2, 4.1 (H3), 4.2 and 4.3 will no longer say
    "JDK 25/26". Please do not edit the report in the meantime, to avoid conflicting versions.
 
+## Guide for an AI assistant on the Windows PC (temporary, delete before submitting)
+
+Read this if you are an AI assistant (such as Claude Code) working on Vlad's Windows PC (AMD Ryzen 5 5600).
+Your job is **one measurement run, then push the data**. The analysis and the report are done on the Mac.
+
+**Why this run is needed.** The earlier run, `results/portable_at3eus-pc/`, cannot be compared cleanly with the main data:
+- It used JDK 17, while the main data use JDK 26.0.1. This new run asks whether, on x86 with JDK 26, PassPerItem also beats
+  WhileNeeded on reversed input, as it does on the main M3 Pro.
+- It was noisy: the median spread within a fork was 28 %, against 2.7 % on the M3 Pro with JDK 17.
+- It used the old code, so the Windows decimal comma split `ns_per_sort` into two columns in all 5 400 rows of `raw.csv`.
+- Its `environment.txt` was not produced by the committed script, and its power state is missing.
+
+**Do not:** edit or delete `results/portable_at3eus-pc/` or any other existing results; edit a `raw.csv` or
+`environment.txt` by hand; change the sorters or the design (`FORKS`, `ITERS`, `SIZES`, `ORDERS`, `JVM_FLAGS`); edit the report;
+use WSL or `scripts/run_portable.sh`. If something fails, report the exact output and ask Vlad before working around it.
+
+### Steps
+
+Commands are for Git Bash, the shell Claude Code normally uses on Windows. If `py` is missing, use `python`.
+
+1. **Check the clone.** Run `git status`. Earlier local edits may exist, because the old `environment.txt` came from a changed
+   script. If anything is modified, show it to Vlad and do not discard it. Otherwise run `git switch main && git pull`.
+2. **Find JDK 26.** The main data used OpenJDK 26.0.1, so ask Vlad before using another 26.x. If it is not installed, ask Vlad
+   to install it (Temurin from https://adoptium.net) or to allow you to do so. Then set `JAVA_HOME` with a Windows-style path,
+   which `scripts/run_portable.py` prefers over `PATH`, and check it:
+
+   ```sh
+   ls "/c/Program Files/Eclipse Adoptium/"
+   export JAVA_HOME='C:\Program Files\Eclipse Adoptium\<jdk-26-folder>'
+   "$JAVA_HOME/bin/java" -version
+   ```
+3. **Check the setup (about 10 seconds; it saves no results):**
+
+   ```sh
+   py -3 scripts/run_portable.py at3eus-pc-jdk26 --check
+   ```
+
+   Expect `Ready`, JDK 26 in the output, and the Ryzen CPU under `--- system`. This is the first real use of this script's
+   Windows code, so show Vlad any empty or odd fields.
+4. **Ask Vlad to prepare the PC.** Close all other programs and other AI sessions, use the High or Balanced power plan, and leave
+   the PC alone until the run ends. Wait for his confirmation.
+5. **Start the run in the background (about 20 minutes)**, with `nohup` or your tool's background option, because a normal
+   command timeout would kill it:
+
+   ```sh
+   py -3 scripts/run_portable.py at3eus-pc-jdk26
+   ```
+
+   While it runs, **do no other work on this PC**: no builds, searches or frequent polling, because they add noise to the
+   measurements. Wait for the exit notification. If it stops, the same command resumes it; `JAVA_HOME` must be the same.
+   Do not use `run_windows.bat` here: it ends with `pause`, which would block a non-interactive shell. Vlad can use it by hand,
+   as `run_windows.bat <name>` in cmd or `.\run_windows.bat <name>` in PowerShell.
+6. **Check the result:**
+
+   ```sh
+   py -3 scripts/check_quality.py results/portable_at3eus-pc-jdk26/raw.csv
+   ```
+
+   The run must have printed `OK: 270 jobs, 5400 rows, every value valid`, and `environment.txt` must show JDK 26. **If the
+   spread within a fork is above 10 %, tell Vlad before pushing.** A rerun then needs a new name, such as `at3eus-pc-jdk26-2`;
+   keep the first folder.
+7. **Push only the new folder:**
+
+   ```sh
+   git add results/portable_at3eus-pc-jdk26
+   git commit -m "Second-machine run: Ryzen 5 5600, Windows 11, JDK 26"
+   git pull --rebase && git push
+   ```
+
+   Say in the commit message only what you verified, and mention any problem.
+8. **Report to Vlad:** the exact Java version, the run time, the spread, the three reversed-input ratios, and anything unusual.
+   Compare the ratios with the main data (PassPerItem / WhileNeeded = 0.92, 0.91, 0.94 for n = 1 000, 5 000, 10 000), but leave
+   the conclusions for the report to the Mac session.
+
 ## Experiment in one paragraph
 
 A full-factorial, repeated-measures design: **3 algorithms x 6 input orders x 6 input sizes** (108 cells).
@@ -75,6 +149,7 @@ scripts/
   run_experiment.py         orchestrator (shuffled, resumable, one JVM per job)
   run_followups.sh          queue of all follow-up experiments
   run_portable.py           second-machine check, any OS (run_windows.bat in the root starts it on Windows)
+  check_quality.py          noise and reversed-input ratios of one run
   capture_environment.sh    records hardware / software / power state
 analysis/
   analyze_main.py           tables, hypothesis checks, figures for the main data
@@ -135,6 +210,7 @@ to it, the same experiment is repeated in a reduced form (6 input orders × size
 2. `git clone https://github.com/vaizan4ikys/bubble-sort-benchmark` and enter the folder.
 3. Check that the computer is ready (about 10 seconds, nothing is saved):
    - Windows, native and not WSL (WSL adds a virtualisation layer): `run_windows.bat windows-x86 --check`
+     (in PowerShell: `.\run_windows.bat windows-x86 --check`)
    - macOS / Linux: `scripts/run_portable.sh linux-x86 --check`
 4. Plug the computer in, close other programs, and start the same command without `--check`.
    Do not use the computer or close the lid until it finishes. If it is interrupted, the same command resumes it.
