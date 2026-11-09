@@ -22,7 +22,7 @@ Every cell is measured in 10 *forks* (a fork is a fresh JVM); each fork warms up
 30 batches of sorts (batching makes sub-microsecond sorts measurable) and verifies, outside the timed region,
 that every result is sorted. All three algorithms receive exactly the same input data within a fork index, and the
 order of the 1 080 jobs is shuffled with a fixed seed. The pre-registered hypotheses are in
-[`HYPOTHESES.md`](HYPOTHESES.md) (committed before any code or data existed).
+[`HYPOTHESES.md`](HYPOTHESES.md) (committed at 01:16:35 on 4 November 2026, before the harness was committed and before any main-experiment data existed; a short pilot with an uncommitted early harness followed a minute later, see the report, Section 2.4).
 
 ## Layout
 
@@ -157,7 +157,8 @@ Analysis and report (in this order; every script reads only `results/` and earli
 `results/*/raw.csv` columns: `seq` (position in the shuffled job order), `algorithm`, `order`, `size`, `fork`,
 `iter` (timed batch), `batch` (number of sorts in the batch), `ns_per_sort` (batch time / batch size),
 `gc_during` (a garbage collection happened inside the timed region), `warmup_sorts`, `warmup_timeout`.
-Follow-ups that use `ExtendedWorker` have an additional `type` column.
+Follow-ups that use `ExtendedWorker` have an additional `type` column; `results/steady/raw.csv` (`SteadyWorker`) has the additional columns
+`stab_rounds` (batches run before the timed ones) and `stab_converged` (1 = the stabilisation criterion was met).
 
 ## Measurement procedure (per fork)
 

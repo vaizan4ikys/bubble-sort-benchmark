@@ -61,7 +61,7 @@ figure(F2 / "fig_variants_ratio_n5000.png", "Time ratios at n = 5 000 for differ
 pv = vs[vs.setting.str.contains("polluted")].set_index("algorithm")
 pol = vr[vr.setting.str.contains("polluted")].set_index("algorithm")
 p("The absolute speed does depend on the setting, but only little for GC and JDK version (geometric mean within about ±10 % of the main setting, "
-  "the extremes being cells with a few percent of timing noise). The polluted JIT profile is different: when the JIT compiler has already seen other element "
+  "the extremes are the reversed-input cells, where WhileNeeded needs only 0.64–0.67 of its main-setting time on JDK 21 and 25.0.5, i.e. the anomaly itself). The polluted JIT profile is different: when the JIT compiler has already seen other element "
   f"types, every algorithm becomes slower by a factor of {pv.geomean_time_vs_main.min():.1f}–{pv.geomean_time_vs_main.max():.1f} (geometric mean over cells), "
   "because the call to compareTo can no longer be inlined. The ranking nevertheless survives: " + 
   f"WhileNeeded is fastest in {int(pol.loc['WhileNeeded'].fastest)} of {int(pol.loc['WhileNeeded'].cells)} polluted cells and never more than {(pol.loc['WhileNeeded'].max_regret - 1) * 100:.0f} % behind the best; "
@@ -78,8 +78,8 @@ _sw50 = _sm[(_sm.order == "sorted") & (_sm["size"] == 50) & (_sm.numerator == "W
 _sw10 = _sm[(_sm.order == "sorted") & (_sm["size"] == 10) & (_sm.numerator == "WhileNeeded") & (_sm.denominator == "PassPerItem")].iloc[0].ratio
 p(f"For arrays of 50 or fewer elements one sort takes between a few nanoseconds (sorted input) and about 3 µs. On sorted input the early-stopping algorithms are clearly faster "
   f"(WhileNeeded needs {_sw10:.2f}× the time of PassPerItem at n = 10 and {_sw50:.3f}× at n = 50). On the other input orders the differences are small in absolute terms "
-  f"(at most about 1 µs): WhileNeeded is the fastest algorithm in {ws * 100:.0f} % of all {len(sw)} (order, size) combinations, UntilNoChange and PassPerItem win the rest, "
-  f"mostly at n ≤ 20. The fastest algorithm is on median {sw.advantage_vs_second.median():.2f}× faster than the second fastest "
+  f"(best-to-worst spread up to about 1–2 µs): WhileNeeded is the fastest algorithm in {ws * 100:.0f} % of all {len(sw)} (order, size) combinations, UntilNoChange and PassPerItem win the rest, "
+  f"all of them at n ≤ 20 (at n = 50 WhileNeeded wins all 8 input orders). The fastest algorithm is on median {sw.advantage_vs_second.median():.2f}× faster than the second fastest "
   f"(range {sw.advantage_vs_second.min():.2f}–{sw.advantage_vs_second.max():.2f}×), and the confidence intervals in Figure {FIG_NO[0] + 1} overlap for many of these cells.")
 figure(F2 / "fig_small.png", "Time of UntilNoChange and WhileNeeded relative to PassPerItem for very small arrays (bands: 95 % CI).", width=6.4)
 
@@ -106,16 +106,18 @@ _cg = _craw[(_craw.algorithm == "PassPerItem") & (_craw.order == "random")]
 cold1, coldpl = {}, {}
 for n in (100, 1000, 10000):
     _x = _cg[_cg["size"] == n]
-    coldpl[n] = _x[_x.call >= 30].groupby("call").ns.median().median()
+    coldpl[n] = _x[_x.call >= 20].groupby("call").ns.median().median()
     cold1[n] = _x[_x.call == 0].ns.median() / coldpl[n]
-cold_main_ratio = coldpl[100] / med("PassPerItem", "random", 100)
+_sst = pd.read_csv(ROOT / "analysis/out/steady/summary_cells.csv")
+_ss100 = _sst[(_sst.algorithm == "PassPerItem") & (_sst.order == "random") & (_sst["size"] == 100)].median_of_fork_medians.iloc[0]
+cold_main_ratio = coldpl[100] / _ss100
 _srt = cr[cr.order == "sorted"]
 _lo, _hi = min(_srt.U_vs_P.min(), _srt.W_vs_P.min()) * 100, max(_srt.U_vs_P.max(), _srt.W_vs_P.max()) * 100
 p("A program that sorts only a handful of times never reaches the optimised code that the main experiment measures. We timed the first 50 calls in "
-  "30 fresh JVMs per condition. " + f"Figure {FIG_NO[0] + 1} shows that the very first call of PassPerItem on random input takes {cold1[100]:.1f}× the time of calls 30–50 for n = 100, "
+  "30 fresh JVMs per condition. " + f"Figure {FIG_NO[0] + 1} shows that the very first call of PassPerItem on random input takes {cold1[100]:.1f}× the time of calls 20 and later for n = 100, "
   f"{cold1[1000]:.0f}× for n = 1 000 and {cold1[10000]:.1f}× for n = 10 000 (the code is interpreted at first and then compiled in stages), "
   f"and that for n = 100 and 1 000 the time stops falling after 10–20 calls. For n = 100 this plateau ({coldpl[100] / 1e3:.0f} µs) is still {cold_main_ratio:.1f}× the steady-state time of the main experiment "
-  f"({med('PassPerItem', 'random', 100) / 1e3:.1f} µs): a fresh JVM does not reach the steady state within 50 calls. In the cold phase the ranking is similar: for random "
+  f"({_ss100 / 1e3:.1f} µs in the steady-state re-measurement): a fresh JVM does not reach the steady state within 50 calls. In the cold phase the ranking is similar: for random "
   f"input WhileNeeded is fastest in all {int((cr[cr.order == 'random'].fastest == 'WhileNeeded').sum())} of {len(cr[cr.order == 'random'])} checkpoints (first call, first 5 calls, first 20 calls). On reversed input, "
   "PassPerItem becomes slightly faster for n ≥ 1 000 after about 5 calls, as in the main experiment; on sorted input the early-stopping algorithms need "
   f"only {_lo:.1f}–{_hi:.0f} % of PassPerItem's time, depending on n and the number of calls.")
@@ -140,7 +142,13 @@ def ex(o, a):
 p("**Scaling.** Fitting time = c · n^k to the 10 sizes between 1 000 and 40 000 (10 sizes × 5 forks = 50 points, treated as independent, so the intervals are optimistic) gives exponents k (95 % CI) on random input of "
   f"{ex('random','PassPerItem')} for PassPerItem, {ex('random','UntilNoChange')} for UntilNoChange and {ex('random','WhileNeeded')} for WhileNeeded; "
   f"on sorted input {ex('sorted','PassPerItem')} for PassPerItem and {ex('sorted','UntilNoChange')} and {ex('sorted','WhileNeeded')} for the two others. "
-  "The growth is quadratic (PassPerItem steeper than 2 on average; the local exponents of Section 4.1 show that this is a localised steepening between n ≈ 5 000 and 15 000, not a constant excess) and linear, respectively.")
+  f"The growth is quadratic (PassPerItem steeper than 2 on average; the local exponents of Table {TAB_NO[0] + 1} show that this is a localised steepening between n ≈ 5 000 and 15 000, not a constant excess) and linear, respectively.")
+_le = {a: local_exponents(a) for a in ["PassPerItem", "UntilNoChange", "WhileNeeded"]}
+_segs = list(_le["PassPerItem"].keys())
+table(["From n", "To n"] + ["PassPerItem", "UntilNoChange", "WhileNeeded"],
+      [[f"{x:,}".replace(",", " "), f"{y:,}".replace(",", " ")] + [f"{_le[a][(x, y)]:.2f}" for a in ["PassPerItem", "UntilNoChange", "WhileNeeded"]] for x, y in _segs],
+      widths=[1.0, 1.0, 1.2, 1.2, 1.2], size=8, align_right_from=2,
+      caption="Local scaling exponents on random input (slope of log time against log n between consecutive sizes; medians over 5 forks).")
 p("**Replication.** The complete main design was repeated with a different random seed (new data, new JVMs). Of the 108 cell medians, 94 % differ from the main data by less than 5 % "
   "and 98 % by less than 10 %. For n ≥ 1 000 the median absolute difference is 0.1 % and the largest 18.9 %. The Spearman correlation of the cell medians is 0.9999. "
   "The only larger deviations are the two nearly-sorted cells with local swaps at n = 5 000 (−16 % and −19 %), which have the highest between-data variation (see Appendix F).")

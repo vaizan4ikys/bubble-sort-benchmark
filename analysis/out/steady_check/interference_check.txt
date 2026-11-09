@@ -1,0 +1,1 @@
+jobs overlapping the logged activity windows: 39; median relative time 1.0019 (other jobs 1.0000); windows (approximate): [('01:29:50', '01:30:40'), ('01:32:50', '01:33:20'), ('01:34:00', '01:34:20'), ('01:36:30', '01:36:50'), ('01:42:30', '01:43:05')]

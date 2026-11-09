@@ -7,11 +7,11 @@ import java.util.Locale;
 
 /**
  * Variant of {@link Worker} with a longer, <b>adaptive warm-up of the batch loop itself</b>.
- * It was written after the audit of the main data set found that, for very short sorts
+ * It was written after a review of the main data set found that, for very short sorts
  * (e.g. sorted input, n = 1 000 or 20 000), the speed changed by up to a factor 2 INSIDE a fork,
  * after about 20 timed batches: the single-sort warm-up of {@link Worker} does not exercise the
- * loop that sorts a whole batch, and that loop (with the sort inlined into it) was compiled
- * while it was being timed. {@link Worker} itself was left unchanged because it produced the
+ * loop that sorts a whole batch, and that loop (with the sort inlined into it) was probably compiled
+ * while it was being timed (compilation events were not recorded). {@link Worker} itself was left unchanged because it produced the
  * main data set.
  *
  * <pre>
@@ -25,9 +25,10 @@ import java.util.Locale;
  * by less than 3 % from that of the W rounds before, for 5 consecutive rounds, after at least MIN_ROUNDS
  * rounds (W = 50 and MIN_ROUNDS = 400 for batches shorter than 20 ms; W = 5 and MIN_ROUNDS = 10 otherwise;
  * the 400 rounds come from a test that found the last level shift of the affected cells after about 250 rounds).
- * For short batches the stabilisation also lasts at least 4 s of wall-clock time (a later level shift of the
- * affected cells was found to occur about 2 s after the start of the loop, when the JIT compiler finishes
- * compiling the batch loop in the background). The stabilisation is limited to 15 s of batch time; the flag {@code stab_converged} tells whether the
+ * For short batches the stabilisation also lasts at least {@code exp01.minStabMs} milliseconds of wall-clock time
+ * (default 4000; the steady-state run of the report used 8000), because later level shifts were observed several
+ * seconds after the start of the loop; they are probably caused by JIT compilations that finish in the background
+ * (compilation events were not recorded). The stabilisation is limited to 15 s of batch time; the flag {@code stab_converged} tells whether the
  * criterion was met.</li>
  * <li><b>Measurement</b>: as in {@link Worker}, with the same {@link #timeBatch} method.</li>
  * </ol>

@@ -111,6 +111,43 @@ for lab, d in variants.items():
 pd.DataFrame(krow).to_csv(OUT / "key_cells.csv", index=False, float_format="%.5g")
 txt.append("key cells:\n" + pd.DataFrame(krow).round(4).to_string(index=False))
 
+# ---------------------------------------------- 3b. main data versus steady state, cell by cell
+if steady is not None and "steady-state re-measurement" in variants:
+    fm_main = main[main.fork < 3].groupby(["algorithm", "order", "size", "fork"]).ns_per_sort.median().groupby(["algorithm", "order", "size"]).median()
+    fm_st = steady.groupby(["algorithm", "order", "size", "fork"]).ns_per_sort.median().groupby(["algorithm", "order", "size"]).median()
+    cmpc = pd.concat([fm_main.rename("main_forks012"), fm_st.rename("steady")], axis=1).reset_index()
+    cmpc["steady_over_main"] = cmpc.steady / cmpc.main_forks012
+    cmpc["differs_10pct"] = (cmpc.steady_over_main < 1 / 1.1) | (cmpc.steady_over_main > 1.1)
+    cmpc.to_csv(OUT / "steady_vs_main_cells.csv", index=False, float_format="%.5g")
+    big = cmpc[cmpc["size"] >= 1000]
+    sm100 = cmpc[cmpc["size"] == 100]
+    by = big[big.differs_10pct].groupby(["order"]).size()
+    txt.append(f"steady vs main (forks 0-2): {int(big.differs_10pct.sum())} of {len(big)} cells with n >= 1000 differ by more than 10 %; "
+               f"{int(sm100.differs_10pct.sum())} of {len(sm100)} cells with n = 100.\n" + by.to_string())
+    pd.DataFrame([dict(n_ge_1000_cells=len(big), n_ge_1000_differ=int(big.differs_10pct.sum()), n100_cells=len(sm100), n100_differ=int(sm100.differs_10pct.sum()))]).to_csv(
+        OUT / "steady_vs_main_summary.csv", index=False)
+
+# ---------------------------------------------- 3c. did the logged activity of the assistant disturb the main run?
+import re as _re
+from datetime import datetime as _dt, timedelta as _td
+rows_ = []
+for ln in (ROOT / "results" / "full" / "run.log").read_text().splitlines():
+    m_ = _re.match(r"\[(.*?)\] job (\d+)/1080 \S+ took ([\d.]+)s", ln)
+    if m_:
+        end = _dt.strptime(m_.group(1), "%a %b %d %H:%M:%S %Y")
+        rows_.append((int(m_.group(2)) - 1, end - _td(seconds=float(m_.group(3))), end))
+WINDOWS = [("01:29:50", "01:30:40"), ("01:32:50", "01:33:20"), ("01:34:00", "01:34:20"), ("01:36:30", "01:36:50"), ("01:42:30", "01:43:05")]  # approximate, from interference_log.txt
+day = rows_[0][1].date()
+win = [(_dt.combine(day, _dt.strptime(a, "%H:%M:%S").time()), _dt.combine(day, _dt.strptime(b, "%H:%M:%S").time())) for a, b in WINDOWS]
+over = {q for q, st_, en_ in rows_ if any(st_ <= w1 and en_ >= w0 for w0, w1 in win)}
+fmain = main.groupby(["algorithm", "order", "size", "fork"], as_index=False).agg(med=("ns_per_sort", "median"), seq=("seq", "first"))
+fmain["rel"] = fmain.med / fmain.groupby(["algorithm", "order", "size"]).med.transform("median")
+fmain["overlap"] = fmain.seq.isin(over)
+ov_txt = (f"jobs overlapping the logged activity windows: {int(fmain.overlap.sum())}; median relative time {fmain[fmain.overlap].rel.median():.4f} "
+          f"(other jobs {fmain[~fmain.overlap].rel.median():.4f}); windows (approximate): {WINDOWS}")
+(OUT / "interference_check.txt").write_text(ov_txt + "\n")
+txt.append(ov_txt)
+
 # ---------------------------------------------- 4. trajectories
 panels = [("UntilNoChange", "sorted", 1000), ("WhileNeeded", "sorted", 1000), ("UntilNoChange", "sorted", 20000), ("WhileNeeded", "sorted", 20000)]
 rowsets = [("main data (10 forks)", main)] + ([("steady-state re-measurement (3 forks)", steady)] if steady is not None else [])

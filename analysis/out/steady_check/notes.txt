@@ -82,3 +82,11 @@ steady-state re-measurement nearly_local 20000 2.446450e+08   3.100209e+05 2.482
 steady-state re-measurement       random  5000 2.059046e+07   2.590140e+07 1.579050e+07    0.6096    0.7669
 steady-state re-measurement     reversed  5000 2.517606e+07   3.839940e+07 2.779721e+07    0.7239    1.1041
 steady-state re-measurement     reversed 20000 3.830460e+08   4.419018e+08 4.450858e+08    1.0072    1.1620
+
+steady vs main (forks 0-2): 19 of 90 cells with n >= 1000 differ by more than 10 %; 16 of 18 cells with n = 100.
+order
+nearly_local     9
+nearly_random    1
+sorted           9
+
+jobs overlapping the logged activity windows: 39; median relative time 1.0019 (other jobs 1.0000); windows (approximate): [('01:29:50', '01:30:40'), ('01:32:50', '01:33:20'), ('01:34:00', '01:34:20'), ('01:36:30', '01:36:50'), ('01:42:30', '01:43:05')]

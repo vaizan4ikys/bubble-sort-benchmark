@@ -71,7 +71,18 @@ def sig3(x):
     """3 significant digits with thin-space thousands separators (for human readers)."""
     if x >= 1000:
         return f"{round(x, -(len(str(int(x))) - 3)):,.0f}".replace(",", " ")
-    return f"{x:.3g}" if x < 100 else f"{x:.0f}"
+    return f"{x:.2f}" if x < 100 else f"{x:.0f}"
+
+
+def pretty_where(w):
+    """'nearly_random n=10000' -> 'nearly sorted (random swaps), n = 10 000'."""
+    order, n = w.rsplit(" n=", 1)
+    return f"{ORDER_LABEL.get(order, order)}, n = {int(n):,}".replace(",", " ")
+
+
+_ic = (ROOT / "analysis/out/steady_check/interference_check.txt").read_text()
+_m = re.search(r"overlapping.*?: (\d+); median relative time ([\d.]+) \(other jobs ([\d.]+)\)", _ic)
+N_OVER, REL_OVER, REL_OTHER = int(_m.group(1)), float(_m.group(2)), float(_m.group(3))
 
 
 def tiny_ratio(g, lo, hi):
@@ -268,8 +279,8 @@ p("The only decision criterion is running time. We therefore designed a controll
 
 doc.add_heading("Hypotheses", level=2)
 p(f"The hypotheses below were committed to the repository (file HYPOTHESES.md, commit {PREREG[0]}, "
-  f"{PREREG[1][:19].replace('T', ' ')} local time) before the benchmark harness existed and before any data "
-  "was collected (the times are local git commit times; the repository was first pushed to GitHub after the main run). "
+  f"{PREREG[1][:19].replace('T', ' ')} local time) before the benchmark harness was committed and before any main-experiment data "
+  "was collected; a first, uncommitted version of the harness was used for a short pilot a minute later (Section 2.4). The times are local git commit times; the repository was first pushed to GitHub, at about 02:44, after the main run. "
   "Table 1 restates them with the null hypothesis written out; the conditions and thresholds are exactly those of HYPOTHESES.md, "
   "which has only one commit and was never edited. In all of them the independent variables are *algorithm*, "
   "*input order* and *input size n* (as named per hypothesis), and the dependent variable is the *running "
@@ -320,7 +331,7 @@ table(["Dependent variable", "Measurement", "Scale"], [
 p("**Control variables** (kept constant):", keep=True)
 table(["Control variable", "Fixed value"], [
     ["Input data", "Identical arrays for all three algorithms (same seed for a given order, n and fork; the "
-                   "algorithm is not part of the seed). Elements are boxed Integer objects, allocated in array order."],
+                   "algorithm is not part of the seed). Elements are boxed Integer objects, allocated in array order (values from −128 to 127 are shared, cached Integer objects, which concerns the few-unique arrays and some of the n = 100 arrays)."],
     ["Machine and Java", "One laptop (Apple M3 Pro), OpenJDK 26.0.1, AC power, lid open, heavy applications closed by the user; "
                          "JVM flags -Xms2g -Xmx2g -XX:+UseSerialGC."],
     ["JIT / JVM state", "One algorithm per JVM process, so that the call to compareTo is not influenced by other "
@@ -356,7 +367,7 @@ doc.add_heading("2.3 Apparatus and Materials", level=2)
 env = (ROOT / "results/full/environment.txt").read_text() if (ROOT / "results/full/environment.txt").exists() else ""
 p("**Hardware and system.** Apple MacBook with an Apple M3 Pro (11 cores, 18 GB RAM), macOS 26.7.1 (MacBook Pro, model Mac15,6; "
   "the 11 cores are 5 performance and 6 efficiency cores, and macOS does not allow pinning a process to a core), connected to "
-  "AC power throughout (at the start the battery was at 67 % and charging; battery level is a time threat in laptop benchmarks), "
+  "AC power (recorded at the start: battery at 67 % and charging; battery level is a time threat in laptop benchmarks), "
   "lid open, screen on, heavy applications closed. We prevented sleep with caffeinate. The full environment "
   "record is stored with the data (results/full/environment.txt). Clock frequency and temperature were not recorded.")
 REQS = dict(l.split("==") for l in (ROOT / "requirements.txt").read_text().split() if "==" in l)
@@ -388,13 +399,13 @@ bullets([
     "The worker prints one CSV line per batch. The orchestrator appends them to raw.csv, runs the 1 080 jobs in "
     "randomised order (seed 20261104) and can resume after an interruption.",
 ])
-p("The whole main experiment took 77 minutes (01:25–02:43 on 4 November 2026). It was started and supervised by the AI assistant (Claude Code) on the first author's laptop, "
+p(f"The whole main experiment took 77 minutes (01:25–02:43 on 4 November 2026). It was started and supervised by the AI assistant (Claude Code) on the first author's laptop, "
   "at the first author's request, after the first author had closed other heavy applications. "
   "While it ran, the assistant made four short git commits (01:30–01:42, among them the follow-up scripts and the re-measurement rule) and a few low-priority smoke tests, "
-  "all listed in results/full/interference_log.txt; the 34 jobs that overlapped with them have a median relative time of 1.003, the other jobs 1.000 (Section 3.1). "
+  f"all listed in results/full/interference_log.txt; the {N_OVER} jobs that overlapped with them (approximate windows) have a median relative time of {REL_OVER:.3f}, the other jobs {REL_OTHER:.3f} (Section 3.1). "
   "Because the same ten fork numbers (0–9) are used for all three algorithms, each fork index defines one data set shared by the three algorithms.")
-p("**Pilot.** Between the commit of the hypotheses (01:16:35) and the start of the main run (01:25:20) we ran a pilot with one fork per cell (108 jobs, 01:17–01:20, results/pilot/), "
-  "using an early, not yet committed version of the harness, to test the harness and to choose the warm-up and batch parameters. The pilot already suggested that "
+p("**Pilot.** Between the commit of the hypotheses (01:16:35) and the start of the main run (01:25:20) we ran a short pilot (01:17–01:20, results/pilot/: 108 jobs = 3 algorithms × 6 input orders × n ∈ {100, 1 000, 5 000} × 2 forks, 10 timed batches each), "
+  "using an early, not yet committed version of the harness (committed at 01:20:59), to test the harness and to choose the warm-up and batch parameters. The pilot already suggested that "
   "UntilNoChange is slower than PassPerItem on random input and that WhileNeeded is slower than PassPerItem on reversed input, i.e. that some of our hypotheses might fail. "
   "We did not change the hypotheses (HYPOTHESES.md has a single commit), and no result in this report is based on the pilot data.")
 p("**Statistics.** Per cell, we compute the five-number summary of all 300 batch measurements. For inference we "
@@ -404,7 +415,7 @@ p("**Statistics.** Per cell, we compute the five-number summary of all 300 batch
   "whole confidence interval satisfies the threshold, *falsified* when the whole interval lies on the wrong side, "
   "and *inconclusive* otherwise; by the rule of HYPOTHESES.md a hypothesis is falsified as soon as one of its cells is, so we report \"falsified (k of m cells)\". "
   "The code that computes these intervals and verdicts (analysis/common.py and analyze_main.py) was committed at 01:34 (c7b3506), before the main data were analysed; its statistical logic has not changed since "
-  "(a later edit only changed a figure title). **Re-measurement rule (pre-registered at 01:36, during the main run and before any of its data were analysed):** a group (order, size ≥ 1 000) is "
+  "(later edits only changed a figure title and the number format of an output file). **Re-measurement rule (pre-registered at 01:36, during the main run and before any of its data were analysed):** a group (order, size ≥ 1 000) is "
   "re-measured with 20 additional forks per algorithm if the between-fork variation is above 5 %, the CI half-width is above "
   "3 %, a garbage collection occurred, the warm-up timed out, or any hypothesis cell is inconclusive.")
 p("**Use of AI.** The course allows the use of AI assistants. We used an AI assistant (Claude, via Claude Code) to help design the experiment, write the "
@@ -437,8 +448,8 @@ figure(MAIN / "fig_drift.png", "Check for slow drift of the machine during the 7
 dl = drift.strip().splitlines()
 p("Drift check: " + dl[0].replace("rho", "ρ") + ". The rolling median of the relative time stays within "
   + dl[1].split(":")[1].strip().replace("..", "to") + f" of the cell median (Figure {FIG_NO[0]}), so the drift is statistically detectable but tiny (later jobs were about 0.1–0.3 % faster): far smaller than "
-  "the differences between algorithms. The 34 jobs that overlapped with logged activity of the assistant (smoke tests, git commits; results/full/interference_log.txt) "
-  "have a median relative time of 1.003, the other jobs 1.000, so these short checks did not leave a visible trace.")
+  f"the differences between algorithms. The {N_OVER} jobs that overlapped with logged activity of the assistant (smoke tests, git commits; results/full/interference_log.txt) "
+  f"have a median relative time of {REL_OVER:.3f}, the other jobs {REL_OTHER:.3f}, so these short checks did not leave a visible trace.")
 
 doc.add_heading("3.2 Descriptive Statistics", level=2)
 p("For each of the 108 conditions we summarise the 300 measurements with the **five-number summary**: the *minimum* is the "
@@ -454,7 +465,7 @@ for o in ORDERS:
         rows.append([ORDER_LABEL[o], a, fmt_time(r["min"]), fmt_time(r.q1), fmt_time(r["median"]), fmt_time(r.q3), fmt_time(r["max"])])
 table(["Input order", "Algorithm", "Min", "Q1", "Median", "Q3", "Max"], rows,
       widths=[1.6, 1.25, 0.75, 0.75, 0.75, 0.75, 0.75], align_right_from=2,
-      caption="Five-number summary of the time per sort, n = 10 000 (300 measurements per row).")
+      caption="Five-number summary of the time per sort, n = 10 000 (300 measurements per row). For sorted input the rows of the two early-stopping algorithms are about twice the steady-state values (Section 3.7).")
 p("The median over forks, the 95 % confidence intervals and the between-fork variation per condition are in the file "
   "analysis/out/main/summary_cells.csv.")
 
@@ -467,12 +478,16 @@ for o in ORDERS:
         a = ratio(o, n, "UntilNoChange", "PassPerItem")
         b = ratio(o, n, "WhileNeeded", "PassPerItem")
         c = ratio(o, n, "WhileNeeded", "UntilNoChange")
-        f = lambda r: (tiny_ratio(r.ratio_geomean, r.ci_lo, r.ci_hi) if r.ratio_geomean < 0.01
-                       else f"{fmt_ratio(r.ratio_geomean)} [{fmt_ratio(r.ci_lo)}, {fmt_ratio(r.ci_hi)}]")
+        def f(r):
+            if r.ratio_geomean < 0.01:
+                return tiny_ratio(r.ratio_geomean, r.ci_lo, r.ci_hi)
+            if r.ratio_geomean < 0.1:
+                return f"{r.ratio_geomean:.3f} [{r.ci_lo:.3f}, {r.ci_hi:.3f}]"
+            return f"{fmt_ratio(r.ratio_geomean)} [{fmt_ratio(r.ci_lo)}, {fmt_ratio(r.ci_hi)}]"
         rows.append([ORDER_LABEL[o], f"{n:,}".replace(",", " "), f(a), f(b), f(c)])
 table(["Input order", "n", "UntilNoChange ÷ PassPerItem", "WhileNeeded ÷ PassPerItem", "WhileNeeded ÷ UntilNoChange"],
       rows, widths=[1.55, 0.6, 1.5, 1.5, 1.5], size=8,
-      caption="Time ratios (geometric mean over the 10 paired forks) with 95 % confidence interval in brackets; ratios below 0.01 are written as 1/N, e.g. 1/970 means 970 times faster.")
+      caption="Time ratios (geometric mean over the 10 paired forks) with 95 % confidence interval in brackets; ratios below 0.01 are written as 1/N, e.g. 1/970 means 970 times faster. For sorted input, the ratio WhileNeeded ÷ UntilNoChange is affected by level shifts and is about 0.98 in the steady state (Section 3.7).")
 
 doc.add_heading("3.4 Operation counts and cost model", level=2)
 p("To relate time to the work performed, an instrumented copy of the algorithms counted the comparisons (calls to compareTo) "
@@ -491,7 +506,7 @@ p("For the recommendation, we compare every algorithm with the fastest one in ea
 rows = []
 for r in regret.itertuples():
     rows.append([r.algorithm, f"{r.cells_fastest} / {r.cells}", f"{r.cells_within_5pct_of_best} / {r.cells}",
-                 f"{r.geomean_regret:.2f}", sig3(r.max_regret), r.max_regret_where.replace("n=", "n = ")])
+                 f"{r.geomean_regret:.2f}", sig3(r.max_regret), pretty_where(r.max_regret_where)])
 table(["Algorithm", "Fastest in", "Within 5 % of best", "Geometric-mean slowdown", "Worst slowdown", "Where"], rows,
       widths=[1.3, 0.85, 1.0, 1.1, 0.9, 1.35], size=8.5, caption="Slowdown relative to the fastest algorithm per cell (n ≥ 1 000), from the medians of all 30 batches. Section 3.7 repeats this analysis for the steady state.")
 figure(MAIN / "fig_regret.png", "Worst slowdown relative to the best algorithm per input order (n ≥ 1 000; logarithmic axis, 1 = best).", width=6.0)
@@ -523,7 +538,7 @@ p("The three algorithms under test are the classes provided with the assignment,
   "were no human participants.")
 doc.add_heading("B. Reproduction Package", level=2)
 p(f"Everything needed to recreate every number, table and figure of this report is in the public repository **{REPO_URL}** "
-  f"(final state: git tag `submission`, which contains the main data, the follow-up data and the code that built this report): the raw measurements (results/full/raw.csv: one line per timed batch, 32 400 lines), the "
+  f"(final state: git tag `submission-final`, which contains the main data, the follow-up data and the code that built this report): the raw measurements (results/full/raw.csv: one line per timed batch, 32 400 lines), the "
   "environment records, the operation counts, the code of the harness, the orchestration and analysis scripts, the pre-registered hypotheses "
   "(HYPOTHESES.md) and the pre-registered re-measurement rule (REMEASURE_RULE.md). To reproduce: build with javac, run "
   "scripts/run_experiment.py and the follow-up scripts, then the analysis scripts in the order given in README.md.")
