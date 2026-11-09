@@ -28,7 +28,7 @@ p("**H2 – random input: partly falsified.** The first part holds: WhileNeeded 
   "disappears (UntilNoChange ≈ PassPerItem), so it is created by the optimising C2 compiler. We did not inspect the generated machine code, so the exact mechanism remains a hypothesis.")
 a = ratio("reversed", 5000, "WhileNeeded", "UntilNoChange"); b = ratio("reversed", 5000, "WhileNeeded", "PassPerItem")
 a2 = ratio("reversed", 20000, "WhileNeeded", "UntilNoChange")
-p("**H3 – reversed input: falsified.** WhileNeeded is clearly faster than UntilNoChange at n = 5 000 "
+p("**H3 – reversed input: partly falsified.** WhileNeeded is clearly faster than UntilNoChange at n = 5 000 "
   f"({fmt_ratio(a.ratio_geomean)}×), but it is not 10 % faster than PassPerItem anywhere – it is in fact "
   f"{(b.ratio_geomean-1)*100:.0f} % *slower* at n = 5 000 (CI {fmt_ratio(b.ci_lo)}–{fmt_ratio(b.ci_hi)}) – and at n ≥ 10 000 "
   f"it is no faster than UntilNoChange either ({fmt_ratio(a2.ratio_geomean)}× at 20 000). On reversed input every pair of neighbours is "
@@ -55,7 +55,7 @@ p("**H6 – recommendation criterion: partly falsified.** WhileNeeded is never m
   f"{(f6.estimate.min()-1)*100:.0f}–{(f6.estimate.max()-1)*100:.0f} % slower, and one cell is inconclusive (sorted, n = 20 000 against "
   "UntilNoChange). Strictly, H6 is therefore falsified, and the stated recommendation rule does not fire. The practical question is how much "
   "WhileNeeded can lose compared with how much the alternatives can lose (Section 3.5): WhileNeeded's worst slowdown relative to the best "
-  "algorithm in a cell is about 12 % on reversed input, while PassPerItem is up to four to five orders of magnitude slower on sorted input and "
+  "algorithm in a cell is 1.70× (sorted input, n = 20 000, the JIT-dependent cell of Section 3.8) and otherwise at most about 12 % (reversed input), while PassPerItem is up to four to five orders of magnitude slower on sorted input and "
   "UntilNoChange is up to 2× slower than the best on random-like input.")
 p("**An unexpected finding: bimodal JIT behaviour.** For UntilNoChange on sorted input with n = 20 000, the fork medians fall into two clusters, "
   "about 5.7 µs and about 11.4 µs (Section 3.8), although all forks ran the same code on the same data. The JIT compiler evidently reaches two different "
@@ -72,27 +72,31 @@ p("**Overall.** Two of six hypotheses (H1, H4) were supported, four were partly 
 doc.add_heading("4.2 Limitations and Threats to Validity", level=2)
 bullets([
     "**Few machines (internal and external validity).** The complete data come from one Apple M3 Pro laptop (ARM). A reduced design was repeated on a second M3 Pro and on one x86 PC "
-    "(Section 3.7.9); the ranking and the main conclusions hold there, but one anomaly of the main data (reversed input) does not appear. Since it also disappears on the main laptop under JDK 25.0.5, JIT-related effects clearly depend on the exact JDK build. "
-    "Server-class CPUs, other operating systems with a quieter background and other JVM vendors were not tested. The second-machine runs have a higher noise level (about 6–10 % within a fork) than the main run (4.9 %).",
-    "**Only HotSpot-based JVMs.** We varied the JDK version (8, 17, 21, 25.0.1 on another machine, 26) and the GC (Serial, Parallel, G1), but not the JVM implementation "
-    "(OpenJ9, GraalVM). The JDK 8 data come from a different vendor build (Amazon Corretto).",
+    "(Section 3.7.9); the ranking and the main conclusions hold there, but one anomaly of the main data (reversed input) does not appear. Since it also disappears on the main laptop under JDK 25.0.5, JIT-related effects clearly depend on the JDK; a dependence on the hardware cannot be excluded. "
+    "Server-class CPUs and other operating systems with a quieter background were not tested. The second-machine runs have a higher noise level (about 6–10 % within a fork) than the main run (4.9 %). "
+    "Future work: the full design on more machines, including an x86 server under Linux, and the two missing runs (JDK 26.0.1 on x86, JDK 26.0.2.1 on the M3 Pro) that would locate the anomaly.",
+    "**Only HotSpot-based JVMs.** We varied the JDK version (8, 17, 21, 25.0.5 and 26.0.1 on the main laptop; 25.0.1 and 26.0.2.1 on other computers) and the GC (Serial, Parallel, G1), but not the JVM implementation "
+    "(OpenJ9, GraalVM). The JDK builds also come from different vendors (Homebrew, Amazon Corretto for JDK 8, Temurin for JDK 25.0.5 and the desktop). "
+    "A repeat on OpenJ9 and GraalVM, and an inspection of the C2 machine code for reversed input, would test whether the ranking and our explanation hold beyond HotSpot.",
     "**Synthetic inputs.** The six input orders and five extra shapes are classical but synthetic. Real data are somewhere in between; the recommendation "
     "rests on the fact that WhileNeeded is never far from the best on any of them. Arrays are filled with boxed Integers allocated in array order, which gives better memory locality than "
-    "in a long-running application with a fragmented heap.",
+    "in a long-running application with a fragmented heap. A benchmark on samples of the customers' real data, and on arrays whose elements are scattered in memory, would close this gap.",
     "**Element type and comparator.** The main experiment uses Integer; a String check and a polluted-JIT check were added. Expensive user-defined comparators "
-    "would favour fewer comparisons, i.e. WhileNeeded, even more (as the String result shows), so this threat works in favour of the recommendation, but we have not measured it.",
+    "would favour fewer comparisons, i.e. WhileNeeded, even more (as the String result shows), so this threat works in favour of the recommendation, but we have not measured it. The next step would be to measure the element types and comparators that Bubble Inc.'s customers actually use.",
     "**Steady-state vs. real use.** The main design measures optimised, warmed-up code in a clean JVM. A real application is slower by a factor of about 3 when the JIT profile is polluted "
     "and much slower in the first calls (Sections 3.7.2, 3.7.5). The absolute numbers should therefore not be quoted as customer-facing performance, only the relative ranking, which "
-    "was stable in these settings.",
+    "was stable in these settings. Measuring the sorts inside a representative application, with its real mix of calls, would give absolute numbers that can be quoted.",
     "**Statistical limits.** Ten JVM forks per cell give confidence intervals of about ±1 % where the JIT is stable, but wide intervals where it is not (the bimodal "
     "sorted/n = 20 000 cell; nearly-local inputs). The distribution of fork medians is then not normal and the t intervals are approximate. Several hundred intervals were computed, "
-    "without correction for multiple comparisons; the conclusions rest on effects that are large compared with the intervals. The follow-up experiments use 5 forks per cell and no pre-registered thresholds.",
-    "**Post-hoc analysis.** The hypotheses and the re-measurement rule were fixed before the data; the worst-case slowdown metric used for the recommendation (Section 3.5), the "
-    "choice of follow-up experiments and their analysis were defined later, after seeing the main results. They should be read as exploratory.",
-    "**Time and interference.** The experiment ran overnight on AC power, with the machine otherwise idle. We checked for drift (tiny) and logged our own short test runs "
-    "(results/full/interference_log.txt). The follow-up experiments ran after the main one, so the main data cannot have been disturbed by them.",
+    "without correction for multiple comparisons; the conclusions rest on effects that are large compared with the intervals. The follow-up experiments use 5 forks per cell and no pre-registered thresholds. More forks for the unstable cells, bootstrap intervals and a correction such as Holm's would make the intervals more reliable.",
+    "**Post-hoc analysis.** The hypotheses and the re-measurement rule were fixed before the main data existed, and so were the scripts of the first two follow-up queues. "
+    "The worst-case slowdown metric used for the recommendation (Section 3.5), the interpretation of the follow-ups, and the runs on other computers and the real JDK 25 "
+    "came after seeing the main results. All of these should be read as exploratory. A new, pre-registered experiment with the slowdown criterion fixed in advance would turn them into confirmatory tests.",
+    "**Time and interference.** The experiment ran overnight on AC power, with heavy applications closed. Four short git commits and a few low-priority tests ran at the same time; "
+    "they are logged (results/full/interference_log.txt), and the drift check shows only a tiny drift. The follow-up experiments ran after the main one; only a 12-job smoke test "
+    "of ExtendedWorker overlapped with it. A dedicated machine with no other user activity would remove this threat.",
     "**Scope of the criterion.** Only running time was considered (as requested). Memory use is identical (in place), and all three are stable sorts, so nothing else would "
-    "change the decision, but code size, readability and maintenance were out of scope.",
+    "change the decision, but code size, readability and maintenance were out of scope. If they matter to Bubble Inc., a code review should complement this experiment.",
 ])
 
 doc.add_heading("4.3 Conclusions", level=2)

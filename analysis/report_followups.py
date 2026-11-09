@@ -6,9 +6,9 @@ POOL = ROOT / "analysis/out/pooled"
 
 doc.add_heading("3.7 Robustness experiments", level=2)
 p("The main experiment answers the question for one machine, one JDK, one garbage collector, one element type and a clean JVM. "
-  "To find out whether the recommendation depends on these choices, we ran the follow-up experiments of Table 7. They were planned and "
-  "scripted together with the main experiment (scripts/run_followups*.sh), they use the same measuring procedure and the same "
-  "fork-and-batch structure but fewer forks (5 per cell, unless stated), and they were run after the main experiment on the same machine (except Section 3.7.9). "
+  "To find out whether the recommendation depends on these choices, we ran the follow-up experiments of Table 7. Their first two queues were scripted before the main data existed "
+  "(scripts/run_followups.sh, run_followups2.sh); the runs on other computers and the real JDK 25 run (Section 3.7.9) were added after seeing the results. "
+  "They use the same measuring procedure and the same fork-and-batch structure but fewer forks (5 per cell, unless stated), and they were run after the main experiment on the same machine (except Section 3.7.9). "
   "They are descriptive checks of the *consistency* of the ranking; we did not pre-register thresholds for them.")
 table(["Experiment", "Question", "Design"], [
     ["String elements", "Does the ranking change if comparisons are expensive?", "String instead of Integer, 6 orders × 5 sizes × 3 algorithms × 5 forks"],
@@ -131,10 +131,12 @@ p("**Scaling.** Fitting time = c · n^k on 12 sizes between 1 000 and 40 000 giv
   f"{ex('random','PassPerItem')} for PassPerItem, {ex('random','UntilNoChange')} for UntilNoChange and {ex('random','WhileNeeded')} for WhileNeeded; "
   f"on sorted input {ex('sorted','PassPerItem')} for PassPerItem and {ex('sorted','UntilNoChange')} and {ex('sorted','WhileNeeded')} for the two others. "
   "The growth is quadratic (PassPerItem a bit steeper than 2, consistent with the H5 result) and linear, respectively.")
-p("**Replication.** The complete main design was repeated with a different random seed (new data, new JVMs). " + (F1 / "replication_summary.txt").read_text().strip().replace("Spearman rho", "Spearman ρ") + ". "
+p("**Replication.** The complete main design was repeated with a different random seed (new data, new JVMs). Of the 108 cell medians, 94 % differ from the main data by less than 5 % "
+  "and 98 % by less than 10 %. For n ≥ 1 000 the median absolute difference is 0.1 % and the largest 18.9 %. The Spearman correlation of the cell medians is 0.9999. "
   "The only larger deviations are the two nearly-sorted cells with local swaps at n = 5 000 (−16 % and −19 %), which have the highest between-data variation (see Section 3.8).")
-p("**Load.** " + (F1 / "load_summary.txt").read_text().strip() + ". Six busy background processes thus slow the sorts by about 6 % on average but make "
-  "single batches far more variable, which confirms that benchmarks must be run on an otherwise idle machine – as ours were.")
+p("**Load.** Under load the median slowdown is 1.057× (range 1.048–1.364). From idle to load, the median CV between forks rises from 1.3 % to 1.7 %, "
+  "and the median relative IQR of the batches from 1.6 % to 25.7 %. Six busy background processes thus slow the sorts by about 6 % on average but make "
+  "single batches far more variable, which confirms that benchmarks must be run on an otherwise idle machine – as ours was, apart from the logged short tests (Section 2.4).")
 p("**Correctness.** The three sorters passed all 20 139 checks: every permutation of up to 7 elements, 600 random arrays against Arrays.sort, all 11 input shapes, stability, and in-place behaviour (results/correctness/correctness.txt). "
   "All timed results in every experiment were also verified to be sorted. The timing comparison therefore compares correct, equivalent sorters.")
 # ---- JIT level
@@ -197,18 +199,20 @@ p(f"**Data quality.** The desktop is noisier than the main laptop: the spread wi
   f"Reversed input has two outlier JVMs: at n = 1 000 one fork has a ratio of "
   f"{f26[f26['size'] == 1000].ratio.min():.2f}, and at n = 10 000 one has {f26[f26['size'] == 10000].ratio.max():.2f}, so the geometric means at these sizes have wide intervals "
   f"while the median fork ratios stay near {mrev(RYZEN26, 1000).ratio_median:.2f}–{mrev(RYZEN26, 10000).ratio_median:.2f}. "
-  f"The JDK 17 desktop run is weaker still ({mspread(RYZEN17):.1f} % spread, power state not recorded); its decimal commas (old code on a non-English locale) were repaired during analysis, leaving the raw file as measured.")
+  f"The JDK 17 desktop run is weaker still ({mspread(RYZEN17):.1f} % spread, power state not recorded); its decimal commas (old code on a non-English locale) were repaired during analysis, leaving the raw file as measured. The measurements of these runs are in Appendix D.")
 figure(M / "fig_machines.png", "PassPerItem ÷ WhileNeeded on reversed input per computer and JDK: geometric mean of the paired forks with 95 % CI, and the median of the per-fork ratios.", width=6.2)
 # ---- real JDK 25 on the main machine (only if that run exists)
 vrr = pd.read_csv(F2 / "variant_ratios.csv")
 _j25 = vrr[(vrr.setting == "JDK 25 (this Mac)") & (vrr.order == "reversed") & (vrr["size"] == 5000) & (vrr.numerator == "WhileNeeded") & (vrr.denominator == "PassPerItem")]
 if len(_j25):
     r1 = _j25.iloc[0]
-    p("**JDK 25 on the main laptop.** To separate the Java version from the hardware we also measured a real JDK 25 on the main laptop with all other settings as in the main experiment: "
+    p("**JDK 25 on the main laptop.** To separate the Java version from the hardware we also measured a real JDK 25 on the main laptop, with the same macOS and JVM flags but with Temurin instead of Homebrew, ExtendedWorker and 5 forks × 20 batches "
+      "(the ExtendedWorker repeat on JDK 26.0.1 reproduces the main result): "
       f"WhileNeeded ÷ PassPerItem on reversed input at n = 5 000 is {r1.ratio:.2f} (CI {r1.ci_lo:.2f}–{r1.ci_hi:.2f}) with Temurin 25.0.5, i.e. WhileNeeded is clearly faster and the anomaly is absent. "
-      "On the same laptop the anomaly therefore disappears when only the Java version changes from the Homebrew OpenJDK 26.0.1 of the main experiment to JDK 25.0.5; "
-      "together with the second M3 Pro (JDK 25.0.1) and the desktop (Temurin 26.0.2.1), it is tied to the JDK 26.0.1 build used in the main experiment rather than to the hardware. "
-      "Our data cannot tell whether it is a property of JDK 26.0.1 specifically (and fixed by 26.0.2.1) or of this particular Homebrew build. "
+      "On the same laptop the anomaly therefore disappears when the JDK changes from the Homebrew OpenJDK 26.0.1 of the main experiment to Temurin 25.0.5, "
+      "so the laptop alone does not cause it; the desktop result (Temurin 26.0.2.1) shows that the major version 26 alone does not cause it either. "
+      "Our data cannot tell whether it is a property of JDK 26.0.1, of this Homebrew build, or of JDK 26 combined with the M3 Pro: "
+      "we have no run of JDK 26.0.1 on x86 or of JDK 26.0.2.1 on the M3 Pro. "
       "This JDK 25 run was made with the laptop on battery power (39 % at the start, 33 % at the end), unlike the main run; its spread within a fork (5.1 %) is similar to the main run (4.9 %). "
       "The Homebrew package openjdk@25 had also been used for the first attempt, which silently ran JDK 26.0.1 (Section 3.7.2).")
 

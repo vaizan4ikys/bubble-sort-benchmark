@@ -51,9 +51,10 @@ C="--classes bin_ext2 --types Integer"
 step ext_g1       $C --jvm-flags ""                                  --orders $ALL6 --sizes 1000 5000 10000 --forks 5 --iters 20
 step ext_parallel $C --jvm-flags "-Xms2g -Xmx2g -XX:+UseParallelGC"  --orders $ALL6 --sizes 1000 5000 10000 --forks 5 --iters 20
 # ---- JDK versions --------------------------------------------------------------------------------
-J8=/Users/pavloharabadzhiiev/Library/Java/JavaVirtualMachines/corretto-1.8.0_482/Contents/Home/bin/java
+# JDK locations: override with JAVA8_BIN and JDK_PREFIX (the java of JDK v is $JDK_PREFIX$v/bin/java).
+J8=${JAVA8_BIN:-$HOME/Library/Java/JavaVirtualMachines/corretto-1.8.0_482/Contents/Home/bin/java}
 for v in 17 21 25; do
-  J=/opt/homebrew/opt/openjdk@$v/bin/java
+  J=${JDK_PREFIX:-/opt/homebrew/opt/openjdk@}$v/bin/java
   step ext_jdk$v JAVA_BIN=$J $C --java $J --orders $ALL6 --sizes 1000 5000 10000 --forks 5 --iters 20
 done
 step ext_jdk8 JAVA_BIN=$J8 $C --java $J8 --orders $ALL6 --sizes 1000 5000 10000 --forks 5 --iters 20

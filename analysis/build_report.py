@@ -236,18 +236,18 @@ HYP_TXT = [
      "H0: the ratio is below 100 for at least one of the two comparisons. IV: algorithm; DV: running time."),
     ("H2 (random input)", "For n ≥ 5 000, on random input WhileNeeded has the lowest median running time of the three "
      "algorithms, while UntilNoChange and PassPerItem differ from each other by less than 15 %.",
-     "H0: WhileNeeded is not the fastest, or UntilNoChange and PassPerItem differ by 15 % or more."),
+     "H0: WhileNeeded is not the fastest, or UntilNoChange and PassPerItem differ by 15 % or more. IV: algorithm; DV: running time."),
     ("H3 (reversed input)", "For n ≥ 5 000, on reversed input WhileNeeded is at least 10 % faster than both "
-     "UntilNoChange and PassPerItem.", "H0: WhileNeeded is less than 10 % faster than at least one of them."),
+     "UntilNoChange and PassPerItem.", "H0: WhileNeeded is less than 10 % faster than at least one of them. IV: algorithm; DV: running time."),
     ("H4 (locally disturbed input)", "For n ≥ 5 000, on nearly sorted input with local swaps, both UntilNoChange and "
-     "WhileNeeded are at least 10× faster than PassPerItem.", "H0: at least one of the two is less than 10× faster."),
+     "WhileNeeded are at least 10× faster than PassPerItem.", "H0: at least one of the two is less than 10× faster. IV: algorithm; DV: running time."),
     ("H5 (growth with n)", "On random input, doubling n from 10 000 to 20 000 multiplies the median time of every "
      "algorithm by a factor between 3.3 and 4.7 (quadratic growth). On sorted input the factor is below 2.6 for "
      "UntilNoChange and WhileNeeded (linear growth) and between 3.3 and 4.7 for PassPerItem.",
-     "H0: at least one factor lies outside the stated range."),
+     "H0: at least one factor lies outside the stated range. IV: input size and algorithm; DV: running time."),
     ("H6 (recommendation)", "In no combination of input order and size n ≥ 1 000 is WhileNeeded more than 5 % slower than "
      "UntilNoChange or PassPerItem. If this holds, WhileNeeded is recommended.",
-     "H0: in at least one such combination WhileNeeded is more than 5 % slower than another algorithm."),
+     "H0: in at least one such combination WhileNeeded is more than 5 % slower than another algorithm. IV: algorithm, input order, input size; DV: running time."),
 ]
 table(["Hypothesis", "Statement (H1 alternative)", "Null hypothesis / variables"],
       [[a, b, c] for a, b, c in HYP_TXT], widths=[1.15, 3.35, 2.0],
@@ -310,10 +310,14 @@ doc.add_heading("2.3 Apparatus and Materials", level=2)
 env = (ROOT / "results/full/environment.txt").read_text() if (ROOT / "results/full/environment.txt").exists() else ""
 p("**Hardware and system.** Apple MacBook with an Apple M3 Pro (11 cores, 18 GB RAM), macOS 26.7.1, connected to "
   "AC power and fully charged during the whole session (battery level is a time threat in laptop benchmarks), "
-  "lid open, screen on, all other applications closed. We prevented sleep with caffeinate. The full environment "
+  "lid open, screen on, heavy applications closed. We prevented sleep with caffeinate. The full environment "
   "record is stored with the data (results/full/environment.txt).")
-p("**Software.** OpenJDK 26.0.1 (Homebrew build), compiled with the same JDK; Python 3 with pandas, NumPy, SciPy and "
-  "matplotlib for the analysis. The three sorting classes and the interface Sorter come from the assignment and "
+REQS = dict(l.split("==") for l in (ROOT / "requirements.txt").read_text().split() if "==" in l)
+p("**Software.** Main experiment: OpenJDK 26.0.1, Homebrew build (https://formulae.brew.sh/formula/openjdk), with the code compiled by the same JDK. "
+  "Follow-up runs: Homebrew openjdk@17 (17.0.19) and openjdk@21 (21.0.11), Amazon Corretto 8 (1.8.0_482, https://aws.amazon.com/corretto), "
+  "Eclipse Temurin 25.0.5 and, on the desktop, Temurin 17.0.21 and 26.0.2.1 (https://adoptium.net); JMH 1.37 (https://github.com/openjdk/jmh) built with Maven. "
+  f"Analysis: Python 3 with pandas {REQS['pandas']}, NumPy {REQS['numpy']}, SciPy {REQS['scipy']}, matplotlib {REQS['matplotlib']} and python-docx {REQS['python-docx']} "
+  "(pinned in requirements.txt). The three sorting classes and the interface Sorter come from the assignment and "
   "were not modified (byte-identical copies in src/exp01). Our own code: InputGenerator (deterministic data), Worker "
   "(the measuring program), run_experiment.py (orchestrator, one JVM per job), and the analysis scripts. All code "
   f"and data are public: {REPO_URL}.")
@@ -462,16 +466,16 @@ p("The three algorithms under test are the classes provided with the assignment,
   "were no human participants.")
 doc.add_heading("B. Reproduction Package", level=2)
 p(f"Everything needed to recreate every number, table and figure of this report is in the public repository **{REPO_URL}** "
-  f"(report built from commit {HEAD}): the raw measurements (results/full/raw.csv: one line per timed batch, 32 400 lines), the "
+  f"(data and analysis from commit {HEAD}): the raw measurements (results/full/raw.csv: one line per timed batch, 32 400 lines), the "
   "environment records, the operation counts, the code of the harness, the orchestration and analysis scripts, the pre-registered hypotheses "
   "(HYPOTHESES.md) and the pre-registered re-measurement rule (REMEASURE_RULE.md). To reproduce: build with javac, run "
-  "scripts/run_experiment.py, then analysis/analyze_main.py (see README.md).")
+  "scripts/run_experiment.py and the follow-up scripts, then the analysis scripts in the order given in README.md.")
 bullets([
     "results/full/ – main experiment (raw.csv, run.log, environment.txt, interference_log.txt)",
     "results/remeasure/ – the additional forks of uncertain cells (if any)",
     "results/ext_*/ – follow-up experiments, each with its own raw.csv and environment.txt",
     "results/portable_*/ – the reduced design on two other computers (run by Vladyslav Nechaiev)",
-    "results/pilot/, results/pilot_ext/ – pilot runs made before the main experiment with a not yet committed version of the harness, used only to choose the parameters",
+    "results/pilot/ – pilot run made before the main experiment with a not yet committed version of the harness, used only to choose the parameters; results/pilot_ext/ – short smoke test of ExtendedWorker made during the main run (see results/full/interference_log.txt)",
     "analysis/out/ – all derived tables and figures of this report",
 ])
 doc.add_heading("C. Five-number summaries of all conditions", level=2)
@@ -483,6 +487,8 @@ for block in five_md.split("### ")[1:]:
     header = [c.strip() for c in tab[0].strip("|").split("|")]
     body = [[c.strip() for c in ln.strip("|").split("|")] for ln in tab[2:]]
     table(header, body, widths=[0.6, 1.4, 0.9, 0.9, 0.9, 0.9, 0.9], size=8, align_right_from=2)
+
+exec((ROOT / "analysis" / "report_appendix_devices.py").read_text())
 
 doc.save(OUT_DOCX)
 print("written", OUT_DOCX)
