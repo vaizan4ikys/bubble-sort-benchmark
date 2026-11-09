@@ -63,33 +63,30 @@ def local_exponents(alg, order="random"):
 
 h1 = H("H1")
 doc.add_heading("4.1 Compare Hypothesis to Results", level=2)
-p(f"Under the rule registered in HYPOTHESES.md (one clear violation falsifies), **two hypotheses (H1, H4) were supported and four (H2, H3, H5, H6) were falsified** in the main data "
+p(f"Under the rule registered in HYPOTHESES.md (one clear violation falsifies), **H1 and H4 were supported and H2, H3, H5 and H6 were falsified** in the main data "
   f"({counts('H2')} for H2, {counts('H3')} for H3, {counts('H5')} for H5, {counts('H6')} for H6). "
-  f"The steady-state re-measurement of Section 3.7 gives the same verdicts (cells falsified: H2 {hc('H2').falsified}, H3 {hc('H3').falsified}, H5 {hc('H5').falsified}, H6 {hc('H6').falsified}); the verdict of H5 is fragile (see below). "
-  "The qualitative predictions were right: early stopping helps enormously on sorted and nearly sorted input, WhileNeeded needs the fewest comparisons, and growth is quadratic or linear as expected. "
-  "What we got wrong were thresholds and the assumption that fewer comparisons always mean less time. The hypotheses were not changed after the fact.")
-p(f"**H1 – sorted input: supported.** PassPerItem is between "
-  f"{th(h1.estimate.min())}× and {th(h1.estimate.max())}× slower than the early-stopping algorithms (lowest CI bound "
-  f"{th(h1.ci_lo.min())}×), far beyond the predicted 100× (steady state: {th(HST[HST.hypothesis == 'H1'].estimate.min())}×–{th(HST[HST.hypothesis == 'H1'].estimate.max())}×, because the main-data times of the early-stopping algorithms are too high, Section 3.7). PassPerItem makes n(n−1) comparisons whatever the input, the others a single pass of n−1 comparisons.")
+  f"The steady-state re-measurement of Section 3.7 gives the same verdicts (cells falsified: H2 {hc('H2').falsified}, H3 {hc('H3').falsified}, H5 {hc('H5').falsified}, H6 {hc('H6').falsified}); only H5 is fragile (below). "
+  "The qualitative predictions were right (early stopping helps enormously on sorted and nearly sorted input, WhileNeeded needs the fewest comparisons, growth is quadratic or linear as expected). "
+  "Wrong were our thresholds and the assumption that fewer comparisons always mean less time. The hypotheses were not changed afterwards.")
+p(f"**H1 – sorted input: supported.** PassPerItem is between {th(h1.estimate.min())}× and {th(h1.estimate.max())}× slower than the early-stopping algorithms (lowest CI bound "
+  f"{th(h1.ci_lo.min())}×; steady state: {th(HST[HST.hypothesis == 'H1'].estimate.min())}×–{th(HST[HST.hypothesis == 'H1'].estimate.max())}×, see Section 3.7), far beyond the predicted 100×: "
+  "PassPerItem makes n(n−1) comparisons whatever the input, the others a single pass of n−1 comparisons.")
 r5 = ratio("random", 5000, "UntilNoChange", "PassPerItem"); r10 = ratio("random", 10000, "UntilNoChange", "PassPerItem")
 r20 = ratio("random", 20000, "UntilNoChange", "PassPerItem")
 p("**H2 – random input: falsified in one cell, inconclusive in one.** WhileNeeded is the fastest algorithm in every random cell "
   f"with n ≥ 5 000 (it needs {fmt_ratio(ratio('random',20000,'WhileNeeded','PassPerItem').ratio_geomean)}–"
-  f"{fmt_ratio(ratio('random',5000,'WhileNeeded','PassPerItem').ratio_geomean)} of PassPerItem's time). The second part (UntilNoChange and "
-  f"PassPerItem within 15 % of each other) is falsified at n = 5 000 (UntilNoChange is {fmt_ratio(r5.ratio_geomean)}× PassPerItem, "
-  f"CI {ci(r5.ci_lo, r5.ci_hi)}), inconclusive at 10 000 ({fmt_ratio(r10.ratio_geomean)}×; falsified after re-measurement, Appendix F) and supported at 20 000 "
-  f"({fmt_ratio(r20.ratio_geomean)}×). Both algorithms make about n² comparisons on random data, so the gap must come from the cost per loop iteration. Our conjecture is that "
-  "the flag that UntilNoChange sets inside the swap branch makes the compiled loop slower; this is supported only indirectly: with only the C1 compiler or the interpreter the gap "
-  "disappears (UntilNoChange ≈ PassPerItem, Appendix E.8), so the optimising C2 compiler is necessary for it. We did not inspect the generated machine code.")
+  f"{fmt_ratio(ratio('random',5000,'WhileNeeded','PassPerItem').ratio_geomean)} of PassPerItem's time). UntilNoChange and "
+  f"PassPerItem are not within 15 % of each other at n = 5 000 ({fmt_ratio(r5.ratio_geomean)}×, CI {ci(r5.ci_lo, r5.ci_hi)}), inconclusive at 10 000 ({fmt_ratio(r10.ratio_geomean)}×; falsified after re-measurement, Appendix F) and within 15 % at 20 000 "
+  f"({fmt_ratio(r20.ratio_geomean)}×). Both make about n² comparisons on random data, so the gap must come from the cost per loop iteration; our conjecture is that "
+  "the flag UntilNoChange sets inside the swap branch slows the compiled loop. This is supported only indirectly: with only the C1 compiler or the interpreter the gap "
+  "disappears (Appendix E.8), so the C2 compiler is necessary for it. We did not inspect the generated machine code.")
 a = ratio("reversed", 5000, "WhileNeeded", "UntilNoChange"); b = ratio("reversed", 5000, "WhileNeeded", "PassPerItem")
 a2 = ratio("reversed", 20000, "WhileNeeded", "UntilNoChange")
 p("**H3 – reversed input: falsified in 5 of 6 cells.** WhileNeeded is clearly faster than UntilNoChange at n = 5 000 "
-  f"({fmt_ratio(a.ratio_geomean)}×), but it is not 10 % faster than PassPerItem anywhere – it is {(b.ratio_geomean-1)*100:.0f} % *slower* at n = 5 000 "
-  f"(CI {ci(b.ci_lo, b.ci_hi)}) – and at n ≥ 10 000 it is no faster than UntilNoChange either ({fmt_ratio(a2.ratio_geomean)}× at 20 000). "
-  "WhileNeeded makes about half as many comparisons as PassPerItem on reversed input, but both perform the same n(n−1)/2 swaps; why this does not make WhileNeeded faster in the main setting is not known. "
-  "The 7–12 % disadvantage in the main data (up to 16 % at n = 20 000 in the steady state) is, however, not a robust property of the algorithms: it occurs only in the main setting (Homebrew OpenJDK 26.0.1 on the first M3 Pro with the Serial or Parallel collector). "
-  "It is absent with G1, on JDK 8, 17, 21 and 25.0.5 (same laptop), on a second M3 Pro with JDK 25.0.1, on an x86 PC with JDK 26.0.2.1, with String elements, with a polluted JIT profile, "
-  "and when the C2 compiler is switched off (Appendix E). Which feature of the main setting causes it we cannot say: vendor build, patch level and power state are confounded with the Java version in the JDK 25 comparison (Appendix E.9).")
+  f"({fmt_ratio(a.ratio_geomean)}×) but {(b.ratio_geomean-1)*100:.0f} % *slower* than PassPerItem (CI {ci(b.ci_lo, b.ci_hi)}), and at n ≥ 10 000 no faster than UntilNoChange ({fmt_ratio(a2.ratio_geomean)}× at 20 000). "
+  "This disadvantage (7–12 % in the main data, up to 16 % at n = 20 000 in the steady state) is not a robust property of the algorithms: it occurs only in the main setting "
+  "(Homebrew OpenJDK 26.0.1 on the first M3 Pro, Serial or Parallel collector) and is absent in every other setting we tried (G1, other JDKs, two other computers, String elements, a polluted JIT profile, C2 switched off; Appendix E). "
+  "Its cause is unknown; vendor build, patch level and power state are confounded with the Java version (Appendix E.9).")
 p("**H4 – locally disturbed input: supported.** Both early-stopping algorithms are between "
   f"{H('H4').estimate.min():.0f}× and {H('H4').estimate.max():.0f}× faster than PassPerItem (lowest CI bound {H('H4').ci_lo.min():.0f}×; steady state: {HST[HST.hypothesis == 'H4'].estimate.min():.0f}×–{HST[HST.hypothesis == 'H4'].estimate.max():.0f}×).")
 g = H("H5", claim="PassPerItem: t(20000)/t(10000) within 3.3-4.7", order="random").iloc[0]
@@ -97,85 +94,61 @@ le = local_exponents("PassPerItem")
 lo_e = [v for (x, y), v in le.items() if y <= 5000]
 hi_e = [v for (x, y), v in le.items() if x >= 20000]
 mid_e = [v for (x, y), v in le.items() if 5000 <= x and y <= 15000]
-p("**H5 – growth with n: falsified in 1 of 6 cells.** The growth factors lie in the predicted range except for PassPerItem on random input, which grows by "
-  f"{g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) when n doubles from 10 000 to 20 000, slightly more than the 4.7 allowed. "
-  f"The local scaling exponents of PassPerItem on random input (Appendix E.7) are about {np.mean(lo_e):.2f} for n ≤ 5 000 and {np.mean(hi_e):.2f} for n ≥ 20 000, but {min(mid_e):.2f}–{max(mid_e):.2f} between n = 5 000 and 15 000, "
-  "so the excess is a localised steepening, not a constant one. A cache effect (the boxed Integer objects of the arrays no longer fit into a cache level) would fit this picture, but we did not test it. "
-  "The verdict is fragile: the confidence interval of the growth factor (4.71–4.86) only just excludes 4.7, and in the late-batch analysis of Section 3.7 the same cell is inconclusive (lower bound 4.70). "
-  "The linear growth on sorted input holds for UntilNoChange and WhileNeeded.")
+p("**H5 – growth with n: falsified in 1 of 6 cells.** Only PassPerItem on random input grows by more than allowed when n doubles from 10 000 to 20 000: "
+  f"{g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) against 4.7. The local scaling exponents (Appendix E.7) are about {np.mean(lo_e):.2f} for n ≤ 5 000 and {np.mean(hi_e):.2f} for n ≥ 20 000 but {min(mid_e):.2f}–{max(mid_e):.2f} between 5 000 and 15 000, "
+  "a localised steepening that a cache effect might explain (not tested). The verdict is fragile: the interval only just excludes 4.7, and in the late-batch analysis of Section 3.7 the cell is inconclusive.")
 f6 = H("H6", verdict="falsified")
 w5, u5, p5 = rc("WhileNeeded"), rc("UntilNoChange"), rc("PassPerItem")
 sk = kc("sorted", 1000); sb = kc("sorted", 20000)
 sbm = kc("sorted", 20000, "main (all 30 batches)"); skm = kc("sorted", 1000, "main (all 30 batches)")
 p(f"**H6 – recommendation criterion: falsified in {len(f6)} of 60 comparisons (one more inconclusive).** WhileNeeded is more than 5 % slower than another algorithm only on reversed input, against PassPerItem "
-  f"({(f6.estimate.min()-1)*100:.0f}–{(f6.estimate.max()-1)*100:.0f} % slower in the main data, up to 16 % in the steady state; see H3); in addition, one cell is inconclusive in the all-batches analysis (sorted, n = 20 000, against UntilNoChange; supported in the steady state, see below). "
-  "The registered rule \"if this holds, WhileNeeded is recommended\" therefore does not fire. "
-  "The recommendation in Section 4.3 rests on a post-hoc criterion (the worst-case slowdown of Section 3.5), which we state explicitly.")
-p("**Level shifts inside a JVM (found after the main analysis).** A review of the raw data by a second AI assistant session showed that for very short sorts the time per sort changed inside the 30 timed batches of a fork, "
-  "most likely because the JIT compiler finished compiling the loop that runs the batches while it was being timed (Section 3.7; we did not record compilation events). "
-  "Our first explanation, a \"bimodal\" JIT state that depends on the JVM, was wrong: almost all forks go through the same switch, only at different batches, and the switch of WhileNeeded on sorted input with n = 20 000 comes much later than that of "
-  f"UntilNoChange: in the main data WhileNeeded stayed at {fmt_time(sbm.WhileNeeded)} during all 30 batches, UntilNoChange dropped to {fmt_time(sbm.UntilNoChange)}. "
-  f"In the steady state both early-stopping algorithms need practically the same time on sorted input (n = 1 000: {fmt_time(sk.UntilNoChange)} for UntilNoChange against {fmt_time(sk.WhileNeeded)} for WhileNeeded; "
-  f"n = 20 000: {fmt_time(sb.UntilNoChange)} against {fmt_time(sb.WhileNeeded)}), whereas the all-batches medians of the main data suggested differences of {abs(skm.W_over_U - 1) * 100:.0f} % and a factor {sbm.W_over_U:.1f}. "
-  "The steady-state analysis changes the verdict of two cells (H6, sorted n = 20 000 against UntilNoChange: inconclusive → supported; H6, reversed n = 10 000 against PassPerItem: falsified → inconclusive) "
-  "and leaves the overall verdicts unchanged. It does change magnitudes: the main-data times of the early-stopping algorithms on sorted and nearly sorted input (and of all n = 100 cells) are up to a factor 2 too high, "
-  f"the worst slowdown of WhileNeeded is {w5.worst_slowdown:.2f} instead of {rc('WhileNeeded', 'main (all 30 batches)').worst_slowdown:.2f}, and that of UntilNoChange {u5.worst_slowdown:.2f} instead of {rc('UntilNoChange', 'main (all 30 batches)').worst_slowdown:.2f} (Section 3.7). "
-  "The recommendation is the same in all analyses.")
+  f"({(f6.estimate.min()-1)*100:.0f}–{(f6.estimate.max()-1)*100:.0f} % in the main data, up to 16 % in the steady state; see H3), plus one cell that is inconclusive in the all-batches analysis (sorted, n = 20 000, against UntilNoChange) and supported in the steady state. "
+  "The registered rule \"if this holds, WhileNeeded is recommended\" therefore does not fire; the recommendation in Section 4.3 rests on a post-hoc criterion, the worst-case slowdown of Section 3.5.")
+p("**Level shifts inside a JVM.** A review of the raw data by a second AI assistant session found that for very short sorts the speed changed inside the 30 timed batches of a fork, "
+  "most likely because the JIT compiler finished compiling the loop that runs the batches while it was being timed (Section 3.7; compilation events were not recorded). "
+  "Our first explanation, a \"bimodal\" JIT state that depends on the JVM, was wrong: almost all forks go through the same switch, only at different batches, and WhileNeeded's switch on sorted input with n = 20 000 comes much later than UntilNoChange's "
+  f"(main data: {fmt_time(sbm.WhileNeeded)} against {fmt_time(sbm.UntilNoChange)}; steady state: {fmt_time(sb.WhileNeeded)} against {fmt_time(sb.UntilNoChange)}). "
+  "The steady-state analysis changes two cell verdicts (both in H6) and no overall verdict, but it changes magnitudes: main-data times of the early-stopping algorithms on sorted and nearly sorted input (and of all n = 100 cells) are up to a factor 2 too high, "
+  f"WhileNeeded's worst slowdown is {w5.worst_slowdown:.2f} instead of {rc('WhileNeeded', 'main (all 30 batches)').worst_slowdown:.2f}, and UntilNoChange's {u5.worst_slowdown:.2f} instead of {rc('UntilNoChange', 'main (all 30 batches)').worst_slowdown:.2f}. The recommendation is the same in all analyses.")
 
 doc.add_heading("4.2 Limitations and Threats to Validity", level=2)
 bullets([
-    "**Measurement validity: JIT state during the timed batches.** The harness warmed up with single sorts and only two untimed batches of the loop that runs the timed batches; "
-    "in 46 of 1 080 forks (very short sorts) the speed changed by more than 20 % inside the fork, and a direct comparison with the steady-state run shows that 19 of 90 cells with n ≥ 1 000 and 16 of 18 cells with n = 100 are more than 10 % off even where no shift is visible (Section 3.7). "
-    "We report an all-batches analysis (as planned), a late-batches sensitivity analysis and a steady-state re-measurement (3 forks, which itself could miss shifts later than its stabilisation of at least 8 s), "
-    "but the harness did not monitor JIT compilations, so remaining deviations cannot be excluded. A harness that records compilation events (e.g. with a compilation MXBean or -XX:+PrintCompilation) would close this gap.",
-    "**Few machines (internal and external validity).** The complete data come from one Apple M3 Pro laptop (ARM). A reduced design was repeated on a second M3 Pro and on one x86 PC "
-    "(Appendix E.9); the ranking and the main conclusions hold there, but one anomaly of the main data (reversed input) does not appear. Since it also disappears on the main laptop under JDK 25.0.5, JIT-related effects clearly depend on the JDK; a dependence on the hardware cannot be excluded. "
-    "Server-class CPUs and other operating systems with a quieter background were not tested. The 11 cores of the M3 Pro are performance and efficiency cores and the operating system gives no way to pin a process, so scheduling can add noise; "
-    "clock frequency and temperature were not recorded. The second-machine runs have a higher noise level (about 6–10 % within a fork, 28 % for the noisiest JDK 17 desktop run) than the main run (4.9 %). "
-    "Future work: the full design on more machines, including an x86 server under Linux, and the two missing runs (JDK 26.0.1 on x86, JDK 26.0.2.1 on the M3 Pro) that would locate the anomaly.",
-    "**Only HotSpot-based JVMs.** We varied the JDK version (8, 17, 21, 25.0.5 and 26.0.1 on the main laptop; 25.0.1 and 26.0.2.1 on other computers) and the GC (Serial, Parallel, G1), but not the JVM implementation "
-    "(OpenJ9, GraalVM). The JDK builds also come from different vendors (Homebrew, Amazon Corretto for JDK 8, Temurin for JDK 25.0.5 and the desktop). "
-    "A repeat on OpenJ9 and GraalVM, and an inspection of the C2 machine code for reversed input, would test whether the ranking and our explanation hold beyond HotSpot.",
-    "**Synthetic inputs.** The six input orders and five extra shapes are classical but synthetic. Real data are somewhere in between; the recommendation "
-    "rests on the fact that WhileNeeded is never far from the best on any of them. Arrays are filled with boxed Integers allocated in array order, which gives better memory locality than "
-    "in a long-running application with a fragmented heap. A benchmark on samples of the customers' real data, and on arrays whose elements are scattered in memory, would close this gap.",
-    "**Element type and comparator.** The main experiment uses Integer; a String check and a polluted-JIT check were added. Expensive user-defined comparators "
-    "would favour fewer comparisons, i.e. WhileNeeded, even more (as the String result suggests), but we have not measured them. The next step would be to measure the element types and comparators that Bubble Inc.'s customers actually use.",
-    "**Steady-state vs. real use.** The main design measures optimised, warmed-up code in a clean JVM. A real application is slower by a factor of about 3 when the JIT profile is polluted "
-    "and much slower in the first calls (Appendices E.2, E.5). The absolute numbers should therefore not be quoted as customer-facing performance, only the relative ranking, which "
-    "was stable in these settings. Measuring the sorts inside a representative application, with its real mix of calls, would give absolute numbers that can be quoted.",
-    "**Statistical limits.** Ten JVM forks per cell give confidence intervals of about ±1 % where the JIT is stable, but wide intervals where it is not (sorted n = 20 000; nearly-local inputs, whose data differ between forks). "
-    "The distribution of fork medians is then not normal and the t intervals are approximate. Batches within a JVM are not independent, which is why the unit of inference is the fork median. "
-    "Several hundred intervals were computed, without correction for multiple comparisons; the conclusions rest on effects that are large compared with the intervals. "
-    "The follow-up experiments use 3–5 forks per cell and no pre-registered thresholds. More forks for the unstable cells, bootstrap intervals and a correction such as Holm's would make the intervals more reliable. "
-    "The design has no counterbalancing (e.g. a Latin square) of the run order; we rely on randomisation and the drift check. An interaction between algorithm and input order is clearly present "
-    "(the ranking of the algorithms changes with the input order) and is the reason why we analyse every order separately instead of averaging over them.",
+    "**Measurement validity: JIT state during the timed batches.** The harness warmed up with single sorts and only two untimed batches of the loop that runs the timed batches. "
+    "In 46 of 1 080 forks (very short sorts) the speed changed by more than 20 % inside the fork, and 19 of 90 cells with n ≥ 1 000 and 16 of 18 cells with n = 100 are more than 10 % off the steady state even where no shift is visible (Section 3.7). "
+    "We report all-batches, late-batch and steady-state analyses, but the steady-state run has only 3 forks, could itself miss shifts later than its stabilisation (at least 8 s), and no analysis monitored JIT compilations. "
+    "A harness that records compilation events (a compilation MXBean or -XX:+PrintCompilation) would close this gap.",
+    "**Machines and JVMs.** The complete data come from one Apple M3 Pro laptop (ARM, performance and efficiency cores, no core pinning; clock frequency and temperature not recorded). "
+    "A reduced design was repeated on a second M3 Pro and on one x86 PC (Appendix E.9); the ranking holds there, the reversed-input anomaly does not appear, and since it also disappears under JDK 25.0.5 on the main laptop, JIT effects depend on the JDK build; a dependence on the hardware cannot be excluded. "
+    "The second-machine runs are noisier (about 6–10 % within a fork, 28 % for the JDK 17 desktop run) than the main run (4.9 %). We varied JDK versions (8, 17, 21, 25, 26) and collectors (Serial, Parallel, G1) but only HotSpot-based JVMs from several vendors, not OpenJ9 or GraalVM. "
+    "Future work: the full design on more machines (including an x86 server), the two missing runs (JDK 26.0.1 on x86, JDK 26.0.2.1 on the M3 Pro), and an inspection of the C2 machine code.",
+    "**Inputs, element types, real use.** The six input orders and five extra shapes are classical but synthetic, and the arrays hold boxed Integers allocated in array order, which has better memory locality than in a long-running application. "
+    "Only Integer (and, as a check, String and a polluted-JIT variant) was measured; expensive comparators should favour fewer comparisons, i.e. WhileNeeded, but we did not measure them. "
+    "The design measures optimised code in a clean JVM; a real application is about 3× slower with a polluted JIT profile and much slower in the first calls (Appendices E.2, E.5), so the absolute numbers should not be quoted as customer-facing performance, only the ranking. "
+    "Samples of Bubble Inc.'s real data and comparators, and measurements inside a representative application, would close these gaps.",
+    "**Statistical limits.** Ten JVM forks per cell give confidence intervals of about ±1 % where the JIT is stable and wide ones where it is not (sorted n = 20 000; nearly-local inputs, whose data differ between forks); the t intervals are then approximate. "
+    "Batches within a JVM are not independent, which is why the unit of inference is the fork median. Several hundred intervals were computed without correction for multiple comparisons; the conclusions rest on effects that are large compared with the intervals. "
+    "The follow-ups use 3–5 forks per cell and no pre-registered thresholds. The run order was randomised but not counterbalanced (e.g. a Latin square). The ranking of the algorithms depends on the input order (an interaction), which is why every order is analysed separately. "
+    "More forks, bootstrap intervals and a Holm correction would make the intervals more reliable.",
     "**Pre-registration and post-hoc analysis.** The hypotheses (01:16) and the analysis code (01:34) were committed before the main data were analysed, and the re-measurement rule (01:36) while the main run was in progress; "
-    "the timestamps are local git times, and the first push to GitHub was after the main run. A pilot run (01:17–01:20) had already hinted at some of the later falsifications. "
-    "The worst-case slowdown metric used for the recommendation (Section 3.5), the late-batch and steady-state analyses, the interpretation of the follow-ups, and the runs on other computers and the real JDK 25 "
-    "came after seeing the main results; all of these are exploratory. A new, pre-registered experiment with the slowdown criterion fixed in advance would turn them into confirmatory tests.",
-    f"**Time and interference.** The experiment ran overnight on AC power, with heavy applications closed. Four short git commits and a few low-priority tests ran at the same time; "
-    f"they are logged (results/full/interference_log.txt), and the {N_OVER} overlapping jobs are indistinguishable from the others (Section 3.1). The follow-up experiments ran afterwards, one after the other; "
-    "a few short analysis scripts ran at the lowest priority during them and are logged in the same file. A dedicated machine with no other user activity would remove this threat.",
-    "**Scope of the criterion.** Only running time was considered (as requested). Memory use is identical (in place), and all three are stable sorts, so nothing else would "
-    "change the decision, but code size, readability and maintenance were out of scope. If they matter to Bubble Inc., a code review should complement this experiment.",
+    "the timestamps are local git times and the first push to GitHub came after the main run. A pilot (01:17–01:20) had already hinted at some of the later falsifications. "
+    "The worst-case slowdown metric behind the recommendation (Section 3.5), the late-batch and steady-state analyses, the follow-ups and the runs on other computers came after seeing the main results and are exploratory; "
+    "a new pre-registered experiment with the slowdown criterion fixed in advance would make them confirmatory.",
+    f"**Time and interference.** The experiment ran overnight with the laptop connected to AC power (recorded at the start) and heavy applications closed. Four short git commits and a few low-priority tests ran at the same time; "
+    f"they are logged (results/full/interference_log.txt), and the {N_OVER} overlapping jobs are indistinguishable from the others (Section 3.1). The follow-ups ran afterwards, one after the other, with a few logged analysis scripts at the lowest priority.",
+    "**Scope.** Only running time was considered (as requested). Memory use is identical (in place) and all three are stable sorts; code size and readability were out of scope.",
 ])
 
 doc.add_heading("4.3 Conclusions", level=2)
 rg = regret.set_index("algorithm")
 p(f"**Recommendation: ship BubbleSortWhileNeeded.** In the 30 conditions with n ≥ 1 000 it is the fastest algorithm in {int(rg.loc['WhileNeeded'].cells_fastest)} in the main data "
-  f"and in {int(w5.fastest)} in the steady-state re-measurement; its geometric-mean slowdown against the best algorithm is only {rg.loc['WhileNeeded'].geomean_regret:.2f} ({w5.geomean_slowdown:.2f} in the steady state), "
-  f"and its worst slowdown is {w5.worst_slowdown:.2f}× (steady state; reversed input, n = 20 000, see below). "
-  f"UntilNoChange is the fastest in {int(rg.loc['UntilNoChange'].cells_fastest)} cell ({int(u5.fastest)} in the steady state) and up to {rg.loc['UntilNoChange'].max_regret:.1f}× ({u5.worst_slowdown:.1f}× in the steady state, in a single 3-fork cell, nearly sorted with random swaps, n = 1 000) slower than the best; "
-  f"PassPerItem is up to about {sig3(rg.loc['PassPerItem'].max_regret)}× slower on sorted data (at least 50 times slower on sorted or locally disturbed input with n ≥ 1 000). "
-  "This follows a post-hoc criterion (smallest worst-case slowdown), because the pre-registered criterion H6 is not met.")
-p("**Where WhileNeeded is not the best.** (1) On reversed input and cheap Integer comparisons WhileNeeded is 7–16 % slower than PassPerItem in the main setting (Homebrew OpenJDK 26.0.1 on the first M3 Pro, Serial or Parallel collector); this disappears "
-  "with G1, with older JDKs (including 25.0.5 on the same laptop), on a second M3 Pro with JDK 25.0.1, on an x86 PC with JDK 26.0.2.1, with String elements and with a polluted JIT profile. "
+  f"and in {int(w5.fastest)} in the steady-state re-measurement; its geometric-mean slowdown against the best algorithm is {rg.loc['WhileNeeded'].geomean_regret:.2f} ({w5.geomean_slowdown:.2f}) and its worst slowdown is {w5.worst_slowdown:.2f}× "
+  f"(steady state; reversed input, n = 20 000, an absolute loss of {max_loss(SUMM_ST, 'WhileNeeded')[0] / 1e6:.0f} ms per sort). "
+  f"UntilNoChange is the fastest in {int(rg.loc['UntilNoChange'].cells_fastest)} cell ({int(u5.fastest)} in the steady state) and up to {rg.loc['UntilNoChange'].max_regret:.1f}× ({u5.worst_slowdown:.1f}× in the steady state, in a single 3-fork cell) slower than the best "
+  f"(up to {max_loss(SUMM_ST, 'UntilNoChange')[0] / 1e6:.0f} ms per sort); PassPerItem is up to about {sig3(rg.loc['PassPerItem'].max_regret)}× slower on sorted data (at least 50× on sorted or locally disturbed input with n ≥ 1 000; up to {max_loss(SUMM_ST, 'PassPerItem')[0] / 1e6:.0f} ms per sort). "
+  "The criterion is post hoc (smallest worst-case slowdown) because the pre-registered criterion H6 is not met.")
+p("**Where WhileNeeded is not the best.** (1) On reversed input and cheap Integer comparisons it is 7–16 % slower than PassPerItem in the main setting only (see H3). "
   "(2) For arrays of 20 elements or fewer, UntilNoChange or PassPerItem win some cases (WhileNeeded wins all 8 input orders at n = 50), by at most about 1–2 µs (Appendix E.3). "
-  "(3) On sorted input the two early-stopping algorithms are equally fast in the steady state; the all-batches medians of the main data, which differ, are an artefact of level shifts (Section 3.7). "
-  f"In absolute terms the largest loss of WhileNeeded against the best algorithm in a cell is {max_loss(SUMM_ST, 'WhileNeeded')[0] / 1e6:.0f} ms per sort (steady state; reversed input, n = 20 000), "
-  f"while UntilNoChange and PassPerItem lose up to {max_loss(SUMM_ST, 'UntilNoChange')[0] / 1e6:.0f} ms and {max_loss(SUMM_ST, 'PassPerItem')[0] / 1e6:.0f} ms per sort.")
-p("**What we learned beyond the decision.** Running time is not predictable from comparison counts alone: four of our six hypotheses were falsified, three of them ("
-  "H2, H3, H6) because their thresholds were derived from counting comparisons. A benchmark must warm up the code path it measures, and repeated fresh-JVM runs with a check for level shifts inside each run "
-  "are the minimum for credible Java benchmarks; our own main harness missed this for very short sorts until an independent audit found it.")
-p("**Open items.** The mechanism behind the C2 effects (Appendix E.8) was not examined at machine-code level, and whether the reversed-input anomaly is a property of JDK 26.0.1 or of the Homebrew build is open.")
+  "(3) On sorted input the two early-stopping algorithms are equally fast in the steady state; the differing all-batches medians of the main data are an artefact of level shifts (Section 3.7).")
+p("**Beyond the decision.** Running time is not predictable from comparison counts alone: H2, H3 and H6 failed because their thresholds were derived from counting comparisons. "
+  "A benchmark must warm up the code path it measures, and fresh-JVM repetitions with a check for level shifts inside each run are the minimum for credible Java benchmarks; our main harness missed this for very short sorts until a review found it. "
+  "Open: the mechanism of the C2 effects (not examined at machine-code level) and whether the reversed-input anomaly is a property of JDK 26.0.1 or of the Homebrew build.")

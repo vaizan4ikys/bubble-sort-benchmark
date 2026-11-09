@@ -23,20 +23,17 @@ table(["Input order", "n", "Algorithm", "Forks with a shift > 20 %", "Time of la
 figure(SCD / "fig_level_shifts.png",
        "Time per sort of every timed batch for sorted input, n = 1 000 and 20 000. Top: main data (10 forks, thin lines; thick line = median over forks). "
        "Bottom: steady-state re-measurement (3 forks) with a long stabilisation of the batch loop before the timed batches. Logarithmic y axis.", width=6.4)
-p("We therefore report three analyses of the same design. (1) *All batches*: the pre-planned analysis of Sections 3.2–3.6. (2) *Late batches*: the same analysis of the main data using only batches 21–30 of every fork, "
-  "when the shifts are complete. (3) *Steady-state re-measurement*: all 108 cells measured again with exp01.SteadyWorker, a variant of the measuring program that, after the single-sort warm-up, runs whole batches "
-  "through the same method that is later timed, until the batch time has been stable for 5 consecutive checks (at least 400 rounds and at least 8 s of wall-clock time for short sorts, at most 15 s of batch time), "
-  "before the 30 timed batches (the batch time is compared over windows of 50 batches with a tolerance of 3 %). It uses the same JDK, flags, data (forks 0–2 of the main data, same seed) and procedure otherwise; 3 forks per cell instead of 10 because of the time available (about one hour). "
-  "SteadyWorker was written after this review; Worker, which produced the main data, behaves as before (a later commit only added a locale-independent number format to its output).")
+p("We therefore report three analyses of the same design: (1) *all batches*, the planned analysis of Sections 3.2–3.6; (2) *late batches*, the same analysis using only batches 21–30 of every fork; "
+  "(3) a *steady-state re-measurement* of all 108 cells with exp01.SteadyWorker, which after the single-sort warm-up runs whole batches through the method that is later timed until the batch time is stable "
+  "(window of 50 batches, tolerance 3 %, at least 400 rounds and 8 s of wall-clock time for short sorts, at most 15 s of batch time) and then takes the 30 timed batches. "
+  "It uses the same JDK, flags and data (forks 0–2 of the main data, same seed); 3 forks per cell because of the time available (about one hour). Worker, which produced the main data, behaves as before (a later commit only added a locale-independent number format).")
 if has_steady:
     ss = pd.read_csv(SCD / "level_shifts_steady.csv")
     st_dq = (ROOT / "analysis/out/steady/data_quality.txt").read_text()
     st_gc = int(re.search(r"GC during the timed region: (\d+)", st_dq).group(1))
-    p(f"In the steady-state run the stabilisation criterion was met in all {len(ss)} forks; {int(ss['shift'].sum())} fork has a level shift above 20 % between the first and the last 10 timed batches "
-      f"({int(ss['mild'].sum())} more between 5 and 20 %); {st_gc} timed batch contained a garbage collection (flagged, 0.01 %). "
-      "The run lasted 56 minutes (20:13–21:09 on 9 November 2026). It started on battery power (87 %) and the charger was connected a few minutes later, which is not the condition of the main run (AC throughout); "
-      "no other program was started during the run except one test run of the analysis script at the lowest priority (results/full/interference_log.txt). "
-      "In the steady state, WhileNeeded on sorted input with n = 20 000 also reaches about 5.8 µs: its switch comes much later than that of UntilNoChange (in the main data it was still at about 9.8 µs during all 30 batches).")
+    p(f"In the steady-state run the stabilisation criterion was met in all {len(ss)} forks; {int(ss['shift'].sum())} fork has a level shift above 20 % ({int(ss['mild'].sum())} more between 5 and 20 %) and {st_gc} timed batch contained a garbage collection (flagged). "
+      "The run lasted 56 minutes (20:13–21:09 on 9 November 2026); it started on battery power (87 %) and the charger was connected a few minutes later, unlike in the main run; no other program ran except one low-priority test of the analysis script (results/full/interference_log.txt). "
+      "In the steady state WhileNeeded on sorted input with n = 20 000 also reaches about 5.8 µs; its switch comes much later than UntilNoChange's.")
 _svm = pd.read_csv(SCD / "steady_vs_main_cells.csv") if (SCD / "steady_vs_main_cells.csv").exists() else None
 if _svm is not None:
     _big = _svm[_svm["size"] >= 1000]
@@ -48,7 +45,7 @@ if _svm is not None:
       f"{int(_big.differs_10pct.sum())} of {len(_big)} cells with n ≥ 1 000 and {int(_s100.differs_10pct.sum())} of {len(_s100)} cells with n = 100 differ by more than 10 %. "
       f"In sorted input with n = 2 000, 5 000 and 10 000 the early-stopping algorithms need {_sorted_mid.min():.2f}–{_sorted_mid.max():.2f} of their main-data time in the steady state (their trajectories in the main data are flat, the switch had not yet happened), "
       f"in nearly sorted input with local swaps (n ≥ 1 000) {_nl.min():.2f}–{_nl.max():.2f}, and PassPerItem at n = 100 {_p100.min():.2f}–{_p100.max():.2f}. "
-      "The absolute times of the main data (Table 2, Appendix C, Table 3's ratios on sorted input) are therefore too high for these cells, by up to a factor of 2; the overall verdicts are not changed (Table 8), but the magnitudes in Section 4.1 and some worst-case numbers are (the cell-by-cell comparison is in analysis/out/steady_check/steady_vs_main_cells.csv).")
+      f"The absolute times of the main data (Table 2, Appendix C, Table 3's ratios on sorted input) are therefore too high for these cells, by up to a factor of 2; the overall verdicts are not changed (Table {TAB_NO[0] + 1}), but the magnitudes in Section 4.1 and some worst-case numbers are (the cell-by-cell comparison is in analysis/out/steady_check/steady_vs_main_cells.csv).")
 def _cnt(a, h):
     r = HCc[(HCc.analysis == a) & (HCc.hypothesis == h)].iloc[0]
     return f"{r.falsified}/{r.cells}" + (f" (+{r.inconclusive} inconclusive)" if r.inconclusive else "")

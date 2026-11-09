@@ -268,14 +268,9 @@ p("Bubble sort is the textbook example of a simple but slow sorting algorithm, y
   "the just-in-time (JIT) compiler. The customer-facing question – *which implementation is fastest?* – "
   "therefore needs measurements, not only code reading. A wrong choice can be expensive: when the input is "
   "already sorted, an implementation that never stops early is thousands of times slower than one that does.")
-p("The only decision criterion is running time. We therefore designed a controlled, full-factorial experiment "
-  "in which the three algorithms sort exactly the same data in six input orders (random, sorted, reversed, two "
-  "kinds of \"nearly sorted\", and few unique values) and six input sizes (100 to 20 000 elements). Each "
-  "condition is measured in 10 fresh JVMs, each with 30 timed repetitions, after a warm-up phase, and the "
-  "hypotheses were written down and committed to git before any measurement was taken. Besides the main "
-  "experiment we ran follow-up experiments that test whether the recommendation survives other garbage "
-  "collectors, other Java versions, tiny arrays, other input shapes, a JIT compiler that has seen other "
-  "element types, cold starts, and an independent benchmark harness (JMH).")
+p("The only decision criterion is running time. We designed a controlled, full-factorial experiment: the three algorithms sort identical data in six input orders and six sizes (100 to 20 000 elements), "
+  "each condition in 10 fresh JVMs after a warm-up, with the hypotheses committed to git before any measurement. Follow-up experiments (appendices) test whether the recommendation survives other garbage collectors, "
+  "Java versions, element types, tiny arrays, cold starts, another benchmark harness (JMH) and other computers.")
 
 doc.add_heading("Hypotheses", level=2)
 p(f"The hypotheses below were committed to the repository (file HYPOTHESES.md, commit {PREREG[0]}, "
@@ -424,6 +419,15 @@ p("**Use of AI.** The course allows the use of AI assistants. We used an AI assi
 
 # ==================================================================================== 3 Results
 doc.add_heading("3. Results", level=1)
+p("**Results in brief** (details and caveats in the sections named):", keep=True)
+bullets([
+    "*Sorted input:* PassPerItem is at least 970× slower than the two early-stopping algorithms (about 2 200× or more in the steady state); *locally disturbed input:* 196–791× slower (n ≥ 5 000). Section 3.3.",
+    "*Random input:* WhileNeeded needs 57–76 % of PassPerItem's time; UntilNoChange is 9–26 % *slower* than PassPerItem (n ≥ 5 000). Section 3.3.",
+    "*Reversed input:* WhileNeeded is 7–12 % slower than PassPerItem (up to 16 % in the steady state), but only in the main setting (JDK 26.0.1 on the main laptop); other JDKs and computers do not show it (Appendix E). Section 3.3.",
+    "*Over the 30 conditions with n ≥ 1 000* WhileNeeded is the fastest algorithm in 24 (25 in the steady state); its worst slowdown against the best is 1.16× in the steady state. Section 3.5.",
+    "*Hypotheses:* H1 and H4 supported; H2, H3, H5, H6 falsified (in 1 to 5 of their cells). Section 3.6.",
+    "*Quality problem:* for very short sorts the speed changed inside some JVM runs. A steady-state re-measurement leaves all verdicts unchanged, but main-data times in some cells are up to 2× too high. Section 3.7.",
+])
 doc.add_heading("3.1 Visual Overview", level=2)
 p("**Data quality.** All 1 080 jobs completed without errors and every sorted result was verified. "
   "The data set contains 32 400 batch measurements (108 cells × 10 forks × 30 batches). No timed batch contained a garbage "
@@ -489,19 +493,14 @@ table(["Input order", "n", "UntilNoChange ÷ PassPerItem", "WhileNeeded ÷ PassP
       rows, widths=[1.55, 0.6, 1.5, 1.5, 1.5], size=8,
       caption="Time ratios (geometric mean over the 10 paired forks) with 95 % confidence interval in brackets; ratios below 0.01 are written as 1/N, e.g. 1/970 means 970 times faster. For sorted input, the ratio WhileNeeded ÷ UntilNoChange is affected by level shifts and is about 0.98 in the steady state (Section 3.7).")
 
-doc.add_heading("3.4 Operation counts and cost model", level=2)
-p("To relate time to the work performed, an instrumented copy of the algorithms counted the comparisons (calls to compareTo) "
-  "and the number of inversions (= swaps, identical for all three algorithms) for every cell (results/operation_counts.csv). "
-  "A least-squares model time ≈ a · comparisons + b · swaps per algorithm, fitted over the 30 cells with n ≥ 1 000, gives the coefficients of Table 4. "
-  "The model is only a rough description: the fitted cost of a swap differs between the algorithms although they execute the same swap code, so the coefficients should not be interpreted individually.")
-rows = [[r.algorithm, f"{r.ns_per_comparison:.2f}", f"{r.ns_per_swap:.2f}"] for r in cost.itertuples()]
-table(["Algorithm", "a (ns per comparison)", "b (ns per swap)"], rows, widths=[1.6, 1.6, 1.6],
-      caption="Cost model fitted on the cells with n ≥ 1 000.")
+doc.add_heading("3.4 Operation counts", level=2)
+p("To relate time to the work performed, an instrumented copy of the algorithms counted the comparisons (calls to compareTo) and the inversions "
+  "(= swaps, identical for all three algorithms) for every cell (results/operation_counts.csv; Figure 7 shows n = 10 000).")
 figure(MAIN / "fig_operations.png", "Number of comparisons (bars, as a fraction of n²) and of swaps (diamonds) per algorithm and input order for n = 10 000.")
 
 doc.add_heading("3.5 Decision metric: worst-case slowdown", level=2)
 p("For the recommendation, we compare every algorithm with the fastest one in each condition. The *slowdown* of an algorithm in "
-  "a cell is its median time divided by the smallest median time of the three algorithms in that cell (1.00 = fastest). Table 5 "
+  "a cell is its median time divided by the smallest median time of the three algorithms in that cell (1.00 = fastest). Table 4 "
   "summarises the 30 cells with n ≥ 1 000.")
 rows = []
 for r in regret.itertuples():
@@ -538,7 +537,7 @@ p("The three algorithms under test are the classes provided with the assignment,
   "were no human participants.")
 doc.add_heading("B. Reproduction Package", level=2)
 p(f"Everything needed to recreate every number, table and figure of this report is in the public repository **{REPO_URL}** "
-  f"(final state: git tag `submission-final`, which contains the main data, the follow-up data and the code that built this report): the raw measurements (results/full/raw.csv: one line per timed batch, 32 400 lines), the "
+  f"(data, analysis and report scripts as of commit {HEAD}): the raw measurements (results/full/raw.csv: one line per timed batch, 32 400 lines), the "
   "environment records, the operation counts, the code of the harness, the orchestration and analysis scripts, the pre-registered hypotheses "
   "(HYPOTHESES.md) and the pre-registered re-measurement rule (REMEASURE_RULE.md). To reproduce: build with javac, run "
   "scripts/run_experiment.py and the follow-up scripts, then the analysis scripts in the order given in README.md.")
