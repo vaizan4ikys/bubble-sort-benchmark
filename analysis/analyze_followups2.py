@@ -164,7 +164,7 @@ if len(variants) > 1:
     ax.set_yscale("log")
     ax.axhline(1, color=INK2, lw=0.7)
     ax.set_xticks(range(len(labels)))
-    ax.set_xticklabels([l.replace(", ", ",\n").replace("main: ", "main:\n") for l in labels], fontsize=6.5)
+    ax.set_xticklabels(labels, fontsize=6.5, rotation=35, ha="right")
     ax.set_ylabel("worst slowdown vs best\n(over orders and sizes)")
     ax.legend(ncol=3, loc="upper left", bbox_to_anchor=(0, 1.15))
     fig.tight_layout()
@@ -195,8 +195,9 @@ if have("ext_small"):
         ax.set_xlabel("input size n")
     for ax in axes[:, 0]:
         ax.set_ylabel("time ratio")
-    axes[0, 0].legend(fontsize=6, loc="upper left")
-    fig.tight_layout()
+    h_, l_ = axes[0, 0].get_legend_handles_labels()
+    fig.legend(h_, l_, loc="lower center", ncol=2, fontsize=7, frameon=False)
+    fig.tight_layout(rect=(0, 0.05, 1, 1))
     save(fig, "fig_small")
     win = []
     for (o, n), g in meds.iterrows():

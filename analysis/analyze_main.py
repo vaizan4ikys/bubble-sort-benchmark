@@ -154,7 +154,7 @@ for o in ORD:
             ratio_rows.append(dict(order=o, size=n, numerator=a, denominator=b, ratio_geomean=g, ci_lo=lo, ci_hi=hi,
                                    ratio_of_medians=p))
 ratios = pd.DataFrame(ratio_rows)
-ratios.to_csv(OUT / "pairwise_ratios.csv", index=False, float_format="%.4f")
+ratios.to_csv(OUT / "pairwise_ratios.csv", index=False, float_format="%.6g")
 
 # winner table: fastest algorithm per cell and by how much it beats the second-fastest
 win_rows = []
@@ -367,7 +367,7 @@ def drift():
     ax.set_ylim(0.8, 1.25)
     ax.set_xlabel("position of the fork in the randomized job order")
     ax.set_ylabel("fork median ÷ cell median")
-    ax.set_title("No drift over the run: relative time of every fork (dots) and rolling median of 60 forks (line)", fontsize=8.5)
+    ax.set_title("Drift check: relative time of every fork (dots) and rolling median of 60 forks (line)", fontsize=8.5)
     save(fig, "fig_drift")
     r = stats.spearmanr(f.seq, f.rel)
     (OUT / "drift.txt").write_text(f"Spearman correlation between job position and relative time: rho={r.statistic:.3f}, p={r.pvalue:.3g}\n"

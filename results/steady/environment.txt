@@ -1,0 +1,21 @@
+date: Mon Nov  9 20:12:59 CET 2026
+--- hardware
+Apple M3 Pro
+cores (physical/logical): 11/11
+memory bytes: 19327352832
+ProductName:		macOS
+ProductVersion:		26.7.1
+BuildVersion:		25G241
+--- java
+openjdk version "26.0.1" 2026-04-21
+OpenJDK Runtime Environment Homebrew (build 26.0.1)
+OpenJDK 64-Bit Server VM Homebrew (build 26.0.1, mixed mode, sharing)
+--- power
+Now drawing from 'Battery Power'
+ -InternalBattery-0 (id=21889123)	87%; discharging; 4:17 remaining present: true
+Note: No thermal warning level has been recorded
+Note: No performance warning level has been recorded
+Note: No CPU power status has been recorded
+--- load before start
+20:12  up 1 day,  7:02, 3 users, load averages: 2.24 2.50 2.61
+harness: exp01.SteadyWorker (bin_steady, compiled by the same JDK), -Dexp01.minStabMs=8000, 3 forks (0-2) x 30 batches, full design

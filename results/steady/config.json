@@ -1,0 +1,40 @@
+{
+  "out": "results/steady",
+  "forks": 3,
+  "fork_start": 0,
+  "iters": 30,
+  "seed": 20261104,
+  "sizes": [
+    100,
+    1000,
+    2000,
+    5000,
+    10000,
+    20000
+  ],
+  "orders": [
+    "random",
+    "sorted",
+    "reversed",
+    "nearly_local",
+    "nearly_random",
+    "few_unique"
+  ],
+  "algorithms": [
+    "PassPerItem",
+    "UntilNoChange",
+    "WhileNeeded"
+  ],
+  "classes": "bin_steady",
+  "types": null,
+  "jvm_extra": "-Dexp01.minStabMs=8000",
+  "jvm_flags": [
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:+UseSerialGC",
+    "-Dexp01.minStabMs=8000"
+  ],
+  "java": "java",
+  "worker": "steady",
+  "n_jobs": 324
+}

@@ -10,3 +10,7 @@ Wed Nov  4 02:43:25 CET 2026 analyze_main on results/full (nice 19)
   scripts, analysis scripts, re-measurement rule), by the AI assistant; they are short, I/O-light operations. The main run itself (01:25-02:43) was started by the AI
   assistant (Claude Code) on Pavlo's laptop at his request; the re-measurement rule (01:36) was therefore committed during the run, before any main data were analysed.
 2026-11-05 18:17:14 analyze_followups2 (python nice 19)
+2026-11-09 20:12:59 steady-state harness run started (analysis by Claude, nothing else heavy running)
+2026-11-09 20:14:47 analyze_steady.py test run (python, nice 19, ~15 s) during the steady-state run
+2026-11-09 21:11:07 build_report.py run (python nice 19), no measurement running
+2026-11-09 21:11:57 build_report.py (python nice 19), no measurement running

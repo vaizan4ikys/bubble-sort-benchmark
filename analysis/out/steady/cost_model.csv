@@ -1,0 +1,4 @@
+algorithm,ns_per_comparison,ns_per_swap,weighted_r2,cells
+PassPerItem,0.6320,0.9424,0.9774,30
+UntilNoChange,0.3553,2.5457,0.8650,30
+WhileNeeded,0.3404,2.0371,0.9048,30

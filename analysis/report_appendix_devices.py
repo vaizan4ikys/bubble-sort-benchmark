@@ -13,20 +13,20 @@ DEVICES = [  # folder, label in ratios.csv, short column name, heading, descript
      "Windows 11, Temurin, High performance power plan, 15.7 minutes."),
     ("portable_at3eus-pc", "Ryzen 5 5600, JDK 17", "Ryzen, JDK 17",
      "AMD Ryzen 5 5600 desktop, JDK 17.0.21",
-     "Windows 11, Temurin, 17.4 minutes. Power state not recorded and the noisiest run (Section 3.7.9). The raw file has decimal "
+     "Windows 11, Temurin, 17.4 minutes. Power state not recorded and the noisiest run (Appendix E.9). The raw file has decimal "
      "commas, which the analysis repairs in memory; the tables below use the repaired values."),
 ]
 dev_ratios = pd.read_csv(ROOT / "analysis/out/machines/ratios.csv")
 
 doc.add_heading("D. Measurements from the additional computers", level=2)
-p("These runs were made by Vladyslav Nechaiev on his own devices with the reduced design of Section 3.7.9: 270 JVM runs "
+p("These runs were made by the second author on his own devices with the reduced design of Appendix E.9: 270 JVM runs "
   "(18 conditions × 3 algorithms × 5 forks) and 20 timed batches per fork, i.e. 100 measurements per row of the five-number tables. "
   "No timed batch contained a garbage collection and no warm-up hit its time limit. The raw data are in results/portable_*/.", size=9.5)
 bullets([f"**{head}:** {desc}" for _, _, _, head, desc in DEVICES])
 
 doc.add_heading("Time ratios", level=3)
 p("Geometric mean over the 5 paired forks; above 1 means WhileNeeded is faster. Confidence intervals are in "
-  "analysis/out/machines/ratios.csv. Reversed input at n = 1 000 and 10 000 on the JDK 26 desktop includes the outlier JVMs of Section 3.7.9.", size=9.5)
+  "analysis/out/machines/ratios.csv. Reversed input at n = 1 000 and 10 000 on the JDK 26 desktop includes the outlier JVMs of Appendix E.9.", size=9.5)
 rows = []
 for o in ORDERS:
     for n in DEV_SIZES:

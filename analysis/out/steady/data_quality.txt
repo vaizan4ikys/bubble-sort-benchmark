@@ -1,0 +1,8 @@
+rows (batch measurements): 9720
+cells (algorithm x order x size): 108
+forks per cell: [np.int64(3)]
+measured batches per fork: [np.int64(30)]
+batches with a GC during the timed region: 1 (0.01 %)
+forks whose warm-up hit the time limit: 0
+smallest batch size: 1, largest: 20000
+shortest measured time per sort: 25.3 ns; longest: 557 ms

@@ -1,0 +1,19 @@
+analysis,hypothesis,supported,falsified,inconclusive,cells
+main (all 30 batches),H1,10,0,0,10
+main (all 30 batches),H2,7,1,1,9
+main (all 30 batches),H3,1,5,0,6
+main (all 30 batches),H4,6,0,0,6
+main (all 30 batches),H5,5,1,0,6
+main (all 30 batches),H6,54,5,1,60
+"main, last 10 batches",H1,10,0,0,10
+"main, last 10 batches",H2,7,1,1,9
+"main, last 10 batches",H3,1,5,0,6
+"main, last 10 batches",H4,6,0,0,6
+"main, last 10 batches",H5,5,0,1,6
+"main, last 10 batches",H6,53,6,1,60
+steady-state re-measurement,H1,10,0,0,10
+steady-state re-measurement,H2,7,1,1,9
+steady-state re-measurement,H3,1,5,0,6
+steady-state re-measurement,H4,6,0,0,6
+steady-state re-measurement,H5,5,1,0,6
+steady-state re-measurement,H6,55,4,1,60

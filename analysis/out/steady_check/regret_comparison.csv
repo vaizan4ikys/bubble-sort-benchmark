@@ -1,0 +1,10 @@
+analysis,algorithm,fastest,cells,within5,geomean_slowdown,worst_slowdown,worst_where
+main (all 30 batches),PassPerItem,5,30,5,12.8012,38857.4345,sorted n=20000
+main (all 30 batches),UntilNoChange,1,30,1,1.4502,1.9612,nearly_random n=10000
+main (all 30 batches),WhileNeeded,24,30,24,1.0343,1.7032,sorted n=20000
+"main, last 10 batches",PassPerItem,5,30,5,13.0904,39565.3174,sorted n=20000
+"main, last 10 batches",UntilNoChange,2,30,2,1.4429,1.9632,nearly_random n=10000
+"main, last 10 batches",WhileNeeded,23,30,23,1.0370,1.7323,sorted n=20000
+steady-state re-measurement,PassPerItem,5,30,5,14.7638,39679.4619,sorted n=20000
+steady-state re-measurement,UntilNoChange,0,30,5,1.4561,2.5942,nearly_random n=1000
+steady-state re-measurement,WhileNeeded,25,30,25,1.0162,1.1620,reversed n=20000

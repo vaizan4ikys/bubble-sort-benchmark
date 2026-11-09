@@ -1,0 +1,4 @@
+algorithm,cells,cells_fastest,geomean_regret,median_regret,max_regret,max_regret_where,cells_within_5pct_of_best,cells_over_2x_best
+PassPerItem,30,5,14.763799870511527,1.55536835491777,39679.46192849404,sorted n=20000,5,10
+UntilNoChange,30,0,1.4561433737846943,1.5522254567901559,2.5942349297593434,nearly_random n=1000,5,1
+WhileNeeded,30,25,1.016159173777284,1.0,1.161964319633884,reversed n=20000,25,0

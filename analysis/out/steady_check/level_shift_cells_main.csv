@@ -1,0 +1,10 @@
+order,size,algorithm,forks_with_shift,median_last_over_first,median_switch_batch
+nearly_local,100,UntilNoChange,8,0.794,14.500
+nearly_local,100,WhileNeeded,3,0.743,11.000
+nearly_local,1000,UntilNoChange,1,0.827,16.000
+nearly_random,100,WhileNeeded,1,0.764,25.000
+sorted,100,UntilNoChange,2,0.448,2.000
+sorted,100,WhileNeeded,1,0.509,2.000
+sorted,1000,UntilNoChange,10,0.443,22.000
+sorted,1000,WhileNeeded,10,0.544,23.000
+sorted,20000,UntilNoChange,10,0.488,13.000

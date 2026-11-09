@@ -1,0 +1,84 @@
+main data: 46 of 1080 forks have a level shift of more than 20% between the first and the last 10 batches; 39 more between 5% and 20%.
+
+cells with level shifts (forks with shift of 10 per cell):
+
+        order  size     algorithm  forks_with_shift  median_last_over_first  median_switch_batch
+ nearly_local   100 UntilNoChange                 8                    0.79                 14.5
+ nearly_local   100   WhileNeeded                 3                    0.74                 11.0
+ nearly_local  1000 UntilNoChange                 1                    0.83                 16.0
+nearly_random   100   WhileNeeded                 1                    0.76                 25.0
+       sorted   100 UntilNoChange                 2                    0.45                  2.0
+       sorted   100   WhileNeeded                 1                    0.51                  2.0
+       sorted  1000 UntilNoChange                10                    0.44                 22.0
+       sorted  1000   WhileNeeded                10                    0.54                 23.0
+       sorted 20000 UntilNoChange                10                    0.49                 13.0
+
+steady run: 1 of 324 forks with a level shift > 20%; 3 with 5%-20%; stabilisation criterion met in 324 of 324 forks.
+
+residual shifts in the steady run (forks per cell):
+order       size  algorithm    
+few_unique  1000  UntilNoChange    1
+reversed    100   PassPerItem      3
+
+slowdown metric (n >= 1000):
+                   analysis     algorithm  fastest  cells  within5  geomean_slowdown  worst_slowdown           worst_where
+      main (all 30 batches)   PassPerItem        5     30        5            12.801       38857.434        sorted n=20000
+      main (all 30 batches) UntilNoChange        1     30        1             1.450           1.961 nearly_random n=10000
+      main (all 30 batches)   WhileNeeded       24     30       24             1.034           1.703        sorted n=20000
+      main, last 10 batches   PassPerItem        5     30        5            13.090       39565.317        sorted n=20000
+      main, last 10 batches UntilNoChange        2     30        2             1.443           1.963 nearly_random n=10000
+      main, last 10 batches   WhileNeeded       23     30       23             1.037           1.732        sorted n=20000
+steady-state re-measurement   PassPerItem        5     30        5            14.764       39679.462        sorted n=20000
+steady-state re-measurement UntilNoChange        0     30        5             1.456           2.594  nearly_random n=1000
+steady-state re-measurement   WhileNeeded       25     30       25             1.016           1.162      reversed n=20000
+
+hypothesis verdict counts:
+                   analysis hypothesis  supported  falsified  inconclusive  cells
+      main (all 30 batches)         H1         10          0             0     10
+      main (all 30 batches)         H2          7          1             1      9
+      main (all 30 batches)         H3          1          5             0      6
+      main (all 30 batches)         H4          6          0             0      6
+      main (all 30 batches)         H5          5          1             0      6
+      main (all 30 batches)         H6         54          5             1     60
+      main, last 10 batches         H1         10          0             0     10
+      main, last 10 batches         H2          7          1             1      9
+      main, last 10 batches         H3          1          5             0      6
+      main, last 10 batches         H4          6          0             0      6
+      main, last 10 batches         H5          5          0             1      6
+      main, last 10 batches         H6         53          6             1     60
+steady-state re-measurement         H1         10          0             0     10
+steady-state re-measurement         H2          7          1             1      9
+steady-state re-measurement         H3          1          5             0      6
+steady-state re-measurement         H4          6          0             0      6
+steady-state re-measurement         H5          5          1             0      6
+steady-state re-measurement         H6         55          4             1     60
+
+key cells:
+                   analysis        order  size  PassPerItem  UntilNoChange  WhileNeeded  W_over_U  W_over_P
+      main (all 30 batches)       sorted   100 5.455811e+03   2.620700e+01 2.546000e+01    0.9715    0.0047
+      main (all 30 batches)       sorted  1000 5.532761e+05   5.711350e+02 4.923230e+02    0.8620    0.0009
+      main (all 30 batches)       sorted 20000 2.233534e+08   5.748023e+03 9.789895e+03    1.7032    0.0000
+      main (all 30 batches) nearly_local   100 6.234649e+03   6.969170e+02 4.324450e+02    0.6205    0.0694
+      main (all 30 batches) nearly_local  1000 5.894141e+05   1.061349e+04 9.581577e+03    0.9028    0.0163
+      main (all 30 batches) nearly_local 20000 2.513698e+08   3.438820e+05 3.145194e+05    0.9146    0.0013
+      main (all 30 batches)       random  5000 2.010839e+07   2.527904e+07 1.531048e+07    0.6057    0.7614
+      main (all 30 batches)     reversed  5000 2.458975e+07   3.747304e+07 2.701173e+07    0.7208    1.0985
+      main (all 30 batches)     reversed 20000 3.728950e+08   4.318064e+08 4.353182e+08    1.0081    1.1674
+      main, last 10 batches       sorted   100 5.545175e+03   2.583600e+01 2.516000e+01    0.9738    0.0045
+      main, last 10 batches       sorted  1000 5.532733e+05   2.532190e+02 2.682500e+02    1.0594    0.0005
+      main, last 10 batches       sorted 20000 2.233091e+08   5.644062e+03 9.777395e+03    1.7323    0.0000
+      main, last 10 batches nearly_local   100 6.232476e+03   6.803540e+02 4.311200e+02    0.6337    0.0692
+      main, last 10 batches nearly_local  1000 5.890964e+05   1.049803e+04 9.582669e+03    0.9128    0.0163
+      main, last 10 batches nearly_local 20000 2.464516e+08   3.440590e+05 3.140372e+05    0.9127    0.0013
+      main, last 10 batches       random  5000 2.008178e+07   2.528094e+07 1.529561e+07    0.6050    0.7617
+      main, last 10 batches     reversed  5000 2.457397e+07   3.746852e+07 2.701407e+07    0.7210    1.0993
+      main, last 10 batches     reversed 20000 3.732801e+08   4.324290e+08 4.353535e+08    1.0068    1.1663
+steady-state re-measurement       sorted   100 2.923220e+03   2.638000e+01 2.616800e+01    0.9920    0.0090
+steady-state re-measurement       sorted  1000 5.690990e+05   2.607920e+02 2.569480e+02    0.9853    0.0005
+steady-state re-measurement       sorted 20000 2.289009e+08   5.862500e+03 5.768750e+03    0.9840    0.0000
+steady-state re-measurement nearly_local   100 3.883153e+03   7.976960e+02 5.053190e+02    0.6335    0.1301
+steady-state re-measurement nearly_local  1000 6.054428e+05   8.507908e+03 7.231498e+03    0.8500    0.0119
+steady-state re-measurement nearly_local 20000 2.446450e+08   3.100209e+05 2.482619e+05    0.8008    0.0010
+steady-state re-measurement       random  5000 2.059046e+07   2.590140e+07 1.579050e+07    0.6096    0.7669
+steady-state re-measurement     reversed  5000 2.517606e+07   3.839940e+07 2.779721e+07    0.7239    1.1041
+steady-state re-measurement     reversed 20000 3.830460e+08   4.419018e+08 4.450858e+08    1.0072    1.1620

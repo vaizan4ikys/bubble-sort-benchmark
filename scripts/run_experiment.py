@@ -47,6 +47,9 @@ def main() -> int:
     ap.add_argument("--jvm-flags", default=None,
                     help="REPLACES the default flags (-Xms2g -Xmx2g -XX:+UseSerialGC), e.g. '' for JVM defaults (G1)")
     ap.add_argument("--java", default="java", help="java executable (to compare JDK versions)")
+    ap.add_argument("--worker", default=None, choices=["steady"],
+                    help="'steady' uses exp01.SteadyWorker (adaptive warm-up of the batch loop; adds the columns "
+                         "stab_rounds,stab_converged)")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -57,6 +60,8 @@ def main() -> int:
 
     typed = args.types is not None
     header = HEADER.replace("seq,", "seq,type,", 1) if typed else HEADER
+    if args.worker == "steady":
+        header = header.rstrip("\n") + ",stab_rounds,stab_converged\n"
     jvm_flags = (JVM_FLAGS if args.jvm_flags is None else args.jvm_flags.split()) + args.jvm_extra.split()
     types = args.types if typed else [None]
     jobs = list(itertools.product(types, args.algorithms, args.orders, args.sizes, range(args.fork_start, args.fork_start + args.forks)))
@@ -73,7 +78,7 @@ def main() -> int:
             key = f"{typ + '|' if typed else ''}{alg}|{order}|{size}|{fork}"
             if key in done:
                 continue
-            worker = ["exp01.ExtendedWorker", typ] if typed else ["exp01.Worker"]
+            worker = ["exp01.ExtendedWorker", typ] if typed else ["exp01.SteadyWorker" if args.worker == "steady" else "exp01.Worker"]
             cmd = [args.java, *jvm_flags, "-cp", args.classes, *worker,
                    alg, order, str(size), str(fork), str(args.seed), str(args.iters)]
             t0 = time.time()
