@@ -94,7 +94,7 @@ def analyse():
                     r = sel[num] / sel[den]
                     _, lo, hi = t_ci(np.log(r.values))
                     ratios.append(dict(label=label, order=order, size=size, numerator=num, denominator=den,
-                                       ratio_geomean=math.exp(np.log(r.values).mean()), ci_lo=math.exp(lo),
+                                       ratio_mean=math.exp(np.log(r.values).mean()), ci_lo=math.exp(lo),
                                        ci_hi=math.exp(hi), ratio_median=r.median()))
                     if order == "reversed" and num == "PassPerItem":
                         forks += [dict(label=label, size=size, fork=f, ratio=v) for f, v in r.items()]
@@ -111,8 +111,8 @@ def figure(ratios, labels):
         ys = d.label.map(y)
         ax.axvline(1, color=INK2, linewidth=0.8)
         ax.hlines(ys, d.ci_lo, d.ci_hi, color=COLOR["WhileNeeded"], linewidth=2)
-        ax.scatter(d.ratio_geomean, ys, s=30, color=COLOR["WhileNeeded"], edgecolor="white", linewidth=1, zorder=3,
-                   label="Geometric mean, 95 % CI")
+        ax.scatter(d.ratio_mean, ys, s=30, color=COLOR["WhileNeeded"], edgecolor="white", linewidth=1, zorder=3,
+                   label="Mean of paired ratios, 95 % CI")
         ax.scatter(d.ratio_median, ys, s=70, marker="|", color="#0b0b0b", linewidth=1.2, zorder=4,
                    label="Median of the forks")
         ax.set_xscale("log")

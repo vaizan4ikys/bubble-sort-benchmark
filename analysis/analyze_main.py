@@ -151,7 +151,7 @@ for o in ORD:
     for n in SIZES:
         for a, b in [("UntilNoChange", "PassPerItem"), ("WhileNeeded", "PassPerItem"), ("WhileNeeded", "UntilNoChange")]:
             p, g, lo, hi = paired_ratio(wide, o, n, a, b)
-            ratio_rows.append(dict(order=o, size=n, numerator=a, denominator=b, ratio_geomean=g, ci_lo=lo, ci_hi=hi,
+            ratio_rows.append(dict(order=o, size=n, numerator=a, denominator=b, ratio_mean=g, ci_lo=lo, ci_hi=hi,
                                    ratio_of_medians=p))
 ratios = pd.DataFrame(ratio_rows)
 ratios.to_csv(OUT / "pairwise_ratios.csv", index=False, float_format="%.6g")
@@ -310,7 +310,7 @@ def heatmaps():
     fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.9), sharey=True)
     for ax, (a, b) in zip(axes, pairs):
         M = np.array([[ratios[(ratios.order == o) & (ratios["size"] == n) & (ratios.numerator == a) &
-                              (ratios.denominator == b)].ratio_geomean.iloc[0] for n in SIZES] for o in ORD])
+                              (ratios.denominator == b)].ratio_mean.iloc[0] for n in SIZES] for o in ORD])
         lim = max(np.log10(M.max()), -np.log10(M.min()), 0.3)
         ax.imshow(np.log10(M), cmap=cmap, vmin=-lim, vmax=lim, aspect="auto")
         for i in range(M.shape[0]):
@@ -369,8 +369,9 @@ def drift():
     ax.set_ylabel("fork median ÷ cell median")
     ax.set_title("Drift check: relative time of every fork (dots) and rolling median of 60 forks (line)", fontsize=8.5)
     save(fig, "fig_drift")
-    r = stats.spearmanr(f.seq, f.rel)
-    (OUT / "drift.txt").write_text(f"Spearman correlation between job position and relative time: rho={r.statistic:.3f}, p={r.pvalue:.3g}\n"
+    ordered = f.sort_values("seq").rel.values
+    third = len(ordered) // 3
+    (OUT / "drift.txt").write_text(f"median relative time in the first third of the session: {np.median(ordered[:third]):.4f}, in the last third: {np.median(ordered[-third:]):.4f}\n"
                                    f"rolling-median range: {roll.min():.3f} .. {roll.max():.3f}\n")
 
 

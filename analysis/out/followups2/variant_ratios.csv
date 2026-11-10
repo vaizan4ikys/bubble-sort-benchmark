@@ -1,6 +1,6 @@
 setting,order,size,numerator,denominator,ratio,ci_lo,ci_hi
-"main: JDK 26, SerialGC",few_unique,1000,UntilNoChange,PassPerItem,1.1047,1.0847,1.1250
-"main: JDK 26, SerialGC",few_unique,1000,WhileNeeded,PassPerItem,0.6612,0.6520,0.6705
+"main: JDK 26, SerialGC",few_unique,1000,UntilNoChange,PassPerItem,1.1048,1.0846,1.1249
+"main: JDK 26, SerialGC",few_unique,1000,WhileNeeded,PassPerItem,0.6612,0.6520,0.6704
 "main: JDK 26, SerialGC",few_unique,1000,WhileNeeded,UntilNoChange,0.5986,0.5950,0.6022
 "main: JDK 26, SerialGC",few_unique,5000,UntilNoChange,PassPerItem,1.0946,1.0911,1.0981
 "main: JDK 26, SerialGC",few_unique,5000,WhileNeeded,PassPerItem,0.6716,0.6683,0.6749
@@ -8,150 +8,150 @@ setting,order,size,numerator,denominator,ratio,ci_lo,ci_hi
 "main: JDK 26, SerialGC",few_unique,10000,UntilNoChange,PassPerItem,1.0880,1.0829,1.0932
 "main: JDK 26, SerialGC",few_unique,10000,WhileNeeded,PassPerItem,0.6504,0.6495,0.6513
 "main: JDK 26, SerialGC",few_unique,10000,WhileNeeded,UntilNoChange,0.5978,0.5948,0.6008
-"main: JDK 26, SerialGC",nearly_local,1000,UntilNoChange,PassPerItem,0.0188,0.0151,0.0234
-"main: JDK 26, SerialGC",nearly_local,1000,WhileNeeded,PassPerItem,0.0169,0.0149,0.0192
-"main: JDK 26, SerialGC",nearly_local,1000,WhileNeeded,UntilNoChange,0.8978,0.8106,0.9945
-"main: JDK 26, SerialGC",nearly_local,5000,UntilNoChange,PassPerItem,0.0049,0.0037,0.0066
-"main: JDK 26, SerialGC",nearly_local,5000,WhileNeeded,PassPerItem,0.0046,0.0034,0.0061
-"main: JDK 26, SerialGC",nearly_local,5000,WhileNeeded,UntilNoChange,0.9249,0.8598,0.9949
-"main: JDK 26, SerialGC",nearly_local,10000,UntilNoChange,PassPerItem,0.0025,0.0020,0.0032
+"main: JDK 26, SerialGC",nearly_local,1000,UntilNoChange,PassPerItem,0.0191,0.0148,0.0234
+"main: JDK 26, SerialGC",nearly_local,1000,WhileNeeded,PassPerItem,0.0170,0.0148,0.0191
+"main: JDK 26, SerialGC",nearly_local,1000,WhileNeeded,UntilNoChange,0.9003,0.8092,0.9913
+"main: JDK 26, SerialGC",nearly_local,5000,UntilNoChange,PassPerItem,0.0050,0.0037,0.0064
+"main: JDK 26, SerialGC",nearly_local,5000,WhileNeeded,PassPerItem,0.0047,0.0033,0.0060
+"main: JDK 26, SerialGC",nearly_local,5000,WhileNeeded,UntilNoChange,0.9261,0.8585,0.9938
+"main: JDK 26, SerialGC",nearly_local,10000,UntilNoChange,PassPerItem,0.0025,0.0020,0.0031
 "main: JDK 26, SerialGC",nearly_local,10000,WhileNeeded,PassPerItem,0.0021,0.0018,0.0025
-"main: JDK 26, SerialGC",nearly_local,10000,WhileNeeded,UntilNoChange,0.8372,0.6858,1.0221
-"main: JDK 26, SerialGC",nearly_random,1000,UntilNoChange,PassPerItem,1.2876,1.2094,1.3709
-"main: JDK 26, SerialGC",nearly_random,1000,WhileNeeded,PassPerItem,0.7001,0.6868,0.7136
-"main: JDK 26, SerialGC",nearly_random,1000,WhileNeeded,UntilNoChange,0.5437,0.5117,0.5777
-"main: JDK 26, SerialGC",nearly_random,5000,UntilNoChange,PassPerItem,1.3258,1.2828,1.3702
+"main: JDK 26, SerialGC",nearly_local,10000,WhileNeeded,UntilNoChange,0.8455,0.6879,1.0032
+"main: JDK 26, SerialGC",nearly_random,1000,UntilNoChange,PassPerItem,1.2889,1.2086,1.3692
+"main: JDK 26, SerialGC",nearly_random,1000,WhileNeeded,PassPerItem,0.7001,0.6867,0.7135
+"main: JDK 26, SerialGC",nearly_random,1000,WhileNeeded,UntilNoChange,0.5442,0.5109,0.5775
+"main: JDK 26, SerialGC",nearly_random,5000,UntilNoChange,PassPerItem,1.3262,1.2829,1.3694
 "main: JDK 26, SerialGC",nearly_random,5000,WhileNeeded,PassPerItem,0.7193,0.7144,0.7242
-"main: JDK 26, SerialGC",nearly_random,5000,WhileNeeded,UntilNoChange,0.5425,0.5226,0.5632
-"main: JDK 26, SerialGC",nearly_random,10000,UntilNoChange,PassPerItem,1.2341,1.2033,1.2657
-"main: JDK 26, SerialGC",nearly_random,10000,WhileNeeded,PassPerItem,0.6344,0.6227,0.6463
-"main: JDK 26, SerialGC",nearly_random,10000,WhileNeeded,UntilNoChange,0.5141,0.4969,0.5318
-"main: JDK 26, SerialGC",random,1000,UntilNoChange,PassPerItem,1.2468,1.2186,1.2757
+"main: JDK 26, SerialGC",nearly_random,5000,WhileNeeded,UntilNoChange,0.5427,0.5221,0.5633
+"main: JDK 26, SerialGC",nearly_random,10000,UntilNoChange,PassPerItem,1.2343,1.2034,1.2652
+"main: JDK 26, SerialGC",nearly_random,10000,WhileNeeded,PassPerItem,0.6345,0.6228,0.6461
+"main: JDK 26, SerialGC",nearly_random,10000,WhileNeeded,UntilNoChange,0.5142,0.4968,0.5317
+"main: JDK 26, SerialGC",random,1000,UntilNoChange,PassPerItem,1.2470,1.2188,1.2752
 "main: JDK 26, SerialGC",random,1000,WhileNeeded,PassPerItem,0.7544,0.7489,0.7600
-"main: JDK 26, SerialGC",random,1000,WhileNeeded,UntilNoChange,0.6051,0.5886,0.6220
-"main: JDK 26, SerialGC",random,5000,UntilNoChange,PassPerItem,1.2529,1.2392,1.2668
+"main: JDK 26, SerialGC",random,1000,WhileNeeded,UntilNoChange,0.6052,0.5883,0.6221
+"main: JDK 26, SerialGC",random,5000,UntilNoChange,PassPerItem,1.2530,1.2392,1.2667
 "main: JDK 26, SerialGC",random,5000,WhileNeeded,PassPerItem,0.7608,0.7585,0.7630
 "main: JDK 26, SerialGC",random,5000,WhileNeeded,UntilNoChange,0.6072,0.6008,0.6137
-"main: JDK 26, SerialGC",random,10000,UntilNoChange,PassPerItem,1.1523,1.0991,1.2082
-"main: JDK 26, SerialGC",random,10000,WhileNeeded,PassPerItem,0.6448,0.6161,0.6748
-"main: JDK 26, SerialGC",random,10000,WhileNeeded,UntilNoChange,0.5595,0.5557,0.5634
-"main: JDK 26, SerialGC",reversed,1000,UntilNoChange,PassPerItem,1.5248,1.5086,1.5412
+"main: JDK 26, SerialGC",random,10000,UntilNoChange,PassPerItem,1.1530,1.0998,1.2062
+"main: JDK 26, SerialGC",random,10000,WhileNeeded,PassPerItem,0.6451,0.6165,0.6738
+"main: JDK 26, SerialGC",random,10000,WhileNeeded,UntilNoChange,0.5596,0.5557,0.5634
+"main: JDK 26, SerialGC",reversed,1000,UntilNoChange,PassPerItem,1.5248,1.5085,1.5412
 "main: JDK 26, SerialGC",reversed,1000,WhileNeeded,PassPerItem,1.0825,1.0804,1.0846
 "main: JDK 26, SerialGC",reversed,1000,WhileNeeded,UntilNoChange,0.7099,0.7015,0.7184
 "main: JDK 26, SerialGC",reversed,5000,UntilNoChange,PassPerItem,1.5244,1.5175,1.5313
 "main: JDK 26, SerialGC",reversed,5000,WhileNeeded,PassPerItem,1.0976,1.0939,1.1012
 "main: JDK 26, SerialGC",reversed,5000,WhileNeeded,UntilNoChange,0.7200,0.7185,0.7215
-"main: JDK 26, SerialGC",reversed,10000,UntilNoChange,PassPerItem,1.0943,1.0469,1.1438
-"main: JDK 26, SerialGC",reversed,10000,WhileNeeded,PassPerItem,1.0636,1.0361,1.0919
-"main: JDK 26, SerialGC",reversed,10000,WhileNeeded,UntilNoChange,0.9720,0.9286,1.0174
+"main: JDK 26, SerialGC",reversed,10000,UntilNoChange,PassPerItem,1.0948,1.0464,1.1433
+"main: JDK 26, SerialGC",reversed,10000,WhileNeeded,PassPerItem,1.0638,1.0359,1.0918
+"main: JDK 26, SerialGC",reversed,10000,WhileNeeded,UntilNoChange,0.9725,0.9282,1.0168
 "main: JDK 26, SerialGC",sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0010
 "main: JDK 26, SerialGC",sorted,1000,WhileNeeded,PassPerItem,0.0009,0.0009,0.0009
 "main: JDK 26, SerialGC",sorted,1000,WhileNeeded,UntilNoChange,0.8629,0.8618,0.8640
 "main: JDK 26, SerialGC",sorted,5000,UntilNoChange,PassPerItem,0.0002,0.0002,0.0002
 "main: JDK 26, SerialGC",sorted,5000,WhileNeeded,PassPerItem,0.0002,0.0002,0.0002
-"main: JDK 26, SerialGC",sorted,5000,WhileNeeded,UntilNoChange,0.8540,0.8447,0.8633
+"main: JDK 26, SerialGC",sorted,5000,WhileNeeded,UntilNoChange,0.8540,0.8447,0.8632
 "main: JDK 26, SerialGC",sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0001
 "main: JDK 26, SerialGC",sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
 "main: JDK 26, SerialGC",sorted,10000,WhileNeeded,UntilNoChange,0.8616,0.8592,0.8640
-"JDK 26, G1 GC",few_unique,1000,UntilNoChange,PassPerItem,1.1206,1.1047,1.1366
-"JDK 26, G1 GC",few_unique,1000,WhileNeeded,PassPerItem,0.7312,0.7215,0.7411
-"JDK 26, G1 GC",few_unique,1000,WhileNeeded,UntilNoChange,0.6526,0.6428,0.6625
+"JDK 26, G1 GC",few_unique,1000,UntilNoChange,PassPerItem,1.1206,1.1046,1.1366
+"JDK 26, G1 GC",few_unique,1000,WhileNeeded,PassPerItem,0.7313,0.7215,0.7410
+"JDK 26, G1 GC",few_unique,1000,WhileNeeded,UntilNoChange,0.6526,0.6428,0.6624
 "JDK 26, G1 GC",few_unique,5000,UntilNoChange,PassPerItem,1.0876,1.0843,1.0909
 "JDK 26, G1 GC",few_unique,5000,WhileNeeded,PassPerItem,0.7179,0.7159,0.7199
 "JDK 26, G1 GC",few_unique,5000,WhileNeeded,UntilNoChange,0.6601,0.6581,0.6620
 "JDK 26, G1 GC",few_unique,10000,UntilNoChange,PassPerItem,1.0914,1.0861,1.0967
 "JDK 26, G1 GC",few_unique,10000,WhileNeeded,PassPerItem,0.7148,0.7139,0.7156
 "JDK 26, G1 GC",few_unique,10000,WhileNeeded,UntilNoChange,0.6549,0.6523,0.6575
-"JDK 26, G1 GC",nearly_local,1000,UntilNoChange,PassPerItem,0.0207,0.0161,0.0267
-"JDK 26, G1 GC",nearly_local,1000,WhileNeeded,PassPerItem,0.0183,0.0164,0.0205
-"JDK 26, G1 GC",nearly_local,1000,WhileNeeded,UntilNoChange,0.8843,0.7645,1.0229
-"JDK 26, G1 GC",nearly_local,5000,UntilNoChange,PassPerItem,0.0052,0.0039,0.0069
-"JDK 26, G1 GC",nearly_local,5000,WhileNeeded,PassPerItem,0.0048,0.0036,0.0064
-"JDK 26, G1 GC",nearly_local,5000,WhileNeeded,UntilNoChange,0.9219,0.8559,0.9931
+"JDK 26, G1 GC",nearly_local,1000,UntilNoChange,PassPerItem,0.0211,0.0156,0.0265
+"JDK 26, G1 GC",nearly_local,1000,WhileNeeded,PassPerItem,0.0184,0.0163,0.0205
+"JDK 26, G1 GC",nearly_local,1000,WhileNeeded,UntilNoChange,0.8891,0.7628,1.0154
+"JDK 26, G1 GC",nearly_local,5000,UntilNoChange,PassPerItem,0.0053,0.0039,0.0067
+"JDK 26, G1 GC",nearly_local,5000,WhileNeeded,PassPerItem,0.0049,0.0035,0.0063
+"JDK 26, G1 GC",nearly_local,5000,WhileNeeded,UntilNoChange,0.9233,0.8548,0.9917
 "JDK 26, G1 GC",nearly_local,10000,UntilNoChange,PassPerItem,0.0027,0.0022,0.0033
-"JDK 26, G1 GC",nearly_local,10000,WhileNeeded,PassPerItem,0.0024,0.0020,0.0029
-"JDK 26, G1 GC",nearly_local,10000,WhileNeeded,UntilNoChange,0.8836,0.7354,1.0617
-"JDK 26, G1 GC",nearly_random,1000,UntilNoChange,PassPerItem,1.3409,1.2622,1.4245
-"JDK 26, G1 GC",nearly_random,1000,WhileNeeded,PassPerItem,0.7386,0.7220,0.7556
-"JDK 26, G1 GC",nearly_random,1000,WhileNeeded,UntilNoChange,0.5509,0.5168,0.5872
-"JDK 26, G1 GC",nearly_random,5000,UntilNoChange,PassPerItem,1.3459,1.2754,1.4203
-"JDK 26, G1 GC",nearly_random,5000,WhileNeeded,PassPerItem,0.7349,0.7171,0.7531
-"JDK 26, G1 GC",nearly_random,5000,WhileNeeded,UntilNoChange,0.5460,0.5290,0.5636
-"JDK 26, G1 GC",nearly_random,10000,UntilNoChange,PassPerItem,1.2394,1.1965,1.2837
+"JDK 26, G1 GC",nearly_local,10000,WhileNeeded,PassPerItem,0.0024,0.0019,0.0028
+"JDK 26, G1 GC",nearly_local,10000,WhileNeeded,UntilNoChange,0.8910,0.7399,1.0421
+"JDK 26, G1 GC",nearly_random,1000,UntilNoChange,PassPerItem,1.3422,1.2613,1.4230
+"JDK 26, G1 GC",nearly_random,1000,WhileNeeded,PassPerItem,0.7387,0.7219,0.7555
+"JDK 26, G1 GC",nearly_random,1000,WhileNeeded,UntilNoChange,0.5514,0.5160,0.5869
+"JDK 26, G1 GC",nearly_random,5000,UntilNoChange,PassPerItem,1.3469,1.2759,1.4180
+"JDK 26, G1 GC",nearly_random,5000,WhileNeeded,PassPerItem,0.7350,0.7171,0.7528
+"JDK 26, G1 GC",nearly_random,5000,WhileNeeded,UntilNoChange,0.5461,0.5287,0.5636
+"JDK 26, G1 GC",nearly_random,10000,UntilNoChange,PassPerItem,1.2398,1.1966,1.2829
 "JDK 26, G1 GC",nearly_random,10000,WhileNeeded,PassPerItem,0.6539,0.6499,0.6579
-"JDK 26, G1 GC",nearly_random,10000,WhileNeeded,UntilNoChange,0.5276,0.5095,0.5463
-"JDK 26, G1 GC",random,1000,UntilNoChange,PassPerItem,1.2004,1.1719,1.2296
+"JDK 26, G1 GC",nearly_random,10000,WhileNeeded,UntilNoChange,0.5277,0.5091,0.5464
+"JDK 26, G1 GC",random,1000,UntilNoChange,PassPerItem,1.2006,1.1718,1.2293
 "JDK 26, G1 GC",random,1000,WhileNeeded,PassPerItem,0.7904,0.7869,0.7939
-"JDK 26, G1 GC",random,1000,WhileNeeded,UntilNoChange,0.6585,0.6431,0.6743
-"JDK 26, G1 GC",random,5000,UntilNoChange,PassPerItem,1.1833,1.1720,1.1948
+"JDK 26, G1 GC",random,1000,WhileNeeded,UntilNoChange,0.6586,0.6429,0.6742
+"JDK 26, G1 GC",random,5000,UntilNoChange,PassPerItem,1.1834,1.1720,1.1948
 "JDK 26, G1 GC",random,5000,WhileNeeded,PassPerItem,0.7736,0.7683,0.7790
-"JDK 26, G1 GC",random,5000,WhileNeeded,UntilNoChange,0.6537,0.6472,0.6603
-"JDK 26, G1 GC",random,10000,UntilNoChange,PassPerItem,1.1380,1.0979,1.1796
-"JDK 26, G1 GC",random,10000,WhileNeeded,PassPerItem,0.6945,0.6760,0.7135
+"JDK 26, G1 GC",random,5000,WhileNeeded,UntilNoChange,0.6538,0.6472,0.6603
+"JDK 26, G1 GC",random,10000,UntilNoChange,PassPerItem,1.1384,1.0978,1.1790
+"JDK 26, G1 GC",random,10000,WhileNeeded,PassPerItem,0.6947,0.6760,0.7133
 "JDK 26, G1 GC",random,10000,WhileNeeded,UntilNoChange,0.6103,0.6021,0.6186
 "JDK 26, G1 GC",reversed,1000,UntilNoChange,PassPerItem,1.2919,1.2865,1.2974
-"JDK 26, G1 GC",reversed,1000,WhileNeeded,PassPerItem,0.9345,0.9296,0.9395
-"JDK 26, G1 GC",reversed,1000,WhileNeeded,UntilNoChange,0.7234,0.7185,0.7283
+"JDK 26, G1 GC",reversed,1000,WhileNeeded,PassPerItem,0.9345,0.9296,0.9394
+"JDK 26, G1 GC",reversed,1000,WhileNeeded,UntilNoChange,0.7234,0.7184,0.7283
 "JDK 26, G1 GC",reversed,5000,UntilNoChange,PassPerItem,1.2823,1.2771,1.2876
-"JDK 26, G1 GC",reversed,5000,WhileNeeded,PassPerItem,0.9731,0.8596,1.1015
-"JDK 26, G1 GC",reversed,5000,WhileNeeded,UntilNoChange,0.7589,0.6681,0.8620
-"JDK 26, G1 GC",reversed,10000,UntilNoChange,PassPerItem,1.1836,1.1706,1.1968
-"JDK 26, G1 GC",reversed,10000,WhileNeeded,PassPerItem,0.9307,0.8318,1.0415
-"JDK 26, G1 GC",reversed,10000,WhileNeeded,UntilNoChange,0.7863,0.6969,0.8873
+"JDK 26, G1 GC",reversed,5000,WhileNeeded,PassPerItem,0.9772,0.8479,1.1064
+"JDK 26, G1 GC",reversed,5000,WhileNeeded,UntilNoChange,0.7622,0.6584,0.8660
+"JDK 26, G1 GC",reversed,10000,UntilNoChange,PassPerItem,1.1837,1.1706,1.1967
+"JDK 26, G1 GC",reversed,10000,WhileNeeded,PassPerItem,0.9339,0.8226,1.0453
+"JDK 26, G1 GC",reversed,10000,WhileNeeded,UntilNoChange,0.7895,0.6879,0.8910
 "JDK 26, G1 GC",sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0011
 "JDK 26, G1 GC",sorted,1000,WhileNeeded,PassPerItem,0.0009,0.0009,0.0009
-"JDK 26, G1 GC",sorted,1000,WhileNeeded,UntilNoChange,0.8615,0.8495,0.8736
+"JDK 26, G1 GC",sorted,1000,WhileNeeded,UntilNoChange,0.8615,0.8494,0.8736
 "JDK 26, G1 GC",sorted,5000,UntilNoChange,PassPerItem,0.0002,0.0002,0.0002
 "JDK 26, G1 GC",sorted,5000,WhileNeeded,PassPerItem,0.0002,0.0002,0.0002
-"JDK 26, G1 GC",sorted,5000,WhileNeeded,UntilNoChange,0.8515,0.8299,0.8736
+"JDK 26, G1 GC",sorted,5000,WhileNeeded,UntilNoChange,0.8516,0.8299,0.8734
 "JDK 26, G1 GC",sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0001
 "JDK 26, G1 GC",sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
-"JDK 26, G1 GC",sorted,10000,WhileNeeded,UntilNoChange,0.8305,0.8078,0.8539
-"JDK 26, ParallelGC",few_unique,1000,UntilNoChange,PassPerItem,1.0971,1.0813,1.1132
-"JDK 26, ParallelGC",few_unique,1000,WhileNeeded,PassPerItem,0.6606,0.6463,0.6752
+"JDK 26, G1 GC",sorted,10000,WhileNeeded,UntilNoChange,0.8307,0.8075,0.8539
+"JDK 26, ParallelGC",few_unique,1000,UntilNoChange,PassPerItem,1.0972,1.0813,1.1131
+"JDK 26, ParallelGC",few_unique,1000,WhileNeeded,PassPerItem,0.6607,0.6463,0.6751
 "JDK 26, ParallelGC",few_unique,1000,WhileNeeded,UntilNoChange,0.6021,0.5973,0.6070
 "JDK 26, ParallelGC",few_unique,5000,UntilNoChange,PassPerItem,1.0969,1.0911,1.1027
 "JDK 26, ParallelGC",few_unique,5000,WhileNeeded,PassPerItem,0.6722,0.6690,0.6753
 "JDK 26, ParallelGC",few_unique,5000,WhileNeeded,UntilNoChange,0.6128,0.6106,0.6150
-"JDK 26, ParallelGC",few_unique,10000,UntilNoChange,PassPerItem,1.0893,1.0836,1.0951
+"JDK 26, ParallelGC",few_unique,10000,UntilNoChange,PassPerItem,1.0893,1.0835,1.0951
 "JDK 26, ParallelGC",few_unique,10000,WhileNeeded,PassPerItem,0.6528,0.6511,0.6545
 "JDK 26, ParallelGC",few_unique,10000,WhileNeeded,UntilNoChange,0.5993,0.5967,0.6018
-"JDK 26, ParallelGC",nearly_local,1000,UntilNoChange,PassPerItem,0.0193,0.0149,0.0250
-"JDK 26, ParallelGC",nearly_local,1000,WhileNeeded,PassPerItem,0.0170,0.0149,0.0194
-"JDK 26, ParallelGC",nearly_local,1000,WhileNeeded,UntilNoChange,0.8787,0.7682,1.0050
-"JDK 26, ParallelGC",nearly_local,5000,UntilNoChange,PassPerItem,0.0050,0.0037,0.0066
-"JDK 26, ParallelGC",nearly_local,5000,WhileNeeded,PassPerItem,0.0046,0.0034,0.0061
-"JDK 26, ParallelGC",nearly_local,5000,WhileNeeded,UntilNoChange,0.9224,0.8584,0.9912
+"JDK 26, ParallelGC",nearly_local,1000,UntilNoChange,PassPerItem,0.0197,0.0145,0.0248
+"JDK 26, ParallelGC",nearly_local,1000,WhileNeeded,PassPerItem,0.0171,0.0148,0.0193
+"JDK 26, ParallelGC",nearly_local,1000,WhileNeeded,UntilNoChange,0.8827,0.7664,0.9990
+"JDK 26, ParallelGC",nearly_local,5000,UntilNoChange,PassPerItem,0.0051,0.0037,0.0064
+"JDK 26, ParallelGC",nearly_local,5000,WhileNeeded,PassPerItem,0.0047,0.0033,0.0060
+"JDK 26, ParallelGC",nearly_local,5000,WhileNeeded,UntilNoChange,0.9236,0.8573,0.9900
 "JDK 26, ParallelGC",nearly_local,10000,UntilNoChange,PassPerItem,0.0026,0.0021,0.0031
-"JDK 26, ParallelGC",nearly_local,10000,WhileNeeded,PassPerItem,0.0022,0.0019,0.0026
-"JDK 26, ParallelGC",nearly_local,10000,WhileNeeded,UntilNoChange,0.8736,0.7435,1.0263
-"JDK 26, ParallelGC",nearly_random,1000,UntilNoChange,PassPerItem,1.2802,1.2127,1.3514
+"JDK 26, ParallelGC",nearly_local,10000,WhileNeeded,PassPerItem,0.0023,0.0019,0.0026
+"JDK 26, ParallelGC",nearly_local,10000,WhileNeeded,UntilNoChange,0.8792,0.7459,1.0126
+"JDK 26, ParallelGC",nearly_random,1000,UntilNoChange,PassPerItem,1.2812,1.2120,1.3503
 "JDK 26, ParallelGC",nearly_random,1000,WhileNeeded,PassPerItem,0.6964,0.6881,0.7048
-"JDK 26, ParallelGC",nearly_random,1000,WhileNeeded,UntilNoChange,0.5440,0.5130,0.5769
-"JDK 26, ParallelGC",nearly_random,5000,UntilNoChange,PassPerItem,1.3336,1.2913,1.3773
+"JDK 26, ParallelGC",nearly_random,1000,WhileNeeded,UntilNoChange,0.5445,0.5123,0.5767
+"JDK 26, ParallelGC",nearly_random,5000,UntilNoChange,PassPerItem,1.3340,1.2914,1.3765
 "JDK 26, ParallelGC",nearly_random,5000,WhileNeeded,PassPerItem,0.7266,0.7217,0.7315
-"JDK 26, ParallelGC",nearly_random,5000,WhileNeeded,UntilNoChange,0.5448,0.5292,0.5609
-"JDK 26, ParallelGC",nearly_random,10000,UntilNoChange,PassPerItem,1.2356,1.2006,1.2716
-"JDK 26, ParallelGC",nearly_random,10000,WhileNeeded,PassPerItem,0.6758,0.6665,0.6852
-"JDK 26, ParallelGC",nearly_random,10000,WhileNeeded,UntilNoChange,0.5469,0.5292,0.5652
-"JDK 26, ParallelGC",random,1000,UntilNoChange,PassPerItem,1.2384,1.2007,1.2774
+"JDK 26, ParallelGC",nearly_random,5000,WhileNeeded,UntilNoChange,0.5450,0.5289,0.5610
+"JDK 26, ParallelGC",nearly_random,10000,UntilNoChange,PassPerItem,1.2359,1.2006,1.2711
+"JDK 26, ParallelGC",nearly_random,10000,WhileNeeded,PassPerItem,0.6758,0.6665,0.6851
+"JDK 26, ParallelGC",nearly_random,10000,WhileNeeded,UntilNoChange,0.5471,0.5288,0.5654
+"JDK 26, ParallelGC",random,1000,UntilNoChange,PassPerItem,1.2387,1.2006,1.2769
 "JDK 26, ParallelGC",random,1000,WhileNeeded,PassPerItem,0.7517,0.7430,0.7604
-"JDK 26, ParallelGC",random,1000,WhileNeeded,UntilNoChange,0.6069,0.5948,0.6193
-"JDK 26, ParallelGC",random,5000,UntilNoChange,PassPerItem,1.2504,1.2309,1.2701
+"JDK 26, ParallelGC",random,1000,WhileNeeded,UntilNoChange,0.6070,0.5947,0.6193
+"JDK 26, ParallelGC",random,5000,UntilNoChange,PassPerItem,1.2505,1.2309,1.2700
 "JDK 26, ParallelGC",random,5000,WhileNeeded,PassPerItem,0.7609,0.7572,0.7645
-"JDK 26, ParallelGC",random,5000,WhileNeeded,UntilNoChange,0.6085,0.6010,0.6161
-"JDK 26, ParallelGC",random,10000,UntilNoChange,PassPerItem,1.1485,1.0940,1.2058
-"JDK 26, ParallelGC",random,10000,WhileNeeded,PassPerItem,0.6484,0.6170,0.6814
-"JDK 26, ParallelGC",random,10000,WhileNeeded,UntilNoChange,0.5645,0.5529,0.5764
-"JDK 26, ParallelGC",reversed,1000,UntilNoChange,PassPerItem,1.5030,1.4683,1.5386
-"JDK 26, ParallelGC",reversed,1000,WhileNeeded,PassPerItem,1.0717,1.0463,1.0976
+"JDK 26, ParallelGC",random,5000,WhileNeeded,UntilNoChange,0.6085,0.6009,0.6161
+"JDK 26, ParallelGC",random,10000,UntilNoChange,PassPerItem,1.1492,1.0945,1.2040
+"JDK 26, ParallelGC",random,10000,WhileNeeded,PassPerItem,0.6488,0.6174,0.6802
+"JDK 26, ParallelGC",random,10000,WhileNeeded,UntilNoChange,0.5646,0.5528,0.5764
+"JDK 26, ParallelGC",reversed,1000,UntilNoChange,PassPerItem,1.5033,1.4686,1.5379
+"JDK 26, ParallelGC",reversed,1000,WhileNeeded,PassPerItem,1.0718,1.0465,1.0971
 "JDK 26, ParallelGC",reversed,1000,WhileNeeded,UntilNoChange,0.7130,0.7118,0.7142
-"JDK 26, ParallelGC",reversed,5000,UntilNoChange,PassPerItem,1.5089,1.4724,1.5463
-"JDK 26, ParallelGC",reversed,5000,WhileNeeded,PassPerItem,1.0881,1.0606,1.1164
+"JDK 26, ParallelGC",reversed,5000,UntilNoChange,PassPerItem,1.5091,1.4726,1.5456
+"JDK 26, ParallelGC",reversed,5000,WhileNeeded,PassPerItem,1.0883,1.0608,1.1158
 "JDK 26, ParallelGC",reversed,5000,WhileNeeded,UntilNoChange,0.7212,0.7202,0.7221
-"JDK 26, ParallelGC",reversed,10000,UntilNoChange,PassPerItem,1.1005,1.0516,1.1517
-"JDK 26, ParallelGC",reversed,10000,WhileNeeded,PassPerItem,1.0787,1.0562,1.1017
-"JDK 26, ParallelGC",reversed,10000,WhileNeeded,UntilNoChange,0.9802,0.9380,1.0242
+"JDK 26, ParallelGC",reversed,10000,UntilNoChange,PassPerItem,1.1011,1.0515,1.1507
+"JDK 26, ParallelGC",reversed,10000,WhileNeeded,PassPerItem,1.0788,1.0561,1.1016
+"JDK 26, ParallelGC",reversed,10000,WhileNeeded,UntilNoChange,0.9807,0.9372,1.0241
 "JDK 26, ParallelGC",sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0010
 "JDK 26, ParallelGC",sorted,1000,WhileNeeded,PassPerItem,0.0009,0.0009,0.0009
 "JDK 26, ParallelGC",sorted,1000,WhileNeeded,UntilNoChange,0.8642,0.8629,0.8655
@@ -160,52 +160,52 @@ setting,order,size,numerator,denominator,ratio,ci_lo,ci_hi
 "JDK 26, ParallelGC",sorted,5000,WhileNeeded,UntilNoChange,0.8596,0.8522,0.8670
 "JDK 26, ParallelGC",sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0002
 "JDK 26, ParallelGC",sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
-"JDK 26, ParallelGC",sorted,10000,WhileNeeded,UntilNoChange,0.7945,0.7491,0.8426
-JDK 26 (repeat run),few_unique,1000,UntilNoChange,PassPerItem,1.1028,1.0814,1.1247
-JDK 26 (repeat run),few_unique,1000,WhileNeeded,PassPerItem,0.6600,0.6517,0.6685
-JDK 26 (repeat run),few_unique,1000,WhileNeeded,UntilNoChange,0.5985,0.5838,0.6135
-JDK 26 (repeat run),few_unique,5000,UntilNoChange,PassPerItem,1.0957,1.0864,1.1052
-JDK 26 (repeat run),few_unique,5000,WhileNeeded,PassPerItem,0.6709,0.6665,0.6754
+"JDK 26, ParallelGC",sorted,10000,WhileNeeded,UntilNoChange,0.7952,0.7484,0.8419
+JDK 26 (repeat run),few_unique,1000,UntilNoChange,PassPerItem,1.1029,1.0811,1.1248
+JDK 26 (repeat run),few_unique,1000,WhileNeeded,PassPerItem,0.6601,0.6517,0.6685
+JDK 26 (repeat run),few_unique,1000,WhileNeeded,UntilNoChange,0.5986,0.5838,0.6134
+JDK 26 (repeat run),few_unique,5000,UntilNoChange,PassPerItem,1.0957,1.0864,1.1051
+JDK 26 (repeat run),few_unique,5000,WhileNeeded,PassPerItem,0.6709,0.6665,0.6753
 JDK 26 (repeat run),few_unique,5000,WhileNeeded,UntilNoChange,0.6123,0.6095,0.6151
-JDK 26 (repeat run),few_unique,10000,UntilNoChange,PassPerItem,1.0901,1.0852,1.0951
+JDK 26 (repeat run),few_unique,10000,UntilNoChange,PassPerItem,1.0902,1.0852,1.0951
 JDK 26 (repeat run),few_unique,10000,WhileNeeded,PassPerItem,0.6523,0.6511,0.6535
 JDK 26 (repeat run),few_unique,10000,WhileNeeded,UntilNoChange,0.5984,0.5966,0.6001
-JDK 26 (repeat run),nearly_local,1000,UntilNoChange,PassPerItem,0.0193,0.0149,0.0249
-JDK 26 (repeat run),nearly_local,1000,WhileNeeded,PassPerItem,0.0169,0.0149,0.0192
-JDK 26 (repeat run),nearly_local,1000,WhileNeeded,UntilNoChange,0.8777,0.7658,1.0059
-JDK 26 (repeat run),nearly_local,5000,UntilNoChange,PassPerItem,0.0050,0.0037,0.0066
-JDK 26 (repeat run),nearly_local,5000,WhileNeeded,PassPerItem,0.0046,0.0034,0.0061
-JDK 26 (repeat run),nearly_local,5000,WhileNeeded,UntilNoChange,0.9202,0.8551,0.9902
-JDK 26 (repeat run),nearly_local,10000,UntilNoChange,PassPerItem,0.0024,0.0020,0.0030
+JDK 26 (repeat run),nearly_local,1000,UntilNoChange,PassPerItem,0.0196,0.0145,0.0247
+JDK 26 (repeat run),nearly_local,1000,WhileNeeded,PassPerItem,0.0170,0.0148,0.0192
+JDK 26 (repeat run),nearly_local,1000,WhileNeeded,UntilNoChange,0.8819,0.7639,0.9999
+JDK 26 (repeat run),nearly_local,5000,UntilNoChange,PassPerItem,0.0051,0.0037,0.0064
+JDK 26 (repeat run),nearly_local,5000,WhileNeeded,PassPerItem,0.0047,0.0033,0.0060
+JDK 26 (repeat run),nearly_local,5000,WhileNeeded,UntilNoChange,0.9215,0.8538,0.9891
+JDK 26 (repeat run),nearly_local,10000,UntilNoChange,PassPerItem,0.0024,0.0020,0.0029
 JDK 26 (repeat run),nearly_local,10000,WhileNeeded,PassPerItem,0.0021,0.0018,0.0025
-JDK 26 (repeat run),nearly_local,10000,WhileNeeded,UntilNoChange,0.8753,0.7420,1.0325
-JDK 26 (repeat run),nearly_random,1000,UntilNoChange,PassPerItem,1.2853,1.2136,1.3612
-JDK 26 (repeat run),nearly_random,1000,WhileNeeded,PassPerItem,0.6989,0.6886,0.7094
-JDK 26 (repeat run),nearly_random,1000,WhileNeeded,UntilNoChange,0.5438,0.5126,0.5769
-JDK 26 (repeat run),nearly_random,5000,UntilNoChange,PassPerItem,1.3329,1.2915,1.3757
+JDK 26 (repeat run),nearly_local,10000,WhileNeeded,UntilNoChange,0.8813,0.7442,1.0184
+JDK 26 (repeat run),nearly_random,1000,UntilNoChange,PassPerItem,1.2864,1.2129,1.3598
+JDK 26 (repeat run),nearly_random,1000,WhileNeeded,PassPerItem,0.6990,0.6886,0.7094
+JDK 26 (repeat run),nearly_random,1000,WhileNeeded,UntilNoChange,0.5443,0.5119,0.5766
+JDK 26 (repeat run),nearly_random,5000,UntilNoChange,PassPerItem,1.3333,1.2916,1.3750
 JDK 26 (repeat run),nearly_random,5000,WhileNeeded,PassPerItem,0.7274,0.7251,0.7296
-JDK 26 (repeat run),nearly_random,5000,WhileNeeded,UntilNoChange,0.5457,0.5298,0.5621
-JDK 26 (repeat run),nearly_random,10000,UntilNoChange,PassPerItem,1.2361,1.2013,1.2718
-JDK 26 (repeat run),nearly_random,10000,WhileNeeded,PassPerItem,0.6393,0.6289,0.6499
-JDK 26 (repeat run),nearly_random,10000,WhileNeeded,UntilNoChange,0.5172,0.4982,0.5369
-JDK 26 (repeat run),random,1000,UntilNoChange,PassPerItem,1.2412,1.2015,1.2821
+JDK 26 (repeat run),nearly_random,5000,WhileNeeded,UntilNoChange,0.5458,0.5295,0.5621
+JDK 26 (repeat run),nearly_random,10000,UntilNoChange,PassPerItem,1.2363,1.2015,1.2711
+JDK 26 (repeat run),nearly_random,10000,WhileNeeded,PassPerItem,0.6394,0.6289,0.6498
+JDK 26 (repeat run),nearly_random,10000,WhileNeeded,UntilNoChange,0.5174,0.4979,0.5369
+JDK 26 (repeat run),random,1000,UntilNoChange,PassPerItem,1.2415,1.2014,1.2816
 JDK 26 (repeat run),random,1000,WhileNeeded,PassPerItem,0.7517,0.7461,0.7574
-JDK 26 (repeat run),random,1000,WhileNeeded,UntilNoChange,0.6057,0.5897,0.6221
-JDK 26 (repeat run),random,5000,UntilNoChange,PassPerItem,1.2520,1.2362,1.2681
+JDK 26 (repeat run),random,1000,WhileNeeded,UntilNoChange,0.6058,0.5895,0.6220
+JDK 26 (repeat run),random,5000,UntilNoChange,PassPerItem,1.2521,1.2362,1.2680
 JDK 26 (repeat run),random,5000,WhileNeeded,PassPerItem,0.7622,0.7590,0.7654
 JDK 26 (repeat run),random,5000,WhileNeeded,UntilNoChange,0.6088,0.6013,0.6163
-JDK 26 (repeat run),random,10000,UntilNoChange,PassPerItem,1.1466,1.0914,1.2046
-JDK 26 (repeat run),random,10000,WhileNeeded,PassPerItem,0.6448,0.6160,0.6749
-JDK 26 (repeat run),random,10000,WhileNeeded,UntilNoChange,0.5623,0.5570,0.5677
+JDK 26 (repeat run),random,10000,UntilNoChange,PassPerItem,1.1474,1.0922,1.2025
+JDK 26 (repeat run),random,10000,WhileNeeded,PassPerItem,0.6451,0.6164,0.6739
+JDK 26 (repeat run),random,10000,WhileNeeded,UntilNoChange,0.5624,0.5570,0.5677
 JDK 26 (repeat run),reversed,1000,UntilNoChange,PassPerItem,1.5167,1.5135,1.5198
-JDK 26 (repeat run),reversed,1000,WhileNeeded,PassPerItem,1.0854,1.0712,1.0998
-JDK 26 (repeat run),reversed,1000,WhileNeeded,UntilNoChange,0.7157,0.7057,0.7257
+JDK 26 (repeat run),reversed,1000,WhileNeeded,PassPerItem,1.0855,1.0711,1.0999
+JDK 26 (repeat run),reversed,1000,WhileNeeded,UntilNoChange,0.7157,0.7056,0.7258
 JDK 26 (repeat run),reversed,5000,UntilNoChange,PassPerItem,1.5221,1.5192,1.5250
 JDK 26 (repeat run),reversed,5000,WhileNeeded,PassPerItem,1.0984,1.0964,1.1003
 JDK 26 (repeat run),reversed,5000,WhileNeeded,UntilNoChange,0.7216,0.7206,0.7227
-JDK 26 (repeat run),reversed,10000,UntilNoChange,PassPerItem,1.0731,1.0331,1.1147
-JDK 26 (repeat run),reversed,10000,WhileNeeded,PassPerItem,1.0588,1.0307,1.0876
-JDK 26 (repeat run),reversed,10000,WhileNeeded,UntilNoChange,0.9866,0.9733,1.0002
+JDK 26 (repeat run),reversed,10000,UntilNoChange,PassPerItem,1.0735,1.0326,1.1145
+JDK 26 (repeat run),reversed,10000,WhileNeeded,PassPerItem,1.0590,1.0307,1.0873
+JDK 26 (repeat run),reversed,10000,WhileNeeded,UntilNoChange,0.9867,0.9733,1.0000
 JDK 26 (repeat run),sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0010
 JDK 26 (repeat run),sorted,1000,WhileNeeded,PassPerItem,0.0009,0.0009,0.0009
 JDK 26 (repeat run),sorted,1000,WhileNeeded,UntilNoChange,0.8618,0.8606,0.8630
@@ -215,48 +215,48 @@ JDK 26 (repeat run),sorted,5000,WhileNeeded,UntilNoChange,0.8584,0.8576,0.8592
 JDK 26 (repeat run),sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0001
 JDK 26 (repeat run),sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
 JDK 26 (repeat run),sorted,10000,WhileNeeded,UntilNoChange,0.8607,0.8595,0.8618
-JDK 25 (this Mac),few_unique,1000,UntilNoChange,PassPerItem,1.1534,1.1204,1.1874
-JDK 25 (this Mac),few_unique,1000,WhileNeeded,PassPerItem,0.6859,0.6519,0.7218
-JDK 25 (this Mac),few_unique,1000,WhileNeeded,UntilNoChange,0.5947,0.5677,0.6230
+JDK 25 (this Mac),few_unique,1000,UntilNoChange,PassPerItem,1.1537,1.1201,1.1872
+JDK 25 (this Mac),few_unique,1000,WhileNeeded,PassPerItem,0.6864,0.6511,0.7217
+JDK 25 (this Mac),few_unique,1000,WhileNeeded,UntilNoChange,0.5950,0.5675,0.6226
 JDK 25 (this Mac),few_unique,5000,UntilNoChange,PassPerItem,1.1395,1.1329,1.1460
 JDK 25 (this Mac),few_unique,5000,WhileNeeded,PassPerItem,0.7042,0.7019,0.7065
 JDK 25 (this Mac),few_unique,5000,WhileNeeded,UntilNoChange,0.6180,0.6142,0.6218
 JDK 25 (this Mac),few_unique,10000,UntilNoChange,PassPerItem,1.1897,1.1838,1.1955
 JDK 25 (this Mac),few_unique,10000,WhileNeeded,PassPerItem,0.6834,0.6813,0.6854
 JDK 25 (this Mac),few_unique,10000,WhileNeeded,UntilNoChange,0.5744,0.5724,0.5764
-JDK 25 (this Mac),nearly_local,1000,UntilNoChange,PassPerItem,0.0198,0.0155,0.0252
-JDK 25 (this Mac),nearly_local,1000,WhileNeeded,PassPerItem,0.0173,0.0153,0.0195
-JDK 25 (this Mac),nearly_local,1000,WhileNeeded,UntilNoChange,0.8758,0.7692,0.9972
-JDK 25 (this Mac),nearly_local,5000,UntilNoChange,PassPerItem,0.0051,0.0039,0.0067
-JDK 25 (this Mac),nearly_local,5000,WhileNeeded,PassPerItem,0.0046,0.0035,0.0061
-JDK 25 (this Mac),nearly_local,5000,WhileNeeded,UntilNoChange,0.9133,0.8553,0.9752
+JDK 25 (this Mac),nearly_local,1000,UntilNoChange,PassPerItem,0.0201,0.0151,0.0250
+JDK 25 (this Mac),nearly_local,1000,WhileNeeded,PassPerItem,0.0174,0.0152,0.0195
+JDK 25 (this Mac),nearly_local,1000,WhileNeeded,UntilNoChange,0.8796,0.7676,0.9915
+JDK 25 (this Mac),nearly_local,5000,UntilNoChange,PassPerItem,0.0052,0.0039,0.0065
+JDK 25 (this Mac),nearly_local,5000,WhileNeeded,PassPerItem,0.0047,0.0035,0.0060
+JDK 25 (this Mac),nearly_local,5000,WhileNeeded,UntilNoChange,0.9143,0.8547,0.9739
 JDK 25 (this Mac),nearly_local,10000,UntilNoChange,PassPerItem,0.0025,0.0020,0.0030
-JDK 25 (this Mac),nearly_local,10000,WhileNeeded,PassPerItem,0.0022,0.0019,0.0026
-JDK 25 (this Mac),nearly_local,10000,WhileNeeded,UntilNoChange,0.8770,0.7420,1.0365
-JDK 25 (this Mac),nearly_random,1000,UntilNoChange,PassPerItem,1.2577,1.2036,1.3142
-JDK 25 (this Mac),nearly_random,1000,WhileNeeded,PassPerItem,0.6876,0.6659,0.7101
-JDK 25 (this Mac),nearly_random,1000,WhileNeeded,UntilNoChange,0.5467,0.5134,0.5823
-JDK 25 (this Mac),nearly_random,5000,UntilNoChange,PassPerItem,1.3063,1.2735,1.3400
+JDK 25 (this Mac),nearly_local,10000,WhileNeeded,PassPerItem,0.0022,0.0019,0.0025
+JDK 25 (this Mac),nearly_local,10000,WhileNeeded,UntilNoChange,0.8831,0.7449,1.0213
+JDK 25 (this Mac),nearly_random,1000,UntilNoChange,PassPerItem,1.2583,1.2035,1.3131
+JDK 25 (this Mac),nearly_random,1000,WhileNeeded,PassPerItem,0.6878,0.6656,0.7100
+JDK 25 (this Mac),nearly_random,1000,WhileNeeded,UntilNoChange,0.5473,0.5125,0.5821
+JDK 25 (this Mac),nearly_random,5000,UntilNoChange,PassPerItem,1.3065,1.2736,1.3395
 JDK 25 (this Mac),nearly_random,5000,WhileNeeded,PassPerItem,0.7156,0.7060,0.7253
-JDK 25 (this Mac),nearly_random,5000,WhileNeeded,UntilNoChange,0.5478,0.5306,0.5656
-JDK 25 (this Mac),nearly_random,10000,UntilNoChange,PassPerItem,1.1985,1.1585,1.2399
-JDK 25 (this Mac),nearly_random,10000,WhileNeeded,PassPerItem,0.6195,0.6127,0.6265
-JDK 25 (this Mac),nearly_random,10000,WhileNeeded,UntilNoChange,0.5169,0.5008,0.5336
-JDK 25 (this Mac),random,1000,UntilNoChange,PassPerItem,1.1661,1.1340,1.1992
-JDK 25 (this Mac),random,1000,WhileNeeded,PassPerItem,0.7049,0.6901,0.7199
-JDK 25 (this Mac),random,1000,WhileNeeded,UntilNoChange,0.6044,0.5975,0.6115
-JDK 25 (this Mac),random,5000,UntilNoChange,PassPerItem,1.1825,1.1548,1.2109
+JDK 25 (this Mac),nearly_random,5000,WhileNeeded,UntilNoChange,0.5479,0.5302,0.5657
+JDK 25 (this Mac),nearly_random,10000,UntilNoChange,PassPerItem,1.1988,1.1585,1.2391
+JDK 25 (this Mac),nearly_random,10000,WhileNeeded,PassPerItem,0.6196,0.6127,0.6264
+JDK 25 (this Mac),nearly_random,10000,WhileNeeded,UntilNoChange,0.5171,0.5005,0.5337
+JDK 25 (this Mac),random,1000,UntilNoChange,PassPerItem,1.1664,1.1336,1.1992
+JDK 25 (this Mac),random,1000,WhileNeeded,PassPerItem,0.7050,0.6899,0.7200
+JDK 25 (this Mac),random,1000,WhileNeeded,UntilNoChange,0.6045,0.5975,0.6115
+JDK 25 (this Mac),random,5000,UntilNoChange,PassPerItem,1.1827,1.1549,1.2105
 JDK 25 (this Mac),random,5000,WhileNeeded,PassPerItem,0.7089,0.7048,0.7129
-JDK 25 (this Mac),random,5000,WhileNeeded,UntilNoChange,0.5995,0.5866,0.6126
-JDK 25 (this Mac),random,10000,UntilNoChange,PassPerItem,1.1721,1.1458,1.1991
-JDK 25 (this Mac),random,10000,WhileNeeded,PassPerItem,0.6737,0.6643,0.6833
-JDK 25 (this Mac),random,10000,WhileNeeded,UntilNoChange,0.5748,0.5680,0.5816
-JDK 25 (this Mac),reversed,1000,UntilNoChange,PassPerItem,1.0832,1.0706,1.0959
-JDK 25 (this Mac),reversed,1000,WhileNeeded,PassPerItem,0.7065,0.6942,0.7191
-JDK 25 (this Mac),reversed,1000,WhileNeeded,UntilNoChange,0.6522,0.6415,0.6631
-JDK 25 (this Mac),reversed,5000,UntilNoChange,PassPerItem,1.0913,1.0813,1.1013
-JDK 25 (this Mac),reversed,5000,WhileNeeded,PassPerItem,0.7005,0.6967,0.7042
-JDK 25 (this Mac),reversed,5000,WhileNeeded,UntilNoChange,0.6419,0.6382,0.6457
+JDK 25 (this Mac),random,5000,WhileNeeded,UntilNoChange,0.5995,0.5864,0.6127
+JDK 25 (this Mac),random,10000,UntilNoChange,PassPerItem,1.1723,1.1459,1.1987
+JDK 25 (this Mac),random,10000,WhileNeeded,PassPerItem,0.6737,0.6643,0.6832
+JDK 25 (this Mac),random,10000,WhileNeeded,UntilNoChange,0.5748,0.5679,0.5816
+JDK 25 (this Mac),reversed,1000,UntilNoChange,PassPerItem,1.0832,1.0705,1.0959
+JDK 25 (this Mac),reversed,1000,WhileNeeded,PassPerItem,0.7066,0.6941,0.7190
+JDK 25 (this Mac),reversed,1000,WhileNeeded,UntilNoChange,0.6523,0.6414,0.6631
+JDK 25 (this Mac),reversed,5000,UntilNoChange,PassPerItem,1.0913,1.0813,1.1012
+JDK 25 (this Mac),reversed,5000,WhileNeeded,PassPerItem,0.7005,0.6967,0.7043
+JDK 25 (this Mac),reversed,5000,WhileNeeded,UntilNoChange,0.6419,0.6381,0.6457
 JDK 25 (this Mac),reversed,10000,UntilNoChange,PassPerItem,1.4814,1.4772,1.4856
 JDK 25 (this Mac),reversed,10000,WhileNeeded,PassPerItem,0.6699,0.6686,0.6712
 JDK 25 (this Mac),reversed,10000,WhileNeeded,UntilNoChange,0.4522,0.4506,0.4538
@@ -265,55 +265,55 @@ JDK 25 (this Mac),sorted,1000,WhileNeeded,PassPerItem,0.0010,0.0010,0.0010
 JDK 25 (this Mac),sorted,1000,WhileNeeded,UntilNoChange,0.9990,0.9903,1.0077
 JDK 25 (this Mac),sorted,5000,UntilNoChange,PassPerItem,0.0002,0.0002,0.0002
 JDK 25 (this Mac),sorted,5000,WhileNeeded,PassPerItem,0.0002,0.0002,0.0002
-JDK 25 (this Mac),sorted,5000,WhileNeeded,UntilNoChange,0.9909,0.9646,1.0179
+JDK 25 (this Mac),sorted,5000,WhileNeeded,UntilNoChange,0.9911,0.9646,1.0175
 JDK 25 (this Mac),sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0001
 JDK 25 (this Mac),sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
-JDK 25 (this Mac),sorted,10000,WhileNeeded,UntilNoChange,0.9989,0.9709,1.0277
-JDK 21,few_unique,1000,UntilNoChange,PassPerItem,1.0927,1.0792,1.1064
-JDK 21,few_unique,1000,WhileNeeded,PassPerItem,0.6441,0.6379,0.6505
-JDK 21,few_unique,1000,WhileNeeded,UntilNoChange,0.5895,0.5773,0.6019
+JDK 25 (this Mac),sorted,10000,WhileNeeded,UntilNoChange,0.9991,0.9704,1.0278
+JDK 21,few_unique,1000,UntilNoChange,PassPerItem,1.0928,1.0792,1.1063
+JDK 21,few_unique,1000,WhileNeeded,PassPerItem,0.6442,0.6379,0.6505
+JDK 21,few_unique,1000,WhileNeeded,UntilNoChange,0.5896,0.5773,0.6019
 JDK 21,few_unique,5000,UntilNoChange,PassPerItem,1.0981,1.0904,1.1058
 JDK 21,few_unique,5000,WhileNeeded,PassPerItem,0.6603,0.6555,0.6651
 JDK 21,few_unique,5000,WhileNeeded,UntilNoChange,0.6013,0.5932,0.6095
-JDK 21,few_unique,10000,UntilNoChange,PassPerItem,1.1101,1.0997,1.1207
+JDK 21,few_unique,10000,UntilNoChange,PassPerItem,1.1102,1.0996,1.1207
 JDK 21,few_unique,10000,WhileNeeded,PassPerItem,0.6859,0.6824,0.6894
 JDK 21,few_unique,10000,WhileNeeded,UntilNoChange,0.6179,0.6140,0.6218
-JDK 21,nearly_local,1000,UntilNoChange,PassPerItem,0.0189,0.0147,0.0243
-JDK 21,nearly_local,1000,WhileNeeded,PassPerItem,0.0167,0.0150,0.0186
-JDK 21,nearly_local,1000,WhileNeeded,UntilNoChange,0.8845,0.7616,1.0272
-JDK 21,nearly_local,5000,UntilNoChange,PassPerItem,0.0049,0.0037,0.0065
-JDK 21,nearly_local,5000,WhileNeeded,PassPerItem,0.0045,0.0034,0.0060
-JDK 21,nearly_local,5000,WhileNeeded,UntilNoChange,0.9224,0.8455,1.0063
+JDK 21,nearly_local,1000,UntilNoChange,PassPerItem,0.0192,0.0142,0.0242
+JDK 21,nearly_local,1000,WhileNeeded,PassPerItem,0.0168,0.0149,0.0186
+JDK 21,nearly_local,1000,WhileNeeded,UntilNoChange,0.8895,0.7595,1.0196
+JDK 21,nearly_local,5000,UntilNoChange,PassPerItem,0.0050,0.0037,0.0063
+JDK 21,nearly_local,5000,WhileNeeded,PassPerItem,0.0046,0.0033,0.0059
+JDK 21,nearly_local,5000,WhileNeeded,UntilNoChange,0.9242,0.8435,1.0049
 JDK 21,nearly_local,10000,UntilNoChange,PassPerItem,0.0026,0.0021,0.0031
 JDK 21,nearly_local,10000,WhileNeeded,PassPerItem,0.0022,0.0019,0.0026
-JDK 21,nearly_local,10000,WhileNeeded,UntilNoChange,0.8686,0.7504,1.0054
-JDK 21,nearly_random,1000,UntilNoChange,PassPerItem,1.2802,1.2083,1.3565
-JDK 21,nearly_random,1000,WhileNeeded,PassPerItem,0.7031,0.6843,0.7223
-JDK 21,nearly_random,1000,WhileNeeded,UntilNoChange,0.5492,0.5162,0.5842
-JDK 21,nearly_random,5000,UntilNoChange,PassPerItem,1.3145,1.2785,1.3514
-JDK 21,nearly_random,5000,WhileNeeded,PassPerItem,0.7255,0.7050,0.7466
-JDK 21,nearly_random,5000,WhileNeeded,UntilNoChange,0.5519,0.5271,0.5779
-JDK 21,nearly_random,10000,UntilNoChange,PassPerItem,1.2242,1.1817,1.2683
-JDK 21,nearly_random,10000,WhileNeeded,PassPerItem,0.6660,0.6492,0.6832
-JDK 21,nearly_random,10000,WhileNeeded,UntilNoChange,0.5440,0.5182,0.5711
-JDK 21,random,1000,UntilNoChange,PassPerItem,1.1980,1.1508,1.2471
-JDK 21,random,1000,WhileNeeded,PassPerItem,0.7736,0.7177,0.8338
-JDK 21,random,1000,WhileNeeded,UntilNoChange,0.6457,0.5859,0.7116
-JDK 21,random,5000,UntilNoChange,PassPerItem,1.1989,1.1760,1.2221
-JDK 21,random,5000,WhileNeeded,PassPerItem,0.7217,0.7072,0.7365
-JDK 21,random,5000,WhileNeeded,UntilNoChange,0.6020,0.5801,0.6248
-JDK 21,random,10000,UntilNoChange,PassPerItem,1.1503,1.1064,1.1960
+JDK 21,nearly_local,10000,WhileNeeded,UntilNoChange,0.8732,0.7532,0.9932
+JDK 21,nearly_random,1000,UntilNoChange,PassPerItem,1.2813,1.2072,1.3555
+JDK 21,nearly_random,1000,WhileNeeded,PassPerItem,0.7032,0.6842,0.7222
+JDK 21,nearly_random,1000,WhileNeeded,UntilNoChange,0.5497,0.5152,0.5842
+JDK 21,nearly_random,5000,UntilNoChange,PassPerItem,1.3147,1.2783,1.3512
+JDK 21,nearly_random,5000,WhileNeeded,PassPerItem,0.7256,0.7050,0.7463
+JDK 21,nearly_random,5000,WhileNeeded,UntilNoChange,0.5522,0.5273,0.5772
+JDK 21,nearly_random,10000,UntilNoChange,PassPerItem,1.2246,1.1818,1.2674
+JDK 21,nearly_random,10000,WhileNeeded,PassPerItem,0.6661,0.6492,0.6830
+JDK 21,nearly_random,10000,WhileNeeded,UntilNoChange,0.5444,0.5178,0.5709
+JDK 21,random,1000,UntilNoChange,PassPerItem,1.1985,1.1500,1.2470
+JDK 21,random,1000,WhileNeeded,PassPerItem,0.7747,0.7170,0.8324
+JDK 21,random,1000,WhileNeeded,UntilNoChange,0.6473,0.5853,0.7093
+JDK 21,random,5000,UntilNoChange,PassPerItem,1.1990,1.1759,1.2220
+JDK 21,random,5000,WhileNeeded,PassPerItem,0.7218,0.7070,0.7366
+JDK 21,random,5000,WhileNeeded,UntilNoChange,0.6022,0.5795,0.6249
+JDK 21,random,10000,UntilNoChange,PassPerItem,1.1508,1.1068,1.1947
 JDK 21,random,10000,WhileNeeded,PassPerItem,0.6407,0.6345,0.6470
-JDK 21,random,10000,WhileNeeded,UntilNoChange,0.5570,0.5324,0.5826
-JDK 21,reversed,1000,UntilNoChange,PassPerItem,1.1039,1.0296,1.1835
-JDK 21,reversed,1000,WhileNeeded,PassPerItem,0.7043,0.6827,0.7266
-JDK 21,reversed,1000,WhileNeeded,UntilNoChange,0.6380,0.6139,0.6631
-JDK 21,reversed,5000,UntilNoChange,PassPerItem,1.1451,1.1049,1.1867
-JDK 21,reversed,5000,WhileNeeded,PassPerItem,0.7379,0.7141,0.7625
-JDK 21,reversed,5000,WhileNeeded,UntilNoChange,0.6444,0.6057,0.6856
-JDK 21,reversed,10000,UntilNoChange,PassPerItem,1.1184,1.0823,1.1557
-JDK 21,reversed,10000,WhileNeeded,PassPerItem,0.7162,0.6923,0.7408
-JDK 21,reversed,10000,WhileNeeded,UntilNoChange,0.6404,0.6110,0.6711
+JDK 21,random,10000,WhileNeeded,UntilNoChange,0.5573,0.5317,0.5829
+JDK 21,reversed,1000,UntilNoChange,PassPerItem,1.1052,1.0294,1.1811
+JDK 21,reversed,1000,WhileNeeded,PassPerItem,0.7045,0.6827,0.7263
+JDK 21,reversed,1000,WhileNeeded,UntilNoChange,0.6383,0.6135,0.6631
+JDK 21,reversed,5000,UntilNoChange,PassPerItem,1.1455,1.1044,1.1865
+JDK 21,reversed,5000,WhileNeeded,PassPerItem,0.7381,0.7135,0.7627
+JDK 21,reversed,5000,WhileNeeded,UntilNoChange,0.6451,0.6044,0.6857
+JDK 21,reversed,10000,UntilNoChange,PassPerItem,1.1187,1.0825,1.1549
+JDK 21,reversed,10000,WhileNeeded,PassPerItem,0.7164,0.6919,0.7409
+JDK 21,reversed,10000,WhileNeeded,UntilNoChange,0.6407,0.6105,0.6710
 JDK 21,sorted,1000,UntilNoChange,PassPerItem,0.0012,0.0012,0.0012
 JDK 21,sorted,1000,WhileNeeded,PassPerItem,0.0010,0.0010,0.0010
 JDK 21,sorted,1000,WhileNeeded,UntilNoChange,0.8650,0.8647,0.8654
@@ -323,51 +323,51 @@ JDK 21,sorted,5000,WhileNeeded,UntilNoChange,0.8617,0.8603,0.8632
 JDK 21,sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0001
 JDK 21,sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
 JDK 21,sorted,10000,WhileNeeded,UntilNoChange,0.8627,0.8603,0.8652
-JDK 17,few_unique,1000,UntilNoChange,PassPerItem,1.0726,1.0507,1.0950
+JDK 17,few_unique,1000,UntilNoChange,PassPerItem,1.0727,1.0505,1.0949
 JDK 17,few_unique,1000,WhileNeeded,PassPerItem,0.6605,0.6494,0.6717
-JDK 17,few_unique,1000,WhileNeeded,UntilNoChange,0.6157,0.6065,0.6251
-JDK 17,few_unique,5000,UntilNoChange,PassPerItem,1.0938,1.0764,1.1115
-JDK 17,few_unique,5000,WhileNeeded,PassPerItem,0.6670,0.6546,0.6797
-JDK 17,few_unique,5000,WhileNeeded,UntilNoChange,0.6098,0.5998,0.6200
-JDK 17,few_unique,10000,UntilNoChange,PassPerItem,1.1135,1.0930,1.1343
-JDK 17,few_unique,10000,WhileNeeded,PassPerItem,0.6666,0.6518,0.6817
-JDK 17,few_unique,10000,WhileNeeded,UntilNoChange,0.5986,0.5838,0.6138
-JDK 17,nearly_local,1000,UntilNoChange,PassPerItem,0.0171,0.0133,0.0219
-JDK 17,nearly_local,1000,WhileNeeded,PassPerItem,0.0149,0.0132,0.0169
-JDK 17,nearly_local,1000,WhileNeeded,UntilNoChange,0.8735,0.7658,0.9963
-JDK 17,nearly_local,5000,UntilNoChange,PassPerItem,0.0044,0.0033,0.0058
-JDK 17,nearly_local,5000,WhileNeeded,PassPerItem,0.0040,0.0030,0.0054
-JDK 17,nearly_local,5000,WhileNeeded,UntilNoChange,0.9190,0.8538,0.9892
-JDK 17,nearly_local,10000,UntilNoChange,PassPerItem,0.0023,0.0019,0.0028
-JDK 17,nearly_local,10000,WhileNeeded,PassPerItem,0.0020,0.0017,0.0024
-JDK 17,nearly_local,10000,WhileNeeded,UntilNoChange,0.8803,0.7491,1.0345
-JDK 17,nearly_random,1000,UntilNoChange,PassPerItem,1.1211,1.0580,1.1879
+JDK 17,few_unique,1000,WhileNeeded,UntilNoChange,0.6158,0.6065,0.6251
+JDK 17,few_unique,5000,UntilNoChange,PassPerItem,1.0939,1.0764,1.1114
+JDK 17,few_unique,5000,WhileNeeded,PassPerItem,0.6671,0.6545,0.6797
+JDK 17,few_unique,5000,WhileNeeded,UntilNoChange,0.6099,0.5998,0.6200
+JDK 17,few_unique,10000,UntilNoChange,PassPerItem,1.1136,1.0931,1.1341
+JDK 17,few_unique,10000,WhileNeeded,PassPerItem,0.6666,0.6515,0.6818
+JDK 17,few_unique,10000,WhileNeeded,UntilNoChange,0.5987,0.5837,0.6138
+JDK 17,nearly_local,1000,UntilNoChange,PassPerItem,0.0174,0.0129,0.0218
+JDK 17,nearly_local,1000,WhileNeeded,PassPerItem,0.0150,0.0131,0.0169
+JDK 17,nearly_local,1000,WhileNeeded,UntilNoChange,0.8774,0.7639,0.9909
+JDK 17,nearly_local,5000,UntilNoChange,PassPerItem,0.0045,0.0033,0.0057
+JDK 17,nearly_local,5000,WhileNeeded,PassPerItem,0.0041,0.0030,0.0053
+JDK 17,nearly_local,5000,WhileNeeded,UntilNoChange,0.9203,0.8527,0.9880
+JDK 17,nearly_local,10000,UntilNoChange,PassPerItem,0.0023,0.0019,0.0027
+JDK 17,nearly_local,10000,WhileNeeded,PassPerItem,0.0020,0.0017,0.0023
+JDK 17,nearly_local,10000,WhileNeeded,UntilNoChange,0.8860,0.7524,1.0197
+JDK 17,nearly_random,1000,UntilNoChange,PassPerItem,1.1220,1.0574,1.1867
 JDK 17,nearly_random,1000,WhileNeeded,PassPerItem,0.6030,0.5923,0.6138
-JDK 17,nearly_random,1000,WhileNeeded,UntilNoChange,0.5379,0.5054,0.5725
-JDK 17,nearly_random,5000,UntilNoChange,PassPerItem,1.1568,1.1211,1.1935
-JDK 17,nearly_random,5000,WhileNeeded,PassPerItem,0.6156,0.6104,0.6209
-JDK 17,nearly_random,5000,WhileNeeded,UntilNoChange,0.5322,0.5148,0.5501
-JDK 17,nearly_random,10000,UntilNoChange,PassPerItem,1.1180,1.0851,1.1519
-JDK 17,nearly_random,10000,WhileNeeded,PassPerItem,0.5920,0.5869,0.5972
-JDK 17,nearly_random,10000,WhileNeeded,UntilNoChange,0.5295,0.5166,0.5428
-JDK 17,random,1000,UntilNoChange,PassPerItem,1.1116,1.0776,1.1467
+JDK 17,nearly_random,1000,WhileNeeded,UntilNoChange,0.5384,0.5047,0.5722
+JDK 17,nearly_random,5000,UntilNoChange,PassPerItem,1.1571,1.1209,1.1932
+JDK 17,nearly_random,5000,WhileNeeded,PassPerItem,0.6156,0.6103,0.6209
+JDK 17,nearly_random,5000,WhileNeeded,UntilNoChange,0.5323,0.5145,0.5502
+JDK 17,nearly_random,10000,UntilNoChange,PassPerItem,1.1182,1.0850,1.1514
+JDK 17,nearly_random,10000,WhileNeeded,PassPerItem,0.5920,0.5868,0.5972
+JDK 17,nearly_random,10000,WhileNeeded,UntilNoChange,0.5296,0.5165,0.5428
+JDK 17,random,1000,UntilNoChange,PassPerItem,1.1119,1.0777,1.1460
 JDK 17,random,1000,WhileNeeded,PassPerItem,0.6601,0.6526,0.6677
-JDK 17,random,1000,WhileNeeded,UntilNoChange,0.5938,0.5815,0.6064
-JDK 17,random,5000,UntilNoChange,PassPerItem,1.1399,1.1023,1.1787
-JDK 17,random,5000,WhileNeeded,PassPerItem,0.6745,0.6694,0.6797
-JDK 17,random,5000,WhileNeeded,UntilNoChange,0.5918,0.5695,0.6149
-JDK 17,random,10000,UntilNoChange,PassPerItem,1.1445,1.1250,1.1643
-JDK 17,random,10000,WhileNeeded,PassPerItem,0.6412,0.6323,0.6502
-JDK 17,random,10000,WhileNeeded,UntilNoChange,0.5602,0.5448,0.5761
-JDK 17,reversed,1000,UntilNoChange,PassPerItem,1.0104,0.9691,1.0535
-JDK 17,reversed,1000,WhileNeeded,PassPerItem,0.9474,0.9013,0.9958
-JDK 17,reversed,1000,WhileNeeded,UntilNoChange,0.9376,0.9184,0.9572
-JDK 17,reversed,5000,UntilNoChange,PassPerItem,1.0185,0.9703,1.0690
-JDK 17,reversed,5000,WhileNeeded,PassPerItem,0.9890,0.9586,1.0203
-JDK 17,reversed,5000,WhileNeeded,UntilNoChange,0.9710,0.9396,1.0035
-JDK 17,reversed,10000,UntilNoChange,PassPerItem,1.0646,1.0091,1.1231
-JDK 17,reversed,10000,WhileNeeded,PassPerItem,0.9821,0.9642,1.0004
-JDK 17,reversed,10000,WhileNeeded,UntilNoChange,0.9226,0.8792,0.9680
+JDK 17,random,1000,WhileNeeded,UntilNoChange,0.5939,0.5814,0.6064
+JDK 17,random,5000,UntilNoChange,PassPerItem,1.1402,1.1015,1.1789
+JDK 17,random,5000,WhileNeeded,PassPerItem,0.6746,0.6694,0.6797
+JDK 17,random,5000,WhileNeeded,UntilNoChange,0.5920,0.5697,0.6143
+JDK 17,random,10000,UntilNoChange,PassPerItem,1.1446,1.1249,1.1643
+JDK 17,random,10000,WhileNeeded,PassPerItem,0.6412,0.6323,0.6501
+JDK 17,random,10000,WhileNeeded,UntilNoChange,0.5603,0.5449,0.5758
+JDK 17,reversed,1000,UntilNoChange,PassPerItem,1.0109,0.9687,1.0531
+JDK 17,reversed,1000,WhileNeeded,PassPerItem,0.9480,0.9010,0.9950
+JDK 17,reversed,1000,WhileNeeded,UntilNoChange,0.9377,0.9181,0.9573
+JDK 17,reversed,5000,UntilNoChange,PassPerItem,1.0191,0.9698,1.0684
+JDK 17,reversed,5000,WhileNeeded,PassPerItem,0.9892,0.9584,1.0201
+JDK 17,reversed,5000,WhileNeeded,UntilNoChange,0.9713,0.9394,1.0032
+JDK 17,reversed,10000,UntilNoChange,PassPerItem,1.0654,1.0078,1.1229
+JDK 17,reversed,10000,WhileNeeded,PassPerItem,0.9822,0.9642,1.0003
+JDK 17,reversed,10000,WhileNeeded,UntilNoChange,0.9231,0.8786,0.9677
 JDK 17,sorted,1000,UntilNoChange,PassPerItem,0.0011,0.0010,0.0011
 JDK 17,sorted,1000,WhileNeeded,PassPerItem,0.0010,0.0010,0.0011
 JDK 17,sorted,1000,WhileNeeded,UntilNoChange,0.9995,0.9988,1.0002
@@ -379,133 +379,133 @@ JDK 17,sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
 JDK 17,sorted,10000,WhileNeeded,UntilNoChange,0.9997,0.9966,1.0028
 JDK 8,few_unique,1000,UntilNoChange,PassPerItem,1.0433,1.0326,1.0541
 JDK 8,few_unique,1000,WhileNeeded,PassPerItem,0.6371,0.6314,0.6428
-JDK 8,few_unique,1000,WhileNeeded,UntilNoChange,0.6106,0.6025,0.6189
-JDK 8,few_unique,5000,UntilNoChange,PassPerItem,1.0604,1.0544,1.0665
+JDK 8,few_unique,1000,WhileNeeded,UntilNoChange,0.6107,0.6026,0.6188
+JDK 8,few_unique,5000,UntilNoChange,PassPerItem,1.0604,1.0543,1.0665
 JDK 8,few_unique,5000,WhileNeeded,PassPerItem,0.6495,0.6453,0.6538
 JDK 8,few_unique,5000,WhileNeeded,UntilNoChange,0.6125,0.6083,0.6168
 JDK 8,few_unique,10000,UntilNoChange,PassPerItem,1.0784,1.0669,1.0899
 JDK 8,few_unique,10000,WhileNeeded,PassPerItem,0.6529,0.6484,0.6575
 JDK 8,few_unique,10000,WhileNeeded,UntilNoChange,0.6055,0.5995,0.6115
-JDK 8,nearly_local,1000,UntilNoChange,PassPerItem,0.0161,0.0125,0.0208
-JDK 8,nearly_local,1000,WhileNeeded,PassPerItem,0.0138,0.0122,0.0157
-JDK 8,nearly_local,1000,WhileNeeded,UntilNoChange,0.8570,0.7468,0.9836
-JDK 8,nearly_local,5000,UntilNoChange,PassPerItem,0.0041,0.0031,0.0055
-JDK 8,nearly_local,5000,WhileNeeded,PassPerItem,0.0037,0.0028,0.0050
-JDK 8,nearly_local,5000,WhileNeeded,UntilNoChange,0.9006,0.8398,0.9658
+JDK 8,nearly_local,1000,UntilNoChange,PassPerItem,0.0164,0.0121,0.0207
+JDK 8,nearly_local,1000,WhileNeeded,PassPerItem,0.0139,0.0121,0.0157
+JDK 8,nearly_local,1000,WhileNeeded,UntilNoChange,0.8612,0.7446,0.9779
+JDK 8,nearly_local,5000,UntilNoChange,PassPerItem,0.0042,0.0031,0.0053
+JDK 8,nearly_local,5000,WhileNeeded,PassPerItem,0.0038,0.0027,0.0049
+JDK 8,nearly_local,5000,WhileNeeded,UntilNoChange,0.9017,0.8398,0.9636
 JDK 8,nearly_local,10000,UntilNoChange,PassPerItem,0.0022,0.0018,0.0026
 JDK 8,nearly_local,10000,WhileNeeded,PassPerItem,0.0019,0.0016,0.0022
-JDK 8,nearly_local,10000,WhileNeeded,UntilNoChange,0.8653,0.7310,1.0242
-JDK 8,nearly_random,1000,UntilNoChange,PassPerItem,1.0592,0.9943,1.1283
-JDK 8,nearly_random,1000,WhileNeeded,PassPerItem,0.5679,0.5601,0.5759
-JDK 8,nearly_random,1000,WhileNeeded,UntilNoChange,0.5362,0.5038,0.5706
-JDK 8,nearly_random,5000,UntilNoChange,PassPerItem,1.0938,1.0575,1.1312
-JDK 8,nearly_random,5000,WhileNeeded,PassPerItem,0.5753,0.5689,0.5819
-JDK 8,nearly_random,5000,WhileNeeded,UntilNoChange,0.5260,0.5056,0.5472
-JDK 8,nearly_random,10000,UntilNoChange,PassPerItem,1.0298,1.0039,1.0563
-JDK 8,nearly_random,10000,WhileNeeded,PassPerItem,0.5471,0.5183,0.5775
-JDK 8,nearly_random,10000,WhileNeeded,UntilNoChange,0.5313,0.4947,0.5706
-JDK 8,random,1000,UntilNoChange,PassPerItem,1.0698,1.0435,1.0967
+JDK 8,nearly_local,10000,WhileNeeded,UntilNoChange,0.8715,0.7316,1.0113
+JDK 8,nearly_random,1000,UntilNoChange,PassPerItem,1.0603,0.9935,1.1270
+JDK 8,nearly_random,1000,WhileNeeded,PassPerItem,0.5679,0.5600,0.5758
+JDK 8,nearly_random,1000,WhileNeeded,UntilNoChange,0.5367,0.5032,0.5703
+JDK 8,nearly_random,5000,UntilNoChange,PassPerItem,1.0941,1.0579,1.1303
+JDK 8,nearly_random,5000,WhileNeeded,PassPerItem,0.5754,0.5689,0.5818
+JDK 8,nearly_random,5000,WhileNeeded,UntilNoChange,0.5262,0.5050,0.5474
+JDK 8,nearly_random,10000,UntilNoChange,PassPerItem,1.0299,1.0037,1.0562
+JDK 8,nearly_random,10000,WhileNeeded,PassPerItem,0.5475,0.5173,0.5777
+JDK 8,nearly_random,10000,WhileNeeded,UntilNoChange,0.5320,0.4927,0.5713
+JDK 8,random,1000,UntilNoChange,PassPerItem,1.0699,1.0435,1.0964
 JDK 8,random,1000,WhileNeeded,PassPerItem,0.6344,0.6287,0.6402
-JDK 8,random,1000,WhileNeeded,UntilNoChange,0.5930,0.5784,0.6081
+JDK 8,random,1000,WhileNeeded,UntilNoChange,0.5931,0.5782,0.6081
 JDK 8,random,5000,UntilNoChange,PassPerItem,1.0979,1.0915,1.1043
-JDK 8,random,5000,WhileNeeded,PassPerItem,0.6496,0.6430,0.6563
-JDK 8,random,5000,WhileNeeded,UntilNoChange,0.5917,0.5867,0.5967
-JDK 8,random,10000,UntilNoChange,PassPerItem,1.0485,1.0132,1.0851
-JDK 8,random,10000,WhileNeeded,PassPerItem,0.5975,0.5693,0.6270
-JDK 8,random,10000,WhileNeeded,UntilNoChange,0.5698,0.5553,0.5848
-JDK 8,reversed,1000,UntilNoChange,PassPerItem,1.0113,0.9550,1.0709
-JDK 8,reversed,1000,WhileNeeded,PassPerItem,0.6840,0.6541,0.7154
-JDK 8,reversed,1000,WhileNeeded,UntilNoChange,0.6764,0.6237,0.7336
-JDK 8,reversed,5000,UntilNoChange,PassPerItem,1.0805,0.9608,1.2151
-JDK 8,reversed,5000,WhileNeeded,PassPerItem,0.7439,0.6881,0.8042
-JDK 8,reversed,5000,WhileNeeded,UntilNoChange,0.6885,0.6522,0.7267
-JDK 8,reversed,10000,UntilNoChange,PassPerItem,0.9881,0.9361,1.0430
-JDK 8,reversed,10000,WhileNeeded,PassPerItem,0.7146,0.6840,0.7465
-JDK 8,reversed,10000,WhileNeeded,UntilNoChange,0.7232,0.6771,0.7724
+JDK 8,random,5000,WhileNeeded,PassPerItem,0.6496,0.6429,0.6563
+JDK 8,random,5000,WhileNeeded,UntilNoChange,0.5917,0.5866,0.5967
+JDK 8,random,10000,UntilNoChange,PassPerItem,1.0489,1.0131,1.0846
+JDK 8,random,10000,WhileNeeded,PassPerItem,0.5978,0.5688,0.6269
+JDK 8,random,10000,WhileNeeded,UntilNoChange,0.5699,0.5553,0.5846
+JDK 8,reversed,1000,UntilNoChange,PassPerItem,1.0121,0.9554,1.0688
+JDK 8,reversed,1000,WhileNeeded,PassPerItem,0.6844,0.6539,0.7149
+JDK 8,reversed,1000,WhileNeeded,UntilNoChange,0.6776,0.6207,0.7344
+JDK 8,reversed,5000,UntilNoChange,PassPerItem,1.0845,0.9538,1.2151
+JDK 8,reversed,5000,WhileNeeded,PassPerItem,0.7451,0.6849,0.8053
+JDK 8,reversed,5000,WhileNeeded,UntilNoChange,0.6890,0.6515,0.7265
+JDK 8,reversed,10000,UntilNoChange,PassPerItem,0.9889,0.9355,1.0422
+JDK 8,reversed,10000,WhileNeeded,PassPerItem,0.7149,0.6840,0.7459
+JDK 8,reversed,10000,WhileNeeded,UntilNoChange,0.7240,0.6764,0.7716
 JDK 8,sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0010
 JDK 8,sorted,1000,WhileNeeded,PassPerItem,0.0008,0.0008,0.0008
 JDK 8,sorted,1000,WhileNeeded,UntilNoChange,0.8104,0.8062,0.8147
 JDK 8,sorted,5000,UntilNoChange,PassPerItem,0.0002,0.0002,0.0002
 JDK 8,sorted,5000,WhileNeeded,PassPerItem,0.0002,0.0002,0.0002
-JDK 8,sorted,5000,WhileNeeded,UntilNoChange,0.8037,0.7923,0.8153
+JDK 8,sorted,5000,WhileNeeded,UntilNoChange,0.8038,0.7922,0.8153
 JDK 8,sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0001
 JDK 8,sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
 JDK 8,sorted,10000,WhileNeeded,UntilNoChange,0.8205,0.8169,0.8241
-"JDK 26, polluted JIT profile",nearly_local,1000,UntilNoChange,PassPerItem,0.0135,0.0103,0.0178
-"JDK 26, polluted JIT profile",nearly_local,1000,WhileNeeded,PassPerItem,0.0124,0.0106,0.0146
-"JDK 26, polluted JIT profile",nearly_local,1000,WhileNeeded,UntilNoChange,0.9193,0.8181,1.0331
-"JDK 26, polluted JIT profile",nearly_local,5000,UntilNoChange,PassPerItem,0.0035,0.0025,0.0049
-"JDK 26, polluted JIT profile",nearly_local,5000,WhileNeeded,PassPerItem,0.0034,0.0025,0.0048
-"JDK 26, polluted JIT profile",nearly_local,5000,WhileNeeded,UntilNoChange,0.9819,0.9071,1.0629
-"JDK 26, polluted JIT profile",nearly_random,1000,UntilNoChange,PassPerItem,0.8746,0.8106,0.9437
-"JDK 26, polluted JIT profile",nearly_random,1000,WhileNeeded,PassPerItem,0.5111,0.5026,0.5198
-"JDK 26, polluted JIT profile",nearly_random,1000,WhileNeeded,UntilNoChange,0.5844,0.5425,0.6296
-"JDK 26, polluted JIT profile",nearly_random,5000,UntilNoChange,PassPerItem,0.9881,0.9302,1.0494
-"JDK 26, polluted JIT profile",nearly_random,5000,WhileNeeded,PassPerItem,0.5356,0.5191,0.5526
-"JDK 26, polluted JIT profile",nearly_random,5000,WhileNeeded,UntilNoChange,0.5421,0.4994,0.5884
-"JDK 26, polluted JIT profile",random,1000,UntilNoChange,PassPerItem,0.9755,0.9463,1.0055
-"JDK 26, polluted JIT profile",random,1000,WhileNeeded,PassPerItem,0.5949,0.5838,0.6061
-"JDK 26, polluted JIT profile",random,1000,WhileNeeded,UntilNoChange,0.6098,0.5971,0.6228
-"JDK 26, polluted JIT profile",random,5000,UntilNoChange,PassPerItem,0.9881,0.9605,1.0164
-"JDK 26, polluted JIT profile",random,5000,WhileNeeded,PassPerItem,0.6047,0.5878,0.6222
-"JDK 26, polluted JIT profile",random,5000,WhileNeeded,UntilNoChange,0.6120,0.6031,0.6211
-"JDK 26, polluted JIT profile",reversed,1000,UntilNoChange,PassPerItem,1.0540,1.0143,1.0952
-"JDK 26, polluted JIT profile",reversed,1000,WhileNeeded,PassPerItem,0.6017,0.5800,0.6242
-"JDK 26, polluted JIT profile",reversed,1000,WhileNeeded,UntilNoChange,0.5709,0.5682,0.5737
-"JDK 26, polluted JIT profile",reversed,5000,UntilNoChange,PassPerItem,1.0788,1.0579,1.1001
+"JDK 26, polluted JIT profile",nearly_local,1000,UntilNoChange,PassPerItem,0.0138,0.0099,0.0177
+"JDK 26, polluted JIT profile",nearly_local,1000,WhileNeeded,PassPerItem,0.0125,0.0104,0.0146
+"JDK 26, polluted JIT profile",nearly_local,1000,WhileNeeded,UntilNoChange,0.9226,0.8167,1.0284
+"JDK 26, polluted JIT profile",nearly_local,5000,UntilNoChange,PassPerItem,0.0036,0.0025,0.0047
+"JDK 26, polluted JIT profile",nearly_local,5000,WhileNeeded,PassPerItem,0.0035,0.0024,0.0047
+"JDK 26, polluted JIT profile",nearly_local,5000,WhileNeeded,UntilNoChange,0.9835,0.9051,1.0619
+"JDK 26, polluted JIT profile",nearly_random,1000,UntilNoChange,PassPerItem,0.8759,0.8094,0.9424
+"JDK 26, polluted JIT profile",nearly_random,1000,WhileNeeded,PassPerItem,0.5112,0.5026,0.5198
+"JDK 26, polluted JIT profile",nearly_random,1000,WhileNeeded,UntilNoChange,0.5853,0.5416,0.6290
+"JDK 26, polluted JIT profile",nearly_random,5000,UntilNoChange,PassPerItem,0.9890,0.9300,1.0479
+"JDK 26, polluted JIT profile",nearly_random,5000,WhileNeeded,PassPerItem,0.5357,0.5189,0.5525
+"JDK 26, polluted JIT profile",nearly_random,5000,WhileNeeded,UntilNoChange,0.5430,0.4985,0.5875
+"JDK 26, polluted JIT profile",random,1000,UntilNoChange,PassPerItem,0.9757,0.9462,1.0052
+"JDK 26, polluted JIT profile",random,1000,WhileNeeded,PassPerItem,0.5949,0.5837,0.6061
+"JDK 26, polluted JIT profile",random,1000,WhileNeeded,UntilNoChange,0.6099,0.5970,0.6228
+"JDK 26, polluted JIT profile",random,5000,UntilNoChange,PassPerItem,0.9883,0.9605,1.0161
+"JDK 26, polluted JIT profile",random,5000,WhileNeeded,PassPerItem,0.6049,0.5877,0.6220
+"JDK 26, polluted JIT profile",random,5000,WhileNeeded,UntilNoChange,0.6121,0.6031,0.6211
+"JDK 26, polluted JIT profile",reversed,1000,UntilNoChange,PassPerItem,1.0544,1.0147,1.0941
+"JDK 26, polluted JIT profile",reversed,1000,WhileNeeded,PassPerItem,0.6019,0.5803,0.6236
+"JDK 26, polluted JIT profile",reversed,1000,WhileNeeded,UntilNoChange,0.5709,0.5681,0.5737
+"JDK 26, polluted JIT profile",reversed,5000,UntilNoChange,PassPerItem,1.0789,1.0577,1.1002
 "JDK 26, polluted JIT profile",reversed,5000,WhileNeeded,PassPerItem,0.6073,0.6000,0.6146
-"JDK 26, polluted JIT profile",reversed,5000,WhileNeeded,UntilNoChange,0.5629,0.5507,0.5754
+"JDK 26, polluted JIT profile",reversed,5000,WhileNeeded,UntilNoChange,0.5630,0.5506,0.5753
 "JDK 26, polluted JIT profile",sorted,1000,UntilNoChange,PassPerItem,0.0011,0.0010,0.0012
 "JDK 26, polluted JIT profile",sorted,1000,WhileNeeded,PassPerItem,0.0011,0.0010,0.0013
-"JDK 26, polluted JIT profile",sorted,1000,WhileNeeded,UntilNoChange,1.0433,1.0209,1.0661
+"JDK 26, polluted JIT profile",sorted,1000,WhileNeeded,UntilNoChange,1.0434,1.0206,1.0662
 "JDK 26, polluted JIT profile",sorted,5000,UntilNoChange,PassPerItem,0.0002,0.0002,0.0002
 "JDK 26, polluted JIT profile",sorted,5000,WhileNeeded,PassPerItem,0.0002,0.0002,0.0002
-"JDK 26, polluted JIT profile",sorted,5000,WhileNeeded,UntilNoChange,1.0686,1.0136,1.1266
-"2nd M3 Pro, JDK 25.0.1",few_unique,1000,UntilNoChange,PassPerItem,1.1302,1.0752,1.1879
-"2nd M3 Pro, JDK 25.0.1",few_unique,1000,WhileNeeded,PassPerItem,0.7097,0.6589,0.7645
-"2nd M3 Pro, JDK 25.0.1",few_unique,1000,WhileNeeded,UntilNoChange,0.6280,0.6000,0.6573
-"2nd M3 Pro, JDK 25.0.1",few_unique,5000,UntilNoChange,PassPerItem,1.1749,1.0773,1.2814
-"2nd M3 Pro, JDK 25.0.1",few_unique,5000,WhileNeeded,PassPerItem,0.7153,0.6776,0.7551
-"2nd M3 Pro, JDK 25.0.1",few_unique,5000,WhileNeeded,UntilNoChange,0.6088,0.5796,0.6394
-"2nd M3 Pro, JDK 25.0.1",few_unique,10000,UntilNoChange,PassPerItem,1.1718,1.1485,1.1955
-"2nd M3 Pro, JDK 25.0.1",few_unique,10000,WhileNeeded,PassPerItem,0.7450,0.7307,0.7596
-"2nd M3 Pro, JDK 25.0.1",few_unique,10000,WhileNeeded,UntilNoChange,0.6358,0.6155,0.6567
-"2nd M3 Pro, JDK 25.0.1",nearly_local,1000,UntilNoChange,PassPerItem,0.0188,0.0148,0.0239
-"2nd M3 Pro, JDK 25.0.1",nearly_local,1000,WhileNeeded,PassPerItem,0.0162,0.0143,0.0183
-"2nd M3 Pro, JDK 25.0.1",nearly_local,1000,WhileNeeded,UntilNoChange,0.8603,0.7444,0.9943
-"2nd M3 Pro, JDK 25.0.1",nearly_local,5000,UntilNoChange,PassPerItem,0.0048,0.0036,0.0063
-"2nd M3 Pro, JDK 25.0.1",nearly_local,5000,WhileNeeded,PassPerItem,0.0043,0.0033,0.0057
-"2nd M3 Pro, JDK 25.0.1",nearly_local,5000,WhileNeeded,UntilNoChange,0.9049,0.8271,0.9900
-"2nd M3 Pro, JDK 25.0.1",nearly_local,10000,UntilNoChange,PassPerItem,0.0024,0.0021,0.0029
+"JDK 26, polluted JIT profile",sorted,5000,WhileNeeded,UntilNoChange,1.0694,1.0133,1.1254
+"2nd M3 Pro, JDK 25.0.1",few_unique,1000,UntilNoChange,PassPerItem,1.1309,1.0749,1.1869
+"2nd M3 Pro, JDK 25.0.1",few_unique,1000,WhileNeeded,PassPerItem,0.7108,0.6581,0.7634
+"2nd M3 Pro, JDK 25.0.1",few_unique,1000,WhileNeeded,UntilNoChange,0.6283,0.5994,0.6572
+"2nd M3 Pro, JDK 25.0.1",few_unique,5000,UntilNoChange,PassPerItem,1.1772,1.0750,1.2795
+"2nd M3 Pro, JDK 25.0.1",few_unique,5000,WhileNeeded,PassPerItem,0.7158,0.6781,0.7535
+"2nd M3 Pro, JDK 25.0.1",few_unique,5000,WhileNeeded,UntilNoChange,0.6092,0.5799,0.6385
+"2nd M3 Pro, JDK 25.0.1",few_unique,10000,UntilNoChange,PassPerItem,1.1719,1.1483,1.1955
+"2nd M3 Pro, JDK 25.0.1",few_unique,10000,WhileNeeded,PassPerItem,0.7451,0.7305,0.7596
+"2nd M3 Pro, JDK 25.0.1",few_unique,10000,WhileNeeded,UntilNoChange,0.6360,0.6154,0.6565
+"2nd M3 Pro, JDK 25.0.1",nearly_local,1000,UntilNoChange,PassPerItem,0.0191,0.0144,0.0238
+"2nd M3 Pro, JDK 25.0.1",nearly_local,1000,WhileNeeded,PassPerItem,0.0162,0.0142,0.0183
+"2nd M3 Pro, JDK 25.0.1",nearly_local,1000,WhileNeeded,UntilNoChange,0.8650,0.7413,0.9887
+"2nd M3 Pro, JDK 25.0.1",nearly_local,5000,UntilNoChange,PassPerItem,0.0049,0.0036,0.0061
+"2nd M3 Pro, JDK 25.0.1",nearly_local,5000,WhileNeeded,PassPerItem,0.0044,0.0032,0.0056
+"2nd M3 Pro, JDK 25.0.1",nearly_local,5000,WhileNeeded,UntilNoChange,0.9068,0.8262,0.9874
+"2nd M3 Pro, JDK 25.0.1",nearly_local,10000,UntilNoChange,PassPerItem,0.0025,0.0021,0.0029
 "2nd M3 Pro, JDK 25.0.1",nearly_local,10000,WhileNeeded,PassPerItem,0.0022,0.0019,0.0025
-"2nd M3 Pro, JDK 25.0.1",nearly_local,10000,WhileNeeded,UntilNoChange,0.8919,0.7576,1.0500
-"2nd M3 Pro, JDK 25.0.1",nearly_random,1000,UntilNoChange,PassPerItem,1.2802,1.1513,1.4236
-"2nd M3 Pro, JDK 25.0.1",nearly_random,1000,WhileNeeded,PassPerItem,0.6650,0.6390,0.6920
-"2nd M3 Pro, JDK 25.0.1",nearly_random,1000,WhileNeeded,UntilNoChange,0.5194,0.4543,0.5938
-"2nd M3 Pro, JDK 25.0.1",nearly_random,5000,UntilNoChange,PassPerItem,1.2592,1.2106,1.3096
-"2nd M3 Pro, JDK 25.0.1",nearly_random,5000,WhileNeeded,PassPerItem,0.6827,0.6623,0.7038
-"2nd M3 Pro, JDK 25.0.1",nearly_random,5000,WhileNeeded,UntilNoChange,0.5422,0.5307,0.5540
-"2nd M3 Pro, JDK 25.0.1",nearly_random,10000,UntilNoChange,PassPerItem,1.1899,1.1387,1.2433
-"2nd M3 Pro, JDK 25.0.1",nearly_random,10000,WhileNeeded,PassPerItem,0.6094,0.5977,0.6214
-"2nd M3 Pro, JDK 25.0.1",nearly_random,10000,WhileNeeded,UntilNoChange,0.5122,0.4965,0.5283
-"2nd M3 Pro, JDK 25.0.1",random,1000,UntilNoChange,PassPerItem,1.1860,1.1371,1.2370
-"2nd M3 Pro, JDK 25.0.1",random,1000,WhileNeeded,PassPerItem,0.6958,0.6563,0.7377
-"2nd M3 Pro, JDK 25.0.1",random,1000,WhileNeeded,UntilNoChange,0.5867,0.5516,0.6239
-"2nd M3 Pro, JDK 25.0.1",random,5000,UntilNoChange,PassPerItem,1.1659,1.1240,1.2094
-"2nd M3 Pro, JDK 25.0.1",random,5000,WhileNeeded,PassPerItem,0.6921,0.6691,0.7158
-"2nd M3 Pro, JDK 25.0.1",random,5000,WhileNeeded,UntilNoChange,0.5936,0.5780,0.6096
-"2nd M3 Pro, JDK 25.0.1",random,10000,UntilNoChange,PassPerItem,1.2241,1.1162,1.3426
-"2nd M3 Pro, JDK 25.0.1",random,10000,WhileNeeded,PassPerItem,0.6982,0.6330,0.7700
-"2nd M3 Pro, JDK 25.0.1",random,10000,WhileNeeded,UntilNoChange,0.5703,0.5526,0.5887
-"2nd M3 Pro, JDK 25.0.1",reversed,1000,UntilNoChange,PassPerItem,1.1070,1.0359,1.1830
-"2nd M3 Pro, JDK 25.0.1",reversed,1000,WhileNeeded,PassPerItem,0.7006,0.6694,0.7332
-"2nd M3 Pro, JDK 25.0.1",reversed,1000,WhileNeeded,UntilNoChange,0.6328,0.6154,0.6508
-"2nd M3 Pro, JDK 25.0.1",reversed,5000,UntilNoChange,PassPerItem,1.0921,1.0287,1.1593
-"2nd M3 Pro, JDK 25.0.1",reversed,5000,WhileNeeded,PassPerItem,0.6956,0.6742,0.7177
-"2nd M3 Pro, JDK 25.0.1",reversed,5000,WhileNeeded,UntilNoChange,0.6370,0.6097,0.6655
-"2nd M3 Pro, JDK 25.0.1",reversed,10000,UntilNoChange,PassPerItem,1.6966,1.6628,1.7311
-"2nd M3 Pro, JDK 25.0.1",reversed,10000,WhileNeeded,PassPerItem,0.6762,0.6536,0.6996
-"2nd M3 Pro, JDK 25.0.1",reversed,10000,WhileNeeded,UntilNoChange,0.3986,0.3929,0.4043
+"2nd M3 Pro, JDK 25.0.1",nearly_local,10000,WhileNeeded,UntilNoChange,0.8982,0.7478,1.0485
+"2nd M3 Pro, JDK 25.0.1",nearly_random,1000,UntilNoChange,PassPerItem,1.2840,1.1436,1.4245
+"2nd M3 Pro, JDK 25.0.1",nearly_random,1000,WhileNeeded,PassPerItem,0.6652,0.6390,0.6915
+"2nd M3 Pro, JDK 25.0.1",nearly_random,1000,WhileNeeded,UntilNoChange,0.5217,0.4560,0.5875
+"2nd M3 Pro, JDK 25.0.1",nearly_random,5000,UntilNoChange,PassPerItem,1.2597,1.2108,1.3085
+"2nd M3 Pro, JDK 25.0.1",nearly_random,5000,WhileNeeded,PassPerItem,0.6829,0.6622,0.7036
+"2nd M3 Pro, JDK 25.0.1",nearly_random,5000,WhileNeeded,UntilNoChange,0.5423,0.5307,0.5539
+"2nd M3 Pro, JDK 25.0.1",nearly_random,10000,UntilNoChange,PassPerItem,1.1904,1.1392,1.2416
+"2nd M3 Pro, JDK 25.0.1",nearly_random,10000,WhileNeeded,PassPerItem,0.6095,0.5976,0.6213
+"2nd M3 Pro, JDK 25.0.1",nearly_random,10000,WhileNeeded,UntilNoChange,0.5123,0.4962,0.5284
+"2nd M3 Pro, JDK 25.0.1",random,1000,UntilNoChange,PassPerItem,1.1866,1.1361,1.2370
+"2nd M3 Pro, JDK 25.0.1",random,1000,WhileNeeded,PassPerItem,0.6964,0.6559,0.7370
+"2nd M3 Pro, JDK 25.0.1",random,1000,WhileNeeded,UntilNoChange,0.5873,0.5507,0.6238
+"2nd M3 Pro, JDK 25.0.1",random,5000,UntilNoChange,PassPerItem,1.1663,1.1232,1.2094
+"2nd M3 Pro, JDK 25.0.1",random,5000,WhileNeeded,PassPerItem,0.6923,0.6688,0.7158
+"2nd M3 Pro, JDK 25.0.1",random,5000,WhileNeeded,UntilNoChange,0.5937,0.5779,0.6095
+"2nd M3 Pro, JDK 25.0.1",random,10000,UntilNoChange,PassPerItem,1.2268,1.1180,1.3356
+"2nd M3 Pro, JDK 25.0.1",random,10000,WhileNeeded,PassPerItem,0.6999,0.6347,0.7650
+"2nd M3 Pro, JDK 25.0.1",random,10000,WhileNeeded,UntilNoChange,0.5705,0.5526,0.5884
+"2nd M3 Pro, JDK 25.0.1",reversed,1000,UntilNoChange,PassPerItem,1.1083,1.0353,1.1813
+"2nd M3 Pro, JDK 25.0.1",reversed,1000,WhileNeeded,PassPerItem,0.7009,0.6691,0.7327
+"2nd M3 Pro, JDK 25.0.1",reversed,1000,WhileNeeded,UntilNoChange,0.6329,0.6152,0.6507
+"2nd M3 Pro, JDK 25.0.1",reversed,5000,UntilNoChange,PassPerItem,1.0931,1.0274,1.1588
+"2nd M3 Pro, JDK 25.0.1",reversed,5000,WhileNeeded,PassPerItem,0.6958,0.6744,0.7172
+"2nd M3 Pro, JDK 25.0.1",reversed,5000,WhileNeeded,UntilNoChange,0.6373,0.6096,0.6650
+"2nd M3 Pro, JDK 25.0.1",reversed,10000,UntilNoChange,PassPerItem,1.6968,1.6627,1.7308
+"2nd M3 Pro, JDK 25.0.1",reversed,10000,WhileNeeded,PassPerItem,0.6764,0.6535,0.6993
+"2nd M3 Pro, JDK 25.0.1",reversed,10000,WhileNeeded,UntilNoChange,0.3986,0.3929,0.4042
 "2nd M3 Pro, JDK 25.0.1",sorted,1000,UntilNoChange,PassPerItem,0.0010,0.0010,0.0011
 "2nd M3 Pro, JDK 25.0.1",sorted,1000,WhileNeeded,PassPerItem,0.0010,0.0010,0.0011
 "2nd M3 Pro, JDK 25.0.1",sorted,1000,WhileNeeded,UntilNoChange,0.9951,0.9860,1.0043
@@ -514,58 +514,58 @@ JDK 8,sorted,10000,WhileNeeded,UntilNoChange,0.8205,0.8169,0.8241
 "2nd M3 Pro, JDK 25.0.1",sorted,5000,WhileNeeded,UntilNoChange,1.0000,0.9943,1.0057
 "2nd M3 Pro, JDK 25.0.1",sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0001
 "2nd M3 Pro, JDK 25.0.1",sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
-"2nd M3 Pro, JDK 25.0.1",sorted,10000,WhileNeeded,UntilNoChange,1.0116,0.9924,1.0312
-"Ryzen 5 5600 (x86), JDK 26",few_unique,1000,UntilNoChange,PassPerItem,1.1302,1.0980,1.1632
+"2nd M3 Pro, JDK 25.0.1",sorted,10000,WhileNeeded,UntilNoChange,1.0117,0.9923,1.0311
+"Ryzen 5 5600 (x86), JDK 26",few_unique,1000,UntilNoChange,PassPerItem,1.1304,1.0980,1.1628
 "Ryzen 5 5600 (x86), JDK 26",few_unique,1000,WhileNeeded,PassPerItem,0.6662,0.6593,0.6732
-"Ryzen 5 5600 (x86), JDK 26",few_unique,1000,WhileNeeded,UntilNoChange,0.5895,0.5773,0.6019
-"Ryzen 5 5600 (x86), JDK 26",few_unique,5000,UntilNoChange,PassPerItem,1.0865,1.0509,1.1232
-"Ryzen 5 5600 (x86), JDK 26",few_unique,5000,WhileNeeded,PassPerItem,0.6436,0.6191,0.6691
-"Ryzen 5 5600 (x86), JDK 26",few_unique,5000,WhileNeeded,UntilNoChange,0.5924,0.5615,0.6250
+"Ryzen 5 5600 (x86), JDK 26",few_unique,1000,WhileNeeded,UntilNoChange,0.5895,0.5772,0.6018
+"Ryzen 5 5600 (x86), JDK 26",few_unique,5000,UntilNoChange,PassPerItem,1.0868,1.0500,1.1235
+"Ryzen 5 5600 (x86), JDK 26",few_unique,5000,WhileNeeded,PassPerItem,0.6439,0.6186,0.6691
+"Ryzen 5 5600 (x86), JDK 26",few_unique,5000,WhileNeeded,UntilNoChange,0.5928,0.5612,0.6245
 "Ryzen 5 5600 (x86), JDK 26",few_unique,10000,UntilNoChange,PassPerItem,1.3149,1.3064,1.3234
-"Ryzen 5 5600 (x86), JDK 26",few_unique,10000,WhileNeeded,PassPerItem,0.5792,0.5686,0.5900
-"Ryzen 5 5600 (x86), JDK 26",few_unique,10000,WhileNeeded,UntilNoChange,0.4405,0.4335,0.4476
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,1000,UntilNoChange,PassPerItem,0.0315,0.0248,0.0400
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,1000,WhileNeeded,PassPerItem,0.0232,0.0200,0.0268
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,1000,WhileNeeded,UntilNoChange,0.7355,0.6522,0.8294
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,5000,UntilNoChange,PassPerItem,0.0049,0.0035,0.0068
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,5000,WhileNeeded,PassPerItem,0.0037,0.0027,0.0052
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,5000,WhileNeeded,UntilNoChange,0.7666,0.7072,0.8310
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,10000,UntilNoChange,PassPerItem,0.0026,0.0022,0.0032
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,10000,WhileNeeded,PassPerItem,0.0019,0.0016,0.0023
-"Ryzen 5 5600 (x86), JDK 26",nearly_local,10000,WhileNeeded,UntilNoChange,0.7372,0.6283,0.8649
-"Ryzen 5 5600 (x86), JDK 26",nearly_random,1000,UntilNoChange,PassPerItem,1.3226,1.2416,1.4088
-"Ryzen 5 5600 (x86), JDK 26",nearly_random,1000,WhileNeeded,PassPerItem,0.6101,0.5898,0.6312
-"Ryzen 5 5600 (x86), JDK 26",nearly_random,1000,WhileNeeded,UntilNoChange,0.4613,0.4289,0.4962
-"Ryzen 5 5600 (x86), JDK 26",nearly_random,5000,UntilNoChange,PassPerItem,1.5155,1.4623,1.5706
+"Ryzen 5 5600 (x86), JDK 26",few_unique,10000,WhileNeeded,PassPerItem,0.5792,0.5685,0.5900
+"Ryzen 5 5600 (x86), JDK 26",few_unique,10000,WhileNeeded,UntilNoChange,0.4405,0.4334,0.4477
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,1000,UntilNoChange,PassPerItem,0.0320,0.0243,0.0397
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,1000,WhileNeeded,PassPerItem,0.0233,0.0200,0.0266
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,1000,WhileNeeded,UntilNoChange,0.7382,0.6501,0.8263
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,5000,UntilNoChange,PassPerItem,0.0050,0.0034,0.0066
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,5000,WhileNeeded,PassPerItem,0.0038,0.0026,0.0051
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,5000,WhileNeeded,UntilNoChange,0.7679,0.7058,0.8300
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,10000,UntilNoChange,PassPerItem,0.0027,0.0022,0.0031
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,10000,WhileNeeded,PassPerItem,0.0020,0.0016,0.0023
+"Ryzen 5 5600 (x86), JDK 26",nearly_local,10000,WhileNeeded,UntilNoChange,0.7419,0.6309,0.8528
+"Ryzen 5 5600 (x86), JDK 26",nearly_random,1000,UntilNoChange,PassPerItem,1.3239,1.2404,1.4074
+"Ryzen 5 5600 (x86), JDK 26",nearly_random,1000,WhileNeeded,PassPerItem,0.6103,0.5897,0.6310
+"Ryzen 5 5600 (x86), JDK 26",nearly_random,1000,WhileNeeded,UntilNoChange,0.4620,0.4284,0.4955
+"Ryzen 5 5600 (x86), JDK 26",nearly_random,5000,UntilNoChange,PassPerItem,1.5160,1.4623,1.5696
 "Ryzen 5 5600 (x86), JDK 26",nearly_random,5000,WhileNeeded,PassPerItem,0.6211,0.6129,0.6294
-"Ryzen 5 5600 (x86), JDK 26",nearly_random,5000,WhileNeeded,UntilNoChange,0.4098,0.4001,0.4199
-"Ryzen 5 5600 (x86), JDK 26",nearly_random,10000,UntilNoChange,PassPerItem,1.4552,1.3409,1.5793
-"Ryzen 5 5600 (x86), JDK 26",nearly_random,10000,WhileNeeded,PassPerItem,0.6541,0.6268,0.6827
-"Ryzen 5 5600 (x86), JDK 26",nearly_random,10000,WhileNeeded,UntilNoChange,0.4495,0.4093,0.4937
-"Ryzen 5 5600 (x86), JDK 26",random,1000,UntilNoChange,PassPerItem,1.4857,1.4458,1.5266
-"Ryzen 5 5600 (x86), JDK 26",random,1000,WhileNeeded,PassPerItem,0.7317,0.6930,0.7725
-"Ryzen 5 5600 (x86), JDK 26",random,1000,WhileNeeded,UntilNoChange,0.4925,0.4590,0.5285
-"Ryzen 5 5600 (x86), JDK 26",random,5000,UntilNoChange,PassPerItem,1.4622,1.4447,1.4799
-"Ryzen 5 5600 (x86), JDK 26",random,5000,WhileNeeded,PassPerItem,0.6820,0.6644,0.7001
-"Ryzen 5 5600 (x86), JDK 26",random,5000,WhileNeeded,UntilNoChange,0.4664,0.4537,0.4795
-"Ryzen 5 5600 (x86), JDK 26",random,10000,UntilNoChange,PassPerItem,1.5924,1.2787,1.9830
-"Ryzen 5 5600 (x86), JDK 26",random,10000,WhileNeeded,PassPerItem,0.6961,0.6693,0.7240
-"Ryzen 5 5600 (x86), JDK 26",random,10000,WhileNeeded,UntilNoChange,0.4371,0.3610,0.5294
-"Ryzen 5 5600 (x86), JDK 26",reversed,1000,UntilNoChange,PassPerItem,1.3673,1.3467,1.3883
-"Ryzen 5 5600 (x86), JDK 26",reversed,1000,WhileNeeded,PassPerItem,0.7703,0.6489,0.9144
-"Ryzen 5 5600 (x86), JDK 26",reversed,1000,WhileNeeded,UntilNoChange,0.5634,0.4788,0.6629
-"Ryzen 5 5600 (x86), JDK 26",reversed,5000,UntilNoChange,PassPerItem,1.3649,1.3578,1.3721
-"Ryzen 5 5600 (x86), JDK 26",reversed,5000,WhileNeeded,PassPerItem,0.7244,0.7175,0.7315
+"Ryzen 5 5600 (x86), JDK 26",nearly_random,5000,WhileNeeded,UntilNoChange,0.4099,0.3999,0.4199
+"Ryzen 5 5600 (x86), JDK 26",nearly_random,10000,UntilNoChange,PassPerItem,1.4578,1.3357,1.5798
+"Ryzen 5 5600 (x86), JDK 26",nearly_random,10000,WhileNeeded,PassPerItem,0.6545,0.6266,0.6824
+"Ryzen 5 5600 (x86), JDK 26",nearly_random,10000,WhileNeeded,UntilNoChange,0.4505,0.4087,0.4924
+"Ryzen 5 5600 (x86), JDK 26",random,1000,UntilNoChange,PassPerItem,1.4859,1.4457,1.5262
+"Ryzen 5 5600 (x86), JDK 26",random,1000,WhileNeeded,PassPerItem,0.7323,0.6918,0.7727
+"Ryzen 5 5600 (x86), JDK 26",random,1000,WhileNeeded,UntilNoChange,0.4931,0.4579,0.5284
+"Ryzen 5 5600 (x86), JDK 26",random,5000,UntilNoChange,PassPerItem,1.4623,1.4446,1.4799
+"Ryzen 5 5600 (x86), JDK 26",random,5000,WhileNeeded,PassPerItem,0.6821,0.6641,0.7001
+"Ryzen 5 5600 (x86), JDK 26",random,5000,WhileNeeded,UntilNoChange,0.4665,0.4535,0.4796
+"Ryzen 5 5600 (x86), JDK 26",random,10000,UntilNoChange,PassPerItem,1.6140,1.2193,2.0086
+"Ryzen 5 5600 (x86), JDK 26",random,10000,WhileNeeded,PassPerItem,0.6964,0.6689,0.7239
+"Ryzen 5 5600 (x86), JDK 26",random,10000,WhileNeeded,UntilNoChange,0.4411,0.3641,0.5181
+"Ryzen 5 5600 (x86), JDK 26",reversed,1000,UntilNoChange,PassPerItem,1.3674,1.3466,1.3882
+"Ryzen 5 5600 (x86), JDK 26",reversed,1000,WhileNeeded,PassPerItem,0.7766,0.6313,0.9218
+"Ryzen 5 5600 (x86), JDK 26",reversed,1000,WhileNeeded,UntilNoChange,0.5675,0.4673,0.6676
+"Ryzen 5 5600 (x86), JDK 26",reversed,5000,UntilNoChange,PassPerItem,1.3649,1.3577,1.3721
+"Ryzen 5 5600 (x86), JDK 26",reversed,5000,WhileNeeded,PassPerItem,0.7245,0.7175,0.7314
 "Ryzen 5 5600 (x86), JDK 26",reversed,5000,WhileNeeded,UntilNoChange,0.5308,0.5265,0.5350
-"Ryzen 5 5600 (x86), JDK 26",reversed,10000,UntilNoChange,PassPerItem,1.0838,0.6554,1.7924
-"Ryzen 5 5600 (x86), JDK 26",reversed,10000,WhileNeeded,PassPerItem,0.6059,0.3681,0.9973
-"Ryzen 5 5600 (x86), JDK 26",reversed,10000,WhileNeeded,UntilNoChange,0.5590,0.5352,0.5839
+"Ryzen 5 5600 (x86), JDK 26",reversed,10000,UntilNoChange,PassPerItem,1.1444,0.7126,1.5762
+"Ryzen 5 5600 (x86), JDK 26",reversed,10000,WhileNeeded,PassPerItem,0.6391,0.4005,0.8777
+"Ryzen 5 5600 (x86), JDK 26",reversed,10000,WhileNeeded,UntilNoChange,0.5593,0.5354,0.5833
 "Ryzen 5 5600 (x86), JDK 26",sorted,1000,UntilNoChange,PassPerItem,0.0011,0.0010,0.0011
 "Ryzen 5 5600 (x86), JDK 26",sorted,1000,WhileNeeded,PassPerItem,0.0009,0.0009,0.0009
-"Ryzen 5 5600 (x86), JDK 26",sorted,1000,WhileNeeded,UntilNoChange,0.8514,0.8245,0.8791
+"Ryzen 5 5600 (x86), JDK 26",sorted,1000,WhileNeeded,UntilNoChange,0.8516,0.8240,0.8792
 "Ryzen 5 5600 (x86), JDK 26",sorted,5000,UntilNoChange,PassPerItem,0.0002,0.0002,0.0002
 "Ryzen 5 5600 (x86), JDK 26",sorted,5000,WhileNeeded,PassPerItem,0.0002,0.0001,0.0002
-"Ryzen 5 5600 (x86), JDK 26",sorted,5000,WhileNeeded,UntilNoChange,0.9177,0.7637,1.1028
+"Ryzen 5 5600 (x86), JDK 26",sorted,5000,WhileNeeded,UntilNoChange,0.9262,0.7430,1.1094
 "Ryzen 5 5600 (x86), JDK 26",sorted,10000,UntilNoChange,PassPerItem,0.0001,0.0001,0.0001
 "Ryzen 5 5600 (x86), JDK 26",sorted,10000,WhileNeeded,PassPerItem,0.0001,0.0001,0.0001
-"Ryzen 5 5600 (x86), JDK 26",sorted,10000,WhileNeeded,UntilNoChange,0.8402,0.8056,0.8763
+"Ryzen 5 5600 (x86), JDK 26",sorted,10000,WhileNeeded,UntilNoChange,0.8406,0.8051,0.8761

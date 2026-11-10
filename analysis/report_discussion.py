@@ -63,9 +63,9 @@ def local_exponents(alg, order="random"):
 
 h1 = H("H1")
 doc.add_heading("4.1 Compare Hypothesis to Results", level=2)
-p(f"Under the rule registered in HYPOTHESES.md (one clear violation falsifies), **H1 and H4 were supported and H2, H3, H5 and H6 were falsified** in the main data "
+p(f"Under the rule registered in HYPOTHESES.md (one clear violation falsifies), **H1 and H4 were supported, H2, H3 and H6 were falsified, and H5 is inconclusive (not falsified)** in the main data "
   f"({counts('H2')} for H2, {counts('H3')} for H3, {counts('H5')} for H5, {counts('H6')} for H6). "
-  f"The steady-state re-measurement of Section 3.7 gives the same verdicts (cells falsified: H2 {hc('H2').falsified}, H3 {hc('H3').falsified}, H5 {hc('H5').falsified}, H6 {hc('H6').falsified}); only H5 is fragile (below). "
+  f"The steady-state re-measurement of Section 3.7 gives the same verdicts (cells falsified: H2 {hc('H2').falsified}, H3 {hc('H3').falsified}, H5 {hc('H5').falsified}, H6 {hc('H6').falsified}); H5 is the fragile one (below). "
   "The qualitative predictions were right (early stopping helps enormously on sorted and nearly sorted input, WhileNeeded needs the fewest comparisons, growth is quadratic or linear as expected). "
   "Wrong were our thresholds and the assumption that fewer comparisons always mean less time. The hypotheses were not changed afterwards.")
 p(f"**H1 – sorted input: supported.** PassPerItem is between {th(h1.estimate.min())}× and {th(h1.estimate.max())}× slower than the early-stopping algorithms (lowest CI bound "
@@ -74,16 +74,16 @@ p(f"**H1 – sorted input: supported.** PassPerItem is between {th(h1.estimate.m
 r5 = ratio("random", 5000, "UntilNoChange", "PassPerItem"); r10 = ratio("random", 10000, "UntilNoChange", "PassPerItem")
 r20 = ratio("random", 20000, "UntilNoChange", "PassPerItem")
 p("**H2 – random input: falsified in one cell, inconclusive in one.** WhileNeeded is the fastest algorithm in every random cell "
-  f"with n ≥ 5 000 (it needs {fmt_ratio(ratio('random',20000,'WhileNeeded','PassPerItem').ratio_geomean)}–"
-  f"{fmt_ratio(ratio('random',5000,'WhileNeeded','PassPerItem').ratio_geomean)} of PassPerItem's time). UntilNoChange and "
-  f"PassPerItem are not within 15 % of each other at n = 5 000 ({fmt_ratio(r5.ratio_geomean)}×, CI {ci(r5.ci_lo, r5.ci_hi)}), inconclusive at 10 000 ({fmt_ratio(r10.ratio_geomean)}×; falsified after re-measurement, Appendix F) and within 15 % at 20 000 "
-  f"({fmt_ratio(r20.ratio_geomean)}×). Both make about n² comparisons on random data, so the gap must come from the cost per loop iteration; our conjecture is that "
+  f"with n ≥ 5 000 (it needs {fmt_ratio(ratio('random',20000,'WhileNeeded','PassPerItem').ratio_mean)}–"
+  f"{fmt_ratio(ratio('random',5000,'WhileNeeded','PassPerItem').ratio_mean)} of PassPerItem's time). UntilNoChange and "
+  f"PassPerItem are not within 15 % of each other at n = 5 000 ({fmt_ratio(r5.ratio_mean)}×, CI {ci(r5.ci_lo, r5.ci_hi)}), inconclusive at 10 000 ({fmt_ratio(r10.ratio_mean)}×; falsified after re-measurement, Appendix F) and within 15 % at 20 000 "
+  f"({fmt_ratio(r20.ratio_mean)}×). Both make about n² comparisons on random data, so the gap must come from the cost per loop iteration; our conjecture is that "
   "the flag UntilNoChange sets inside the swap branch slows the compiled loop. This is supported only indirectly: with only the C1 compiler or the interpreter the gap "
   "disappears (Appendix E.8), so the C2 compiler is necessary for it. We did not inspect the generated machine code.")
 a = ratio("reversed", 5000, "WhileNeeded", "UntilNoChange"); b = ratio("reversed", 5000, "WhileNeeded", "PassPerItem")
 a2 = ratio("reversed", 20000, "WhileNeeded", "UntilNoChange")
 p("**H3 – reversed input: falsified in 5 of 6 cells.** WhileNeeded is clearly faster than UntilNoChange at n = 5 000 "
-  f"({fmt_ratio(a.ratio_geomean)}×) but {(b.ratio_geomean-1)*100:.0f} % *slower* than PassPerItem (CI {ci(b.ci_lo, b.ci_hi)}), and at n ≥ 10 000 no faster than UntilNoChange ({fmt_ratio(a2.ratio_geomean)}× at 20 000). "
+  f"({fmt_ratio(a.ratio_mean)}×) but {(b.ratio_mean-1)*100:.0f} % *slower* than PassPerItem (CI {ci(b.ci_lo, b.ci_hi)}), and at n ≥ 10 000 no faster than UntilNoChange ({fmt_ratio(a2.ratio_mean)}× at 20 000). "
   "This disadvantage (7–12 % in the main data, up to 16 % at n = 20 000 in the steady state) is not a robust property of the algorithms: it occurs only in the main setting "
   "(Homebrew OpenJDK 26.0.1 on the first M3 Pro, Serial or Parallel collector) and is absent in every other setting we tried (G1, other JDKs, two other computers, String elements, a polluted JIT profile, C2 switched off; Appendix E). "
   "Its cause is unknown; vendor build, patch level and power state are confounded with the Java version (Appendix E.9).")
@@ -94,15 +94,15 @@ le = local_exponents("PassPerItem")
 lo_e = [v for (x, y), v in le.items() if y <= 5000]
 hi_e = [v for (x, y), v in le.items() if x >= 20000]
 mid_e = [v for (x, y), v in le.items() if 5000 <= x and y <= 15000]
-p("**H5 – growth with n: falsified in 1 of 6 cells.** Only PassPerItem on random input grows by more than allowed when n doubles from 10 000 to 20 000: "
+p("**H5 – growth with n: not falsified; 1 of 6 cells inconclusive.** Only PassPerItem on random input is at issue: when n doubles from 10 000 to 20 000 it grows by "
   f"{g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) against 4.7. The local scaling exponents (Appendix E.7) are about {np.mean(lo_e):.2f} for n ≤ 5 000 and {np.mean(hi_e):.2f} for n ≥ 20 000 but {min(mid_e):.2f}–{max(mid_e):.2f} between 5 000 and 15 000, "
-  "a localised steepening that a cache effect might explain (not tested). The verdict is fragile: the interval only just excludes 4.7, and in the late-batch analysis of Section 3.7 the cell is inconclusive.")
+  "a localised steepening that a cache effect might explain (not tested). The interval reaches just below the limit 4.7; with the 30 forks of the pooled data (Appendix F) the cell is falsified.")
 f6 = H("H6", verdict="falsified")
 w5, u5, p5 = rc("WhileNeeded"), rc("UntilNoChange"), rc("PassPerItem")
 sk = kc("sorted", 1000); sb = kc("sorted", 20000)
 sbm = kc("sorted", 20000, "main (all 30 batches)"); skm = kc("sorted", 1000, "main (all 30 batches)")
-p(f"**H6 – recommendation criterion: falsified in {len(f6)} of 60 comparisons (one more inconclusive).** WhileNeeded is more than 5 % slower than another algorithm only on reversed input, against PassPerItem "
-  f"({(f6.estimate.min()-1)*100:.0f}–{(f6.estimate.max()-1)*100:.0f} % in the main data, up to 16 % in the steady state; see H3), plus one cell that is inconclusive in the all-batches analysis (sorted, n = 20 000, against UntilNoChange) and supported in the steady state. "
+p(f"**H6 – recommendation criterion: falsified in {len(f6)} of 60 comparisons.** WhileNeeded is more than 5 % slower than another algorithm only on reversed input, against PassPerItem "
+  f"({(f6[f6.order == 'reversed'].estimate.min()-1)*100:.0f}–{(f6[f6.order == 'reversed'].estimate.max()-1)*100:.0f} % in the main data, up to 16 % in the steady state; see H3), plus one cell whose ratio is distorted by a level shift (sorted, n = 20 000, against UntilNoChange; Section 3.7) and which is supported in the steady state. "
   "The registered rule \"if this holds, WhileNeeded is recommended\" therefore does not fire; the recommendation in Section 4.3 rests on a post-hoc criterion, the worst-case slowdown of Section 3.5.")
 p("**Level shifts inside a JVM.** A review of the raw data by a second AI assistant session found that for very short sorts the speed changed inside the 30 timed batches of a fork, "
   "most likely because the JIT compiler finished compiling the loop that runs the batches while it was being timed (Section 3.7; compilation events were not recorded). "

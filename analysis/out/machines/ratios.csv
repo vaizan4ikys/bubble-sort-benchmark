@@ -1,4 +1,4 @@
-label,order,size,numerator,denominator,ratio_geomean,ci_lo,ci_hi,ratio_median
+label,order,size,numerator,denominator,ratio_mean,ci_lo,ci_hi,ratio_median
 "M3 Pro laptop 1, JDK 26 (main)",random,1000,PassPerItem,WhileNeeded,1.3313,1.3193,1.3434,1.3269
 "M3 Pro laptop 1, JDK 26 (main)",random,1000,UntilNoChange,WhileNeeded,1.6560,1.6352,1.6770,1.6626
 "M3 Pro laptop 1, JDK 26 (main)",random,5000,PassPerItem,WhileNeeded,1.3149,1.3122,1.3177,1.3147

@@ -85,5 +85,5 @@ table(["Experiment", "Main number", "Details"], [
     ["Cold start, JMH", "first call of PassPerItem (random, n = 100) 8.6× the time of calls 20 and later; JMH ratios agree with ours within 1.2 % (random, reversed)", "Appendix E.5, E.6"],
     ["Scaling, replication, load, correctness", "exponents 2.0–2.1 (random) and 1.0 (sorted, early-stopping); 94 % of cells within 5 % in the replication; 20 139 correctness checks passed", "Appendix E.7"],
     ["JIT compiler level", "UntilNoChange ÷ PassPerItem on random input, n = 2 000: 1.22 (default), 1.05 (C1 only), 0.98 (interpreter)", "Appendix E.8"],
-    ["Re-measurement of 10 uncertain groups (20 more forks)", "one hypothesis cell changes (H2, random, n = 10 000: inconclusive → falsified)", "Appendix F"],
+    ["Re-measurement of 10 uncertain groups (20 more forks)", "three hypothesis cells change (H2, random, n = 10 000 and H5, PassPerItem on random input: inconclusive → falsified; H6, sorted, n = 20 000: falsified → inconclusive)", "Appendix F"],
 ], widths=[2.3, 3.3, 0.9], size=8, caption="Summary of the further experiments.")

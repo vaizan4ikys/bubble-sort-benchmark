@@ -77,7 +77,7 @@ def fork_medians(df: pd.DataFrame, extra_keys=()) -> pd.DataFrame:
 
 
 def t_ci(x, conf=0.95):
-    """Mean and t-based confidence interval of a sample (lecture 7; t instead of z because N is small)."""
+    """Mean and t-based confidence interval of a sample (lecture 7; the critical value comes from the t distribution instead of z because N is small)."""
     x = np.asarray(x, dtype=float)
     n = len(x)
     m = x.mean()
@@ -91,8 +91,8 @@ def t_ci(x, conf=0.95):
 def paired_ratio(wide: pd.DataFrame, order: str, size: int, num: str, den: str, **extra):
     """Ratio num/den of the per-fork medians, paired by fork (same input data for both algorithms).
 
-    Returns (point, geo_mean, lo, hi): point = median(num)/median(den) over forks,
-    geo_mean/lo/hi = geometric mean of the paired ratios with its 95 % t-interval.
+    Returns (point, mean, lo, hi): point = median(num)/median(den) over forks; mean/lo/hi = the mean of the
+    paired per-fork ratios with its 95 % confidence interval (mean +- t * s / sqrt(N), as in lecture 7).
     """
     sel = wide.xs((order, size), level=("order", "size"))
     a, b = sel[num].dropna(), sel[den].dropna()
@@ -100,24 +100,22 @@ def paired_ratio(wide: pd.DataFrame, order: str, size: int, num: str, den: str, 
     a, b = a.loc[idx], b.loc[idx]
     if len(idx) == 0:
         return (math.nan,) * 4
-    logr = np.log(a.values / b.values)
-    m, lo, hi = t_ci(logr)
-    return float(a.median() / b.median()), math.exp(m), math.exp(lo), math.exp(hi)
+    m, lo, hi = t_ci(a.values / b.values)
+    return float(a.median() / b.median()), float(m), float(lo), float(hi)
 
 
 def growth_factor(fm: pd.DataFrame, order: str, alg: str, n1: int, n2: int):
-    """Factor by which the time grows from size n1 to n2 (Welch interval on log fork medians)."""
-    def logs(n):
-        return np.log(fm[(fm.order == order) & (fm.algorithm == alg) & (fm["size"] == n)].med.values)
-    a, b = logs(n1), logs(n2)
-    if len(a) < 2 or len(b) < 2:
+    """Factor by which the time grows from size n1 to n2.
+
+    Estimate = (mean fork median at n2) / (mean fork median at n1). Each mean has a 95 % confidence interval
+    (lecture 7); the interval of the ratio is conservative: lower limit at n2 over upper limit at n1, and vice versa.
+    """
+    def ci(n):
+        return t_ci(fm[(fm.order == order) & (fm.algorithm == alg) & (fm["size"] == n)].med.values)
+    (m1, lo1, hi1), (m2, lo2, hi2) = ci(n1), ci(n2)
+    if not (lo1 < hi1 and lo2 < hi2):
         return (math.nan,) * 3
-    d = b.mean() - a.mean()
-    va, vb = a.var(ddof=1) / len(a), b.var(ddof=1) / len(b)
-    se = math.sqrt(va + vb)
-    df = (va + vb) ** 2 / (va ** 2 / (len(a) - 1) + vb ** 2 / (len(b) - 1))
-    h = stats.t.ppf(0.975, df) * se
-    return math.exp(d), math.exp(d - h), math.exp(d + h)
+    return m2 / m1, lo2 / hi1, hi2 / lo1
 
 
 def five_number(x):

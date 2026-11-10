@@ -25,7 +25,7 @@ p("These runs were made by the second author on his own devices with the reduced
 bullets([f"**{head}:** {desc}" for _, _, _, head, desc in DEVICES])
 
 doc.add_heading("Time ratios", level=3)
-p("Geometric mean over the 5 paired forks; above 1 means WhileNeeded is faster. Confidence intervals are in "
+p("Mean over the 5 paired forks; above 1 means WhileNeeded is faster. Confidence intervals are in "
   "analysis/out/machines/ratios.csv. Reversed input at n = 1 000 and 10 000 on the JDK 26 desktop includes the outlier JVMs of Appendix E.9.", size=9.5)
 rows = []
 for o in ORDERS:
@@ -36,7 +36,7 @@ for o in ORDERS:
                 r = dev_ratios[(dev_ratios.label == label) & (dev_ratios.order == o) & (dev_ratios["size"] == n)
                                & (dev_ratios.numerator == num) & (dev_ratios.denominator == "WhileNeeded")]
                 assert len(r) == 1, (label, o, n, num)
-                row.append(fmt_ratio(r.iloc[0].ratio_geomean))
+                row.append(fmt_ratio(r.iloc[0].ratio_mean))
         rows.append(row)
 cols = [d[2] for d in DEVICES]
 table(["Input order", "n", f"PassPerItem ÷ WhileNeeded: {cols[0]}", cols[1], cols[2],

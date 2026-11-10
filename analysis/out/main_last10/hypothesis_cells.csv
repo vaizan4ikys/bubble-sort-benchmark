@@ -1,50 +1,50 @@
 hypothesis,claim,order,size,estimate,ci_lo,ci_hi,threshold,verdict
-H1,PassPerItem / UntilNoChange >= 100,sorted,1000,2208.7222,2168.0595,2250.1476,100,supported
-H1,PassPerItem / WhileNeeded >= 100,sorted,1000,2082.4574,2044.8593,2120.7468,100,supported
-H1,PassPerItem / UntilNoChange >= 100,sorted,2000,1930.9965,1927.9347,1934.0632,100,supported
-H1,PassPerItem / WhileNeeded >= 100,sorted,2000,2244.0201,2241.4323,2246.6109,100,supported
-H1,PassPerItem / UntilNoChange >= 100,sorted,5000,4816.8367,4787.5177,4846.3353,100,supported
-H1,PassPerItem / WhileNeeded >= 100,sorted,5000,5645.9122,5630.1780,5661.6904,100,supported
-H1,PassPerItem / UntilNoChange >= 100,sorted,10000,11178.0654,11122.8165,11233.5887,100,supported
-H1,PassPerItem / WhileNeeded >= 100,sorted,10000,13011.4667,12938.5610,13084.7832,100,supported
-H1,PassPerItem / UntilNoChange >= 100,sorted,20000,39610.2766,39524.2861,39696.4542,100,supported
-H1,PassPerItem / WhileNeeded >= 100,sorted,20000,22885.4223,22826.6457,22944.3503,100,supported
-H2,WhileNeeded / UntilNoChange < 1,random,5000,0.6050,0.5966,0.6136,1,supported
+H1,PassPerItem / UntilNoChange >= 100,sorted,1000,2209.4046,2167.2773,2251.5319,100,supported
+H1,PassPerItem / WhileNeeded >= 100,sorted,1000,2083.0756,2044.1617,2121.9895,100,supported
+H1,PassPerItem / UntilNoChange >= 100,sorted,2000,1931.0008,1927.9358,1934.0658,100,supported
+H1,PassPerItem / WhileNeeded >= 100,sorted,2000,2244.0227,2241.4321,2246.6133,100,supported
+H1,PassPerItem / UntilNoChange >= 100,sorted,5000,4816.9940,4787.7662,4846.2217,100,supported
+H1,PassPerItem / WhileNeeded >= 100,sorted,5000,5645.9510,5630.1528,5661.7491,100,supported
+H1,PassPerItem / UntilNoChange >= 100,sorted,10000,11178.3065,11122.9853,11233.6277,100,supported
+H1,PassPerItem / WhileNeeded >= 100,sorted,10000,13011.8282,12938.6452,13085.0112,100,supported
+H1,PassPerItem / UntilNoChange >= 100,sorted,20000,39610.4411,39524.3421,39696.5402,100,supported
+H1,PassPerItem / WhileNeeded >= 100,sorted,20000,22885.5555,22826.6535,22944.4575,100,supported
+H2,WhileNeeded / UntilNoChange < 1,random,5000,0.6051,0.5967,0.6135,1,supported
 H2,WhileNeeded / PassPerItem < 1,random,5000,0.7614,0.7598,0.7631,1,supported
-H2,UntilNoChange / PassPerItem within 0.85-1.15,random,5000,1.2585,1.2394,1.2780,0.85-1.15,falsified
+H2,UntilNoChange / PassPerItem within 0.85-1.15,random,5000,1.2588,1.2393,1.2783,0.85-1.15,falsified
 H3,WhileNeeded / UntilNoChange <= 0.90,reversed,5000,0.7193,0.7169,0.7217,0.9,supported
 H3,WhileNeeded / PassPerItem <= 0.90,reversed,5000,1.0955,1.0911,1.0999,0.9,falsified
-H4,PassPerItem / UntilNoChange >= 10,nearly_local,5000,195.1088,171.4870,221.9844,10,supported
-H4,PassPerItem / WhileNeeded >= 10,nearly_local,5000,217.4640,193.0195,245.0043,10,supported
-H2,WhileNeeded / UntilNoChange < 1,random,10000,0.5595,0.5553,0.5638,1,supported
-H2,WhileNeeded / PassPerItem < 1,random,10000,0.6451,0.6330,0.6575,1,supported
-H2,UntilNoChange / PassPerItem within 0.85-1.15,random,10000,1.1530,1.1311,1.1752,0.85-1.15,inconclusive
-H3,WhileNeeded / UntilNoChange <= 0.90,reversed,10000,0.9792,0.9607,0.9980,0.9,falsified
-H3,WhileNeeded / PassPerItem <= 0.90,reversed,10000,1.0697,1.0615,1.0781,0.9,falsified
-H4,PassPerItem / UntilNoChange >= 10,nearly_local,10000,368.6709,312.2082,435.3448,10,supported
-H4,PassPerItem / WhileNeeded >= 10,nearly_local,10000,435.1493,388.0058,488.0208,10,supported
-H2,WhileNeeded / UntilNoChange < 1,random,20000,0.5278,0.5230,0.5327,1,supported
+H4,PassPerItem / UntilNoChange >= 10,nearly_local,5000,198.1427,170.3576,225.9279,10,supported
+H4,PassPerItem / WhileNeeded >= 10,nearly_local,5000,220.2452,193.2079,247.2824,10,supported
+H2,WhileNeeded / UntilNoChange < 1,random,10000,0.5596,0.5553,0.5638,1,supported
+H2,WhileNeeded / PassPerItem < 1,random,10000,0.6453,0.6334,0.6573,1,supported
+H2,UntilNoChange / PassPerItem within 0.85-1.15,random,10000,1.1533,1.1317,1.1750,0.85-1.15,inconclusive
+H3,WhileNeeded / UntilNoChange <= 0.90,reversed,10000,0.9795,0.9610,0.9980,0.9,falsified
+H3,WhileNeeded / PassPerItem <= 0.90,reversed,10000,1.0698,1.0615,1.0781,0.9,falsified
+H4,PassPerItem / UntilNoChange >= 10,nearly_local,10000,377.7577,314.1407,441.3747,10,supported
+H4,PassPerItem / WhileNeeded >= 10,nearly_local,10000,440.4117,386.7815,494.0419,10,supported
+H2,WhileNeeded / UntilNoChange < 1,random,20000,0.5278,0.5229,0.5327,1,supported
 H2,WhileNeeded / PassPerItem < 1,random,20000,0.5747,0.5715,0.5779,1,supported
-H2,UntilNoChange / PassPerItem within 0.85-1.15,random,20000,1.0888,1.0832,1.0945,0.85-1.15,supported
-H3,WhileNeeded / UntilNoChange <= 0.90,reversed,20000,0.9971,0.9812,1.0134,0.9,falsified
-H3,WhileNeeded / PassPerItem <= 0.90,reversed,20000,1.0985,1.0341,1.1668,0.9,falsified
-H4,PassPerItem / UntilNoChange >= 10,nearly_local,20000,731.4945,679.0029,788.0440,10,supported
-H4,PassPerItem / WhileNeeded >= 10,nearly_local,20000,785.6406,730.9151,844.4634,10,supported
-H5,PassPerItem: t(20000)/t(10000) within 3.3-4.7,random,20000,4.7720,4.6997,4.8454,3.3-4.7,inconclusive
-H5,PassPerItem: t(20000)/t(10000) within 3.3-4.7,sorted,20000,3.5000,3.4800,3.5201,3.3-4.7,supported
-H5,UntilNoChange: t(20000)/t(10000) within 3.3-4.7,random,20000,4.5066,4.4721,4.5414,3.3-4.7,supported
-H5,UntilNoChange: t(20000)/t(10000) < 2.6,sorted,20000,0.9877,0.9859,0.9895,2.6,supported
-H5,WhileNeeded: t(20000)/t(10000) within 3.3-4.7,random,20000,4.2510,4.2159,4.2865,3.3-4.7,supported
-H5,WhileNeeded: t(20000)/t(10000) < 2.6,sorted,20000,1.9899,1.9859,1.9939,2.6,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,random,1000,0.6031,0.5949,0.6113,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,random,1000,0.7500,0.7431,0.7569,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,random,2000,0.6052,0.5993,0.6112,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,random,2000,0.7479,0.7296,0.7666,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,random,5000,0.6050,0.5966,0.6136,1.05,supported
+H2,UntilNoChange / PassPerItem within 0.85-1.15,random,20000,1.0889,1.0832,1.0945,0.85-1.15,supported
+H3,WhileNeeded / UntilNoChange <= 0.90,reversed,20000,0.9974,0.9814,1.0134,0.9,falsified
+H3,WhileNeeded / PassPerItem <= 0.90,reversed,20000,1.1020,1.0366,1.1673,0.9,falsified
+H4,PassPerItem / UntilNoChange >= 10,nearly_local,20000,735.0873,679.9180,790.2565,10,supported
+H4,PassPerItem / WhileNeeded >= 10,nearly_local,20000,789.2362,732.5672,845.9052,10,supported
+H5,PassPerItem: t(20000)/t(10000) within 3.3-4.7,random,20000,4.7711,4.6841,4.8607,3.3-4.7,inconclusive
+H5,PassPerItem: t(20000)/t(10000) within 3.3-4.7,sorted,20000,3.4999,3.4731,3.5270,3.3-4.7,supported
+H5,UntilNoChange: t(20000)/t(10000) within 3.3-4.7,random,20000,4.5064,4.4584,4.5552,3.3-4.7,supported
+H5,UntilNoChange: t(20000)/t(10000) < 2.6,sorted,20000,0.9877,0.9850,0.9904,2.6,supported
+H5,WhileNeeded: t(20000)/t(10000) within 3.3-4.7,random,20000,4.2512,4.1995,4.3034,3.3-4.7,supported
+H5,WhileNeeded: t(20000)/t(10000) < 2.6,sorted,20000,1.9899,1.9842,1.9956,2.6,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,random,1000,0.6032,0.5948,0.6115,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,random,1000,0.7500,0.7432,0.7569,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,random,2000,0.6053,0.5994,0.6112,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,random,2000,0.7483,0.7305,0.7661,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,random,5000,0.6051,0.5967,0.6135,1.05,supported
 H6,WhileNeeded / PassPerItem <= 1.05,random,5000,0.7614,0.7598,0.7631,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,random,10000,0.5595,0.5553,0.5638,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,random,10000,0.6451,0.6330,0.6575,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,random,20000,0.5278,0.5230,0.5327,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,random,10000,0.5596,0.5553,0.5638,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,random,10000,0.6453,0.6334,0.6573,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,random,20000,0.5278,0.5229,0.5327,1.05,supported
 H6,WhileNeeded / PassPerItem <= 1.05,random,20000,0.5747,0.5715,0.5779,1.05,supported
 H6,WhileNeeded / UntilNoChange <= 1.05,sorted,1000,1.0606,1.0573,1.0640,1.05,falsified
 H6,WhileNeeded / PassPerItem <= 1.05,sorted,1000,0.0005,0.0005,0.0005,1.05,supported
@@ -59,39 +59,39 @@ H6,WhileNeeded / PassPerItem <= 1.05,sorted,20000,0.0000,0.0000,0.0000,1.05,supp
 H6,WhileNeeded / UntilNoChange <= 1.05,reversed,1000,0.7105,0.7073,0.7137,1.05,supported
 H6,WhileNeeded / PassPerItem <= 1.05,reversed,1000,1.0816,1.0800,1.0831,1.05,falsified
 H6,WhileNeeded / UntilNoChange <= 1.05,reversed,2000,0.7185,0.7165,0.7204,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,reversed,2000,1.0939,1.0905,1.0972,1.05,falsified
+H6,WhileNeeded / PassPerItem <= 1.05,reversed,2000,1.0939,1.0905,1.0973,1.05,falsified
 H6,WhileNeeded / UntilNoChange <= 1.05,reversed,5000,0.7193,0.7169,0.7217,1.05,supported
 H6,WhileNeeded / PassPerItem <= 1.05,reversed,5000,1.0955,1.0911,1.0999,1.05,falsified
-H6,WhileNeeded / UntilNoChange <= 1.05,reversed,10000,0.9792,0.9607,0.9980,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,reversed,10000,1.0697,1.0615,1.0781,1.05,falsified
-H6,WhileNeeded / UntilNoChange <= 1.05,reversed,20000,0.9971,0.9812,1.0134,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,reversed,20000,1.0985,1.0341,1.1668,1.05,inconclusive
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,1000,0.8862,0.8327,0.9431,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,1000,0.0172,0.0156,0.0188,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,2000,0.8198,0.7285,0.9227,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,2000,0.0093,0.0085,0.0101,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,5000,0.8972,0.8398,0.9586,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,5000,0.0046,0.0041,0.0052,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,10000,0.8472,0.7549,0.9509,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,10000,0.0023,0.0020,0.0026,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,20000,0.9311,0.9123,0.9502,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,reversed,10000,0.9795,0.9610,0.9980,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,reversed,10000,1.0698,1.0615,1.0781,1.05,falsified
+H6,WhileNeeded / UntilNoChange <= 1.05,reversed,20000,0.9974,0.9814,1.0134,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,reversed,20000,1.1020,1.0366,1.1673,1.05,inconclusive
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,1000,0.8891,0.8353,0.9430,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,1000,0.0173,0.0156,0.0189,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,2000,0.8296,0.7365,0.9227,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,2000,0.0093,0.0085,0.0102,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,5000,0.9005,0.8440,0.9571,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,5000,0.0047,0.0041,0.0052,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,10000,0.8568,0.7639,0.9497,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,10000,0.0023,0.0021,0.0026,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_local,20000,0.9314,0.9125,0.9503,1.05,supported
 H6,WhileNeeded / PassPerItem <= 1.05,nearly_local,20000,0.0013,0.0012,0.0014,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,1000,0.5581,0.5367,0.5803,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,1000,0.6872,0.6709,0.7040,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,2000,0.5705,0.5524,0.5893,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,2000,0.6943,0.6828,0.7060,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,5000,0.5405,0.5313,0.5498,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,1000,0.5588,0.5365,0.5812,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,1000,0.6876,0.6713,0.7038,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,2000,0.5711,0.5525,0.5897,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,2000,0.6944,0.6828,0.7061,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,5000,0.5406,0.5313,0.5499,1.05,supported
 H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,5000,0.7180,0.7156,0.7204,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,10000,0.5143,0.5040,0.5247,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,10000,0.6317,0.6233,0.6402,1.05,supported
-H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,20000,0.5570,0.5525,0.5616,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,20000,0.5792,0.5744,0.5842,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,10000,0.5144,0.5040,0.5249,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,10000,0.6318,0.6234,0.6402,1.05,supported
+H6,WhileNeeded / UntilNoChange <= 1.05,nearly_random,20000,0.5570,0.5525,0.5615,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,nearly_random,20000,0.5793,0.5744,0.5842,1.05,supported
 H6,WhileNeeded / UntilNoChange <= 1.05,few_unique,1000,0.5987,0.5949,0.6024,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,few_unique,1000,0.6632,0.6555,0.6710,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,few_unique,1000,0.6633,0.6555,0.6711,1.05,supported
 H6,WhileNeeded / UntilNoChange <= 1.05,few_unique,2000,0.6322,0.6282,0.6362,1.05,supported
 H6,WhileNeeded / PassPerItem <= 1.05,few_unique,2000,0.6776,0.6758,0.6795,1.05,supported
 H6,WhileNeeded / UntilNoChange <= 1.05,few_unique,5000,0.6149,0.6130,0.6169,1.05,supported
-H6,WhileNeeded / PassPerItem <= 1.05,few_unique,5000,0.6703,0.6678,0.6728,1.05,supported
+H6,WhileNeeded / PassPerItem <= 1.05,few_unique,5000,0.6703,0.6679,0.6728,1.05,supported
 H6,WhileNeeded / UntilNoChange <= 1.05,few_unique,10000,0.5990,0.5969,0.6010,1.05,supported
 H6,WhileNeeded / PassPerItem <= 1.05,few_unique,10000,0.6514,0.6499,0.6529,1.05,supported
 H6,WhileNeeded / UntilNoChange <= 1.05,few_unique,20000,0.5963,0.5925,0.6002,1.05,supported

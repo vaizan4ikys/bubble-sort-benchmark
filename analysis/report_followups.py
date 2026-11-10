@@ -150,7 +150,7 @@ table(["From n", "To n"] + ["PassPerItem", "UntilNoChange", "WhileNeeded"],
       widths=[1.0, 1.0, 1.2, 1.2, 1.2], size=8, align_right_from=2,
       caption="Local scaling exponents on random input (slope of log time against log n between consecutive sizes; medians over 5 forks).")
 p("**Replication.** The complete main design was repeated with a different random seed (new data, new JVMs). Of the 108 cell medians, 94 % differ from the main data by less than 5 % "
-  "and 98 % by less than 10 %. For n ≥ 1 000 the median absolute difference is 0.1 % and the largest 18.9 %. The Spearman correlation of the cell medians is 0.9999. "
+  "and 98 % by less than 10 %. For n ≥ 1 000 the median absolute difference is 0.1 % and the largest 18.9 %. "
   "The only larger deviations are the two nearly-sorted cells with local swaps at n = 5 000 (−16 % and −19 %), which have the highest between-data variation (see Appendix F).")
 p("**Load.** Under load the median slowdown is 1.057× (range 1.048–1.364). From idle to load, the median CV between forks rises from 1.3 % to 1.7 %, "
   "and the median relative IQR of the batches from 1.6 % to 25.7 %. Six busy background processes thus slow the sorts by about 6 % on average but make "
@@ -202,23 +202,23 @@ table(["Run", "JDK", "Forks", "WhileNeeded fastest", "Worst slowdown: WhileNeede
        "PassPerItem ÷ WhileNeeded, reversed, n = 5 000", "Spread within a fork"],
       [[r.label, r.java, r.forks, mwins(r.label), f"{mworst(r.label, 'WhileNeeded'):.2f}", f"{mworst(r.label, 'UntilNoChange'):.2f}",
         f"{mworst(r.label, 'PassPerItem'):,.0f}".replace(",", " "),
-        f"{mrev(r.label).ratio_geomean:.2f} [{mrev(r.label).ci_lo:.2f}, {mrev(r.label).ci_hi:.2f}]", f"{r.spread_within_fork * 100:.1f} %"]
+        f"{mrev(r.label).ratio_mean:.2f} [{mrev(r.label).ci_lo:.2f}, {mrev(r.label).ci_hi:.2f}]", f"{r.spread_within_fork * 100:.1f} %"]
        for r in md.itertuples()],
       widths=[1.3, 0.6, 0.4, 0.6, 0.7, 0.7, 0.6, 0.9, 0.6], size=8,
       caption="The same design on different computers and JDKs (n ∈ {1 000, 5 000, 10 000}, 18 cells). Slowdown is relative to the fastest algorithm per cell. Spread: median of (max − min) / median of the batches of one fork.")
 p(f"**The recommendation holds.** On the x86 desktop with JDK 26, WhileNeeded is the fastest algorithm in {mwins(RYZEN26)} cells, while UntilNoChange is up to "
   f"{mworst(RYZEN26, 'UntilNoChange'):.2f}× and PassPerItem up to " + f"{mworst(RYZEN26, 'PassPerItem'):,.0f}".replace(",", " ") + "× slower than the best. Absolute times differ, but the "
   "largest effect (early stopping on sorted input) has the same order of magnitude in every run.")
-p(f"**The reversed-input anomaly does not transfer.** With the same major JDK version, PassPerItem needs {r26.ratio_geomean:.2f}× the time of WhileNeeded on the desktop "
-  f"(n = 5 000, CI {ci(r26.ci_lo, r26.ci_hi)}), against {m26.ratio_geomean:.2f}× (CI {ci(m26.ci_lo, m26.ci_hi)}) on the main laptop: the direction is reversed. "
+p(f"**The reversed-input anomaly does not transfer.** With the same major JDK version, PassPerItem needs {r26.ratio_mean:.2f}× the time of WhileNeeded on the desktop "
+  f"(n = 5 000, CI {ci(r26.ci_lo, r26.ci_hi)}), against {m26.ratio_mean:.2f}× (CI {ci(m26.ci_lo, m26.ci_hi)}) on the main laptop: the direction is reversed. "
   "So the anomaly does not follow from JDK 26 alone. With one computer per architecture and no inspection of the machine code, we cannot attribute it to the CPU architecture itself (Figure "
   f"{FIG_NO[0] + 1}).")
 p(f"**Data quality.** The desktop is noisier than the main laptop: the spread within a fork is {mspread(RYZEN26):.1f} % against {mspread(MAIN26):.1f} %. "
   f"Reversed input has two outlier JVMs: at n = 1 000 one fork has a ratio of "
-  f"{f26[f26['size'] == 1000].ratio.min():.2f}, and at n = 10 000 one has {f26[f26['size'] == 10000].ratio.max():.2f}, so the geometric means at these sizes have wide intervals "
+  f"{f26[f26['size'] == 1000].ratio.min():.2f}, and at n = 10 000 one has {f26[f26['size'] == 10000].ratio.max():.2f}, so the means of the ratios at these sizes have wide intervals "
   f"while the median fork ratios stay near {mrev(RYZEN26, 1000).ratio_median:.2f}–{mrev(RYZEN26, 10000).ratio_median:.2f}. "
   f"The JDK 17 desktop run is weaker still ({mspread(RYZEN17):.1f} % spread, power state not recorded); its decimal commas (old code on a non-English locale) were repaired during analysis, leaving the raw file as measured. The measurements of these runs are in Appendix D.")
-figure(M / "fig_machines.png", "PassPerItem ÷ WhileNeeded on reversed input per computer and JDK: geometric mean of the paired forks with 95 % CI, and the median of the per-fork ratios.", width=6.2)
+figure(M / "fig_machines.png", "PassPerItem ÷ WhileNeeded on reversed input per computer and JDK: mean of the paired forks with 95 % CI, and the median of the per-fork ratios.", width=6.2)
 # ---- real JDK 25 on the main machine (only if that run exists)
 vrr = pd.read_csv(F2 / "variant_ratios.csv")
 _j25 = vrr[(vrr.setting == "JDK 25 (this Mac)") & (vrr.order == "reversed") & (vrr["size"] == 5000) & (vrr.numerator == "WhileNeeded") & (vrr.denominator == "PassPerItem")]
@@ -250,10 +250,10 @@ table(["Input order", "n", "Reason(s) for re-measuring (rule in REMEASURE_RULE.m
 pooled_h = pd.read_csv(POOL / "hypothesis_cells.csv")
 chg = hyp.merge(pooled_h, on=["hypothesis", "claim", "order", "size"], suffixes=("_main", "_pool"))
 chg = chg[chg.verdict_main != chg.verdict_pool]
-p("**Effect on the hypothesis verdicts.** After pooling, one hypothesis cell changes: " + "; ".join(
+p(f"**Effect on the hypothesis verdicts.** After pooling, {len(chg)} hypothesis cells change: " + "; ".join(
     f"{r.hypothesis}, {r.claim}, {r.order} n = {r.size}: {r.verdict_main} → {r.verdict_pool} ({r.estimate_pool:.3f}, CI {r.ci_lo_pool:.3f}–{r.ci_hi_pool:.3f})"
     for r in chg.itertuples()) + ". All other cells keep their verdict, so the main conclusions do not depend on the re-measurement. "
-  "The overall verdicts remain: H1 and H4 supported; H2, H3, H5 and H6 falsified.")
+  "The overall verdicts of H1–H4 remain; H5 changes from inconclusive to falsified, and H6 stays falsified.")
 p("**Why were the groups uncertain?** There are two different reasons. (1) *Nearly sorted with local swaps* (all five sizes): here the between-fork variation (CV 10–23 %) is "
   "not measurement noise. Each fork uses a different random input (5 % of the elements displaced), and the running time of the early-stopping algorithms "
   "depends strongly on how far the most displaced element has to travel, i.e. on the data. The 30 forks give a better estimate of the *distribution* of running times over such inputs, "

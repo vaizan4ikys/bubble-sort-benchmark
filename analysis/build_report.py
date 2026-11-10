@@ -61,7 +61,7 @@ def ratio(order, size, num, den):
 
 def rr(order, size, num, den):
     r = ratio(order, size, num, den)
-    return f"{fmt_ratio(r.ratio_geomean)}× (95 % CI {fmt_ratio(r.ci_lo)}–{fmt_ratio(r.ci_hi)})"
+    return f"{fmt_ratio(r.ratio_mean)}× (95 % CI {fmt_ratio(r.ci_lo)}–{fmt_ratio(r.ci_hi)})"
 
 
 def med(alg, order, size):
@@ -416,12 +416,13 @@ p("**Pilot.** Between the commit of the hypotheses (01:16:35) and the start of t
   "We did not change the hypotheses (HYPOTHESES.md has a single commit), and no result in this report is based on the pilot data.")
 p("**Statistics.** Per cell, we compute the five-number summary of all 300 batch measurements. For inference we "
   "use the 10 fork medians: 95 % confidence intervals from the t distribution (N = 10 is small, so t rather than z), "
-  "ratios between algorithms as geometric means of the 10 paired per-fork ratios with a t interval on the log scale, "
-  "and growth factors (t(20 000)/t(10 000)) with a Welch interval. A hypothesis cell is *supported* when the "
+  "ratios between algorithms as the mean of the 10 paired per-fork ratios with the same kind of interval, "
+  "and growth factors t(20 000)/t(10 000) as the ratio of the two means, with the conservative interval lower limit at 20 000 ÷ upper limit at 10 000 (and vice versa). A hypothesis cell is *supported* when the "
   "whole confidence interval satisfies the threshold, *falsified* when the whole interval lies on the wrong side, "
   "and *inconclusive* otherwise; by the rule of HYPOTHESES.md a hypothesis is falsified as soon as one of its cells is, so we report \"falsified (k of m cells)\". "
-  "The code that computes these intervals and verdicts (analysis/common.py and analyze_main.py) was committed at 01:34 (c7b3506), before the main data were analysed; its statistical logic has not changed since "
-  "(later edits only changed a figure title and the number format of an output file). **Re-measurement rule (pre-registered at 01:36, during the main run and before any of its data were analysed):** a group (order, size ≥ 1 000) is "
+  "The code that computes these intervals and verdicts (analysis/common.py and analyze_main.py) was committed at 01:34 (c7b3506), before the main data were analysed; that code used geometric means of the ratios (t interval on the log scale) and a Welch interval for growth factors. Because these methods were not taught in the course, we replaced them afterwards by the interval of lecture 7 (mean ± t · standard error); "
+  "this changed the verdicts of H5 (falsified → inconclusive in the main data), H6 (one inconclusive cell → falsified) and none of the others. "
+  "**Re-measurement rule (pre-registered at 01:36, during the main run and before any of its data were analysed):** a group (order, size ≥ 1 000) is "
   "re-measured with 20 additional forks per algorithm if the between-fork variation is above 5 %, the CI half-width is above "
   "3 %, a garbage collection occurred, the warm-up timed out, or any hypothesis cell is inconclusive.")
 p("**Use of AI.** The course allows the use of AI assistants. We used an AI assistant (Claude, via Claude Code) to help design the experiment, write the "
@@ -432,11 +433,11 @@ p("**Use of AI.** The course allows the use of AI assistants. We used an AI assi
 doc.add_heading("3. Results", level=1)
 p("**Results in brief** (details and caveats in the sections named):", keep=True)
 bullets([
-    "*Sorted input:* PassPerItem is at least 970× slower than the two early-stopping algorithms (about 2 200× or more in the steady state); *locally disturbed input:* 196–791× slower (n ≥ 5 000). Section 3.3.",
+    "*Sorted input:* PassPerItem is at least 970× slower than the two early-stopping algorithms (about 2 200× or more in the steady state); *locally disturbed input:* 199–794× slower (n ≥ 5 000). Section 3.3.",
     "*Random input:* WhileNeeded needs 57–76 % of PassPerItem's time; UntilNoChange is 9–26 % *slower* than PassPerItem (n ≥ 5 000). Section 3.3.",
     "*Reversed input:* WhileNeeded is 7–12 % slower than PassPerItem (up to 16 % in the steady state), but only in the main setting (JDK 26.0.1 on the main laptop); other JDKs and computers do not show it (Appendix E). Section 3.3.",
     "*Over the 30 conditions with n ≥ 1 000* WhileNeeded is the fastest algorithm in 24 (25 in the steady state); its worst slowdown against the best is 1.16× in the steady state. Section 3.5.",
-    "*Hypotheses:* H1 and H4 supported; H2, H3, H5, H6 falsified (in 1 to 5 of their cells). Section 3.6.",
+    "*Hypotheses:* H1 and H4 supported; H2, H3 and H6 falsified (in 1 to 6 of their cells); H5 inconclusive (1 cell). Section 3.6.",
     "*Quality problem:* for very short sorts the speed changed inside some JVM runs. A steady-state re-measurement leaves all verdicts unchanged, but main-data times in some cells are up to 2× too high. Section 3.7.",
 ])
 doc.add_heading("3.1 Visual Overview", level=2)
@@ -453,7 +454,7 @@ figure(MAIN / "fig_boxplots.png",
        "and algorithm. Box = interquartile range, line = median, whiskers = 1.5 × IQR, points = outliers. Most boxes are very narrow because repeated measurements agree closely; "
        "the wide boxes (sorted, n = 1 000 and 20 000) are level shifts inside a JVM (Section 3.7).")
 figure(MAIN / "fig_ratio_heatmaps.png",
-       "Time of one algorithm relative to another (geometric mean over forks of the paired per-fork ratios). Values below 1 mean "
+       "Time of one algorithm relative to another (mean over forks of the paired per-fork ratios). Values below 1 mean "
        "the first-named algorithm is faster. Cells with n < 1 000 are descriptive only.")
 figure(MAIN / "fig_ecdf.png",
        "Empirical cumulative distribution functions of the time per sort for n = 10 000 on random, reversed and nearly sorted (random swaps) input. "
@@ -494,15 +495,15 @@ for o in ORDERS:
         b = ratio(o, n, "WhileNeeded", "PassPerItem")
         c = ratio(o, n, "WhileNeeded", "UntilNoChange")
         def f(r):
-            if r.ratio_geomean < 0.01:
-                return tiny_ratio(r.ratio_geomean, r.ci_lo, r.ci_hi)
-            if r.ratio_geomean < 0.1:
-                return f"{r.ratio_geomean:.3f} [{r.ci_lo:.3f}, {r.ci_hi:.3f}]"
-            return f"{fmt_ratio(r.ratio_geomean)} [{fmt_ratio(r.ci_lo)}, {fmt_ratio(r.ci_hi)}]"
+            if r.ratio_mean < 0.01:
+                return tiny_ratio(r.ratio_mean, r.ci_lo, r.ci_hi)
+            if r.ratio_mean < 0.1:
+                return f"{r.ratio_mean:.3f} [{r.ci_lo:.3f}, {r.ci_hi:.3f}]"
+            return f"{fmt_ratio(r.ratio_mean)} [{fmt_ratio(r.ci_lo)}, {fmt_ratio(r.ci_hi)}]"
         rows.append([ORDER_LABEL[o], f"{n:,}".replace(",", " "), f(a), f(b), f(c)])
 table(["Input order", "n", "UntilNoChange ÷ PassPerItem", "WhileNeeded ÷ PassPerItem", "WhileNeeded ÷ UntilNoChange"],
       rows, widths=[1.55, 0.6, 1.5, 1.5, 1.5], size=8,
-      caption="Time ratios (geometric mean over the 10 paired forks) with 95 % confidence interval in brackets; ratios below 0.01 are written as 1/N, e.g. 1/970 means 970 times faster. For sorted input, the ratio WhileNeeded ÷ UntilNoChange is affected by level shifts and is about 0.98 in the steady state (Section 3.7).")
+      caption="Time ratios (mean over the 10 paired forks) with 95 % confidence interval in brackets; ratios below 0.01 are written as 1/N, e.g. 1/970 means 970 times faster. For sorted input, the ratio WhileNeeded ÷ UntilNoChange is affected by level shifts and is about 0.98 in the steady state (Section 3.7).")
 
 doc.add_heading("3.4 Operation counts", level=2)
 p("To relate time to the work performed, an instrumented copy of the algorithms counted the comparisons (calls to compareTo) and the inversions "

@@ -102,30 +102,31 @@ bullets([
     "**Measurement:** two untimed batches, then 30 timed batches (copies made before the clock starts; every result is checked to be sorted afterwards, and a garbage collection in the timed region is flagged).",
 ])
 p(f"The 77-minute main run (01:25–02:43, 4 November 2026) was started and supervised by an AI assistant on the first author's laptop; its few concurrent commits and smoke tests are logged in results/full/interference_log.txt, and the {N_OVER} overlapping jobs are indistinguishable from the others (median relative time {REL_OVER:.3f} against {REL_OTHER:.3f}).")
-p("**Statistics.** Per cell we report the five-number summary of the 300 batch measurements. Inference uses the 10 fork medians: 95 % t confidence intervals; ratios between algorithms as the geometric mean of the 10 paired per-fork ratios with a t interval on the log scale; "
-  "growth factors t(20 000)/t(10 000) with a Welch interval. No p-values are used and there is no multiple-comparison correction; conclusions rest on effects that are large compared with the intervals. "
-  "A pre-registered rule (REMEASURE_RULE.md) re-measured ten uncertain groups with 20 additional forks (S-F); it changed one cell verdict (H2, random, n = 10 000: inconclusive → falsified).")
+p("**Statistics.** Per cell we report the five-number summary of the 300 batch measurements. Inference uses the 10 fork medians: 95 % confidence intervals mean ± t · s/√N (the interval of Lecture 7, with the critical value from the t distribution because N = 10); ratios between algorithms as the mean of the 10 paired per-fork ratios with the same kind of interval; "
+  "growth factors t(20 000)/t(10 000) as the ratio of the two means, with the conservative interval \"lower limit at 20 000 ÷ upper limit at 10 000\" to \"upper ÷ lower\". No p-values are used and there is no multiple-comparison correction; conclusions rest on effects that are large compared with the intervals. "
+  "A pre-registered rule (REMEASURE_RULE.md) re-measured ten uncertain groups with 20 additional forks (S-F); it changed the verdict of three cells (H2 and H5: inconclusive → falsified; H6: falsified → inconclusive). "
+  "The analysis code registered before the main analysis used geometric means of ratios and Welch intervals; we replaced them afterwards by the methods above, which the course teaches. This changed H5 (falsified → inconclusive in the main data) and H6 (one inconclusive cell → falsified) and no other verdict.")
 p("**Pilot.** Between the commit of the hypotheses and the start of the main run we ran a pilot (108 jobs, n ∈ {100, 1 000, 5 000}, 2 forks) with a not yet committed version of the harness, to choose warm-up and batch parameters. "
   "It already suggested that UntilNoChange is slower than PassPerItem on random input and WhileNeeded slower than PassPerItem on reversed input. We did not change the hypotheses; no result below uses the pilot data.")
 p("**Use of GenAI.** An AI assistant was used throughout; Appendix A documents how.")
 
 # ------------------------------------------------------------------------------ results
 doc.add_heading("3. Results", level=1)
-p("**In brief.** On sorted input PassPerItem is at least 970× slower than the two early-stopping algorithms (n ≥ 1 000), on locally disturbed input 196–791× (n ≥ 5 000). "
+p(f"**In brief.** On sorted input PassPerItem is at least {th(H('H1').estimate.min())}× slower than the two early-stopping algorithms (n ≥ 1 000), on locally disturbed input {H('H4').estimate.min():.0f}–{H('H4').estimate.max():.0f}× (n ≥ 5 000). "
   "On random input WhileNeeded needs 57–76 % of PassPerItem's time and UntilNoChange is 9–26 % slower than PassPerItem. On reversed input WhileNeeded is 7–12 % slower than PassPerItem (main setting only). "
-  "H1 and H4 are supported; H2, H3, H5 and H6 are falsified in 1 to 5 of their cells. A measurement problem for very short sorts (Section 3.6) does not change these verdicts.")
+  "H1 and H4 are supported; H2, H3 and H6 are falsified in 1 to 6 of their cells; H5 is inconclusive (1 cell). A measurement problem for very short sorts (Section 3.6) does not change these verdicts.")
 
 doc.add_heading("3.1 Visual Overview", level=2)
 dl = drift.strip().splitlines()
-_rho = re.search(r"rho=(-?[\d.]+)", dl[0]).group(1).replace("-", "−")
+_first, _last = re.findall(r": ([\d.]+)", dl[0])
 _lo, _hi = dl[1].split(":")[1].strip().split("..")
 _lo, _hi = _lo.strip(), _hi.strip()
 p("All 1 080 jobs completed, every result was verified to be sorted, no timed batch contained a garbage collection and no warm-up hit its limit. Time per sort ranges from 25 ns (sorted, n = 100) to 0.52 s (n = 20 000). "
-  f"Drift over the session: Spearman correlation between job position and relative time ρ = {_rho} (jobs run later were about 0.1 % faster); the rolling median stays within {_lo}–{_hi} of the cell median, far smaller than the differences between algorithms.")
+  f"Drift over the session: the median relative time (job time ÷ cell median) is {_first} in the first third of the session and {_last} in the last third; the rolling median stays within {_lo}–{_hi} of the cell median, far smaller than the differences between algorithms.")
 figure(MAIN / "fig_scaling.png",
        "Median time of one sort against input size (log–log), one panel per input order; shaded band = 95 % CI over forks (mostly narrower than the markers); dotted lines show n and n² growth.", width=5.6)
 figure(MAIN / "fig_ratio_heatmaps.png",
-       "Time of one algorithm relative to another (geometric mean of paired per-fork ratios); values below 1 mean the first-named algorithm is faster. Cells with n < 1 000 are descriptive only.", width=6.2)
+       "Time of one algorithm relative to another (mean of the paired per-fork ratios); values below 1 mean the first-named algorithm is faster. Cells with n < 1 000 are descriptive only.", width=6.2)
 
 doc.add_heading("3.2 Descriptive Statistics", level=2)
 p("The five-number summary of the 300 measurements per cell gives the minimum (fastest batch), first quartile Q1, median, third quartile Q3 and maximum; Q3 − Q1 shows how repeatable the timing is. Table 2 shows n = 10 000; the other sizes are in S-C.")
@@ -142,22 +143,22 @@ rows = []
 for o in ORDERS:
     for n in (5000, 20000):
         def f(r):
-            if r.ratio_geomean < 0.01:
-                return tiny_ratio(r.ratio_geomean, r.ci_lo, r.ci_hi)
-            if r.ratio_geomean < 0.1:
-                return f"{r.ratio_geomean:.3f} [{r.ci_lo:.3f}, {r.ci_hi:.3f}]"
-            return f"{fmt_ratio(r.ratio_geomean)} [{fmt_ratio(r.ci_lo)}, {fmt_ratio(r.ci_hi)}]"
+            if r.ratio_mean < 0.01:
+                return tiny_ratio(r.ratio_mean, r.ci_lo, r.ci_hi)
+            if r.ratio_mean < 0.1:
+                return f"{r.ratio_mean:.3f} [{r.ci_lo:.3f}, {r.ci_hi:.3f}]"
+            return f"{fmt_ratio(r.ratio_mean)} [{fmt_ratio(r.ci_lo)}, {fmt_ratio(r.ci_hi)}]"
         rows.append([ORDER_LABEL[o], th(n), f(ratio(o, n, "UntilNoChange", "PassPerItem")), f(ratio(o, n, "WhileNeeded", "PassPerItem")), f(ratio(o, n, "WhileNeeded", "UntilNoChange"))])
 table(["Input order", "n", "UntilNoChange ÷ PassPerItem", "WhileNeeded ÷ PassPerItem", "WhileNeeded ÷ UntilNoChange"], rows,
       widths=[1.55, 0.6, 1.5, 1.5, 1.5], size=8,
-      caption="Paired time ratios (geometric mean over 10 forks, 95 % CI in brackets); values below 1 mean the first-named algorithm is faster; 1/970 means 970× faster. Ratios on sorted input are distorted by level shifts (Section 3.6); other sizes: S-Table 3.")
+      caption="Paired time ratios (mean over 10 forks, 95 % CI in brackets); values below 1 mean the first-named algorithm is faster; 1/970 means 970× faster. Ratios on sorted input are distorted by level shifts (Section 3.6); other sizes: S-Table 3.")
 
 doc.add_heading("3.4 Hypothesis checks", level=2)
 rows = []
 for r in hyp_all.itertuples():
     rows.append([r.hypothesis, verdict_label(r), hcnt(r.hypothesis, SS)])
 table(["Hypothesis", "Verdict, main data (registered rule)", "Cells falsified, steady-state re-measurement"], rows, widths=[1.0, 3.3, 2.2], size=8.5,
-      caption="Hypothesis verdicts. The steady-state column comes from the re-measurement of Section 3.6 (3 forks per cell). H1 and H4 are supported in both analyses.")
+      caption="Hypothesis verdicts. The steady-state column (cells falsified, inconclusive in brackets) comes from the re-measurement of Section 3.6 (3 forks per cell). H1 and H4 are supported in both analyses.")
 
 doc.add_heading("3.5 Decision metric: worst-case slowdown", level=2)
 p("For the recommendation we compare each algorithm with the fastest one in every cell with n ≥ 1 000 (30 cells): the slowdown is its median time divided by the smallest median of the three (1.00 = fastest).")
@@ -195,13 +196,13 @@ f6 = H("H6", verdict="falsified")
 bullets([
     f"**H1 supported.** PassPerItem is {th(h1.estimate.min())}–{th(h1.estimate.max())}× slower on sorted input (lowest CI bound {th(h1.ci_lo.min())}×; steady state {th(HST[HST.hypothesis == 'H1'].estimate.min())}–{th(HST[HST.hypothesis == 'H1'].estimate.max())}×), "
     "far above 100×: PassPerItem makes n(n−1) comparisons whatever the input, the others one pass.",
-    f"**H2 falsified (1 of 9 cells; 1 inconclusive).** WhileNeeded is the fastest in every random cell with n ≥ 5 000, but UntilNoChange is {(r5.ratio_geomean-1)*100:.0f} % slower than PassPerItem at n = 5 000 (CI {ci(r5.ci_lo, r5.ci_hi)}), more than the 15 % allowed. "
+    f"**H2 falsified (1 of 9 cells; 1 inconclusive).** WhileNeeded is the fastest in every random cell with n ≥ 5 000, but UntilNoChange is {(r5.ratio_mean-1)*100:.0f} % slower than PassPerItem at n = 5 000 (CI {ci(r5.ci_lo, r5.ci_hi)}), more than the 15 % allowed. "
     "Both make about n² comparisons, so the gap is a cost per iteration. Our conjecture is that the flag UntilNoChange sets inside the swap branch slows the compiled loop; the gap disappears with only the C1 compiler or the interpreter (S-E.8), but we did not inspect machine code.",
-    f"**H3 falsified (5 of 6 cells).** WhileNeeded is faster than UntilNoChange at n = 5 000 but {(b.ratio_geomean-1)*100:.0f} % *slower* than PassPerItem (CI {ci(b.ci_lo, b.ci_hi)}), and at n ≥ 10 000 no faster than UntilNoChange ({fmt_ratio(a2.ratio_geomean)}× at 20 000). "
+    f"**H3 falsified (5 of 6 cells).** WhileNeeded is faster than UntilNoChange at n = 5 000 but {(b.ratio_mean-1)*100:.0f} % *slower* than PassPerItem (CI {ci(b.ci_lo, b.ci_hi)}), and at n ≥ 10 000 no faster than UntilNoChange ({fmt_ratio(a2.ratio_mean)}× at 20 000). "
     "The disadvantage (7–12 %, up to 16 % in the steady state) is not a robust property of the algorithms: it occurs only in the main setting (this OpenJDK 26.0.1 build on this laptop, Serial or Parallel collector) and not with G1, JDK 8/17/21/25, a second M3 Pro, an x86 PC, String elements or a polluted JIT profile (S-E, S-D). Its cause is unknown.",
     f"**H4 supported.** Both early-stopping algorithms are {H('H4').estimate.min():.0f}–{H('H4').estimate.max():.0f}× faster than PassPerItem (lowest CI bound {H('H4').ci_lo.min():.0f}×).",
-    f"**H5 falsified (1 of 6 cells).** Only PassPerItem on random input grows more than allowed: {g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) against 4.7. The verdict is fragile: the interval only just excludes 4.7, and the cell is inconclusive in the late-batch analysis.",
-    f"**H6 falsified ({len(f6)} of 60 comparisons).** WhileNeeded is more than 5 % slower than another algorithm only on reversed input, against PassPerItem (see H3). The registered rule therefore does not fire, and our recommendation rests on a post-hoc criterion.",
+    f"**H5 not falsified (1 of 6 cells inconclusive).** Only PassPerItem on random input is at issue: it grows by {g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) when n doubles, against the limit 4.7. The interval reaches just below the limit; with the 30 forks of the pooled data the cell is falsified (S-F).",
+    f"**H6 falsified ({len(f6)} of 60 comparisons).** WhileNeeded is more than 5 % slower than another algorithm on reversed input, against PassPerItem (see H3), and in one cell whose ratio is distorted by a level shift (sorted, n = 20 000, against UntilNoChange; Section 3.6). The registered rule therefore does not fire, and our recommendation rests on a post-hoc criterion.",
 ])
 p("The qualitative predictions were right (early stopping helps enormously on sorted and nearly sorted input; growth is quadratic or linear as expected). Wrong were thresholds that assumed fewer comparisons always mean less time. The hypotheses were not changed afterwards.")
 
@@ -231,7 +232,7 @@ bullets([
     "**Review by independent AI sessions:** two sub-agents without prior context audited the data and the report. They found the level shifts of Section 3.6 and several wrong or overstated claims in earlier drafts (for example an unsupported \"bimodal JIT\" explanation, a wrong direction of an effect, a wrong battery statement); these were corrected, and the corrections are in the git history.",
     "**Limits of this documentation:** the full chat transcript is not part of the repository. Every number in the report is produced by scripts from the raw data in the repository, not typed by hand.",
 ])
-p("The authors take responsibility for the report and are prepared to explain every method in it, including the t confidence intervals over fork medians, the geometric mean of paired ratios with a t interval on the log scale, the Welch interval for growth factors, and the steady-state re-measurement.")
+p("The authors take responsibility for the report and are prepared to explain every method in it, including the confidence interval mean ± t · s/√N over fork medians, the mean of paired ratios, the conservative interval of the growth factor, and the steady-state re-measurement.")
 
 doc.add_heading("Appendix B: reproduction", level=1)
 p(f"Everything needed to recreate every number, table and figure is in {REPO_URL} (data, analysis and report scripts as of commit {HEAD}): raw measurements (results/full/raw.csv, one line per timed batch), environment records, harness, orchestration and analysis scripts, HYPOTHESES.md and REMEASURE_RULE.md; the order of the steps is in README.md. "
