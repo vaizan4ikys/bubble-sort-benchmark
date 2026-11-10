@@ -50,14 +50,14 @@ p((ROOT / "analysis" / "abstract.txt").read_text().strip())
 doc.add_heading("1. Introduction", level=1)
 p("Bubble Inc. wants to ship one of three correct Java bubble sorts, judged only by running time. They differ only in when they stop: "
   "**PassPerItem** always makes n passes, **UntilNoChange** stops after the first pass without a swap, and **WhileNeeded** also shortens every pass to the position of the last swap of the previous pass. "
-  "Counting comparisons predicts WhileNeeded ≤ UntilNoChange ≤ PassPerItem, but on a real JVM running time also depends on branch prediction, memory access and the JIT compiler, so we measured it. "
+  "Counting comparisons predicts WhileNeeded ≤ UntilNoChange ≤ PassPerItem, but on a real JVM running time also depends on branch prediction, memory access and the just-in-time (JIT) compiler that optimises hot code at run time, so we measured it. "
   "We ran a full-factorial experiment (3 algorithms × 6 input orders × 6 sizes) in fresh JVMs, with the hypotheses committed to git before the main data were collected. "
   "Follow-up experiments (other garbage collectors, JDKs, element types, tiny arrays, other computers) are in the supplement and only summarised here.")
 
 doc.add_heading("Hypotheses", level=2)
 p(f"The hypotheses were committed in HYPOTHESES.md (commit {PREREG[0]}, {PREREG[1][:19].replace('T', ' ')} local time) before the harness commit and the main run; "
   "a short pilot followed (Section 2.4). The file was committed once and not changed afterwards (see the git history). The independent variables are algorithm, input order and size n; the dependent variable is the running time of one call to sort. "
-  "Each condition is evaluated from the 10 fork medians (one median per JVM): a ratio between algorithms is the mean of the 10 paired per-fork ratios, a time is the mean of the 10 fork medians, and thresholds are compared with the 95 % confidence interval (Section 2.4). The null hypothesis of each is the negation of its statement.")
+  "Each condition is evaluated from the 10 fork medians (a fork is one fresh JVM process; its median is taken over its 30 timed batches): a ratio between algorithms is the mean of the 10 paired per-fork ratios, a time is the mean of the 10 fork medians, and thresholds are compared with the 95 % confidence interval (Section 2.4). The null hypothesis of each is the negation of its statement.")
 HYP_SHORT = [
     ("H1", "Sorted input, n ≥ 1 000: PassPerItem needs at least 100× the time of UntilNoChange and of WhileNeeded."),
     ("H2", "Random input, n ≥ 5 000: WhileNeeded is the fastest; UntilNoChange and PassPerItem differ by less than 15 %."),
@@ -75,8 +75,8 @@ doc.add_heading("2. Method", level=1)
 doc.add_heading("2.1 Variables", level=2)
 table(["Role", "Variable", "Levels / value"], [
     ["Independent", "Algorithm (3)", "PassPerItem · UntilNoChange · WhileNeeded (the provided classes, unmodified)"],
-    ["Independent", "Input order (6)", "random · sorted · reversed · nearly sorted, local (5 % of the elements swapped with a neighbour at most 10 positions away) · nearly sorted, random (n/20 random pairs swapped) · few unique (10 different values)"],
-    ["Independent", "Size n (6)", "100 · 1 000 · 2 000 · 5 000 · 10 000 · 20 000 boxed Integer elements"],
+    ["Independent", "Input order (6)", "random · sorted · reversed · nearly sorted, local (also called \"locally disturbed\"; 5 % of the elements swapped with a neighbour at most 10 positions away) · nearly sorted, random (n/20 random pairs swapped) · few unique (10 different values)"],
+    ["Independent", "Size n (6)", "100 · 1 000 · 2 000 · 5 000 · 10 000 · 20 000 Integer objects as elements"],
     ["Dependent", "Running time of one sort()", "System.nanoTime() over a batch of sorts (~2 ms), divided by the batch size; ratio scale, ns"],
     ["Control", "Input data", "identical arrays for the three algorithms (seed depends on order, n and fork, not on the algorithm); copying and the sortedness check are outside the timed region"],
     ["Control", "Machine, JVM", "one Apple M3 Pro laptop on AC power, OpenJDK 26.0.1, -Xms2g -Xmx2g -XX:+UseSerialGC (no collection during timed batches); one algorithm per JVM process; fresh JVM per measurement"],
@@ -103,9 +103,9 @@ bullets([
     "**Warm-up:** sorts of fresh copies until at least 20 sorts and 1.5 s have passed and the last five medians are within 5 % of the five before (limit 40 s). **Calibration:** the batch size is chosen so that a batch lasts about 2 ms.",
     "**Measurement:** two untimed batches, then 30 timed batches (copies made before the clock starts; every result is checked to be sorted afterwards, and a garbage collection in the timed region is flagged).",
 ])
-p(f"The 77-minute main run (01:25–02:43, 4 November 2026) was started and supervised by an AI assistant on the first author's laptop; its few concurrent commits and smoke tests are logged in results/full/interference_log.txt, and the {N_OVER} overlapping jobs are indistinguishable from the others (median relative time {REL_OVER:.3f} against {REL_OTHER:.3f}).")
+p(f"The main run (about 77 minutes, 01:25:20–02:42:47 on 4 November 2026) was started and supervised by an AI assistant on the first author's laptop; its few concurrent commits and smoke tests are logged in results/full/interference_log.txt, and the {N_OVER} overlapping jobs are indistinguishable from the others (median relative time {REL_OVER:.3f} against {REL_OTHER:.3f}).")
 p("**Statistics.** Per cell we report the five-number summary of the 300 batch measurements. Inference uses the 10 fork medians. The 95 % confidence interval is the one of Lecture 7, mean ± critical value × s/√N, with s the standard deviation of the 10 values; because N is only 10 we use the critical value 2.26 of the t distribution (9 degrees of freedom) instead of z = 1.96, which makes the interval slightly wider. Ratios between algorithms: for each fork we divide the two times measured on the same data, and take the mean and this interval of the 10 ratios. "
-  "Growth factors t(20 000)/t(10 000) as the ratio of the mean time at 20 000 to the mean time at 10 000; its interval runs from (lower limit at 20 000) ÷ (upper limit at 10 000) to (upper limit at 20 000) ÷ (lower limit at 10 000), so it is wider than strictly necessary, which makes verdicts cautious. No p-values are used and there is no multiple-comparison correction; conclusions rest on effects that are large compared with the intervals. "
+  "Growth factors t(20 000)/t(10 000) as the ratio of the mean time at 20 000 to the mean time at 10 000; its interval runs from (lower limit at 20 000) ÷ (upper limit at 10 000) to (upper limit at 20 000) ÷ (lower limit at 10 000), this construction is ad hoc (not a formula of the lectures): it covers the true factor in at least about 90 % of repetitions and is usually wider than a 95 % interval. No p-values are used and there is no multiple-comparison correction. Most conclusions rest on effects that are large compared with the intervals; the borderline cells (H5, and one cell of H2) are not claimed as evidence either way. "
   "A rule committed before the analysis (REMEASURE_RULE.md) re-measured ten uncertain groups with 20 additional forks; the pooled data are a sensitivity analysis, not a replacement of the main analysis, so the verdicts in this report are those of the main data. Pooling would change three cells (H2 and H5: inconclusive → falsified; H6: falsified → inconclusive; S-F). "
   "Disclosure: our first analysis code used other interval methods (geometric means of ratios, a Welch interval); we replaced them afterwards by the lecture method above. This changed H5 (falsified → inconclusive) and one H6 cell (inconclusive → falsified), nothing else.")
 p("**Pilot.** Between the commit of the hypotheses and the start of the main run we ran a pilot (108 jobs, n ∈ {100, 1 000, 5 000}, 2 forks) with a not yet committed version of the harness, to choose warm-up and batch parameters. "
@@ -116,15 +116,15 @@ p("**Use of GenAI.** An AI assistant was used throughout; Appendix A documents h
 doc.add_heading("3. Results", level=1)
 p(f"**In brief.** On sorted input PassPerItem is at least {th(H('H1').estimate.min())}× slower than the two early-stopping algorithms (n ≥ 1 000), on locally disturbed input {H('H4').estimate.min():.0f}–{H('H4').estimate.max():.0f}× (n ≥ 5 000). "
   "On random input WhileNeeded needs 57–76 % of PassPerItem's time and UntilNoChange is 9–26 % slower than PassPerItem. On reversed input WhileNeeded is 7–12 % slower than PassPerItem (main setting only). "
-  "H1 and H4 are supported; H2, H3 and H6 are falsified in 1 to 6 of their cells; H5 is inconclusive (1 cell). A measurement problem (a \"level shift\": for very short sorts the speed changes part-way through a run, Section 3.6) does not change these verdicts.")
+  "H1 and H4 are supported; H2, H3 and H6 are falsified in 1 to 6 of their cells; H5 is inconclusive (1 cell; the pooled 30-fork re-measurement data would falsify it, Section 2.4). A measurement problem (a \"level shift\": for very short sorts the speed changes part-way through a run, Section 3.6) does not change these verdicts.")
 
 doc.add_heading("3.1 Visual Overview", level=2)
 dl = drift.strip().splitlines()
 _first, _last = re.findall(r": ([\d.]+)", dl[0])
 _lo, _hi = dl[1].split(":")[1].strip().split("..")
 _lo, _hi = _lo.strip(), _hi.strip()
-p("All 1 080 jobs completed, every result was verified to be sorted, no timed batch contained a garbage collection and no warm-up hit its limit. Time per sort ranges from 25 ns (sorted, n = 100) to 0.52 s (n = 20 000). "
-  f"Drift over the session: the median relative time (job time ÷ cell median) is {_first} in the first third of the session and {_last} in the last third; the rolling median stays within {_lo}–{_hi} of the cell median, far smaller than the differences between algorithms.")
+p("All 1 080 jobs completed, every result was verified to be sorted, no timed batch contained a garbage collection and no warm-up hit its limit. The individual batch measurements range from 25 ns per sort (sorted, n = 100) to 0.52 s (n = 20 000). "
+  f"Drift over the session: the median relative time (job time ÷ cell median) is {_first} in the first third of the session and {_last} in the last third; the rolling median stays within {_lo}–{_hi} of the cell median, far smaller than the 5–10 % and larger effects discussed below.")
 figure(MAIN / "fig_scaling.png",
        "Median time of one sort against input size (log–log), one panel per input order; shaded band = 95 % CI over forks (mostly narrower than the markers); dotted lines show n and n² growth.", width=5.6)
 figure(MAIN / "fig_boxplots.png",
@@ -138,7 +138,7 @@ for o in ORDERS:
         r = summ[(summ.algorithm == a) & (summ.order == o) & (summ["size"] == 10000)].iloc[0]
         rows.append([ORDER_LABEL[o], a, fmt_time(r["min"]), fmt_time(r.q1), fmt_time(r["median"]), fmt_time(r.q3), fmt_time(r["max"])])
 table(["Input order", "Algorithm", "Min", "Q1", "Median", "Q3", "Max"], rows, widths=[1.6, 1.25, 0.75, 0.75, 0.75, 0.75, 0.75], align_right_from=2, size=8,
-      caption="Five-number summary of the time per sort, n = 10 000. Medians over all 300 batches.")
+      caption="Five-number summary of the time per sort, n = 10 000. Summary of all 300 batches per row.")
 
 doc.add_heading("3.3 Comparing the algorithms", level=2)
 rows = []
@@ -158,7 +158,7 @@ table(["Input order", "n", "UntilNoChange ÷ PassPerItem", "WhileNeeded ÷ PassP
 doc.add_heading("3.4 Hypothesis checks", level=2)
 rows = []
 for r in hyp_all.itertuples():
-    rows.append([r.hypothesis, verdict_label(r), hcnt(r.hypothesis, SS)])
+    rows.append([r.hypothesis, (f"Inconclusive ({r.inconclusive} of {r.cells} cells)" if r.falsified == 0 and r.inconclusive > 0 else verdict_label(r)), hcnt(r.hypothesis, SS).replace('inc.', 'inconclusive')])
 table(["Hypothesis", "Verdict, main data (registered rule)", "Cells falsified, steady-state re-measurement"], rows, widths=[1.0, 3.3, 2.2], size=8.5,
       caption="Hypothesis verdicts. The steady-state column (cells falsified, inconclusive in brackets) comes from the re-measurement of Section 3.6, in which a warm-up of the timed loop was added (3 forks per cell). H1 and H4 are supported in both analyses.")
 
@@ -203,7 +203,7 @@ bullets([
     f"**H3 falsified (5 of 6 cells).** WhileNeeded is faster than UntilNoChange at n = 5 000 but {(b.ratio_mean-1)*100:.0f} % *slower* than PassPerItem (CI {ci(b.ci_lo, b.ci_hi)}), and at n ≥ 10 000 no faster than UntilNoChange ({fmt_ratio(a2.ratio_mean)}× at 20 000). "
     "The disadvantage (7–12 %, up to 16 % in the steady state) is not a robust property of the algorithms: it occurs only in the main setting (this OpenJDK 26.0.1 build on this laptop, Serial or Parallel collector) and not with G1, JDK 8/17/21/25, a second M3 Pro, an x86 PC, String elements or a polluted JIT profile (S-E, S-D). Its cause is unknown.",
     f"**H4 supported.** Both early-stopping algorithms are {H('H4').estimate.min():.0f}–{H('H4').estimate.max():.0f}× faster than PassPerItem (lowest CI bound {H('H4').ci_lo.min():.0f}×).",
-    f"**H5 not falsified (1 of 6 cells inconclusive).** Only PassPerItem on random input is at issue: it grows by {g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) when n doubles, against the limit 4.7. The interval reaches just below the limit; with the 30 forks of the pooled data the cell is falsified (S-F).",
+    f"**H5 inconclusive (1 of 6 cells).** Only PassPerItem on random input is at issue: it grows by {g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) when n doubles, against the limit 4.7. The interval reaches just below the limit; with the 30 forks of the pooled data the cell is falsified (S-F).",
     f"**H6 falsified ({len(f6)} of 60 comparisons).** WhileNeeded is more than 5 % slower than another algorithm on reversed input, against PassPerItem (see H3), and in one cell whose ratio is distorted by a level shift (sorted, n = 20 000, against UntilNoChange; Section 3.6). The registered rule therefore does not fire, and our recommendation rests on a post-hoc criterion.",
 ])
 p("The qualitative predictions were right (early stopping helps enormously on sorted and nearly sorted input; growth is quadratic or linear as expected). Wrong were thresholds that assumed fewer comparisons always mean less time. The hypotheses were not changed afterwards.")
@@ -223,7 +223,7 @@ _pmin_s = 1 / _pp[_pp.order == "sorted"].ratio_mean.max()
 _pmin_l = 1 / _pp[_pp.order == "nearly_local"].ratio_mean.max()
 rg = regret.set_index("algorithm")
 w5, u5, pp5 = rcc("WhileNeeded", SS), rcc("UntilNoChange", SS), rcc("PassPerItem", SS)
-p(f"**Recommendation: ship BubbleSortWhileNeeded.** In the 30 conditions with n ≥ 1 000 it is the fastest in {int(rg.loc['WhileNeeded'].cells_fastest)} (main data) and {int(w5.fastest)} (steady state) and never more than {w5.worst_slowdown:.2f}× slower than the best in the steady state (reversed input, n = 20 000). "
+p(f"**Recommendation: ship BubbleSortWhileNeeded.** In the 30 conditions with n ≥ 1 000 it is the fastest in {int(rg.loc['WhileNeeded'].cells_fastest)} (main data) and {int(w5.fastest)} (steady state) and at most {w5.worst_slowdown:.2f}× slower than the best in the steady state (reversed input, n = 20 000; a point estimate from 3 forks without interval; the main data give {rcc('WhileNeeded', MS).worst_slowdown:.2f}, an artefact of level shifts, Section 3.6). "
   f"UntilNoChange is up to {u5.worst_slowdown:.1f}× slower than the best; PassPerItem is up to about {sig3(pp5.worst_slowdown)}× slower (sorted input) and at least {_pmin_s:.0f}× slower on sorted and {_pmin_l:.0f}× on locally disturbed input (n ≥ 1 000, main data). "
   "The criterion is post hoc because the H6 criterion fixed in advance was not met.")
 p("**Where WhileNeeded is not the best:** on reversed input with cheap Integer comparisons it is 7–16 % slower than PassPerItem in our main setting; for arrays of 20 elements or fewer another algorithm wins some cases by at most about 1–2 µs (S-E.3). "
@@ -232,10 +232,10 @@ p("**Where WhileNeeded is not the best:** on reversed input with cheap Integer c
 doc.add_heading("Appendix A: Use of GenAI tools", level=1)
 p("**Tools.** Claude (Anthropic) through Claude Code, a command-line coding agent with access to the first author's laptop, including to its files and shell commands, and, as sub-agents without our context, additional Claude sessions for reviews. The second author used his own Claude session on his computers.")
 bullets([
-    "**What the assistant did:** proposed the design and hypotheses (the authors approved them before the main run); wrote the Java measuring code, the Python orchestration and analysis scripts and the script that builds this document; started and monitored the experiments; drafted the text of this report from the generated tables.",
+    "**What the assistant did:** proposed the design and hypotheses (the authors decided on the design questions); wrote the Java measuring code, the Python orchestration and analysis scripts and the script that builds this document; started and monitored the experiments; drafted the text of this report from the generated tables.",
     "**What the authors did:** defined the assignment and the design decisions (for example the choice of what to compare and which follow-ups to run), prepared the machine (power, closed applications), installed additional JDKs, ran the experiments on the second author's computers, and read and checked the report, the numbers and the code.",
-    "**Review by independent AI sessions:** two sub-agents without prior context audited the data and the report. They found the level shifts of Section 3.6 and several wrong or overstated claims in earlier drafts (for example an unsupported \"bimodal JIT\" explanation, a wrong direction of an effect, a wrong battery statement); these were corrected, and the corrections are in the git history.",
-    "**Limits of this documentation:** the full chat transcript is not part of the repository, and the model versions of the early sessions were not recorded. Tables and most numbers in the text are generated by scripts from the raw data; a few summary ranges in the text were typed from those outputs.",
+    "**Review by independent AI sessions:** two sub-agents without prior context audited the data and the report. They flagged the level shifts of Section 3.6, which we then verified in the raw data (Figure 3), and several wrong or overstated claims in earlier drafts (for example an unsupported \"bimodal JIT\" explanation, a wrong direction of an effect, a wrong battery statement); these were corrected, and the corrections are in the git history.",
+    "**Limits of this documentation:** the full chat transcript is not part of the repository, and the model versions of the early sessions were not recorded; later git commits carry the trailer \"Co-Authored-By: Claude Sonnet 5.5\". Tables and most numbers in the text are generated by scripts from the raw data; the ranges in \"In brief\" and in Section 4.1 (for example 7–12 %, 57–76 %, up to 16 %) were typed from those outputs.",
 ])
 p("The authors take responsibility for the report and are prepared to explain every method in it, including the confidence interval mean ± t · s/√N over fork medians, the mean of paired ratios, the conservative interval of the growth factor, and the steady-state re-measurement.")
 
