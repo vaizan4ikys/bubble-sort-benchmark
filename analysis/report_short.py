@@ -89,7 +89,7 @@ p("A **multi-factor, full-factorial, repeated-measures experiment**: algorithm �
   "(32 400 observations). The \"participants\" are the data sets: fork *k* of every algorithm sorts the same data, so comparisons between algorithms are paired. "
   "Order effects are controlled because every measurement runs in a fresh JVM and the order of the runs is randomised; a drift check follows in Section 3.1. "
   "Batches within a JVM are not independent, so the unit of analysis is the median of a fork.")
-figure(MAIN / "fig_design.png", "Design: three crossed factors (3 × 6 × 6 cells), 10 forks per cell, 30 timed batches per fork; the three algorithms are measured on the same inputs.", width=5.4)
+figure(MAIN / "fig_design.png", "Design: three crossed factors (3 × 6 × 6 cells), 10 forks per cell, 30 timed batches per fork; the three algorithms are measured on the same inputs.", width=3.6)
 
 doc.add_heading("2.3 Apparatus and Materials", level=2)
 p("MacBook Pro (Mac15,6) with Apple M3 Pro (5 performance + 6 efficiency cores, 18 GB), macOS 26.7.1, AC power, lid open, heavy applications closed, sleep prevented with caffeinate; clock frequency and temperature were not recorded. "
