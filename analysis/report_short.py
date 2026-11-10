@@ -92,7 +92,8 @@ p("A **multi-factor, full-factorial, repeated-measures experiment**: algorithm Ã
 
 doc.add_heading("2.3 Apparatus and Materials", level=2)
 p("MacBook Pro (Mac15,6) with Apple M3 Pro (5 performance + 6 efficiency cores, 18 GB), macOS 26.7.1, AC power, lid open, heavy applications closed, sleep prevented with caffeinate; clock frequency and temperature were not recorded. "
-  "OpenJDK 26.0.1 (Homebrew). Python 3 with pandas, NumPy, SciPy and matplotlib for the analysis. Own code: InputGenerator, Worker (the measuring program), run_experiment.py (one JVM per job) and the analysis scripts; "
+  "Main experiment: OpenJDK 26.0.1 (Homebrew build), which also compiled the code. Other JDKs used only in the follow-ups of the supplement: OpenJDK 17.0.19 and 21.0.11 (Homebrew), Amazon Corretto 8 (1.8.0_482), Eclipse Temurin 25.0.5, and on other computers JDK 25.0.1 (second M3 Pro), Temurin 17.0.21 and 26.0.2.1 (Ryzen PC). "
+  "Analysis: Python 3.14 with pandas 3.1, NumPy 2.5, SciPy 1.18 and matplotlib 3.11 (exact versions in requirements.txt). Own code: InputGenerator, Worker (the measuring program), run_experiment.py (one JVM per job) and the analysis scripts; "
   f"the three sorting classes come from the assignment. All code and raw data: {REPO_URL}.")
 
 doc.add_heading("2.4 Procedure", level=2)
