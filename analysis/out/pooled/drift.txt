@@ -1,2 +1,2 @@
-Spearman correlation between job position and relative time: rho=-0.067, p=0.00947
+median relative time in the first third of the session: 1.0003, in the last third: 0.9998
 rolling-median range: 0.998 .. 1.003

@@ -90,7 +90,7 @@ N_OVER, REL_OVER, REL_OTHER = int(_m.group(1)), float(_m.group(2)), float(_m.gro
 def tiny_ratio(g, lo, hi):
     """Ratios far below 1 as 1/N so that they stay readable."""
     th = lambda v: f"{v:,.0f}".replace(",", " ")
-    return f"1/{th(1 / g)} [1/{th(1 / hi)}, 1/{th(1 / lo)}]"
+    return f"1/{th(1 / g)} [1/{th(1 / lo)}, 1/{th(1 / hi)}]"
 
 
 def verdict_label(r):

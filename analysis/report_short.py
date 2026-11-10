@@ -57,7 +57,7 @@ p("Bubble Inc. wants to ship one of three correct Java bubble sorts, judged only
 doc.add_heading("Hypotheses", level=2)
 p(f"The hypotheses were committed in HYPOTHESES.md (commit {PREREG[0]}, {PREREG[1][:19].replace('T', ' ')} local time) before the harness commit and the main run; "
   "a short pilot followed (Section 2.4). The file was committed once and not changed afterwards (see the git history). The independent variables are algorithm, input order and size n; the dependent variable is the running time of one call to sort. "
-  "Each condition is evaluated from the 10 fork medians (a fork is one fresh JVM process; its median is taken over its 30 timed batches): a ratio between algorithms is the mean of the 10 paired per-fork ratios, a time is the mean of the 10 fork medians, and thresholds are compared with the 95 % confidence interval (Section 2.4). The null hypothesis of each is the negation of its statement.")
+  "Each condition is evaluated from the 10 fork medians (a fork is one fresh JVM process; its median is taken over its 30 timed batches): a ratio between algorithms is the mean of the 10 paired per-fork ratios, a time is the mean of the 10 fork medians, and thresholds are compared with the 95 % confidence interval (Section 2.4). HYPOTHESES.md speaks of the \"median time\" of a condition; for the confidence intervals we use the mean of the fork medians (Lecture 7 builds the interval on a mean), which changes the estimates by very little. The null hypothesis of each is the negation of its statement.")
 HYP_SHORT = [
     ("H1", "Sorted input, n ≥ 1 000: PassPerItem needs at least 100× the time of UntilNoChange and of WhileNeeded."),
     ("H2", "Random input, n ≥ 5 000: WhileNeeded is the fastest; UntilNoChange and PassPerItem differ by less than 15 %."),
@@ -110,7 +110,7 @@ p("**Statistics.** Per cell we report the five-number summary of the 300 batch m
   "Disclosure: our first analysis code used other interval methods (geometric means of ratios, a Welch interval); we replaced them afterwards by the lecture method above. This changed H5 (falsified → inconclusive) and one H6 cell (inconclusive → falsified), nothing else.")
 p("**Pilot.** Between the commit of the hypotheses and the start of the main run we ran a pilot (108 jobs, n ∈ {100, 1 000, 5 000}, 2 forks) with a not yet committed version of the harness, to choose warm-up and batch parameters. "
   "It already suggested that UntilNoChange is slower than PassPerItem on random input and WhileNeeded slower than PassPerItem on reversed input. We did not change the hypotheses; no result below uses the pilot data.")
-p("**Use of GenAI.** An AI assistant was used throughout; Appendix A documents how.")
+p("**Use of GenAI.** An AI assistant was used throughout; Appendix B documents how.")
 
 # ------------------------------------------------------------------------------ results
 doc.add_heading("3. Results", level=1)
@@ -138,7 +138,7 @@ for o in ORDERS:
         r = summ[(summ.algorithm == a) & (summ.order == o) & (summ["size"] == 10000)].iloc[0]
         rows.append([ORDER_LABEL[o], a, fmt_time(r["min"]), fmt_time(r.q1), fmt_time(r["median"]), fmt_time(r.q3), fmt_time(r["max"])])
 table(["Input order", "Algorithm", "Min", "Q1", "Median", "Q3", "Max"], rows, widths=[1.6, 1.25, 0.75, 0.75, 0.75, 0.75, 0.75], align_right_from=2, size=8,
-      caption="Five-number summary of the time per sort, n = 10 000. Summary of all 300 batches per row.")
+      caption="Five-number summary of all 300 batches per row, n = 10 000. The main-data times of UntilNoChange and WhileNeeded on sorted and nearly sorted input are up to about 2× too high (incomplete warm-up, Section 3.6; Table 6).")
 
 doc.add_heading("3.3 Comparing the algorithms", level=2)
 rows = []
@@ -153,17 +153,17 @@ for o in ("random", "sorted", "reversed", "nearly_local"):
         rows.append([ORDER_LABEL[o], th(n), f(ratio(o, n, "UntilNoChange", "PassPerItem")), f(ratio(o, n, "WhileNeeded", "PassPerItem")), f(ratio(o, n, "WhileNeeded", "UntilNoChange"))])
 table(["Input order", "n", "UntilNoChange ÷ PassPerItem", "WhileNeeded ÷ PassPerItem", "WhileNeeded ÷ UntilNoChange"], rows,
       widths=[1.55, 0.6, 1.5, 1.5, 1.5], size=8,
-      caption="Paired time ratios (mean over 10 forks, 95 % CI in brackets); values below 1 mean the first-named algorithm is faster; 1/970 means 970× faster. Ratios on sorted input are distorted by level shifts (Section 3.6). Other orders and sizes: analysis/out/main/pairwise_ratios.csv in the repository.")
+      caption="Paired time ratios (mean over 10 forks, 95 % CI in brackets); values below 1 mean the first-named algorithm is faster; 1/4 824 means 4 824× faster. Ratios between UntilNoChange and WhileNeeded on sorted and locally disturbed input are biased by the incomplete warm-up (Section 3.6, Table 6). Other orders and sizes: analysis/out/main/pairwise_ratios.csv in the repository.")
 
 doc.add_heading("3.4 Hypothesis checks", level=2)
 rows = []
 for r in hyp_all.itertuples():
-    rows.append([r.hypothesis, (f"Inconclusive ({r.inconclusive} of {r.cells} cells)" if r.falsified == 0 and r.inconclusive > 0 else verdict_label(r)), hcnt(r.hypothesis, SS).replace('inc.', 'inconclusive')])
+    rows.append([r.hypothesis, (f"Inconclusive, borderline ({r.inconclusive} of {r.cells} cells)" if r.falsified == 0 and r.inconclusive > 0 else verdict_label(r)), hcnt(r.hypothesis, SS).replace('inc.', 'inconclusive')])
 table(["Hypothesis", "Verdict, main data (registered rule)", "Cells falsified, steady-state re-measurement"], rows, widths=[1.0, 3.3, 2.2], size=8.5,
       caption="Hypothesis verdicts. The steady-state column (cells falsified, inconclusive in brackets) comes from the re-measurement of Section 3.6, in which a warm-up of the timed loop was added (3 forks per cell). H1 and H4 are supported in both analyses.")
 
 doc.add_heading("3.5 Decision metric: worst-case slowdown", level=2)
-p("For the recommendation we compare each algorithm with the fastest one in every cell with n ≥ 1 000 (30 cells): the slowdown is its median time divided by the smallest median of the three (1.00 = fastest).")
+p("For the recommendation we compare each algorithm with the fastest one in every cell with n ≥ 1 000 (30 cells): the slowdown is its median time (median of the 10 fork medians, unaffected by a single odd fork) divided by the smallest such median of the three (1.00 = fastest).")
 rows = []
 for a in ALG_ORDER:
     m, s = rcc(a, MS), rcc(a, SS)
@@ -172,19 +172,26 @@ table(["Algorithm", "Fastest in (main)", "Worst slowdown (main)", "Where", "Fast
       widths=[1.05, 0.75, 0.8, 1.2, 0.75, 0.8, 1.2], size=8,
       caption="Slowdown relative to the fastest algorithm per cell, n ≥ 1 000. WhileNeeded's main-data worst case (sorted, n = 20 000) is the level-shift artefact of Section 3.6; in the steady state it is 1.16.")
 
-doc.add_heading("3.6 Level shifts inside a JVM and a steady-state check", level=2)
-p(f"A review of the raw data after the main analysis showed that for very short sorts the time per sort changes inside a fork. Comparing the first and last 10 of the 30 timed batches, {n_shift} of 1 080 forks differ by more than 20 % ({n_mild} more by 5–20 %); "
-  "all large shifts are speed-ups and all flagged cells have very short sorts (sorted n = 100, 1 000, 20 000 and locally disturbed n = 100, 1 000). In sorted input with n = 1 000 all 20 forks of both early-stopping algorithms get about twice as fast "
-  "(for example 570 ns → 250 ns), and in sorted input with n = 20 000 all ten forks of UntilNoChange go from 11.4 µs to 5.7 µs. The most likely cause is that the JIT compiler finishes compiling the loop that runs the batches while it is being timed; "
-  "the main harness warmed up with single sorts and only two untimed batches. We did not record compilation events, so this explanation is untested.")
+doc.add_heading("3.6 Incomplete warm-up (level shifts) and a steady-state check", level=2)
+p(f"A review of the raw data after the main analysis showed that for very short sorts the time per sort changes inside a fork (a \"level shift\") or has not yet settled. Comparing the first and last 10 of the 30 timed batches, {n_shift} of 1 080 forks differ by more than 20 % ({n_mild} more by 5–20 %); "
+  "all large shifts are speed-ups and all flagged cells have very short sorts (n ≤ 1 000, plus sorted n = 20 000). In sorted input with n = 1 000 all 20 forks of both early-stopping algorithms get about twice as fast "
+  "(for example 570 ns → 250 ns), and in sorted input with n = 20 000 all ten forks of UntilNoChange go from about 11.5 µs to about 5.6 µs. The most likely cause is that the JIT compiler finishes compiling the loop that runs the batches while it is being timed; "
+  "the main harness warmed up with single sorts and only two untimed batches. The first and last 10 batches therefore miss slow levels that last for all 30 batches. We did not record compilation events, so this explanation is untested.")
 figure(SC / "fig_level_shifts.png",
        "Time per sort of each timed batch, sorted input, n = 1 000 and 20 000. Top: main data (10 forks, thin lines; thick = median). Bottom: steady-state re-measurement (3 forks).", width=5.2)
 _svm = pd.read_csv(SC / "steady_vs_main_cells.csv")
 _big = _svm[_svm["size"] >= 1000]
 p("We therefore re-measured all 108 cells with a variant of the harness (SteadyWorker) that, after the warm-up, runs whole batches until the batch time is stable (window of 50 batches, tolerance 3 %, at least 8 s for short sorts) before the 30 timed batches; "
   "same JDK, flags and data, 3 forks per cell. Compared with the same forks of the main data, "
-  f"{int(_big.differs_10pct.sum())} of {len(_big)} cells with n ≥ 1 000 differ by more than 10 %: main-data times of the early-stopping algorithms on sorted and nearly sorted input are up to a factor of about 2 too high. "
-  "The verdicts of H1–H6 do not change (Table 4), two cell verdicts of H6 do, and the recommendation is the same (Table 5). Main-data times for these cells (Tables 2–3 and S-C) should be read as upper bounds.")
+  f"{int(_big.differs_10pct.sum())} of {len(_big)} cells with n ≥ 1 000 differ by more than 10 % (up to about 2.2×), mostly without any visible shift inside the run: the warm-up was incomplete for these cells. "
+  "The verdicts of H1–H6 do not change (Table 4), two cell verdicts of H6 do, and the recommendation is the same (Table 5). Main-data times and ratios of the early-stopping algorithms on sorted and nearly sorted input are therefore biased, in either direction for ratios (Table 6), and the steady-state values are the more reliable ones.")
+_sm = summ.set_index(["order", "size", "algorithm"]).median_of_fork_medians
+_ss = pd.read_csv(ROOT / "analysis/out/steady/summary_cells.csv").set_index(["order", "size", "algorithm"]).median_of_fork_medians
+_rows = []
+for _o, _n in (("sorted", 5000), ("sorted", 10000), ("sorted", 20000), ("nearly_local", 5000)):
+    _rows.append([ORDER_LABEL[_o], th(_n), fmt_time(_sm[_o, _n, "UntilNoChange"]), fmt_time(_ss[_o, _n, "UntilNoChange"]), fmt_time(_sm[_o, _n, "WhileNeeded"]), fmt_time(_ss[_o, _n, "WhileNeeded"]), f"{_sm[_o, _n, 'WhileNeeded'] / _sm[_o, _n, 'UntilNoChange']:.2f}", f"{_ss[_o, _n, 'WhileNeeded'] / _ss[_o, _n, 'UntilNoChange']:.2f}"])
+table(["Input order", "n", "UntilNoChange main", "UntilNoChange steady", "WhileNeeded main", "WhileNeeded steady", "W ÷ U main", "W ÷ U steady"], _rows, widths=[1.3, 0.6, 0.8, 0.8, 0.8, 0.8, 0.7, 0.7], size=8, align_right_from=2,
+      caption="Median time per sort in the main data and in the steady-state re-measurement (3 forks) for cells with an incomplete warm-up.")
 
 # ------------------------------------------------------------------------------ discussion
 doc.add_heading("4. Discussion", level=1)
@@ -193,17 +200,18 @@ h1 = H("H1")
 r5 = ratio("random", 5000, "UntilNoChange", "PassPerItem")
 b = ratio("reversed", 5000, "WhileNeeded", "PassPerItem")
 a2 = ratio("reversed", 20000, "WhileNeeded", "UntilNoChange")
+a1 = ratio("reversed", 10000, "WhileNeeded", "UntilNoChange")
 g = H("H5", claim="PassPerItem: t(20000)/t(10000) within 3.3-4.7", order="random").iloc[0]
 f6 = H("H6", verdict="falsified")
 bullets([
-    f"**H1 supported.** PassPerItem is {th(h1.estimate.min())}–{th(h1.estimate.max())}× slower on sorted input (lowest CI bound {th(h1.ci_lo.min())}×; steady state {th(HST[HST.hypothesis == 'H1'].estimate.min())}–{th(HST[HST.hypothesis == 'H1'].estimate.max())}×), "
+    f"**H1 supported.** PassPerItem is at least {th(h1.estimate.min())}× slower on sorted input in the main data (lowest CI bound {th(h1.ci_lo.min())}×; steady state {th(HST[HST.hypothesis == 'H1'].estimate.min())}–{th(HST[HST.hypothesis == 'H1'].estimate.max())}×), "
     "far above 100×: PassPerItem makes n(n−1) comparisons whatever the input, the others one pass.",
     f"**H2 falsified (1 of 9 cells; 1 inconclusive).** WhileNeeded is the fastest in every random cell with n ≥ 5 000, but UntilNoChange is {(r5.ratio_mean-1)*100:.0f} % slower than PassPerItem at n = 5 000 (CI {ci(r5.ci_lo, r5.ci_hi)}), more than the 15 % allowed. "
     "Both make about n² comparisons, so the gap is a cost per iteration. Our conjecture is that the flag UntilNoChange sets inside the swap branch slows the compiled loop; the gap disappears with only the C1 compiler or the interpreter (S-E.8), but we did not inspect machine code.",
-    f"**H3 falsified (5 of 6 cells).** WhileNeeded is faster than UntilNoChange at n = 5 000 but {(b.ratio_mean-1)*100:.0f} % *slower* than PassPerItem (CI {ci(b.ci_lo, b.ci_hi)}), and at n ≥ 10 000 no faster than UntilNoChange ({fmt_ratio(a2.ratio_mean)}× at 20 000). "
-    "The disadvantage (7–12 %, up to 16 % in the steady state) is not a robust property of the algorithms: it occurs only in the main setting (this OpenJDK 26.0.1 build on this laptop, Serial or Parallel collector) and not with G1, JDK 8/17/21/25, a second M3 Pro, an x86 PC, String elements or a polluted JIT profile (S-E, S-D). Its cause is unknown.",
+    f"**H3 falsified (5 of 6 cells).** WhileNeeded is faster than UntilNoChange at n = 5 000 but {(b.ratio_mean-1)*100:.0f} % *slower* than PassPerItem (CI {ci(b.ci_lo, b.ci_hi)}), and at n ≥ 10 000 at most 4 % faster than UntilNoChange ({fmt_ratio(a1.ratio_mean)}× at 10 000, {fmt_ratio(a2.ratio_mean)}× at 20 000). "
+    "The disadvantage (7–12 %, up to 16 % in the steady state) is not a robust property of the algorithms: it occurs only in the main setting (this OpenJDK 26.0.1 build on this laptop, Serial or Parallel collector) and not with the G1 collector, JDK 8/17/21/25, a second M3 Pro, an x86 PC, String elements or a JVM whose JIT had first run other code (S-E, S-D). Its cause is unknown.",
     f"**H4 supported.** Both early-stopping algorithms are {H('H4').estimate.min():.0f}–{H('H4').estimate.max():.0f}× faster than PassPerItem (lowest CI bound {H('H4').ci_lo.min():.0f}×).",
-    f"**H5 inconclusive (1 of 6 cells).** Only PassPerItem on random input is at issue: it grows by {g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) when n doubles, against the limit 4.7. The interval reaches just below the limit; with the 30 forks of the pooled data the cell is falsified (S-F).",
+    f"**H5 inconclusive (1 of 6 cells).** Only PassPerItem on random input is at issue: it grows by {g.estimate:.2f}× (CI {ci(g.ci_lo, g.ci_hi)}) when n doubles, against the limit 4.7. The point estimate is above the limit and the interval reaches just below it. The verdict depends on how the interval is built: our (wide) growth-factor interval leaves it inconclusive, whereas our first method (Welch interval) and the pooled 30-fork data (S-F) falsify it. We treat H5 as borderline.",
     f"**H6 falsified ({len(f6)} of 60 comparisons).** WhileNeeded is more than 5 % slower than another algorithm on reversed input, against PassPerItem (see H3), and in one cell whose ratio is distorted by a level shift (sorted, n = 20 000, against UntilNoChange; Section 3.6). The registered rule therefore does not fire, and our recommendation rests on a post-hoc criterion.",
 ])
 p("The qualitative predictions were right (early stopping helps enormously on sorted and nearly sorted input; growth is quadratic or linear as expected). Wrong were thresholds that assumed fewer comparisons always mean less time. The hypotheses were not changed afterwards.")
@@ -212,7 +220,7 @@ doc.add_heading("4.2 Limitations and Threats to Validity", level=2)
 bullets([
     "**Measurement validity.** The main harness did not warm up the batch loop, so main-data times of very short sorts are up to 2× too high in some cells (Section 3.6). The steady-state re-measurement has only 3 forks and no analysis recorded JIT compilations.",
     "**One machine, one JDK build.** The complete data come from one M3 Pro laptop and one OpenJDK build. A reduced design on a second M3 Pro and an x86 PC, and several other JDKs, kept the ranking but not the reversed-input anomaly (S-D, S-E); clock frequency and temperature were not recorded.",
-    "**Inputs and use.** Six synthetic input orders (five more shapes in S-E.4) with boxed Integers allocated in order and a warmed-up JVM. A real application with a polluted JIT profile is about 3× slower (S-E.2); absolute times should not be quoted, only the ranking. Expensive comparators and real customer data were not measured.",
+    "**Inputs and use.** Six synthetic input orders (five more shapes in S-E.4) with boxed Integers allocated in order and a warmed-up JVM. A real application, in which the JIT has already run other code, is about 3× slower (S-E.2); absolute times should not be quoted, only the ranking. Expensive comparators and real customer data were not measured.",
     "**Statistics.** Ten forks per cell; the t intervals are approximate where the JIT is unstable (sorted n = 20 000; locally disturbed inputs). No correction for multiple comparisons.",
     "**Post-hoc analysis.** The worst-case-slowdown criterion, the late-batch and steady-state analyses and all follow-ups were chosen after seeing the main results and are exploratory. The pilot had already hinted at some falsifications. Timestamps are local git times; the first push to GitHub came after the main run.",
 ])
@@ -223,21 +231,23 @@ _pmin_s = 1 / _pp[_pp.order == "sorted"].ratio_mean.max()
 _pmin_l = 1 / _pp[_pp.order == "nearly_local"].ratio_mean.max()
 rg = regret.set_index("algorithm")
 w5, u5, pp5 = rcc("WhileNeeded", SS), rcc("UntilNoChange", SS), rcc("PassPerItem", SS)
-p(f"**Recommendation: ship BubbleSortWhileNeeded.** In the 30 conditions with n ≥ 1 000 it is the fastest in {int(rg.loc['WhileNeeded'].cells_fastest)} (main data) and {int(w5.fastest)} (steady state) and at most {w5.worst_slowdown:.2f}× slower than the best in the steady state (reversed input, n = 20 000; a point estimate from 3 forks without interval; the main data give {rcc('WhileNeeded', MS).worst_slowdown:.2f}, an artefact of level shifts, Section 3.6). "
-  f"UntilNoChange is up to {u5.worst_slowdown:.1f}× slower than the best; PassPerItem is up to about {sig3(pp5.worst_slowdown)}× slower (sorted input) and at least {_pmin_s:.0f}× slower on sorted and {_pmin_l:.0f}× on locally disturbed input (n ≥ 1 000, main data). "
-  "The criterion is post hoc because the H6 criterion fixed in advance was not met.")
+p(f"**Recommendation: ship BubbleSortWhileNeeded.** In the 30 conditions with n ≥ 1 000 it is the fastest in {int(rg.loc['WhileNeeded'].cells_fastest)} (main data) and {int(w5.fastest)} (steady state) and in the steady state at most {w5.worst_slowdown:.2f}× slower than the best; all 5 conditions in which it is not the fastest are reversed input (worst: n = 20 000; a point estimate from 3 forks without interval; the main data give {rcc('WhileNeeded', MS).worst_slowdown:.2f}, an artefact of level shifts, Section 3.6). "
+  f"UntilNoChange is up to {u5.worst_slowdown:.1f}× slower than the best in the steady state ({rcc('UntilNoChange', MS).worst_slowdown:.2f}× in the main data); PassPerItem is up to about {sig3(pp5.worst_slowdown)}× slower in the steady state (sorted input) and at least {_pmin_s:.0f}× slower on sorted and {_pmin_l:.0f}× on locally disturbed input (n ≥ 1 000, main data). "
+  "The recommendation rests on a post-hoc criterion (smallest worst-case slowdown), because the H6 criterion fixed in advance was not met.")
 p("**Where WhileNeeded is not the best:** on reversed input with cheap Integer comparisons it is 7–16 % slower than PassPerItem in our main setting; for arrays of 20 elements or fewer another algorithm wins some cases by at most about 1–2 µs (S-E.3). "
   "Running time was not predictable from comparison counts alone, and a benchmark must warm up the code path it times and check for level shifts inside each run. Open: the mechanism of the JIT effects and whether the reversed-input anomaly is a property of this JDK build.")
 
-doc.add_heading("Appendix A: Use of GenAI tools", level=1)
+doc.add_heading("Appendix A: Materials", level=1)
+p("The three algorithms under test and the interface Sorter are the classes provided with the assignment, used unmodified; no consent documents or other materials were needed because there were no human participants.")
+doc.add_heading("Appendix B: Use of GenAI tools", level=1)
 p("**Tools.** Claude (Anthropic) through Claude Code, a command-line coding agent with access to the first author's laptop, including to its files and shell commands, and, as sub-agents without our context, additional Claude sessions for reviews. The second author used his own Claude session on his computers.")
 bullets([
     "**What the assistant did:** proposed the design and hypotheses (the authors decided on the design questions); wrote the Java measuring code, the Python orchestration and analysis scripts and the script that builds this document; started and monitored the experiments; drafted the text of this report from the generated tables.",
     "**What the authors did:** defined the assignment and the design decisions (for example the choice of what to compare and which follow-ups to run), prepared the machine (power, closed applications), installed additional JDKs, ran the experiments on the second author's computers, and read and checked the report, the numbers and the code.",
-    "**Review by independent AI sessions:** two sub-agents without prior context audited the data and the report. They flagged the level shifts of Section 3.6, which we then verified in the raw data (Figure 3), and several wrong or overstated claims in earlier drafts (for example an unsupported \"bimodal JIT\" explanation, a wrong direction of an effect, a wrong battery statement); these were corrected, and the corrections are in the git history.",
-    "**Limits of this documentation:** the full chat transcript is not part of the repository, and the model versions of the early sessions were not recorded; later git commits carry the trailer \"Co-Authored-By: Claude Sonnet 5.5\". Tables and most numbers in the text are generated by scripts from the raw data; the ranges in \"In brief\" and in Section 4.1 (for example 7–12 %, 57–76 %, up to 16 %) were typed from those outputs.",
+    "**Review by independent AI sessions:** several review sessions (sub-agents without prior context) audited the data and the report. They flagged the level shifts of Section 3.6, which we then verified in the raw data (Section 3.6), and several wrong or overstated claims in earlier drafts (for example an unsupported \"bimodal JIT\" explanation, a wrong direction of an effect, a wrong battery statement); these were corrected, and the corrections are in the git history.",
+    "**Limits of this documentation:** the full chat transcript is not part of the repository, and the model versions of the early sessions were not recorded; many git commits carry trailers naming Claude Sonnet 5.5, Opus 5.5 or Sonnet 5 (some carry none). Tables and most numbers in the text are generated by scripts from the raw data; the ranges in \"In brief\" and in Section 4.1 (for example 7–12 %, 57–76 %, up to 16 %) were typed from those outputs.",
 ])
 
-doc.add_heading("Appendix B: reproduction", level=1)
+doc.add_heading("Appendix C: Reproduction", level=1)
 p(f"Everything needed to recreate every number, table and figure is in {REPO_URL} (branch main at the time of submission): raw measurements (results/full/raw.csv, one line per timed batch), environment records, harness, orchestration and analysis scripts, HYPOTHESES.md and REMEASURE_RULE.md; the order of the steps is in README.md. "
-  "The three sorting classes were used unmodified; no human participants were involved. The supplementary file contains the five-number tables of all conditions (S-C), the measurements on the other computers (S-D), the follow-up experiments (S-E) and the re-measurement of uncertain groups (S-F).")
+  "The three sorting classes were used unmodified; no human participants were involved. The supplementary file (in the repository, optionally submitted with the report) contains the five-number tables of all conditions (S-C), the measurements on the other computers (S-D), the follow-up experiments (S-E) and the re-measurement of uncertain groups (S-F).")

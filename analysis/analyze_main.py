@@ -277,7 +277,7 @@ def scaling():
             for n in SIZES:
                 f = fm[(fm.algorithm == a) & (fm.order == o) & (fm["size"] == n)].med.values / US
                 m, l, h = t_ci(f)
-                xs.append(n); ys.append(np.median(f)); lo.append(max(l, 1e-4)); hi.append(h)
+                xs.append(n); ys.append(m); lo.append(max(l, 1e-4)); hi.append(h)
             ax.plot(xs, ys, color=COLOR[a], ls=LINESTYLE[a], marker=MARKER[a], ms=4, lw=1.4, label=a)
             ax.fill_between(xs, lo, hi, color=COLOR[a], alpha=0.18, lw=0)
         # reference slopes anchored at the left of the PassPerItem line
@@ -289,6 +289,7 @@ def scaling():
         ax.text(xs[-1], y0 * (xs[-1] / x0) ** 2 * 0.55, "n²", color=INK2, fontsize=7, ha="right")
         ax.text(xs[-1], y0 * (xs[-1] / x0) * 1.35, "n", color=INK2, fontsize=7, ha="right")
         ax.set_xscale("log"); ax.set_yscale("log")
+        ax.set_yticks([1e-1, 1e1, 1e3, 1e5]); ax.set_yticklabels(["$10^{-1}$", "$10^{1}$", "$10^{3}$", "$10^{5}$"])
         ax.set_title(ORDER_LABEL[o], fontsize=8.8)
         ax.set_xlabel("input size n")
         ax.tick_params(axis="x", labelbottom=True)  # tick labels on every panel, not only on the bottom row
