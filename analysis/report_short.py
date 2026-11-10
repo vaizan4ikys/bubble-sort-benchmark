@@ -235,5 +235,5 @@ bullets([
 p("The authors take responsibility for the report and are prepared to explain every method in it, including the confidence interval mean ± t · s/√N over fork medians, the mean of paired ratios, the conservative interval of the growth factor, and the steady-state re-measurement.")
 
 doc.add_heading("Appendix B: reproduction", level=1)
-p(f"Everything needed to recreate every number, table and figure is in {REPO_URL} (data, analysis and report scripts as of commit {HEAD}): raw measurements (results/full/raw.csv, one line per timed batch), environment records, harness, orchestration and analysis scripts, HYPOTHESES.md and REMEASURE_RULE.md; the order of the steps is in README.md. "
+p(f"Everything needed to recreate every number, table and figure is in {REPO_URL} (branch main at the time of submission): raw measurements (results/full/raw.csv, one line per timed batch), environment records, harness, orchestration and analysis scripts, HYPOTHESES.md and REMEASURE_RULE.md; the order of the steps is in README.md. "
   "The three sorting classes were used unmodified; no human participants were involved. The supplementary file contains the five-number tables of all conditions (S-C), the measurements on the other computers (S-D), the follow-up experiments (S-E) and the re-measurement of uncertain groups (S-F).")
