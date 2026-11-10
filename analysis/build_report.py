@@ -7,6 +7,7 @@ Every number that appears in a table or in a result sentence is read from the CS
 analyze_main.py / decision_metrics.py (and the follow-up analyses, if present) produced from the
 raw data, so the report can be regenerated after any re-measurement.
 """
+import os
 import re
 import subprocess
 import sys
@@ -22,7 +23,8 @@ from docx.shared import Cm, Inches, Pt, RGBColor
 
 from common import ORDER_LABEL, ORDERS, ROOT, fmt_ratio, fmt_time
 
-OUT_DOCX = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "report" / "Experiment 01 - Report.docx"
+SHORT = os.environ.get("REPORT_MODE", "full") == "short"   # short = the submitted report; full = supplementary material
+OUT_DOCX = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "report" / ("Experiment 01 - Report.docx" if SHORT else "Supplementary material - extended report.docx")
 OUT_DOCX.parent.mkdir(parents=True, exist_ok=True)
 MAIN = ROOT / "analysis/out/main"
 FOLLOW = ROOT / "analysis/out/followups"
@@ -77,7 +79,7 @@ def sig3(x):
 def pretty_where(w):
     """'nearly_random n=10000' -> 'nearly sorted (random swaps), n = 10 000'."""
     order, n = w.rsplit(" n=", 1)
-    return f"{ORDER_LABEL.get(order, order)}, n = {int(n):,}".replace(",", " ")
+    return f"{ORDER_LABEL.get(order, order)}, n = " + f"{int(n):,}".replace(",", " ")
 
 
 _ic = (ROOT / "analysis/out/steady_check/interference_check.txt").read_text()
@@ -245,10 +247,19 @@ def figure(path, caption, width=6.4):
 
 
 # =========================================================================== title + abstract
-tp = p(TITLE, bold=True, size=19, align=WD_ALIGN_PARAGRAPH.LEFT)
+tp = p(TITLE if SHORT else "Supplementary material: " + TITLE, bold=True, size=19 if SHORT else 16, align=WD_ALIGN_PARAGRAPH.LEFT)
 tp.paragraph_format.space_after = Pt(2)
 p(AUTHORS, size=11.5)
 p("Experiment 1, Experimentation & Evaluation 2026 · Università della Svizzera italiana", italic=True, size=9.5)
+if SHORT:
+    st.font.size = Pt(10)
+    sec.left_margin = sec.right_margin = Inches(0.95)
+    sec.top_margin = sec.bottom_margin = Inches(0.8)
+    exec((ROOT / "analysis" / "report_short.py").read_text())
+    doc.save(OUT_DOCX)
+    print("written", OUT_DOCX)
+    sys.exit(0)
+p("This is the extended version of the report (all follow-up experiments, all five-number tables, the experiments on other computers). The submitted report is the shorter file “Experiment 01 - Report.docx”, which cites this file as S-… (S-C = Appendix C, and so on).", italic=True, size=9)
 
 doc.add_heading("Abstract", level=1)
 ABSTRACT = (ROOT / "analysis" / "abstract.txt").read_text().strip() if (ROOT / "analysis" / "abstract.txt").exists() else ""
