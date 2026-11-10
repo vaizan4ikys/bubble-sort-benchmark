@@ -107,8 +107,7 @@ p("**Statistics.** Per cell we report the five-number summary of the 300 batch m
   "A pre-registered rule (REMEASURE_RULE.md) re-measured ten uncertain groups with 20 additional forks (S-F); it changed one cell verdict (H2, random, n = 10 000: inconclusive → falsified).")
 p("**Pilot.** Between the commit of the hypotheses and the start of the main run we ran a pilot (108 jobs, n ∈ {100, 1 000, 5 000}, 2 forks) with a not yet committed version of the harness, to choose warm-up and batch parameters. "
   "It already suggested that UntilNoChange is slower than PassPerItem on random input and WhileNeeded slower than PassPerItem on reversed input. We did not change the hypotheses; no result below uses the pilot data.")
-p("**Use of GenAI.** An AI assistant (Claude, via Claude Code) helped to design the experiment, wrote the measuring and analysis code, ran the main experiment and drafted this report; the second author used his own assistant session for runs on other computers (S-D). "
-  "The authors reviewed the design, code, numbers and text and can explain the statistics. A review of the raw data by a second assistant session without context found the measurement problem described in Section 3.6.")
+p("**Use of GenAI.** An AI assistant was used throughout; Appendix A documents how.")
 
 # ------------------------------------------------------------------------------ results
 doc.add_heading("3. Results", level=1)
@@ -224,6 +223,16 @@ p(f"**Recommendation: ship BubbleSortWhileNeeded.** In the 30 conditions with n 
 p("**Where WhileNeeded is not the best:** on reversed input with cheap Integer comparisons it is 7–16 % slower than PassPerItem in our main setting; for arrays of 20 elements or fewer another algorithm wins some cases by at most about 1–2 µs (S-E.3). "
   "Running time was not predictable from comparison counts alone, and a benchmark must warm up the code path it times and check for level shifts inside each run. Open: the mechanism of the JIT effects and whether the reversed-input anomaly is a property of this JDK build.")
 
-doc.add_heading("Appendix: reproduction", level=1)
+doc.add_heading("Appendix A: Use of GenAI tools", level=1)
+p("**Tools.** Claude (Anthropic) through Claude Code, a command-line coding agent with access to the first author's laptop, including to its files and shell commands, and, as sub-agents without our context, additional Claude sessions for reviews. The second author used his own Claude session on his computers.")
+bullets([
+    "**What the assistant did:** proposed the design and hypotheses (the authors approved them before the main run); wrote the Java measuring code, the Python orchestration and analysis scripts and the script that builds this document; started and monitored the experiments; drafted the text of this report from the generated tables.",
+    "**What the authors did:** defined the assignment and the design decisions (for example the choice of what to compare and which follow-ups to run), prepared the machine (power, closed applications), installed additional JDKs, ran the experiments on the second author's computers, and read and checked the report, the numbers and the code.",
+    "**Review by independent AI sessions:** two sub-agents without prior context audited the data and the report. They found the level shifts of Section 3.6 and several wrong or overstated claims in earlier drafts (for example an unsupported \"bimodal JIT\" explanation, a wrong direction of an effect, a wrong battery statement); these were corrected, and the corrections are in the git history.",
+    "**Limits of this documentation:** the full chat transcript is not part of the repository. Every number in the report is produced by scripts from the raw data in the repository, not typed by hand.",
+])
+p("The authors take responsibility for the report and are prepared to explain every method in it, including the t confidence intervals over fork medians, the geometric mean of paired ratios with a t interval on the log scale, the Welch interval for growth factors, and the steady-state re-measurement.")
+
+doc.add_heading("Appendix B: reproduction", level=1)
 p(f"Everything needed to recreate every number, table and figure is in {REPO_URL} (data, analysis and report scripts as of commit {HEAD}): raw measurements (results/full/raw.csv, one line per timed batch), environment records, harness, orchestration and analysis scripts, HYPOTHESES.md and REMEASURE_RULE.md; the order of the steps is in README.md. "
   "The three sorting classes were used unmodified; no human participants were involved. The supplementary file contains the five-number tables of all conditions (S-C), the measurements on the other computers (S-D), the follow-up experiments (S-E) and the re-measurement of uncertain groups (S-F).")
