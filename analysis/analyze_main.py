@@ -291,6 +291,7 @@ def scaling():
         ax.set_xscale("log"); ax.set_yscale("log")
         ax.set_title(ORDER_LABEL[o], fontsize=8.8)
         ax.set_xlabel("input size n")
+        ax.tick_params(axis="x", labelbottom=True)  # tick labels on every panel, not only on the bottom row
     for ax in axes[::ncol]:
         ax.set_ylabel("median time per sort [µs]")
     for ax in axes[len(ORD):]:
